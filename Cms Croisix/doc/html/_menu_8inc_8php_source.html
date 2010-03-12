@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/Menu.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>Menu.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de création:  */</span> 
+<a name="l00011"></a><a class="code" href="class_menu.html">00011</a> <span class="keyword">class </span><a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a> {
+<a name="l00016"></a><a class="code" href="class_menu.html#ab045c0d5f418ae347bc48221b4fe9051">00016</a>     <span class="keyword">public</span> <a class="code" href="class_menu.html#ab045c0d5f418ae347bc48221b4fe9051">$nummenu</a>;
+<a name="l00021"></a><a class="code" href="class_menu.html#a7771aba2b4d3b7775a20933092bb60b2">00021</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a7771aba2b4d3b7775a20933092bb60b2">$nomMenu</a>; 
+<a name="l00026"></a><a class="code" href="class_menu.html#aa87ea3c08c67ddd070df77d4ec0c096a">00026</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#aa87ea3c08c67ddd070df77d4ec0c096a">$ordre</a>;  
+<a name="l00027"></a>00027         <span class="keyword">public</span> $affiche;        
+<a name="l00032"></a><a class="code" href="class_menu.html#ab4dd3ff9db4dd532808039f2c75e2830">00032</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#ab4dd3ff9db4dd532808039f2c75e2830">$type</a>;
+<a name="l00037"></a><a class="code" href="class_menu.html#ad2c7f9d539a21c52f026144916f41b4d">00037</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#ad2c7f9d539a21c52f026144916f41b4d">$zone</a>;
+<a name="l00042"></a><a class="code" href="class_menu.html#a18b6e9a70cbce7cc33b11013d81a87f5">00042</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a18b6e9a70cbce7cc33b11013d81a87f5">$nomkey</a>;  
+<a name="l00047"></a><a class="code" href="class_menu.html#a17f4a64a87c70f647752d8af4018e809">00047</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a17f4a64a87c70f647752d8af4018e809">$numfkey</a>;
+<a name="l00052"></a>00052         <span class="keyword">public</span> $url;
+<a name="l00057"></a>00057         <span class="keyword">public</span> $numpage;
+<a name="l00062"></a><a class="code" href="class_menu.html#afc8e1c59adcfe772e91e63c4198fc634">00062</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#afc8e1c59adcfe772e91e63c4198fc634">$accueilPage</a>;
+<a name="l00067"></a><a class="code" href="class_menu.html#a6f311d17d0ac95240b52b7b038f1f4a1">00067</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a6f311d17d0ac95240b52b7b038f1f4a1">$lgPage</a>;
+<a name="l00068"></a>00068         <span class="keyword">public</span> $champ;
+<a name="l00069"></a>00069         <span class="keyword">public</span> $valeur;
+<a name="l00074"></a><a class="code" href="class_menu.html#aee2c86af5fe0f0f2cdddbc4e4c75e322">00074</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#aee2c86af5fe0f0f2cdddbc4e4c75e322">$lg</a>;
+<a name="l00079"></a><a class="code" href="class_menu.html#a8d386f0634f74415382fa5594c9668b9">00079</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a8d386f0634f74415382fa5594c9668b9">$listcontact</a> = array(); 
+<a name="l00084"></a><a class="code" href="class_menu.html#a4aa496167ee2414c94b97042a3e21450">00084</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a4aa496167ee2414c94b97042a3e21450">$listforma</a> = array();
+<a name="l00089"></a><a class="code" href="class_menu.html#a333be471785ab155b28a92e3d6b70801">00089</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a333be471785ab155b28a92e3d6b70801">$listdoc</a> = array();
+<a name="l00094"></a><a class="code" href="class_menu.html#a9c90117729a84747de2ad5183fcaf1ff">00094</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a9c90117729a84747de2ad5183fcaf1ff">$listdocnumpara</a> = array(); 
+<a name="l00099"></a><a class="code" href="class_menu.html#a03eeca4169c1710fb887bfe4d2fc74a6">00099</a>         <span class="keyword">public</span> <a class="code" href="class_menu.html#a03eeca4169c1710fb887bfe4d2fc74a6">$tri_date</a>;
+<a name="l00100"></a>00100                                         
+<a name="l00105"></a><a class="code" href="class_menu.html#a9a77f95cacaecc448984cbac6ca2e322">00105</a>         function <a class="code" href="class_menu.html#a9a77f95cacaecc448984cbac6ca2e322">creerMenu</a>() {
+<a name="l00106"></a>00106                 <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;rubrique&quot;</span>) {
+<a name="l00107"></a>00107                         mysql_query(<span class="stringliteral">&quot;INSERT INTO if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; (nom,ordre,zone,lg) VALUES (&#39;$this-&gt;nomMenu&#39;,&#39;$this-&gt;ordre&#39;,&#39;$this-&gt;zone&#39;,&#39;$this-&gt;lg&#39;)&quot;</span>);
+<a name="l00108"></a>00108                         $this-&gt;nomkey=<span class="stringliteral">&quot;numrub&quot;</span>;
+<a name="l00109"></a>00109                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) {
+<a name="l00110"></a>00110                         mysql_query(<span class="stringliteral">&quot;INSERT INTO if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; (numrub,nom,ordre,zone,lg) VALUES (&#39;$this-&gt;numfkey&#39;,&#39;$this-&gt;nomMenu&#39;,&#39;$this-&gt;ordre&#39;,&#39;$this-&gt;zone&#39;,&#39;$this-&gt;lg&#39;)&quot;</span>);
+<a name="l00111"></a>00111                         $this-&gt;nomkey=<span class="stringliteral">&quot;numcateg&quot;</span>;
+<a name="l00112"></a>00112                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) {
+<a name="l00113"></a>00113                         mysql_query(<span class="stringliteral">&quot;INSERT INTO if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; (numcateg,nom,ordre,lg) VALUES (&#39;$this-&gt;numfkey&#39;,&#39;$this-&gt;nomMenu&#39;,&#39;$this-&gt;ordre&#39;,&#39;$this-&gt;lg&#39;)&quot;</span>);
+<a name="l00114"></a>00114                         $this-&gt;nomkey=<span class="stringliteral">&quot;numsscateg&quot;</span>;
+<a name="l00115"></a>00115                 }
+<a name="l00116"></a>00116                 $this-&gt;nummenu=mysql_insert_id();
+<a name="l00117"></a>00117                 $this-&gt;afficherMenu();  
+<a name="l00118"></a>00118         }
+<a name="l00119"></a>00119         
+<a name="l00120"></a>00120         function afficherMenu() {
+<a name="l00121"></a>00121            mysql_query(<span class="stringliteral">&quot;UPDATE if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; SET affiche=&#39;$this-&gt;affiche&#39; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00122"></a>00122         }
+<a name="l00126"></a><a class="code" href="class_menu.html#a9763b3e7922234afd70238e9489ea80d">00126</a>         function <a class="code" href="class_menu.html#a9763b3e7922234afd70238e9489ea80d">modifierMenu</a>() {
+<a name="l00127"></a>00127            <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;rubrique&quot;</span>) {
+<a name="l00128"></a>00128                         $this-&gt;nomkey=<span class="stringliteral">&quot;numrub&quot;</span>;
+<a name="l00129"></a>00129                         mysql_query(<span class="stringliteral">&quot;UPDATE if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; SET nom=&#39;$this-&gt;nomMenu&#39;,ordre=&#39;$this-&gt;ordre&#39;,zone=&#39;$this-&gt;zone&#39;,lg=&#39;$this-&gt;lg&#39; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00130"></a>00130                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) {
+<a name="l00131"></a>00131                         $this-&gt;nomkey=<span class="stringliteral">&quot;numcateg&quot;</span>;
+<a name="l00132"></a>00132                         mysql_query(<span class="stringliteral">&quot;UPDATE if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; SET numrub=&#39;$this-&gt;numfkey&#39;,nom=&#39;$this-&gt;nomMenu&#39;,ordre=&#39;$this-&gt;ordre&#39;,zone=&#39;$this-&gt;zone&#39;,lg=&#39;$this-&gt;lg&#39; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>); 
+<a name="l00133"></a>00133                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) {
+<a name="l00134"></a>00134                         $this-&gt;nomkey=<span class="stringliteral">&quot;numsscateg&quot;</span>;
+<a name="l00135"></a>00135                         mysql_query(<span class="stringliteral">&quot;UPDATE if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; SET numcateg=&#39;$this-&gt;numfkey&#39;,nom=&#39;$this-&gt;nomMenu&#39;,ordre=&#39;$this-&gt;ordre&#39;,lg=&#39;$this-&gt;lg&#39; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00136"></a>00136                 }
+<a name="l00137"></a>00137                 $this-&gt;afficherMenu(); 
+<a name="l00138"></a>00138         }
+<a name="l00139"></a>00139         
+<a name="l00143"></a><a class="code" href="class_menu.html#a851d019aefe0961266a53d0dc39cb977">00143</a>         function <a class="code" href="class_menu.html#a851d019aefe0961266a53d0dc39cb977">supprimerMenu</a>() {
+<a name="l00144"></a>00144                  <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;rubrique&quot;</span>) {
+<a name="l00145"></a>00145                         $this-&gt;nomkey=<span class="stringliteral">&quot;numrub&quot;</span>;
+<a name="l00146"></a>00146                         mysql_query(<span class="stringliteral">&quot;UPDATE if_categorie SET $this-&gt;nomkey=&#39;0&#39; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00147"></a>00147                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) {
+<a name="l00148"></a>00148                         $this-&gt;nomkey=<span class="stringliteral">&quot;numcateg&quot;</span>;
+<a name="l00149"></a>00149                         mysql_query(<span class="stringliteral">&quot;UPDATE if_sscateg SET $this-&gt;nomkey=&#39;0&#39; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00150"></a>00150                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) {
+<a name="l00151"></a>00151                         $this-&gt;nomkey=<span class="stringliteral">&quot;numsscateg&quot;</span>;
+<a name="l00152"></a>00152                 }
+<a name="l00153"></a>00153                 
+<a name="l00154"></a>00154                 mysql_query(<span class="stringliteral">&quot;DELETE FROM if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00155"></a>00155         }
+<a name="l00156"></a>00156     
+<a name="l00160"></a><a class="code" href="class_menu.html#a8e5089745858464f5cb49c7ec75a6c61">00160</a>         function <a class="code" href="class_menu.html#a8e5089745858464f5cb49c7ec75a6c61">infosMenu</a>() {
+<a name="l00161"></a>00161                 $row=SelectMultiple(<span class="stringliteral">&quot;if_&quot;</span>.$this-&gt;type,$this-&gt;nomkey,$this-&gt;nummenu);
+<a name="l00162"></a>00162                 $this-&gt;nomMenu=$row[<span class="stringliteral">&quot;nom&quot;</span>];
+<a name="l00163"></a>00163                 $this-&gt;ordre=$row[<span class="stringliteral">&quot;ordre&quot;</span>];     
+<a name="l00164"></a>00164                 $this-&gt;zone=$row[<span class="stringliteral">&quot;zone&quot;</span>];       
+<a name="l00165"></a>00165                 $this-&gt;affiche=$row[<span class="stringliteral">&quot;affiche&quot;</span>];
+<a name="l00166"></a>00166                 $this-&gt;lg=$row[<span class="stringliteral">&quot;lg&quot;</span>];
+<a name="l00167"></a>00167                 <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) $this-&gt;numfkey=$row[<span class="stringliteral">&quot;numrub&quot;</span>]; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) $this-&gt;numfkey=$row[<span class="stringliteral">&quot;numcateg&quot;</span>];  
+<a name="l00168"></a>00168                 <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;numpage&quot;</span>]) {
+<a name="l00169"></a>00169                         $lapage=<span class="keyword">new</span> Page();
+<a name="l00170"></a>00170                         $lapage-&gt;numpage=$row[<span class="stringliteral">&quot;numpage&quot;</span>];
+<a name="l00171"></a>00171                         $lapage-&gt;infosPage();
+<a name="l00172"></a>00172                         $this-&gt;url=$lapage-&gt;aliasPage;
+<a name="l00173"></a>00173                         $this-&gt;numpage=$lapage-&gt;numpage;
+<a name="l00174"></a>00174                         $this-&gt;accueilPage=$lapage-&gt;accueilPage;
+<a name="l00175"></a>00175                         $this-&gt;lgPage=$lapage-&gt;lg;
+<a name="l00176"></a>00176                 } 
+<a name="l00177"></a>00177         }
+<a name="l00181"></a><a class="code" href="class_menu.html#ae7e5da4c8d6e0ace0f26efdbc8b54254">00181</a>         function <a class="code" href="class_menu.html#ae7e5da4c8d6e0ace0f26efdbc8b54254">afficheRub</a>() {
+<a name="l00182"></a>00182                 $row=SelectSimple(<span class="stringliteral">&quot;numrub&quot;</span>,<span class="stringliteral">&quot;if_rubrique&quot;</span>,<span class="stringliteral">&quot;ordre&quot;</span>,<span class="stringliteral">&quot;1&quot;</span>,<span class="stringliteral">&quot; AND zone=&#39;2&#39;&quot;</span>);
+<a name="l00183"></a>00183                 $this-&gt;nummenu=$row[0]; 
+<a name="l00184"></a>00184                 
+<a name="l00185"></a>00185         }
+<a name="l00189"></a><a class="code" href="class_menu.html#a908716a0e8b4c5fcf4259e129dbf4806">00189</a>         function <a class="code" href="class_menu.html#a908716a0e8b4c5fcf4259e129dbf4806">isMenu</a>() {
+<a name="l00190"></a>00190                 $row=SelectMultiple(<span class="stringliteral">&quot;if_&quot;</span>.$this-&gt;type,$this-&gt;champ,$this-&gt;valeur);
+<a name="l00191"></a>00191                 <span class="keywordflow">return</span> $row;
+<a name="l00192"></a>00192         }
+<a name="l00196"></a><a class="code" href="class_menu.html#a5ca4a077b49f9c644650ef1c7a7f5b29">00196</a>         function <a class="code" href="class_menu.html#a5ca4a077b49f9c644650ef1c7a7f5b29">associerPage</a>() {
+<a name="l00197"></a>00197                 <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) $this-&gt;nomkey=<span class="stringliteral">&quot;numcateg&quot;</span>;  <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;rubrique&quot;</span>) $this-&gt;nomkey=<span class="stringliteral">&quot;numrub&quot;</span>; <span class="keywordflow">else</span>  $this-&gt;nomkey=<span class="stringliteral">&quot;numsscateg&quot;</span>;
+<a name="l00198"></a>00198                  mysql_query(<span class="stringliteral">&quot;UPDATE if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; SET numpage=&#39;$this-&gt;numpage&#39; WHERE $this-&gt;nomkey=&#39;$this-&gt;nummenu&#39;&quot;</span>);   
+<a name="l00199"></a>00199         }
+<a name="l00200"></a>00200         
+<a name="l00201"></a>00201         
+<a name="l00202"></a>00202         
+<a name="l00207"></a><a class="code" href="class_menu.html#ad747a8d95fc57bbfff80945ca928104e">00207</a>         function <a class="code" href="class_menu.html#ad747a8d95fc57bbfff80945ca928104e">afficherContacts</a>($referent=<span class="stringliteral">&quot;&quot;</span>) {
+<a name="l00208"></a>00208                 <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>){
+<a name="l00209"></a>00209                          <span class="keywordflow">if</span> ($referent) $result=mysql_query(<span class="stringliteral">&quot;SELECT if_cont_categ.numcontact FROM if_cont_categ,if_contacts WHERE numcateg=&#39;$this-&gt;nummenu&#39; AND if_cont_categ.numcontact=if_contacts.numcontact AND referent=&#39;o&#39;&quot;</span>);      
+<a name="l00210"></a>00210                          <span class="keywordflow">else</span> $result=mysql_query(<span class="stringliteral">&quot;SELECT numcontact FROM if_cont_categ WHERE numcateg=&#39;$this-&gt;nummenu&#39;&quot;</span>);       
+<a name="l00211"></a>00211                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) {
+<a name="l00212"></a>00212                         <span class="keywordflow">if</span> ($referent) $result=mysql_query(<span class="stringliteral">&quot;SELECT if_cont_sscateg.numcontact FROM if_cont_sscateg,if_contacts WHERE numsscateg=&#39;$this-&gt;nummenu&#39; AND if_cont_sscateg.numcontact=if_contacts.numcontact AND referent=&#39;o&#39;&quot;</span>);       
+<a name="l00213"></a>00213                         <span class="keywordflow">else</span> $result=mysql_query(<span class="stringliteral">&quot;SELECT numcontact FROM if_cont_sscateg WHERE numsscateg=&#39;$this-&gt;nummenu&#39;&quot;</span>);   
+<a name="l00214"></a>00214                 }
+<a name="l00215"></a>00215                  
+<a name="l00216"></a>00216                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00217"></a>00217                           $leContact=<span class="keyword">new</span> <a class="code" href="class_contact.html" title="Gestion des contacts.">Contact</a>();
+<a name="l00218"></a>00218                           $leContact-&gt;numcontact=$row[0];  
+<a name="l00219"></a>00219                           $leContact-&gt;infosContact();
+<a name="l00220"></a>00220                           $this-&gt;listcontact[]=$leContact;
+<a name="l00221"></a>00221                 } 
+<a name="l00222"></a>00222                 <span class="comment">//if (count($this-&gt;listcontact)&gt;=1) return true;</span>
+<a name="l00223"></a>00223                 <span class="keywordflow">return</span> count($this-&gt;listcontact);
+<a name="l00224"></a>00224         }
+<a name="l00228"></a><a class="code" href="class_menu.html#acc2a834fb85703c9cb983acc955268d3">00228</a>         function <a class="code" href="class_menu.html#acc2a834fb85703c9cb983acc955268d3">afficherContactsSousCateg</a>() { 
+<a name="l00229"></a>00229                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numsscateg FROM if_sscateg WHERE numcateg=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00230"></a>00230                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00231"></a>00231                         $res=mysql_query(<span class="stringliteral">&quot;SELECT numcontact FROM if_cont_sscateg WHERE numsscateg=&#39;$row[0]&#39;&quot;</span>);
+<a name="l00232"></a>00232                         <span class="keywordflow">while</span> ($riw=mysql_fetch_row($res)) {
+<a name="l00233"></a>00233                                   $tab_contact[]=$riw[0];
+<a name="l00234"></a>00234                         }
+<a name="l00235"></a>00235                 }
+<a name="l00236"></a>00236                 $tab_contact_unique=array_unique($tab_contact);
+<a name="l00237"></a>00237                 <span class="keywordflow">for</span> ($i=0;$i&lt;count($tab_contact_unique);$i++) {
+<a name="l00238"></a>00238                                   $leContact=<span class="keyword">new</span> <a class="code" href="class_contact.html" title="Gestion des contacts.">Contact</a>();
+<a name="l00239"></a>00239                                   $leContact-&gt;numcontact=$tab_contact_unique[$i];  
+<a name="l00240"></a>00240                                   $leContact-&gt;infosContact();
+<a name="l00241"></a>00241                                   $this-&gt;listcontact[]=$leContact;
+<a name="l00242"></a>00242                 }
+<a name="l00243"></a>00243                 
+<a name="l00244"></a>00244                 <span class="comment">//tri multidimentionnel sur tableau d&#39;objets (la fonction de reference est dans fonctions.php)</span>
+<a name="l00245"></a>00245                 usort($this-&gt;listcontact, <span class="stringliteral">&#39;trierContacts&#39;</span>);
+<a name="l00246"></a>00246                 
+<a name="l00247"></a>00247                 
+<a name="l00248"></a>00248                 
+<a name="l00249"></a>00249         }
+<a name="l00250"></a>00250         
+<a name="l00251"></a>00251         
+<a name="l00252"></a>00252         
+<a name="l00257"></a><a class="code" href="class_menu.html#a34c6d9d5781d7db1d2b0fedf6f0fa248">00257</a>         function <a class="code" href="class_menu.html#a34c6d9d5781d7db1d2b0fedf6f0fa248">afficherFormations</a>() {
+<a name="l00258"></a>00258                 <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categ&quot;</span>) {
+<a name="l00259"></a>00259                         $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_categ.numpara FROM if_para_categ, if_v_form WHERE numcateg=&#39;$this-&gt;nummenu&#39; AND if_para_categ.numpara=if_v_form.numpara AND if_v_form.enligne=&#39;o&#39; $this-&gt;tri_date&quot;</span>);<span class="comment">// Requ&amp;ecirc;te pour afficher les formations liées aux categ et sous-categ dans le contenu associé &amp;agrave; droite   </span>
+<a name="l00260"></a>00260                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) {
+<a name="l00261"></a>00261                         <span class="keywordflow">if</span> ($this-&gt;nummenu) 
+<a name="l00262"></a>00262                                 $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_categ.numpara FROM if_para_categ, if_categorie, if_v_form WHERE if_para_categ.numpara=if_v_form.numpara AND if_categorie.numcateg=&#39;$this-&gt;nummenu&#39; AND  if_para_categ.numcateg=if_categorie.numcateg AND if_v_form.enligne=&#39;o&#39; $this-&gt;tri_date ORDER BY date_deb&quot;</span>); <span class="comment">// Requ&amp;ecirc;te utilisée par le moteur de recherche formations-ifip.php (site public) </span>
+<a name="l00263"></a>00263                         <span class="keywordflow">else</span> 
+<a name="l00264"></a>00264                                 $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_categ.numpara FROM if_para_categ, if_v_form WHERE if_para_categ.numpara=if_v_form.numpara AND if_v_form.enligne=&#39;o&#39; GROUP BY if_para_categ.numpara ORDER BY date_deb&quot;</span>);     <span class="comment">// Requ&amp;ecirc;te utilisée par le moteur de recherche formations-ifip.php (site public) </span>
+<a name="l00265"></a>00265                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) {
+<a name="l00266"></a>00266                         $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_sscateg.numpara FROM if_para_sscateg, if_v_form WHERE numsscateg=&#39;$this-&gt;nummenu&#39; AND if_para_sscateg.numpara=if_v_form.numpara AND if_v_form.enligne=&#39;o&#39; $this-&gt;tri_date&quot;</span>);<span class="comment">// Requ&amp;ecirc;te utilisée par le moteur de recherche formations-ifip.php (site public) </span>
+<a name="l00267"></a>00267                 }       
+<a name="l00268"></a>00268 
+<a name="l00269"></a>00269                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00270"></a>00270                           $laForma=<span class="keyword">new</span> <a class="code" href="class_formation.html" title="s&amp;eacute;pcifique IFIP">Formation</a>();
+<a name="l00271"></a>00271                           $laForma-&gt;numpara=$row[0];  
+<a name="l00272"></a>00272                           $laForma-&gt;infosFormation();
+<a name="l00273"></a>00273                           $this-&gt;listforma[]=$laForma;
+<a name="l00274"></a>00274                 } 
+<a name="l00275"></a>00275                 <span class="keywordflow">if</span> (count($this-&gt;listforma)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00276"></a>00276         }
+<a name="l00280"></a><a class="code" href="class_menu.html#ad01b2c589d88ffaa44c10000c43ee963">00280</a>         function <a class="code" href="class_menu.html#ad01b2c589d88ffaa44c10000c43ee963">afficherDocs</a>() {
+<a name="l00281"></a>00281                 <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categ&quot;</span>) { 
+<a name="l00282"></a>00282                         <span class="comment">// docs liées aux categ (pour les fiches actions) = que des docs avec pdf</span>
+<a name="l00283"></a>00283                         $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_categ.numpara FROM if_para_categ, if_v_doc, if_para_fichier </span>
+<a name="l00284"></a>00284 <span class="stringliteral">                        WHERE numcateg=&#39;$this-&gt;nummenu&#39; AND if_para_categ.numpara=if_v_doc.numpara </span>
+<a name="l00285"></a>00285 <span class="stringliteral">                        AND if_para_fichier.numpara=if_v_doc.numpara AND publiee=&#39;o&#39; $this-&gt;tri_date ORDER BY date DESC&quot;</span>);
+<a name="l00286"></a>00286                 
+<a name="l00287"></a>00287                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) {
+<a name="l00288"></a>00288                         <span class="comment">// Requ&amp;ecirc;te utilisée par le moteur de recherche publications-ifip-institut-du-porc.php (site public) </span>
+<a name="l00289"></a>00289                         $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_categ.numpara FROM if_para_categ, if_categorie, if_v_doc </span>
+<a name="l00290"></a>00290 <span class="stringliteral">                        WHERE if_para_categ.numpara=if_v_doc.numpara AND if_categorie.numcateg=&#39;$this-&gt;nummenu&#39; </span>
+<a name="l00291"></a>00291 <span class="stringliteral">                        AND  if_para_categ.numcateg=if_categorie.numcateg AND publiee=&#39;o&#39; $this-&gt;tri_date ORDER BY date DESC&quot;</span>); 
+<a name="l00292"></a>00292                 
+<a name="l00293"></a>00293                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscat&quot;</span>) {
+<a name="l00294"></a>00294                         <span class="comment">// Requ&amp;ecirc;te pour afficher les documentations liées uniquement aux ss-categ (pour les fiches actions)</span>
+<a name="l00295"></a>00295                         $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_sscateg.numpara FROM if_para_sscateg, if_v_doc, if_para_fichier </span>
+<a name="l00296"></a>00296 <span class="stringliteral">                        WHERE numsscateg=&#39;$this-&gt;nummenu&#39; AND if_para_sscateg.numpara=if_v_doc.numpara AND publiee=&#39;o&#39; </span>
+<a name="l00297"></a>00297 <span class="stringliteral">                        AND if_para_fichier.numpara=if_v_doc.numpara $this-&gt;tri_date ORDER BY date DESC&quot;</span>);
+<a name="l00298"></a>00298                 
+<a name="l00299"></a>00299                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) {
+<a name="l00300"></a>00300                         <span class="comment">// Requ&amp;ecirc;te utilisée par le moteur de recherche publications-ifip-institut-du-porc.php </span>
+<a name="l00301"></a>00301                         $result=mysql_query(<span class="stringliteral">&quot;SELECT if_para_sscateg.numpara FROM if_para_sscateg, if_v_doc </span>
+<a name="l00302"></a>00302 <span class="stringliteral">                        WHERE numsscateg=&#39;$this-&gt;nummenu&#39; AND if_para_sscateg.numpara=if_v_doc.numpara </span>
+<a name="l00303"></a>00303 <span class="stringliteral">                        AND publiee=&#39;o&#39; $this-&gt;tri_date ORDER BY date DESC&quot;</span>);
+<a name="l00304"></a>00304                 }
+<a name="l00305"></a>00305                 
+<a name="l00306"></a>00306 <span class="comment">//echo &quot;SELECT if_para_sscateg.numpara FROM if_para_sscateg, if_v_doc, if_para_fichier WHERE numsscateg=&#39;$this-&gt;nummenu&#39; AND if_para_sscateg.numpara=if_v_doc.numpara AND publiee=&#39;o&#39; AND if_para_fichier.numpara=if_v_doc.numpara $this-&gt;tri_date &quot;;</span>
+<a name="l00307"></a>00307                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00308"></a>00308                           $laDoc=<span class="keyword">new</span> <a class="code" href="class_documentation.html" title="Classe Documentation : sp&amp;eacute;cifique IFIP.">Documentation</a>();
+<a name="l00309"></a>00309                           $laDoc-&gt;numpara=$row[0];  
+<a name="l00310"></a>00310                           $laDoc-&gt;infosDoc();
+<a name="l00311"></a>00311                           $this-&gt;listdoc[]=$laDoc;
+<a name="l00312"></a>00312                           $this-&gt;listdocnumpara[]=$row[0];
+<a name="l00313"></a>00313                 } 
+<a name="l00314"></a>00314                 
+<a name="l00315"></a>00315                 <span class="comment">//print_r($this-&gt;listdocnumpara);</span>
+<a name="l00316"></a>00316                 <span class="comment">//tri multidimentionnel sur tableau d&#39;objets (la fonction de reference est dans fonctions.php)</span>
+<a name="l00317"></a>00317                 <span class="comment">//usort($this-&gt;listdoc, &#39;trierDocs&#39;); Mise en commentaire HC sept. 2009 car on utilise a nouveau le vrai champ date</span>
+<a name="l00318"></a>00318                 <span class="keywordflow">return</span> count($this-&gt;listdoc) ; <span class="comment">// modifié Henriette</span>
+<a name="l00319"></a>00319                 
+<a name="l00320"></a>00320                 
+<a name="l00321"></a>00321         }
+<a name="l00327"></a><a class="code" href="class_menu.html#a6301487a1820b6a23c6dd66af7fc69e5">00327</a>         function <a class="code" href="class_menu.html#a6301487a1820b6a23c6dd66af7fc69e5" title="permet d&amp;#39;aller chercher toutes les docs liées &amp;agrave; une categ + sscateg dans...">afficherDocsSousCateg</a>() {
+<a name="l00328"></a>00328                 $this-&gt;listdoc=array();
+<a name="l00329"></a>00329                 
+<a name="l00330"></a>00330                 <span class="comment">// récupération du tableau des docs de la categ sélectionnée (les numpara)</span>
+<a name="l00331"></a>00331                 $tab_docs_categ=$this-&gt;listdocnumpara;
+<a name="l00332"></a>00332                 $tab_docs_sscateg=array();
+<a name="l00333"></a>00333                 
+<a name="l00334"></a>00334                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numsscateg FROM if_sscateg WHERE numcateg=&#39;$this-&gt;nummenu&#39;&quot;</span>);
+<a name="l00335"></a>00335                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00336"></a>00336                         $res=mysql_query(<span class="stringliteral">&quot;SELECT if_para_sscateg.numpara FROM if_para_sscateg, if_v_doc WHERE numsscateg=&#39;$row[0]&#39; </span>
+<a name="l00337"></a>00337 <span class="stringliteral">                        AND if_para_sscateg.numpara=if_v_doc.numpara AND publiee=&#39;o&#39; $this-&gt;tri_date ORDER BY date,numpara DESC&quot;</span>);
+<a name="l00338"></a>00338                         <span class="keywordflow">if</span> (mysql_num_rows($res)&gt;0) {
+<a name="l00339"></a>00339                           <span class="keywordflow">while</span> ($riw=mysql_fetch_row($res)) {
+<a name="l00340"></a>00340                                   $tab_docs_sscateg[]=$riw[0];
+<a name="l00341"></a>00341                           } 
+<a name="l00342"></a>00342                         } <span class="comment">// fin if</span>
+<a name="l00343"></a>00343                         
+<a name="l00344"></a>00344                 } <span class="comment">// fin while</span>
+<a name="l00345"></a>00345                 $tab_des_docs=array_merge($tab_docs_categ, $tab_docs_sscateg);
+<a name="l00346"></a>00346                 sort($tab_des_docs);
+<a name="l00347"></a>00347                 $tab_des_docs=array_unique($tab_des_docs);
+<a name="l00348"></a>00348                 $tab_des_docs=array_values($tab_des_docs); <span class="comment">// reindexation</span>
+<a name="l00349"></a>00349                 
+<a name="l00350"></a>00350                 <span class="keywordflow">for</span> ($i=0;$i&lt;count($tab_des_docs);$i++) {
+<a name="l00351"></a>00351                                   $laDoc=<span class="keyword">new</span> <a class="code" href="class_documentation.html" title="Classe Documentation : sp&amp;eacute;cifique IFIP.">Documentation</a>();
+<a name="l00352"></a>00352                                   $laDoc-&gt;numpara=$tab_des_docs[$i];
+<a name="l00353"></a>00353                                   $laDoc-&gt;infosDoc();
+<a name="l00354"></a>00354                                   $this-&gt;listdoc[]=$laDoc;
+<a name="l00355"></a>00355                 }
+<a name="l00356"></a>00356                 
+<a name="l00357"></a>00357                 <span class="comment">//tri multidimentionnel sur tableau d&#39;objets (la fonction de reference est dans fonctions.php</span>
+<a name="l00358"></a>00358                 usort($this-&gt;listdoc, <span class="stringliteral">&#39;trierDocs&#39;</span>); <span class="comment">//fonction modifiee sept. 2009 pour tri sur le champ date et non plus annee</span>
+<a name="l00359"></a>00359                 <span class="comment">//print_r($this-&gt;listdoc);</span>
+<a name="l00360"></a>00360                 <span class="keywordflow">if</span> (count($this-&gt;listdoc)&gt;1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00361"></a>00361                 
+<a name="l00362"></a>00362         }
+<a name="l00363"></a>00363 }
+<a name="l00364"></a>00364 
+<a name="l00365"></a>00365 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/ListeCommandes.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>ListeCommandes.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php 
+<a name="l00008"></a><a class="code" href="class_liste_commandes.html">00008</a> <span class="keyword">class </span><a class="code" href="class_liste_commandes.html">ListeCommandes</a> <span class="keyword">implements</span> IteratorAggregate {
+<a name="l00013"></a><a class="code" href="class_liste_commandes.html#a7f7a18022f94c5a6c882e1822c238916">00013</a>    <span class="keyword">public</span> <a class="code" href="class_liste_commandes.html#a7f7a18022f94c5a6c882e1822c238916">$commandes</a> = array();
+<a name="l00018"></a><a class="code" href="class_liste_commandes.html#ad8f488b11ac55a6ea1dd443e54557b1b">00018</a>    <span class="keyword">public</span> <a class="code" href="class_liste_commandes.html#ad8f488b11ac55a6ea1dd443e54557b1b">$numclient</a>;
+<a name="l00024"></a><a class="code" href="class_liste_commandes.html#abda90cb7eacc2123b869e8357c5c3e18">00024</a>    <span class="keyword">public</span> <a class="code" href="class_liste_commandes.html#abda90cb7eacc2123b869e8357c5c3e18" title="type de r&amp;eacute;glement">$type_reg</a>;
+<a name="l00030"></a><a class="code" href="class_liste_commandes.html#a2ec267fedff96a4981537bfe211c481f">00030</a>    <span class="keyword">public</span> <a class="code" href="class_liste_commandes.html#a2ec267fedff96a4981537bfe211c481f" title="&amp;eacute;tat de la commande">$etat</a>;
+<a name="l00035"></a><a class="code" href="class_liste_commandes.html#a4aaec768edeacef65d8427c82fb7586b">00035</a>    <span class="keyword">public</span> <a class="code" href="class_liste_commandes.html#a4aaec768edeacef65d8427c82fb7586b">$date_du</a>;
+<a name="l00040"></a><a class="code" href="class_liste_commandes.html#a4810d671fc18309672e1d5d48927f538">00040</a>    <span class="keyword">public</span> <a class="code" href="class_liste_commandes.html#a4810d671fc18309672e1d5d48927f538">$date_au</a>;
+<a name="l00045"></a><a class="code" href="class_liste_commandes.html#ae5b737a0298468e018442597c7e4bb35">00045</a>    <span class="keyword">public</span> <a class="code" href="class_liste_commandes.html#ae5b737a0298468e018442597c7e4bb35">$formation</a>;
+<a name="l00046"></a>00046    
+<a name="l00052"></a><a class="code" href="class_liste_commandes.html#a51f08ad72716b456cf4ad48f30d973cc">00052</a>    function <a class="code" href="class_liste_commandes.html#a51f08ad72716b456cf4ad48f30d973cc">afficherListeCommandes</a>() {
+<a name="l00053"></a>00053          <span class="comment">//requete sql</span>
+<a name="l00054"></a>00054          $fin_req=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00055"></a>00055          <span class="keywordflow">if</span> ($this-&gt;numclient) $fin_req.=<span class="stringliteral">&quot; AND numclient=&#39;$this-&gt;numclient&#39;&quot;</span>;
+<a name="l00056"></a>00056          <span class="keywordflow">if</span> ($this-&gt;erreur_paiement) $fin_req.=<span class="stringliteral">&quot; AND erreur_paiement=&#39;$this-&gt;erreur_paiement&#39;&quot;</span>;
+<a name="l00057"></a>00057          <span class="keywordflow">if</span> ($this-&gt;type_reg) $fin_req.=<span class="stringliteral">&quot; AND tpereg=&#39;$this-&gt;type_reg&#39;&quot;</span>;
+<a name="l00058"></a>00058          <span class="keywordflow">if</span> ($this-&gt;date_du &amp;&amp; $this-&gt;date_au) $fin_req.=<span class="stringliteral">&quot; AND hcrea BETWEEN $this-&gt;date_du AND $this-&gt;date_au&quot;</span>;
+<a name="l00059"></a>00059          <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;date_du) $fin_req.=<span class="stringliteral">&quot; AND hcrea &gt;= $this-&gt;date_du&quot;</span>;
+<a name="l00060"></a>00060          <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;date_au) $fin_req.=<span class="stringliteral">&quot; AND hcrea &lt;= $this-&gt;date_au&quot;</span>;
+<a name="l00061"></a>00061          
+<a name="l00062"></a>00062          <span class="comment">/*if ($this-&gt;formation) $result=mysql_query(&quot;SELECT if_bo_com.numcom FROM if_bo_com,if_bo_detail WHERE if_bo_com.numcom=if_bo_detail.numcom AND if_bo_detail.designation=&#39;Inscription formation&#39; $fin_req ORDER BY hcrea DESC&quot;);</span>
+<a name="l00063"></a>00063 <span class="comment">         else $result=mysql_query(&quot;SELECT if_bo_com.numcom FROM if_bo_com,if_bo_detail WHERE etat $this-&gt;etat $fin_req AND if_bo_com.numcom=if_bo_detail.numcom ORDER BY hcrea DESC&quot;);*/</span>
+<a name="l00064"></a>00064          <span class="keywordflow">if</span> ($this-&gt;formation) { $result=mysql_query(<span class="stringliteral">&quot;SELECT if_bo_com.numcom FROM if_bo_com,if_bo_detail WHERE if_bo_com.numcom=if_bo_detail.numcom AND if_bo_detail.designation=&#39;Inscription formation&#39; $fin_req ORDER BY hcrea DESC&quot;</span>);
+<a name="l00065"></a>00065          } <span class="keywordflow">else</span> {
+<a name="l00066"></a>00066                 <span class="comment">//$result=mysql_query(&quot;SELECT if_bo_com.numcom FROM if_bo_com,if_bo_detail WHERE etat $this-&gt;etat $fin_req AND if_bo_com.numcom=if_bo_detail.numcom ORDER BY hcrea DESC&quot;); </span>
+<a name="l00067"></a>00067                 $result=mysql_query(<span class="stringliteral">&quot;SELECT if_bo_com.numcom FROM if_bo_com WHERE etat $this-&gt;etat $fin_req ORDER BY hcrea DESC&quot;</span>); 
+<a name="l00068"></a>00068         } 
+<a name="l00069"></a>00069         <span class="comment">// echo &quot;SELECT numcom FROM if_bo_com WHERE etat $this-&gt;etat $fin_req ORDER BY hcrea DESC&quot;;</span>
+<a name="l00070"></a>00070          <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00071"></a>00071                 $uneCommande=<span class="keyword">new</span> <a class="code" href="class_commande.html" title="G&amp;egrave;re les commandes faites sur la boutique.">Commande</a>();
+<a name="l00072"></a>00072                 $uneCommande-&gt;numcom=$row[0];
+<a name="l00073"></a>00073                 $uneCommande-&gt;infosCommande();
+<a name="l00074"></a>00074                 $this-&gt;commandes[]=$uneCommande;
+<a name="l00075"></a>00075          }
+<a name="l00076"></a>00076          <span class="keywordflow">if</span> (count($this-&gt;commandes)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00077"></a>00077    }
+<a name="l00078"></a>00078    
+<a name="l00079"></a>00079    function getIterator() {
+<a name="l00080"></a>00080           $iterator=<span class="keyword">new</span> <a class="code" href="class_listes_iterator.html">ListesIterator</a>($this-&gt;commandes);
+<a name="l00081"></a>00081           <span class="keywordflow">return</span> $iterator;
+<a name="l00082"></a>00082    }
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/ListePhotos.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>ListePhotos.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de cration:  */</span> 
+<a name="l00010"></a><a class="code" href="class_liste_photos.html">00010</a> <span class="keyword">class </span><a class="code" href="class_liste_photos.html">ListePhotos</a>  <span class="keyword">implements</span> IteratorAggregate {
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012    <span class="keyword">public</span> $photos = array();
+<a name="l00013"></a>00013    <span class="keyword">public</span> $numpara;
+<a name="l00014"></a>00014    
+<a name="l00015"></a>00015    function afficherListePhotos() {
+<a name="l00016"></a>00016          <span class="comment">//requete sql</span>
+<a name="l00017"></a>00017          <span class="keywordflow">if</span> ($this-&gt;numpara) {
+<a name="l00018"></a>00018                  $result=mysql_query(<span class="stringliteral">&quot;SELECT numphoto,legende,numparaphoto FROM if_para_photo WHERE numpara=&#39;$this-&gt;numpara&#39; ORDER BY ordre&quot;</span>);
+<a name="l00019"></a>00019                  <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00020"></a>00020                         $unePhoto=<span class="keyword">new</span> <a class="code" href="class_photo.html">Photo</a>();
+<a name="l00021"></a>00021                         $unePhoto-&gt;numphoto=$row[0];
+<a name="l00022"></a>00022                         $unePhoto-&gt;legendePhoto=$row[1];
+<a name="l00023"></a>00023                         $unePhoto-&gt;numparaphoto=$row[2];
+<a name="l00024"></a>00024                         $unePhoto-&gt;infosPhoto();  
+<a name="l00025"></a>00025                         $this-&gt;photos[]=$unePhoto;
+<a name="l00026"></a>00026                  }
+<a name="l00027"></a>00027          } <span class="keywordflow">else</span> {
+<a name="l00028"></a>00028                  $result=mysql_query(<span class="stringliteral">&quot;SELECT numphoto FROM if_photo ORDER BY nom_photo&quot;</span>);
+<a name="l00029"></a>00029                  <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00030"></a>00030                         $unePhoto=<span class="keyword">new</span> <a class="code" href="class_photo.html">Photo</a>();
+<a name="l00031"></a>00031                         $unePhoto-&gt;numphoto=$row[0];
+<a name="l00032"></a>00032                         $unePhoto-&gt;infosPhoto();  
+<a name="l00033"></a>00033                         $this-&gt;photos[]=$unePhoto;
+<a name="l00034"></a>00034                  }
+<a name="l00035"></a>00035          }
+<a name="l00036"></a>00036          <span class="keywordflow">if</span> (count($this-&gt;photos)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00037"></a>00037    }
+<a name="l00038"></a>00038    
+<a name="l00039"></a>00039    function getIterator() {
+<a name="l00040"></a>00040           $iterator=<span class="keyword">new</span> <a class="code" href="class_listes_iterator.html">ListesIterator</a>($this-&gt;photos);
+<a name="l00041"></a>00041           <span class="keywordflow">return</span> $iterator;
+<a name="l00042"></a>00042    }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 }
+<a name="l00045"></a>00045 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

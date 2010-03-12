@@ -1,0 +1,923 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de panier-ifip-institut-du-porc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+<h1>panier-ifip-institut-du-porc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de cration: 23/01/2009 */</span> 
+<a name="l00002"></a>00002 <span class="comment">// Page Panier</span>
+<a name="l00003"></a>00003 $laPage = <span class="keyword">new</span> Page();
+<a name="l00004"></a>00004 <span class="keywordflow">if</span> ($textQte) {
+<a name="l00005"></a>00005         $laPage-&gt;pageSpecifique(<span class="stringliteral">&quot;panier-ifip-institut-du-porc&quot;</span>);
+<a name="l00006"></a>00006 } <span class="keywordflow">else</span> {
+<a name="l00007"></a>00007         $laPage-&gt;numpage=$numpage;
+<a name="l00008"></a>00008         $laPage-&gt;infosPage();
+<a name="l00009"></a>00009 }
+<a name="l00010"></a>00010 $laPage-&gt;infosColonnes(); 
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="keywordflow">if</span> ($laPage-&gt;nomPageGoogle) { 
+<a name="l00014"></a>00014                 <span class="keywordflow">if</span> ($_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>]) {
+<a name="l00015"></a>00015                         $lePanier=<span class="keyword">new</span> <a class="code" href="class_panier.html">Panier</a>();
+<a name="l00016"></a>00016                         $lePanier-&gt;numcom=$_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>];
+<a name="l00017"></a>00017                         <span class="keywordflow">if</span> (!$selectPays) $selectPays=<span class="stringliteral">&quot;247&quot;</span>;<span class="comment">//France metropolitaine</span>
+<a name="l00018"></a>00018                         <span class="keywordflow">if</span> ($selectPays) $lePanier-&gt;pays=$selectPays;
+<a name="l00019"></a>00019                         $lePanier-&gt;infosPanier();
+<a name="l00020"></a>00020                         
+<a name="l00021"></a>00021                 }
+<a name="l00022"></a>00022                 
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="comment">//*******************GESTION DE LA VALIDATION DE LA COMMANDE ETRANSACTION AVEC L&#39;URL HHTP DE RETOUR</span>
+<a name="l00026"></a>00026 <span class="comment">/*if($trans) {</span>
+<a name="l00027"></a>00027 <span class="comment">        if($auto) { //si il n&#39;y a un numero d&#39;autorisation</span>
+<a name="l00028"></a>00028 <span class="comment">                // VERIFICATION DE LA SIGNATURE DU PAIEMENT</span>
+<a name="l00029"></a>00029 <span class="comment">                //echo &quot;test&quot;;</span>
+<a name="l00030"></a>00030 <span class="comment">                </span>
+<a name="l00031"></a>00031 <span class="comment">                //require(&quot;pbxtestsign.lib.php&quot;);</span>
+<a name="l00032"></a>00032 <span class="comment">                //$CheckSig = pbxtestsign($auto,&quot;pubkey.pem&quot;);</span>
+<a name="l00033"></a>00033 <span class="comment">                                </span>
+<a name="l00034"></a>00034 <span class="comment">                //if( $CheckSig == 1 ) { //la signature du paiement est bonne, il s&#39;agit bien de e-transaction</span>
+<a name="l00035"></a>00035 <span class="comment">                        //echo &quot;clé valide&quot;;</span>
+<a name="l00036"></a>00036 <span class="comment">                        //mysql_query(&quot;UPDATE if_bo_com SET etat=&#39;2&#39; WHERE numcom=&#39;29&#39;&quot;);</span>
+<a name="l00037"></a>00037 <span class="comment">                        $laComValide= new Commande();</span>
+<a name="l00038"></a>00038 <span class="comment">                        $laComValide-&gt;numcom=$ref;                      </span>
+<a name="l00039"></a>00039 <span class="comment">                        $laComValide-&gt;etat=&quot;2&quot;;</span>
+<a name="l00040"></a>00040 <span class="comment">                        $laComValide-&gt;numerop=$trans;</span>
+<a name="l00041"></a>00041 <span class="comment">                        $laComValide-&gt;auto=$auto;</span>
+<a name="l00042"></a>00042 <span class="comment">                        $laComValide-&gt;montant=$montant;</span>
+<a name="l00043"></a>00043 <span class="comment">                        $laComValide-&gt;validerCommandeCBBanque();</span>
+<a name="l00044"></a>00044 <span class="comment">                                                                                        </span>
+<a name="l00045"></a>00045 <span class="comment">                        $clientValide=new Client();</span>
+<a name="l00046"></a>00046 <span class="comment">                        $clientValide-&gt;numclient=SelectSimple(&quot;numclient&quot;,&quot;if_bo_com&quot;,&quot;numcom&quot;,$ref,&quot;&quot;);</span>
+<a name="l00047"></a>00047 <span class="comment">                        $clientValide-&gt;infosClient(); </span>
+<a name="l00048"></a>00048 <span class="comment">                                                                                        </span>
+<a name="l00049"></a>00049 <span class="comment">                        EnvoiMailCommande($laComValide-&gt;numcom,$clientValide-&gt;email,&#39;o&#39;);                                                                                       </span>
+<a name="l00050"></a>00050 <span class="comment">                                                                                                                                                                                </span>
+<a name="l00051"></a>00051 <span class="comment">                        $pageSpecMonCompte=new Page();</span>
+<a name="l00052"></a>00052 <span class="comment">                        $pageSpecMonCompte-&gt;pageSpecifique(&quot;compte-ifip&quot;);</span>
+<a name="l00053"></a>00053 <span class="comment">                </span>
+<a name="l00054"></a>00054 <span class="comment">                //}  else { // la signature n&#39;est pas bonne, donc bug ou piratage</span>
+<a name="l00055"></a>00055 <span class="comment">                        //echo &quot;clé invalide&quot;;</span>
+<a name="l00056"></a>00056 <span class="comment">                        /*$laComValide= new Commande();</span>
+<a name="l00057"></a>00057 <span class="comment">                        $laComValide-&gt;numcom=$_SESSION[&#39;numcom&#39;];</span>
+<a name="l00058"></a>00058 <span class="comment">                        $laComValide-&gt;numclient=$_SESSION[&#39;numclient&#39;];         </span>
+<a name="l00059"></a>00059 <span class="comment">                                                                                        </span>
+<a name="l00060"></a>00060 <span class="comment">                        $clientValide=new Client();</span>
+<a name="l00061"></a>00061 <span class="comment">                        $clientValide-&gt;numclient=$_SESSION[&#39;numclient&#39;];</span>
+<a name="l00062"></a>00062 <span class="comment">                        $clientValide-&gt;infosClient(); </span>
+<a name="l00063"></a>00063 <span class="comment">                                                                                        </span>
+<a name="l00064"></a>00064 <span class="comment">                        EnvoiMailCommande($laComValide-&gt;numcom,$clientValide-&gt;email,&#39;&#39;);</span>
+<a name="l00065"></a>00065 <span class="comment">                        $laComValide-&gt;supprimerCommande();              </span>
+<a name="l00066"></a>00066 <span class="comment">                }*/</span>
+<a name="l00067"></a>00067         <span class="comment">/*} else { //il n&#39;y a pas $auto (autorisation) donc erreur dans le paiement</span>
+<a name="l00068"></a>00068 <span class="comment">                </span>
+<a name="l00069"></a>00069 <span class="comment">                        $laComValide= new Commande();</span>
+<a name="l00070"></a>00070 <span class="comment">                        $laComValide-&gt;numcom=$ref;                              </span>
+<a name="l00071"></a>00071 <span class="comment">                                                                                        </span>
+<a name="l00072"></a>00072 <span class="comment">                        $clientValide=new Client();</span>
+<a name="l00073"></a>00073 <span class="comment">                        $clientValide-&gt;numclient=SelectSimple(&quot;numclient&quot;,&quot;if_bo_com&quot;,&quot;numcom&quot;,$ref,&quot;&quot;);</span>
+<a name="l00074"></a>00074 <span class="comment">                        $clientValide-&gt;infosClient(); </span>
+<a name="l00075"></a>00075 <span class="comment">                                                                                        </span>
+<a name="l00076"></a>00076 <span class="comment">                        EnvoiMailCommande($laComValide-&gt;numcom,$clientValide-&gt;email,&#39;&#39;);</span>
+<a name="l00077"></a>00077 <span class="comment">                        $laComValide-&gt;supprimerCommande();</span>
+<a name="l00078"></a>00078 <span class="comment">        } </span>
+<a name="l00079"></a>00079 <span class="comment">}*/</span>
+<a name="l00080"></a>00080 ?&gt;
+<a name="l00081"></a>00081 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;coltexte785&quot;</span>&gt;
+<a name="l00082"></a>00082                    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;sap-content&quot;</span>&gt;
+<a name="l00083"></a>00083                                 &lt;!-- item 1 585 pixels wide or 385 pixels wide --&gt;
+<a name="l00084"></a>00084                                 &lt;p <span class="keyword">class</span>=<span class="stringliteral">&quot;titre785&quot;</span>&gt;&lt;?=$laPage-&gt;titrePage?&gt;&lt;/p&gt;
+<a name="l00085"></a>00085                                 &lt;!-- Affichage contenu non dynamique (provenant du CMS) --&gt;
+<a name="l00086"></a>00086                                 &lt;?php
+<a name="l00087"></a>00087                                 <span class="keywordflow">if</span> ($_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>]) {
+<a name="l00088"></a>00088                                 <span class="comment">//Mise en commentaire pour simplification</span>
+<a name="l00089"></a>00089                                 <span class="comment">//if (($_SESSION[&#39;numcom&#39;] &amp;&amp; !$lePanier-&gt;article) || ($_SESSION[&#39;numcom&#39;] &amp;&amp; $lePanier-&gt;article &amp;&amp; $prix)) {</span>
+<a name="l00090"></a>00090                                 ?&gt;
+<a name="l00091"></a>00091                                                 
+<a name="l00092"></a>00092                                                         &lt;?php
+<a name="l00093"></a>00093                                                         <span class="keywordflow">if</span>($_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>]) {
+<a name="l00094"></a>00094                                                                 $client=<span class="keyword">new</span> <a class="code" href="class_client.html" title="G&amp;egrave;re les diff&amp;eacute;rents clients.">Client</a>();
+<a name="l00095"></a>00095                                                                 $client-&gt;numclient=$_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>];
+<a name="l00096"></a>00096                                                                 $client-&gt;infosClient();
+<a name="l00097"></a>00097                                                         ?&gt;
+<a name="l00098"></a>00098                                                         &lt;table width=<span class="stringliteral">&quot;600&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00099"></a>00099                               &lt;tr&gt;
+<a name="l00100"></a>00100                                 &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge sanstrait&quot;</span>&gt;&lt;?=$client-&gt;prenom;?&gt; &lt;?=$client-&gt;nom;?&gt;,&lt;/h2&gt;&lt;/td&gt;
+<a name="l00101"></a>00101                               &lt;/tr&gt;
+<a name="l00102"></a>00102                             &lt;/table&gt;
+<a name="l00103"></a>00103                                                         &lt;?php   
+<a name="l00104"></a>00104                                                         
+<a name="l00105"></a>00105                                                         
+<a name="l00106"></a>00106                                                         }
+<a name="l00107"></a>00107                                                         ?&gt;
+<a name="l00108"></a>00108                                                         &lt;?php
+<a name="l00109"></a>00109                                                         <span class="keywordflow">if</span> (!$etape) {<span class="comment">// Etape 1 : Panier</span>
+<a name="l00110"></a>00110                                                         ?&gt;
+<a name="l00111"></a>00111                                                                 
+<a name="l00112"></a>00112                                                         &lt;?php
+<a name="l00113"></a>00113                                                                 <span class="keywordflow">if</span> ($numarticle &amp;&amp; $prix) {<span class="comment">//c&#39;est un article (lien direct depuis le mail)</span>
+<a name="l00114"></a>00114                                                         ?&gt;      
+<a name="l00115"></a>00115                                                                 &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00116"></a>00116                                                                 &lt;tr&gt;
+<a name="l00117"></a>00117                                                                                 &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge sanstrait&quot;</span>&gt;Voici votre référence à régler en ligne &lt;/h2&gt;&lt;/td&gt;
+<a name="l00118"></a>00118                                                   &lt;/tr&gt;
+<a name="l00119"></a>00119                                                   &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span>&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00120"></a>00120                                                                         &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span>&gt;
+<a name="l00121"></a>00121                                                                           &lt;td width=<span class="stringliteral">&quot;30%&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt;Désignation&lt;/div&gt;&lt;/td&gt;
+<a name="l00122"></a>00122                                                                           &lt;td width=<span class="stringliteral">&quot;21%&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt;Prix € &lt;/div&gt;&lt;/td&gt;
+<a name="l00123"></a>00123                                                                                 &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;/td&gt;
+<a name="l00124"></a>00124                                                                         &lt;/tr&gt;
+<a name="l00125"></a>00125                                                                         &lt;tr&gt;
+<a name="l00126"></a>00126                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00127"></a>00127                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00128"></a>00128                                                                           &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;/td&gt;
+<a name="l00129"></a>00129                                                   &lt;/tr&gt;
+<a name="l00130"></a>00130                                                                         &lt;?php
+<a name="l00131"></a>00131                                                                         $list_articles=array();
+<a name="l00132"></a>00132                                                                         $list_articles=$lePanier-&gt;listerArticlesCrees();
+<a name="l00133"></a>00133                                                                         <span class="keywordflow">for</span> ($i=0;$i&lt;count($list_articles);$i++) {
+<a name="l00134"></a>00134                                                                                 $article=$list_articles[$i];
+<a name="l00135"></a>00135                                                                         ?&gt;
+<a name="l00136"></a>00136                                                                                 &lt;tr&gt;
+<a name="l00137"></a>00137                                                                                         &lt;td&gt;&lt;?=$article[<span class="stringliteral">&quot;designation&quot;</span>]?&gt;&lt;/td&gt;
+<a name="l00138"></a>00138                                                                                         &lt;td&gt;&lt;?=$article[<span class="stringliteral">&quot;prix_vente&quot;</span>]?&gt; €&lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;prix&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$prix?&gt;&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00139"></a>00139                                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;/td&gt;
+<a name="l00140"></a>00140                                                                                 &lt;/tr&gt;
+<a name="l00141"></a>00141                                                                         &lt;?php
+<a name="l00142"></a>00142                                                                         }<span class="comment">//fin du for</span>
+<a name="l00143"></a>00143                                                                         ?&gt;
+<a name="l00144"></a>00144                          &lt;/table&gt;
+<a name="l00145"></a>00145                                                                 
+<a name="l00146"></a>00146                                                         &lt;?php   
+<a name="l00147"></a>00147                                                                 } <span class="keywordflow">else</span> {<span class="comment">//if ($numarticle &amp;&amp; $prix)</span>
+<a name="l00148"></a>00148                                                         ?&gt;
+<a name="l00149"></a>00149                                                         
+<a name="l00150"></a>00150                                                                         &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00151"></a>00151                                                                         &lt;tr&gt;
+<a name="l00152"></a>00152                                                                                 &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge sanstrait&quot;</span>&gt;Voici votre sélection&lt;/h2&gt;&lt;/td&gt;
+<a name="l00153"></a>00153                                                                         &lt;/tr&gt;
+<a name="l00154"></a>00154                                                                         &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span>&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00155"></a>00155                                                                         &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span>&gt;
+<a name="l00156"></a>00156                                                                           &lt;td width=<span class="stringliteral">&quot;30%&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt;Désignation&lt;/div&gt;&lt;/td&gt;
+<a name="l00157"></a>00157                                                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt;Prix € &lt;/div&gt;&lt;/td&gt;
+<a name="l00158"></a>00158                                                                           &lt;td width=<span class="stringliteral">&quot;27%&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt;Qté&lt;/div&gt;&lt;/td&gt;
+<a name="l00159"></a>00159                                                                                 &lt;td width=<span class="stringliteral">&quot;22%&quot;</span>&gt;&lt;/td&gt;
+<a name="l00160"></a>00160                                                                         &lt;/tr&gt;
+<a name="l00161"></a>00161                                                                         &lt;tr&gt;
+<a name="l00162"></a>00162                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00163"></a>00163                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00164"></a>00164                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00165"></a>00165                                                                           &lt;td&gt;&lt;/td&gt;
+<a name="l00166"></a>00166                                                   &lt;/tr&gt;
+<a name="l00167"></a>00167                                                                         &lt;?php
+<a name="l00168"></a>00168                                                                         $list_articles=array();
+<a name="l00169"></a>00169                                                                         $list_articles=$lePanier-&gt;listerArticles();
+<a name="l00170"></a>00170                                                                         <span class="keywordflow">for</span> ($i=0;$i&lt;count($list_articles);$i++) {
+<a name="l00171"></a>00171                                                                                 $article2=$list_articles[$i];
+<a name="l00172"></a>00172                                                                         ?&gt;
+<a name="l00173"></a>00173                                                                                 &lt;tr&gt;
+<a name="l00174"></a>00174                                                                                         &lt;td&gt;&lt;?=$article2[<span class="stringliteral">&quot;titre&quot;</span>].<span class="stringliteral">&quot; - Réf : &quot;</span>.$article2[<span class="stringliteral">&quot;reference&quot;</span>]?&gt;&lt;/td&gt;
+<a name="l00175"></a>00175                                                                                         &lt;td&gt;&lt;?=$article2[<span class="stringliteral">&quot;prix_vente&quot;</span>]?&gt; €&lt;/td&gt;
+<a name="l00176"></a>00176                                                                                         &lt;td&gt;&lt;span <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>&gt;&lt;input <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textQte&lt;?=$article2[&quot;</span>numdetail<span class="stringliteral">&quot;]?&gt;&quot;</span> name=<span class="stringliteral">&quot;textQte&lt;?=$article2[&quot;</span>numdetail<span class="stringliteral">&quot;]?&gt;&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$article2[&quot;</span>qte<span class="stringliteral">&quot;]?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;etroit&quot;</span>/&gt;&lt;/span&gt;&lt;/td&gt;
+<a name="l00177"></a>00177                                                                                         &lt;td&gt;&lt;a href=<span class="stringliteral">&quot;javascript:if (confirm(&#39;ATTENTION: vous allez supprimer un article.\nSi vous souhaitez effectuer cette suppression, cliquez sur OK, sinon Annuler&#39;)) {document.location=&#39;index.php?numpage=&lt;?=$laPage-&gt;numpage?&gt;&amp;spec=&lt;?=$spec?&gt;&amp;numrub=&lt;?=$numrub?&gt;&amp;numcateg=&lt;?=$numcateg?&gt;&amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;numdoc=&lt;?=$paras-&gt;numpara?&gt;&amp;lg=&lt;?=$lg?&gt;&amp;supArt=&lt;?=$article2[&quot;</span>numdetail<span class="stringliteral">&quot;]?&gt;&#39;}&quot;</span>&gt;supprimer&lt;/a&gt;&lt;/td&gt;
+<a name="l00178"></a>00178                                                                                 &lt;/tr&gt;
+<a name="l00179"></a>00179                                                                         &lt;?php
+<a name="l00180"></a>00180                                                                         }<span class="comment">//fin du for</span>
+<a name="l00181"></a>00181                                                                         ?&gt;
+<a name="l00182"></a>00182                                                                                 &lt;tr&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00183"></a>00183                                                                                 &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span> height=<span class="stringliteral">&quot;1&quot;</span>&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00184"></a>00184                                                                                 &lt;tr&gt;
+<a name="l00185"></a>00185                                                                                         &lt;td&gt;TOTAL&lt;/td&gt;
+<a name="l00186"></a>00186                                                                                         &lt;td&gt;&lt;?=$lePanier-&gt;totalHTsansPort?&gt; &amp;euro;&lt;/td&gt;
+<a name="l00187"></a>00187                                                                                         &lt;td&gt;&lt;/td&gt;
+<a name="l00188"></a>00188                                                                                         &lt;td&gt;&lt;/td&gt;
+<a name="l00189"></a>00189                                                                                 &lt;/tr&gt;
+<a name="l00190"></a>00190                                                                         &lt;tr&gt;
+<a name="l00191"></a>00191                                                                                 &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt; &lt;br /&gt;
+<a name="l00192"></a>00192                                                                                 &lt;input type=<span class="stringliteral">&quot;button&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> onclick=<span class="stringliteral">&quot;javascript:document.forms[0].action.value=&#39;maj&#39;;document.forms[0].submit();&quot;</span> value=<span class="stringliteral">&quot;Mettre à jour le panier&quot;</span>/&gt;
+<a name="l00193"></a>00193                                                                                   &lt;br /&gt;
+<a name="l00194"></a>00194                                                                                 &amp;nbsp;&lt;/div&gt;&lt;/td&gt;
+<a name="l00195"></a>00195                                                                         &lt;/tr&gt;
+<a name="l00196"></a>00196                                                                         &lt;tr&gt;
+<a name="l00197"></a>00197                                                                           &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge sanstrait&quot;</span>&gt;Informations de livraison&lt;/h2&gt;                                                                       &lt;/td&gt;
+<a name="l00198"></a>00198                                                                   &lt;/tr&gt;
+<a name="l00199"></a>00199                                                                   &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span>&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00200"></a>00200                                                                         &lt;tr&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00201"></a>00201                                                                         &lt;tr&gt;
+<a name="l00202"></a>00202                                                                                 &lt;td&gt;Pays de livraison :&lt;/td&gt;
+<a name="l00203"></a>00203                                                                                 &lt;td colspan=<span class="stringliteral">&quot;3&quot;</span>&gt;
+<a name="l00204"></a>00204                                                                                         &lt;!-- Remplace par code ci-dessous
+<a name="l00205"></a>00205                                                                                         &lt;select name=<span class="stringliteral">&quot;selectPays&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> onchange=<span class="stringliteral">&quot;location=&#39;index.php?numpage=&lt;?=$laPage-&gt;numpage?&gt;&amp;spec=&lt;?=$spec?&gt;&amp;numrub=&lt;?=$numrub?&gt;&amp;numcateg=&lt;?=$numcateg?&gt;&amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;numdoc=&lt;?=$paras-&gt;numpara?&gt;&amp;lg=&lt;?=$lg?&gt;&amp;selectPays=&#39;+this.value&quot;</span>&gt;
+<a name="l00206"></a>00206                                                                                         --&gt;
+<a name="l00207"></a>00207                                                                                         &lt;select name=<span class="stringliteral">&quot;selectPays&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;selectPays&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> onchange=<span class="stringliteral">&quot;ajax(&#39;fonctions_ajax2.php?numpage=&lt;?=$numpage?&gt;&amp;amp;spec=&lt;?=$spec?&gt;&amp;amp;numrub=&lt;?=$numrub?&gt;&amp;amp;numcateg=&lt;?=$numcateg?&gt;&amp;amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;amp;lg=&lt;?=$lg?&gt;&amp;amp;id=&lt;?=$id?&gt;&#39;, &#39;fraisport&#39;, &#39;&#39;,&#39;POST&#39;, &#39;null&#39;, &#39;null&#39;,&#39;selectPays&#39;);&quot;</span>&gt;
+<a name="l00208"></a>00208                                                                                         &lt;option&gt;------------------------------------------------------------&lt;/option&gt;
+<a name="l00209"></a>00209                                                                                         &lt;option value=<span class="stringliteral">&quot;247&quot;</span> &lt;?php <span class="keywordflow">if</span> (!$selectPays) echo <span class="stringliteral">&quot;selected=&#39;selected&#39;&quot;</span>;?&gt;&gt;France metropolitaine&lt;/option&gt;
+<a name="l00210"></a>00210                                                                                         &lt;option&gt;------------------------------------------------------------&lt;/option&gt;
+<a name="l00211"></a>00211                                                                                         &lt;?php
+<a name="l00212"></a>00212                                                                                         $result = mysql_query(<span class="stringliteral">&quot;SELECT * FROM if_pays ORDER BY pays&quot;</span>);
+<a name="l00213"></a>00213                                                                                         <span class="keywordflow">while</span> ($row=mysql_fetch_array($result)) {
+<a name="l00214"></a>00214                                                                                         ?&gt;
+<a name="l00215"></a>00215                                                                                                 &lt;option value=<span class="stringliteral">&quot;&lt;?=$row[&#39;numpays&#39;]?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> ($selectPays==$row[<span class="stringliteral">&#39;numpays&#39;</span>] || (!$selectPays &amp;&amp; $row[<span class="stringliteral">&#39;numpays&#39;</span>]==247)) echo <span class="stringliteral">&quot;selected=&#39;selected&#39;&quot;</span>;?&gt;&gt;&lt;?=utf8_encode($row[<span class="stringliteral">&#39;pays&#39;</span>])?&gt;&lt;/option&gt;
+<a name="l00216"></a>00216                                                                                         &lt;?php
+<a name="l00217"></a>00217                                                                                         }<span class="comment">//fin du while</span>
+<a name="l00218"></a>00218                                                                                         ?&gt;
+<a name="l00219"></a>00219                                                                                         &lt;/select&gt;
+<a name="l00220"></a>00220                                                                                 &lt;/td&gt;
+<a name="l00221"></a>00221                                                                         &lt;/tr&gt;
+<a name="l00222"></a>00222                                                                         &lt;/table&gt;
+<a name="l00223"></a>00223                                                                         &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;fraisport&quot;</span>&gt;
+<a name="l00224"></a>00224                                                                         &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00225"></a>00225                                                                         &lt;tr&gt;
+<a name="l00226"></a>00226                                                                           &lt;td width=<span class="stringliteral">&quot;30%&quot;</span>&gt;Poids :&lt;/td&gt;
+<a name="l00227"></a>00227                                                                                 &lt;td colspan=<span class="stringliteral">&quot;3&quot;</span>&gt;
+<a name="l00228"></a>00228                                                                                 &lt;?=$lePanier-&gt;totalPoids?&gt;&amp;nbsp;Kg
+<a name="l00229"></a>00229                                                                                 &lt;/td&gt;
+<a name="l00230"></a>00230                                                                         &lt;/tr&gt;
+<a name="l00231"></a>00231                                                                         &lt;tr&gt;
+<a name="l00232"></a>00232                                                                                 &lt;td&gt;Frais de port :&lt;/td&gt;
+<a name="l00233"></a>00233                                                                                 &lt;td colspan=<span class="stringliteral">&quot;3&quot;</span>&gt;
+<a name="l00234"></a>00234                                                                                 &lt;strong&gt;&lt;?=$lePanier-&gt;fraisPort;?&gt; &amp;euro;&lt;/strong&gt;
+<a name="l00235"></a>00235                                                                                 &lt;?php
+<a name="l00236"></a>00236                                                                                 <span class="keywordflow">if</span> ($lePanier-&gt;pays==<span class="stringliteral">&quot;247&quot;</span> &amp;&amp; $lePanier-&gt;fraisPort==<span class="stringliteral">&quot;0,00&quot;</span>) {
+<a name="l00237"></a>00237                                                                                 ?&gt;
+<a name="l00238"></a>00238                                                                                         &lt;br /&gt;
+<a name="l00239"></a>00239                                                                                         Livraison gratuite pour toute commande supérieure à 35 € ou pour les documents à télécharger en ligne après paiement
+<a name="l00240"></a>00240                                                                                 &lt;?php
+<a name="l00241"></a>00241                                                                                 }
+<a name="l00242"></a>00242                                                                                 ?&gt;
+<a name="l00243"></a>00243                                                                                 &lt;/td&gt;
+<a name="l00244"></a>00244                                                                         &lt;/tr&gt;
+<a name="l00245"></a>00245                                                                         &lt;tr&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00246"></a>00246                                                                         &lt;tr&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00247"></a>00247                                                         &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span>&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00248"></a>00248                                                         &lt;tr&gt;&lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+<a name="l00249"></a>00249                                                         &lt;tr&gt;
+<a name="l00250"></a>00250                                                                 &lt;td&gt;&lt;strong&gt;TOTAL&lt;/strong&gt;  :&lt;/td&gt;
+<a name="l00251"></a>00251                                                                 &lt;td colspan=<span class="stringliteral">&quot;3&quot;</span>&gt;&lt;strong&gt;&lt;input name=<span class="stringliteral">&quot;totalpanier&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$lePanier-&gt;totalHT;?&gt; &amp;euro;&quot;</span> /&gt;&lt;/strong&gt;
+<a name="l00252"></a>00252                                                                 &lt;/td&gt;
+<a name="l00253"></a>00253                                                         &lt;/tr&gt;
+<a name="l00254"></a>00254                                                         &lt;/table&gt;
+<a name="l00255"></a>00255                                                         &lt;/div&gt;
+<a name="l00256"></a>00256                                                         &lt;?php
+<a name="l00257"></a>00257                                                         }<span class="comment">// fin if ($numarticle &amp;&amp; $prix) else</span>
+<a name="l00258"></a>00258                                                         ?&gt;
+<a name="l00259"></a>00259                                                         &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00260"></a>00260                                                         &lt;tr&gt;
+<a name="l00261"></a>00261                                                           &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00262"></a>00262                                                           &lt;/tr&gt;
+<a name="l00263"></a>00263                                                         &lt;tr&gt;
+<a name="l00264"></a>00264                                                                 &lt;td width=<span class="stringliteral">&quot;30%&quot;</span>&gt;
+<a name="l00265"></a>00265                                                                 &lt;?php
+<a name="l00266"></a>00266                                                                 $pageBdd = <span class="keyword">new</span> Page();
+<a name="l00267"></a>00267                                                                 $pageBdd-&gt;pageSpecifique(<span class="stringliteral">&quot;catalogue-ifip-institut-du-porc&quot;</span>);
+<a name="l00268"></a>00268                                                                 ?&gt;
+<a name="l00269"></a>00269                                                                         &lt;input type=<span class="stringliteral">&quot;button&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> onclick=<span class="stringliteral">&quot;javascript:location=&#39;index.php?numpage=&lt;?=$pageBdd-&gt;numpage?&gt;&amp;spec=&lt;?=$pageBdd-&gt;nomFichier?&gt;&amp;numrub=&lt;?=$pageBdd-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageBdd-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageBdd-&gt;numsscateg?&gt;&#39;&quot;</span> value=<span class="stringliteral">&quot;Retour au catalogue&quot;</span> /&gt;                                                     &lt;/td&gt;
+<a name="l00270"></a>00270                                                                 &lt;td colspan=<span class="stringliteral">&quot;3&quot;</span>&gt;
+<a name="l00271"></a>00271                                                                 &lt;input type=<span class="stringliteral">&quot;button&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> onclick=<span class="stringliteral">&quot;javascript:confirmerCom()&quot;</span> value=<span class="stringliteral">&quot;Valider le panier &amp;gt;&amp;gt;&quot;</span> /&gt;
+<a name="l00272"></a>00272                                                                 &lt;/td&gt;
+<a name="l00273"></a>00273                                                         &lt;/tr&gt;
+<a name="l00274"></a>00274                                                         &lt;/table&gt;
+<a name="l00275"></a>00275                                                         &lt;?php
+<a name="l00276"></a>00276                                                         <span class="comment">/* -------------------------- ETAPE 2 --------------------------------------------------------- */</span>
+<a name="l00277"></a>00277                                                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($etape==2) {<span class="comment">// Etape 2 : compte client</span>
+<a name="l00278"></a>00278                                                                 $laCom=<span class="keyword">new</span> <a class="code" href="class_commande.html" title="G&amp;egrave;re les commandes faites sur la boutique.">Commande</a>();
+<a name="l00279"></a>00279                                                                 $laCom-&gt;numcom=$_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>];
+<a name="l00280"></a>00280                                                                 $laCom-&gt;infosCommande();
+<a name="l00281"></a>00281                                                                 
+<a name="l00282"></a>00282                                                         ?&gt;
+<a name="l00283"></a>00283                                                                 &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00284"></a>00284                                                                 &lt;tr&gt;
+<a name="l00285"></a>00285                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h1 <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Etape 2&lt;/h1&gt;&lt;/td&gt;
+<a name="l00286"></a>00286                                                                 &lt;/tr&gt;
+<a name="l00287"></a>00287                                                                 &lt;tr&gt;
+<a name="l00288"></a>00288                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;strong&gt;Merci de vous identifier avec votre compte IFIP ou de créer un compte&lt;/strong&gt;&lt;br /&gt;
+<a name="l00289"></a>00289                                                                   &lt;br /&gt;&lt;/td&gt;
+<a name="l00290"></a>00290                                                                 &lt;/tr&gt;
+<a name="l00291"></a>00291                                                                 &lt;tr&gt;
+<a name="l00292"></a>00292                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;N° de commande : &lt;strong&gt;&lt;?=$laCom-&gt;getNumCom()?&gt;&lt;/strong&gt;&lt;br /&gt;
+<a name="l00293"></a>00293                                                                   &lt;?php
+<a name="l00294"></a>00294                                                                   <span class="keywordflow">if</span> ($lePanier-&gt;article!=<span class="stringliteral">&quot;o&quot;</span>) {
+<a name="l00295"></a>00295                                                                   ?&gt;
+<a name="l00296"></a>00296                                                                   Livraison : 
+<a name="l00297"></a>00297                                                                   &lt;?php
+<a name="l00298"></a>00298                                                                         <span class="keywordflow">if</span> ($lePanier-&gt;totalPoids==<span class="stringliteral">&quot;0,00&quot;</span>) echo<span class="stringliteral">&quot;Documents à télécharger après paiement;&quot;</span>;
+<a name="l00299"></a>00299                                                                         <span class="keywordflow">else</span> echo $laCom-&gt;nom_pays;
+<a name="l00300"></a>00300                                                                   }
+<a name="l00301"></a>00301                                                                   ?&gt;&lt;br /&gt;
+<a name="l00302"></a>00302                                                               &lt;br /&gt;&lt;/td&gt;
+<a name="l00303"></a>00303                                                                 &lt;/tr&gt;
+<a name="l00304"></a>00304                                                                 &lt;tr&gt;
+<a name="l00305"></a>00305                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge&quot;</span>&gt;Vous êtes enregistré ? Identifiez-vous
+<a name="l00306"></a>00306                                                                   &lt;/h2&gt;&lt;/td&gt;
+<a name="l00307"></a>00307                                                                 &lt;/tr&gt;
+<a name="l00308"></a>00308                                                                 &lt;tr&gt;
+<a name="l00309"></a>00309                                                                   &lt;td width=<span class="stringliteral">&quot;25%&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;right&quot;</span>&gt;Votre email de connexion&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;
+<a name="l00310"></a>00310                                                                   &lt;td width=<span class="stringliteral">&quot;75%&quot;</span>&gt;&lt;input  name=<span class="stringliteral">&quot;textEmailCpte&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00311"></a>00311                                                                 &lt;/tr&gt;
+<a name="l00312"></a>00312                                                                 &lt;tr&gt;
+<a name="l00313"></a>00313                                                                         &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;right&quot;</span>&gt;Votre mot de passe&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;
+<a name="l00314"></a>00314                                                                         &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;password&quot;</span> name=<span class="stringliteral">&quot;textPwdCpte&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00315"></a>00315                                                                 &lt;/tr&gt;
+<a name="l00316"></a>00316                                                                 &lt;tr&gt;
+<a name="l00317"></a>00317                                                                   &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;right&quot;</span>&gt;&lt;/div&gt;&lt;/td&gt;
+<a name="l00318"></a>00318                                                                   &lt;td&gt;&lt;a href=<span class="stringliteral">&quot;index.php?spec=oublie&amp;amp;numrub=&lt;?=$numrub?&gt;&amp;amp;numcateg=&lt;?=$numcateg?&gt;&amp;amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;amp;lg=&lt;?=$lg?&gt;&amp;amp;prix=&lt;?=$prix?&gt;&quot;</span>&gt;Mot de passe oublié ?&lt;/a&gt;&lt;/td&gt;
+<a name="l00319"></a>00319                                                                   &lt;/tr&gt;
+<a name="l00320"></a>00320                                                                 &lt;tr&gt;
+<a name="l00321"></a>00321                                                                   &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00322"></a>00322                                                                   &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;button&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> onclick=<span class="stringliteral">&quot;javascript:document.forms[0].action.value=&#39;seConnecter&#39;;document.forms[0].submit();&quot;</span> value=<span class="stringliteral">&quot;Se connecter&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00323"></a>00323                                                                   &lt;/tr&gt;
+<a name="l00324"></a>00324                                                                 &lt;tr&gt;
+<a name="l00325"></a>00325                                                                   &lt;td&gt;&lt;br /&gt;&lt;/td&gt;
+<a name="l00326"></a>00326                                                                         &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00327"></a>00327                                                                 &lt;/tr&gt;
+<a name="l00328"></a>00328                                                                 &lt;tr&gt;
+<a name="l00329"></a>00329                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge&quot;</span>&gt;Vous n<span class="stringliteral">&#39;êtes pas enregistré ? Inscrivez-vous&lt;/h2&gt;&lt;/td&gt;</span>
+<a name="l00330"></a>00330 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00331"></a>00331 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00332"></a>00332 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Civilité&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00333"></a>00333 <span class="stringliteral">                                                                        &lt;td&gt;</span>
+<a name="l00334"></a>00334 <span class="stringliteral">                                                                                &lt;select name=&quot;selectCiv&quot;&gt;</span>
+<a name="l00335"></a>00335 <span class="stringliteral">                                                                                        &lt;option&gt;-&lt;/option&gt;</span>
+<a name="l00336"></a>00336 <span class="stringliteral">                                                                                        &lt;option value=&quot;Mr&quot;&gt;Mr&lt;/option&gt;</span>
+<a name="l00337"></a>00337 <span class="stringliteral">                                                                                        &lt;option value=&quot;Mme&quot;&gt;Mme&lt;/option&gt;</span>
+<a name="l00338"></a>00338 <span class="stringliteral">                                                                                        &lt;option value=&quot;Mlle&quot;&gt;Mlle&lt;/option&gt;</span>
+<a name="l00339"></a>00339 <span class="stringliteral">                                                                                &lt;/select&gt;                                                                       &lt;/td&gt;</span>
+<a name="l00340"></a>00340 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00341"></a>00341 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00342"></a>00342 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Nom&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00343"></a>00343 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textNom&quot; class=&quot;public&quot;/&gt;&lt;/td&gt;</span>
+<a name="l00344"></a>00344 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00345"></a>00345 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00346"></a>00346 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Prénom&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00347"></a>00347 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textPrenom&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00348"></a>00348 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00349"></a>00349 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00350"></a>00350 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Société&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00351"></a>00351 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textSociete&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00352"></a>00352 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00353"></a>00353 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00354"></a>00354 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Adresse&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00355"></a>00355 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textAdr1&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00356"></a>00356 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00357"></a>00357 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00358"></a>00358 <span class="stringliteral">                                                                        &lt;td&gt;&lt;/td&gt;</span>
+<a name="l00359"></a>00359 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textAdr2&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00360"></a>00360 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00361"></a>00361 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00362"></a>00362 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Code postal&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00363"></a>00363 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textCp&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00364"></a>00364 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00365"></a>00365 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00366"></a>00366 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Ville&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00367"></a>00367 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textVille&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00368"></a>00368 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00369"></a>00369 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00370"></a>00370 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Pays * &amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00371"></a>00371 <span class="stringliteral">                                                                        &lt;td&gt;</span>
+<a name="l00372"></a>00372 <span class="stringliteral">                                                                        &lt;select name=&quot;selectPays&quot; class=&quot;public&quot;&gt;       </span>
+<a name="l00373"></a>00373 <span class="stringliteral">                                                                        &lt;?php</span>
+<a name="l00374"></a>00374 <span class="stringliteral">                                                                        $result = mysql_query(&quot;SELECT * FROM if_pays ORDER BY pays&quot;);</span>
+<a name="l00375"></a>00375 <span class="stringliteral">                                                                        while ($row=mysql_fetch_array($result)) {</span>
+<a name="l00376"></a>00376 <span class="stringliteral">                                                                        ?&gt;</span>
+<a name="l00377"></a>00377 <span class="stringliteral">                                                                                &lt;option value=&quot;&lt;?=$row[&#39;</span>numpays<span class="stringliteral">&#39;]?&gt;&quot; &lt;?php if ($row[&#39;</span>numpays<span class="stringliteral">&#39;]==$laCom-&gt;numpays) echo &quot;selected=&#39;</span>selected<span class="stringliteral">&#39;&quot;; ?&gt;&gt;&lt;?=utf8_encode($row[&#39;</span>pays<span class="stringliteral">&#39;])?&gt;&lt;/option&gt;</span>
+<a name="l00378"></a>00378 <span class="stringliteral">                                                                        &lt;?php</span>
+<a name="l00379"></a>00379 <span class="stringliteral">                                                                        }//fin du while</span>
+<a name="l00380"></a>00380 <span class="stringliteral">                                                                        ?&gt;</span>
+<a name="l00381"></a>00381 <span class="stringliteral">                                                                        &lt;/select&gt;                                                                       &lt;/td&gt;</span>
+<a name="l00382"></a>00382 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00383"></a>00383 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00384"></a>00384 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Téléphone&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00385"></a>00385 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textTel&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00386"></a>00386 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00387"></a>00387 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00388"></a>00388 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Fax&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00389"></a>00389 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textFax&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00390"></a>00390 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00391"></a>00391 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00392"></a>00392 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Email&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00393"></a>00393 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;textEmail&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00394"></a>00394 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00395"></a>00395 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00396"></a>00396 <span class="stringliteral">                                                                        &lt;td&gt;&lt;div align=&quot;right&quot;&gt;Mot de passe&lt;em&gt;*&lt;/em&gt;&amp;nbsp;:&amp;nbsp;&lt;/div&gt;&lt;/td&gt;</span>
+<a name="l00397"></a>00397 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;password&quot; name=&quot;textPwd&quot; class=&quot;public&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00398"></a>00398 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00399"></a>00399 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00400"></a>00400 <span class="stringliteral">                                                                        &lt;td&gt;&lt;/td&gt;</span>
+<a name="l00401"></a>00401 <span class="stringliteral">                                                                        &lt;td&gt;&lt;input type=&quot;button&quot; class=&quot;bouton&quot; onclick=&quot;javascript:creerCompte()&quot; value=&quot;Créer un compte&quot; /&gt;&lt;/td&gt;</span>
+<a name="l00402"></a>00402 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00403"></a>00403 <span class="stringliteral">                                                                </span>
+<a name="l00404"></a>00404 <span class="stringliteral">                                                                &lt;/table&gt;&lt;input type=&quot;hidden&quot; name=&quot;prix&quot; value=&quot;&lt;?=$prix?&gt;&quot; /&gt;</span>
+<a name="l00405"></a>00405 <span class="stringliteral">                                                        &lt;?php</span>
+<a name="l00406"></a>00406 <span class="stringliteral">                                                        /* -------------------------- ETAPE 3 --------------------------------------------------------- */</span>
+<a name="l00407"></a>00407 <span class="stringliteral">                                                        } else if ($etape==3) {// Etape 3 : facturation et livraison</span>
+<a name="l00408"></a>00408 <span class="stringliteral">                                                                $laCom=new Commande();</span>
+<a name="l00409"></a>00409 <span class="stringliteral">                                                                $laCom-&gt;numcom=$_SESSION[&#39;</span>numcom<span class="stringliteral">&#39;];</span>
+<a name="l00410"></a>00410 <span class="stringliteral">                                                                $laCom-&gt;infosCommande();</span>
+<a name="l00411"></a>00411 <span class="stringliteral">                                                                if ($action!=&quot;seConnecter&quot; &amp;&amp; $action!=&quot;creerCompte&quot;) {</span>
+<a name="l00412"></a>00412 <span class="stringliteral">                                                                        $client=new Client();</span>
+<a name="l00413"></a>00413 <span class="stringliteral">                                                                        $client-&gt;numclient=$_SESSION[&#39;</span>numclient<span class="stringliteral">&#39;];</span>
+<a name="l00414"></a>00414 <span class="stringliteral">                                                                        $client-&gt;infosClient();</span>
+<a name="l00415"></a>00415 <span class="stringliteral">                                                                }</span>
+<a name="l00416"></a>00416 <span class="stringliteral">                                                        ?&gt;</span>
+<a name="l00417"></a>00417 <span class="stringliteral">                                                                &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;</span>
+<a name="l00418"></a>00418 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00419"></a>00419 <span class="stringliteral">                                                                        &lt;td colspan=&quot;2&quot;&gt;&lt;h1 class=&quot;sansmarge&quot;&gt;Etape 3 &lt;/h1&gt;&lt;/td&gt;</span>
+<a name="l00420"></a>00420 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00421"></a>00421 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00422"></a>00422 <span class="stringliteral">                                                                        &lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;</span>
+<a name="l00423"></a>00423 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00424"></a>00424 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00425"></a>00425 <span class="stringliteral">                                                                        &lt;td colspan=&quot;2&quot;&gt;Veuillez indiquer une adresse de livraison et de facturation (celles-ci peuvent être différentes).&lt;/td&gt;</span>
+<a name="l00426"></a>00426 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00427"></a>00427 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00428"></a>00428 <span class="stringliteral">                                                                        &lt;td&gt;&lt;strong&gt;N° de commande&lt;/strong&gt; : &lt;?=$laCom-&gt;getNumCom()?&gt;&lt;/td&gt;</span>
+<a name="l00429"></a>00429 <span class="stringliteral">                                                                        &lt;td&gt;&amp;nbsp;&lt;/td&gt;</span>
+<a name="l00430"></a>00430 <span class="stringliteral">                                                                &lt;/tr&gt;</span>
+<a name="l00431"></a>00431 <span class="stringliteral">                                                                &lt;tr&gt;</span>
+<a name="l00432"></a>00432 <span class="stringliteral">                                                                  &lt;td&gt;&amp;nbsp;&lt;/td&gt;</span>
+<a name="l00433"></a>00433 <span class="stringliteral">                                                                  &lt;td&gt;&lt;input type=&quot;checkbox&quot; name=&quot;checkCopier&quot; onclick=&quot;javascript:copierAdresse()&quot; class=&quot;checkbox&quot; /&gt;&amp;nbsp;&lt;strong&gt;Copier l&#39;</span>adresse de livraison &lt;/strong&gt;&lt;/td&gt;
+<a name="l00434"></a>00434                                                                   &lt;/tr&gt;
+<a name="l00435"></a>00435                                                                 &lt;tr&gt;
+<a name="l00436"></a>00436                                                                         &lt;td&gt;
+<a name="l00437"></a>00437                                                                                 &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00438"></a>00438                                                                                         &lt;tr&gt;
+<a name="l00439"></a>00439                                                                                                 &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge sanstrait&quot;</span>&gt;Livraison&lt;/h2&gt;&lt;/td&gt;
+<a name="l00440"></a>00440                                                                                         &lt;/tr&gt;
+<a name="l00441"></a>00441                                                                                         &lt;tr&gt;
+<a name="l00442"></a>00442                                                                                                 &lt;td&gt;Nom&lt;/td&gt;
+<a name="l00443"></a>00443                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textNom_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;nom?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00444"></a>00444                                                                                         &lt;/tr&gt;
+<a name="l00445"></a>00445                                                                                         &lt;tr&gt;
+<a name="l00446"></a>00446                                                                                                 &lt;td&gt;Prénom&lt;/td&gt;
+<a name="l00447"></a>00447                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textPrenom_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;prenom?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00448"></a>00448                                                                                         &lt;/tr&gt;
+<a name="l00449"></a>00449                                                                                         &lt;tr&gt;
+<a name="l00450"></a>00450                                                                                                 &lt;td&gt;Société&lt;/td&gt;
+<a name="l00451"></a>00451                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textSociete_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;raison?&gt;&quot;</span>  <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00452"></a>00452                                                                                         &lt;/tr&gt;
+<a name="l00453"></a>00453                                                                                         &lt;tr&gt;
+<a name="l00454"></a>00454                                                                                                 &lt;td&gt;Adresse&lt;/td&gt;
+<a name="l00455"></a>00455                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textAdr1_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;adr1?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00456"></a>00456                                                                                         &lt;/tr&gt;
+<a name="l00457"></a>00457                                                                                         &lt;tr&gt;
+<a name="l00458"></a>00458                                                                                                 &lt;td&gt;&lt;/td&gt;
+<a name="l00459"></a>00459                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textAdr2_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;adr2?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00460"></a>00460                                                                                         &lt;/tr&gt;
+<a name="l00461"></a>00461                                                                                         &lt;tr&gt;
+<a name="l00462"></a>00462                                                                                                 &lt;td&gt;Code postal&lt;/td&gt;
+<a name="l00463"></a>00463                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textCp_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;cp?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00464"></a>00464                                                                                         &lt;/tr&gt;
+<a name="l00465"></a>00465                                                                                         &lt;tr&gt;
+<a name="l00466"></a>00466                                                                                                 &lt;td&gt;Ville&lt;/td&gt;
+<a name="l00467"></a>00467                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textVille_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;ville?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00468"></a>00468                                                                                         &lt;/tr&gt;
+<a name="l00469"></a>00469                                                                                         &lt;tr&gt;
+<a name="l00470"></a>00470                                                                                                 &lt;td&gt;Pays&lt;/td&gt;
+<a name="l00471"></a>00471                                                                                                 &lt;td&gt;
+<a name="l00472"></a>00472                                                                                                 &lt;select name=<span class="stringliteral">&quot;selectPays_l&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>&gt;     
+<a name="l00473"></a>00473                                                                                                 &lt;?php
+<a name="l00474"></a>00474                                                                                                 $result = mysql_query(<span class="stringliteral">&quot;SELECT * FROM if_pays ORDER BY pays&quot;</span>);
+<a name="l00475"></a>00475                                                                                                 <span class="keywordflow">while</span> ($row=mysql_fetch_array($result)) {
+<a name="l00476"></a>00476                                                                                                 ?&gt;
+<a name="l00477"></a>00477                                                                                                         &lt;option value=<span class="stringliteral">&quot;&lt;?=$row[&#39;numpays&#39;]?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> ($laCom-&gt;numpays==$row[<span class="stringliteral">&#39;numpays&#39;</span>]) echo <span class="stringliteral">&quot;selected=&#39;selected&#39;&quot;</span>;?&gt;&gt;&lt;?=utf8_encode($row[<span class="stringliteral">&#39;pays&#39;</span>])?&gt;&lt;/option&gt;
+<a name="l00478"></a>00478                                                                                                 &lt;?php
+<a name="l00479"></a>00479                                                                                                 }<span class="comment">//fin du while</span>
+<a name="l00480"></a>00480                                                                                                 ?&gt;
+<a name="l00481"></a>00481                                                                                                 &lt;/select&gt;                                                                                               &lt;/td&gt;
+<a name="l00482"></a>00482                                                                                         &lt;/tr&gt;
+<a name="l00483"></a>00483                                                                                         &lt;tr&gt;
+<a name="l00484"></a>00484                                                                                                 &lt;td&gt;Téléphone&lt;/td&gt;
+<a name="l00485"></a>00485                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textTel_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;tel?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00486"></a>00486                                                                                         &lt;/tr&gt;
+<a name="l00487"></a>00487                                                                                         &lt;tr&gt;
+<a name="l00488"></a>00488                                                                                           &lt;td&gt;Fax&lt;/td&gt;
+<a name="l00489"></a>00489                                                                                           &lt;td&gt;&lt;input name=<span class="stringliteral">&quot;textFax_l&quot;</span> type=<span class="stringliteral">&quot;text&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textFax_l&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;fax?&gt;&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00490"></a>00490                                                                                   &lt;/tr&gt;
+<a name="l00491"></a>00491                                                                                 &lt;/table&gt;                                                                        &lt;/td&gt;
+<a name="l00492"></a>00492                                                                         &lt;td&gt;
+<a name="l00493"></a>00493                                                                                 &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00494"></a>00494                                                                                         &lt;tr&gt;
+<a name="l00495"></a>00495                                                                                                 &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge sanstrait&quot;</span>&gt;Facturation&lt;/h2&gt;&lt;/td&gt;
+<a name="l00496"></a>00496                                                                                         &lt;/tr&gt;
+<a name="l00497"></a>00497                                                                                         &lt;tr&gt;
+<a name="l00498"></a>00498                                                                                                 &lt;td&gt;Nom&lt;/td&gt;
+<a name="l00499"></a>00499                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textNom_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00500"></a>00500                                                                                         &lt;/tr&gt;
+<a name="l00501"></a>00501                                                                                         &lt;tr&gt;
+<a name="l00502"></a>00502                                                                                                 &lt;td&gt;Prénom&lt;/td&gt;
+<a name="l00503"></a>00503                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textPrenom_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00504"></a>00504                                                                                         &lt;/tr&gt;
+<a name="l00505"></a>00505                                                                                         &lt;tr&gt;
+<a name="l00506"></a>00506                                                                                                 &lt;td&gt;Société&lt;/td&gt;
+<a name="l00507"></a>00507                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textSociete_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00508"></a>00508                                                                                         &lt;/tr&gt;
+<a name="l00509"></a>00509                                                                                         &lt;tr&gt;
+<a name="l00510"></a>00510                                                                                                 &lt;td&gt;Adresse&lt;/td&gt;
+<a name="l00511"></a>00511                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textAdr1_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;&lt;/td&gt;
+<a name="l00512"></a>00512                                                                                         &lt;/tr&gt;
+<a name="l00513"></a>00513                                                                                         &lt;tr&gt;
+<a name="l00514"></a>00514                                                                                                 &lt;td&gt;&lt;/td&gt;
+<a name="l00515"></a>00515                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textAdr2_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00516"></a>00516                                                                                         &lt;/tr&gt;
+<a name="l00517"></a>00517                                                                                         &lt;tr&gt;
+<a name="l00518"></a>00518                                                                                                 &lt;td&gt;Code postal&lt;/td&gt;
+<a name="l00519"></a>00519                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textCp_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00520"></a>00520                                                                                         &lt;/tr&gt;
+<a name="l00521"></a>00521                                                                                         &lt;tr&gt;
+<a name="l00522"></a>00522                                                                                                 &lt;td&gt;Ville&lt;/td&gt;
+<a name="l00523"></a>00523                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textVille_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00524"></a>00524                                                                                         &lt;/tr&gt;
+<a name="l00525"></a>00525                                                                                         &lt;tr&gt;
+<a name="l00526"></a>00526                                                                                                 &lt;td&gt;Pays&lt;/td&gt;
+<a name="l00527"></a>00527                                                                                                 &lt;td&gt;
+<a name="l00528"></a>00528                                                                                                 &lt;select name=<span class="stringliteral">&quot;selectPays_f&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> &gt;
+<a name="l00529"></a>00529                                                                                                 &lt;option&gt;Sélectionnez&lt;/option&gt;  
+<a name="l00530"></a>00530                                                                                                 &lt;?php
+<a name="l00531"></a>00531                                                                                                 $result = mysql_query(<span class="stringliteral">&quot;SELECT * FROM if_pays ORDER BY pays&quot;</span>);
+<a name="l00532"></a>00532                                                                                                 <span class="keywordflow">while</span> ($row=mysql_fetch_array($result)) {
+<a name="l00533"></a>00533                                                                                                 ?&gt;
+<a name="l00534"></a>00534                                                                                                         &lt;option value=<span class="stringliteral">&quot;&lt;?=$row[&#39;numpays&#39;]?&gt;&quot;</span> &gt;&lt;?=utf8_encode($row[<span class="stringliteral">&#39;pays&#39;</span>])?&gt;&lt;/option&gt;
+<a name="l00535"></a>00535                                                                                                 &lt;?php
+<a name="l00536"></a>00536                                                                                                 }<span class="comment">//fin du while</span>
+<a name="l00537"></a>00537                                                                                                 ?&gt;
+<a name="l00538"></a>00538                                                                                                 &lt;/select&gt;                                                                                               &lt;/td&gt;
+<a name="l00539"></a>00539                                                                                         &lt;/tr&gt;
+<a name="l00540"></a>00540                                                                                         &lt;tr&gt;
+<a name="l00541"></a>00541                                                                                                 &lt;td&gt;Téléphone&lt;/td&gt;
+<a name="l00542"></a>00542                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textTel_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00543"></a>00543                                                                                         &lt;/tr&gt;
+<a name="l00544"></a>00544                                                                                         &lt;tr&gt;
+<a name="l00545"></a>00545                                                                                                 &lt;td&gt;Fax&lt;/td&gt;
+<a name="l00546"></a>00546                                                                                                 &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textFax_f&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00547"></a>00547                                                                                         &lt;/tr&gt;
+<a name="l00548"></a>00548                                                                                 &lt;/table&gt;                                                                        &lt;/td&gt;
+<a name="l00549"></a>00549                                                                 &lt;/tr&gt;
+<a name="l00550"></a>00550                                                                 &lt;tr&gt;
+<a name="l00551"></a>00551                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;input type=<span class="stringliteral">&quot;button&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> onclick=<span class="stringliteral">&quot;javascript:validerLivraison()&quot;</span> value=<span class="stringliteral">&quot;Confirmer la commande&quot;</span> /&gt;&lt;/td&gt;
+<a name="l00552"></a>00552                                                                 &lt;/tr&gt;
+<a name="l00553"></a>00553 &lt;/table&gt;
+<a name="l00554"></a>00554                                                         &lt;?php
+<a name="l00555"></a>00555                                                         <span class="comment">/*-------------------------- ETAPE 4 --------------------------------------------------------*/</span>
+<a name="l00556"></a>00556                                                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($etape==4) {<span class="comment">//fin else if ($etape==3) : type de réglement</span>
+<a name="l00557"></a>00557                                                         ?&gt;
+<a name="l00558"></a>00558                                                         &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00559"></a>00559                                                         &lt;?php
+<a name="l00560"></a>00560                                                                 <span class="keywordflow">if</span> (!$radioReg) {
+<a name="l00561"></a>00561                                                         ?&gt;
+<a name="l00562"></a>00562                                                                         &lt;?php
+<a name="l00563"></a>00563                                                                         <span class="keywordflow">if</span> ($lien) {<span class="comment">//lien direct vers le panier pour l&#39;inscription définitive à la formation (ce lien apparait dans le mail envoyé au client lorque l&#39;admin a validé les dates de la formation sur mesure (méthode validerForma() de l&#39;objet Formation)</span>
+<a name="l00564"></a>00564                                                                         <span class="keywordflow">if</span> ($_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>]) {
+<a name="l00565"></a>00565                                                                                 $list_article=$lePanier-&gt;listerArticlesForm();
+<a name="l00566"></a>00566                                                                                 $laForma=<span class="keyword">new</span> <a class="code" href="class_formation.html" title="s&amp;eacute;pcifique IFIP">Formation</a>();
+<a name="l00567"></a>00567                                                                                 $laForma-&gt;numpara=$list_article[0][<span class="stringliteral">&quot;numpara&quot;</span>];
+<a name="l00568"></a>00568                                                                                 $laForma-&gt;infosFormation();
+<a name="l00569"></a>00569                                                                         }
+<a name="l00570"></a>00570                                                                         ?&gt;
+<a name="l00571"></a>00571                                                                                 &lt;tr&gt;
+<a name="l00572"></a>00572                                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;strong&gt;Réglement de la formation <span class="stringliteral">&quot;&lt;?=$laForma-&gt;titrePara?&gt;&quot;</span>&lt;/strong&gt;&lt;/td&gt;
+<a name="l00573"></a>00573                                                                                 &lt;/tr&gt;
+<a name="l00574"></a>00574                                                                                 &lt;tr&gt;
+<a name="l00575"></a>00575                                                                                         &lt;td&gt;&lt;strong&gt;Tarif : &lt;/strong&gt;&lt;/td&gt;
+<a name="l00576"></a>00576                                                                                         &lt;td&gt;&lt;strong&gt;&lt;?=$list_article[0][<span class="stringliteral">&quot;montantTTC&quot;</span>]?&gt; €&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;&lt;/td&gt;
+<a name="l00577"></a>00577                                                                                 &lt;/tr&gt;
+<a name="l00578"></a>00578                                                                                 &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;forma&quot;</span> value=<span class="stringliteral">&quot;1&quot;</span> /&gt;
+<a name="l00579"></a>00579                                                                         &lt;?php
+<a name="l00580"></a>00580                                                                         } <span class="keywordflow">else</span> { <span class="comment">// fin de if ($lien)</span>
+<a name="l00581"></a>00581                                                                         ?&gt;
+<a name="l00582"></a>00582                                                                                 &lt;tr&gt;
+<a name="l00583"></a>00583                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;&lt;h1 <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Etape 4 &lt;/h1&gt;&lt;/td&gt;
+<a name="l00584"></a>00584                                                                 &lt;/tr&gt;
+<a name="l00585"></a>00585                                                                         &lt;?php
+<a name="l00586"></a>00586                                                                         }
+<a name="l00587"></a>00587                                                                         ?&gt;
+<a name="l00588"></a>00588                                                                         &lt;tr&gt;
+<a name="l00589"></a>00589                                                                                 &lt;td width=<span class="stringliteral">&quot;150&quot;</span>&gt;
+<a name="l00590"></a>00590                                                                                 Vous souhaitez régler par :&lt;/td&gt;
+<a name="l00591"></a>00591                                                                           &lt;td&gt;
+<a name="l00592"></a>00592                                                                             &lt;input type=<span class="stringliteral">&quot;radio&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;radio&quot;</span> name=<span class="stringliteral">&quot;radioReg&quot;</span> value=<span class="stringliteral">&quot;ch&quot;</span> checked=<span class="stringliteral">&quot;checked&quot;</span>/&gt;
+<a name="l00593"></a>00593                                                                       &amp;nbsp;chèque (banque française uniquement) &lt;/td&gt;
+<a name="l00594"></a>00594                                                                         &lt;/tr&gt;
+<a name="l00595"></a>00595                                                                         &lt;tr&gt;
+<a name="l00596"></a>00596                                                                                 &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00597"></a>00597                                                                                 &lt;td&gt;
+<a name="l00598"></a>00598                                                                                   &lt;input type=<span class="stringliteral">&quot;radio&quot;</span>  <span class="keyword">class</span>=<span class="stringliteral">&quot;radio&quot;</span> name=<span class="stringliteral">&quot;radioReg&quot;</span> value=<span class="stringliteral">&quot;vi&quot;</span> /&gt;
+<a name="l00599"></a>00599                                                                             &amp;nbsp;virement bancaire                                                                             &lt;br /&gt;
+<a name="l00600"></a>00600                                         
+<a name="l00601"></a>00601                                         
+<a name="l00602"></a>00602                                                                             &amp;nbsp;&lt;/td&gt;
+<a name="l00603"></a>00603                                                                         &lt;/tr&gt;
+<a name="l00604"></a>00604                                                                         &lt;tr&gt;
+<a name="l00605"></a>00605                                                                                 &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00606"></a>00606                                                                                 &lt;td&gt;                                  
+<a name="l00607"></a>00607                                           &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;totalTTC&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$lePanier-&gt;totalTTC?&gt;&quot;</span> /&gt;
+<a name="l00608"></a>00608                                                                                   &lt;input type=<span class="stringliteral">&quot;radio&quot;</span>  <span class="keyword">class</span>=<span class="stringliteral">&quot;radio&quot;</span> name=<span class="stringliteral">&quot;radioReg&quot;</span> value=<span class="stringliteral">&quot;cb&quot;</span> /&gt;
+<a name="l00609"></a>00609                                                                             &amp;nbsp;carte bancaire        -       paiement        en      ligne   sécurisé      Crédit Agricole                &lt;br /&gt;
+<a name="l00610"></a>00610                                         
+<a name="l00611"></a>00611                                         
+<a name="l00612"></a>00612                                                                             &amp;nbsp;&lt;/td&gt;
+<a name="l00613"></a>00613                                                                         &lt;/tr&gt;
+<a name="l00614"></a>00614                                                                         &lt;tr&gt;
+<a name="l00615"></a>00615                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00616"></a>00616                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00617"></a>00617                                                           &lt;/tr&gt;
+<a name="l00618"></a>00618                                                                         &lt;tr&gt;
+<a name="l00619"></a>00619                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00620"></a>00620                                                                           &lt;td&gt;&lt;input type=<span class="stringliteral">&quot;checkbox&quot;</span> name=<span class="stringliteral">&quot;cgv&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;checkbox&quot;</span> value=<span class="stringliteral">&quot;1&quot;</span> /&gt;
+<a name="l00621"></a>00621                                                                           J<span class="stringliteral">&#39;ai lu et j&#39;</span>accepte les conditions générales de ventes : &lt;a href=<span class="stringliteral">&quot;cgv-formations-ifip-institut-du-porc.pdf&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span>&gt;cgv formations ifip&lt;/a&gt; - &lt;a href=<span class="stringliteral">&quot;cgv-publications-ifip-institut-du-porc.pdf&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span>&gt;cgv publications&lt;/a&gt; &lt;/td&gt;
+<a name="l00622"></a>00622                                                           &lt;/tr&gt;
+<a name="l00623"></a>00623                                                                         &lt;tr&gt;
+<a name="l00624"></a>00624                                                                           &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00625"></a>00625                                                                           &lt;td&gt;
+<a name="l00626"></a>00626                                       &lt;!-- ******************************************************************** 
+<a name="l00627"></a>00627                                                                           Ce bouton pointe vers paiement.php au lieu de panier-ifip...php 
+<a name="l00628"></a>00628                                                                           (cf.condition sur la valeur de action dans form#admin de index.php)
+<a name="l00629"></a>00629                                                                           On est oblige a cause du fonctionnement specifique au Credit Agricole
+<a name="l00630"></a>00630                                                                           (lancement de leur exécutable)
+<a name="l00631"></a>00631                                                                           ******************************************************************** 
+<a name="l00632"></a>00632                                                                           --&gt;
+<a name="l00633"></a>00633                                                                           &lt;input type=<span class="stringliteral">&quot;button&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> onclick=<span class="stringliteral">&quot;javascript:validerReglement()&quot;</span> value=<span class="stringliteral">&quot;Procéder au paiement&quot;</span> name=<span class="stringliteral">&quot;bouton_paiement&quot;</span> /&gt;                                      &lt;/td&gt;
+<a name="l00634"></a>00634                                                           &lt;/tr&gt;
+<a name="l00635"></a>00635                                                                         &lt;tr&gt;
+<a name="l00636"></a>00636                                                                                 &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00637"></a>00637                                                                                 &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+<a name="l00638"></a>00638                                                                         &lt;/tr&gt;
+<a name="l00639"></a>00639                                                                         
+<a name="l00640"></a>00640                                                                         &lt;?php
+<a name="l00641"></a>00641                                                                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($paiement==<span class="stringliteral">&quot;ok&quot;</span> &amp;&amp; $radioReg==<span class="stringliteral">&quot;cb&quot;</span>){ <span class="comment">// fin if (!$radioReg)</span>
+<a name="l00642"></a>00642                                                                         ?&gt;
+<a name="l00643"></a>00643                                                                                 &lt;tr&gt;
+<a name="l00644"></a>00644                                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h1 <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Etape 5 &lt;/h1&gt;&lt;/td&gt;
+<a name="l00645"></a>00645                                                                                 &lt;/tr&gt;   
+<a name="l00646"></a>00646                                                                                 &lt;tr&gt;
+<a name="l00647"></a>00647                                                                                   &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;strong&gt;Nous vous remercions pour votre commande qui a bien été enregistrée par l<span class="stringliteral">&#39;Ifip - Institut du porc&lt;br /&gt;</span>
+<a name="l00648"></a>00648 <span class="stringliteral">                                                                              et pour laquelle le paiement en ligne par carte bancaire a été validé.&lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00649"></a>00649 <span class="stringliteral">                                                                              &lt;br /&gt;</span>
+<a name="l00650"></a>00650 <span class="stringliteral">                                                                                    2 mails viennent d&#39;</span>être envoyés à l<span class="stringliteral">&#39;adresse &lt;?=$client-&gt;email?&gt;&lt;br /&gt;</span>
+<a name="l00651"></a>00651 <span class="stringliteral">                                                                                - Un ticket de confirmation de votre paiement bancaire.&lt;br /&gt;</span>
+<a name="l00652"></a>00652 <span class="stringliteral">                                                                                      - </span>
+<a name="l00653"></a>00653 <span class="stringliteral">                                                                                Un mail récapitulatif de votre commande. &lt;br /&gt; </span>
+<a name="l00654"></a>00654 <span class="stringliteral">                                                                                                                                                                &lt;br /&gt;</span>
+<a name="l00655"></a>00655 <span class="stringliteral">                                                                                        &lt;br /&gt;</span>
+<a name="l00656"></a>00656 <span class="stringliteral">                                            &lt;?php</span>
+<a name="l00657"></a>00657 <span class="stringliteral">                                                                                        $pageSpecMonCompte=new Page();</span>
+<a name="l00658"></a>00658 <span class="stringliteral">                                                                                        $pageSpecMonCompte-&gt;pageSpecifique(&quot;compte-ifip&quot;);</span>
+<a name="l00659"></a>00659 <span class="stringliteral">                                                                                        ?&gt;                                                                                      </span>
+<a name="l00660"></a>00660 <span class="stringliteral">                                                                                        &lt;strong&gt;Si vous avez acheté des documents téléchargeables en ligne, nous vous invitons à vous rendre dans la rubrique &lt;a href=&quot;index.php?spec=&lt;?=$pageSpecMonCompte-&gt;nomFichier?&gt;&amp;numpage=&lt;?=$pageSpecMonCompte-&gt;numpage?&gt;&amp;numrub=&lt;?=$pageSpecMonCompte-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageSpecMonCompte-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageSpecMonCompte-&gt;numsscateg?&gt;&amp;lg=&lt;?=$pageSpecMonCompte-&gt;lg?&gt;&quot;&gt;Mon Compte&lt;/a&gt; (accessible en haut et à droite de toutes les pages du site)&amp;nbsp; et à cliquer sur le détail de votre commande. &lt;br /&gt;</span>
+<a name="l00661"></a>00661 <span class="stringliteral">                                                                                        Si vous avez acheté des ouvrages ou CD-Rom envoyés par courrier postal, ceux-ci sont en cours de préparation par nos services. &lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00662"></a>00662 <span class="stringliteral">                                                                                        &lt;br /&gt;</span>
+<a name="l00663"></a>00663 <span class="stringliteral">                                                                                        Cordialement,&lt;br /&gt;</span>
+<a name="l00664"></a>00664 <span class="stringliteral">                                                                                        Brigitte Laval &lt;br /&gt;</span>
+<a name="l00665"></a>00665 <span class="stringliteral">                                                                                        l&#39;</span>IFIP, Institut du Porc&lt;br /&gt;
+<a name="l00666"></a>00666                                                                                         Service Editions&lt;br /&gt;
+<a name="l00667"></a>00667 149 rue de Bercy&lt;br /&gt;
+<a name="l00668"></a>00668 75595 Paris Cedex 12&lt;br /&gt;
+<a name="l00669"></a>00669                                                                                         &lt;br /&gt;
+<a name="l00670"></a>00670                                                                                   &lt;br /&gt;&lt;/td&gt;
+<a name="l00671"></a>00671                                                                                 &lt;/tr&gt;
+<a name="l00672"></a>00672                                                         &lt;?php
+<a name="l00673"></a>00673                                                                                 unset($_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>]);
+<a name="l00674"></a>00674                                                                         
+<a name="l00675"></a>00675                                                                 <span class="comment">/******************   Paiement refuse **************************************/</span>
+<a name="l00676"></a>00676                                                                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span>($paiement==<span class="stringliteral">&quot;refuse&quot;</span> &amp;&amp; $radioReg==<span class="stringliteral">&quot;cb&quot;</span>){
+<a name="l00677"></a>00677                                                                         ?&gt;
+<a name="l00678"></a>00678                                                                                 &lt;tr&gt;
+<a name="l00679"></a>00679                                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h1 <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Etape 5 &lt;/h1&gt;&lt;/td&gt;
+<a name="l00680"></a>00680                                                                                 &lt;/tr&gt;   
+<a name="l00681"></a>00681                                                                                 &lt;tr&gt;
+<a name="l00682"></a>00682                                                                                   &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Une erreur est survenue lors du paiement en ligne de votre panier ou votre paiement a été refusé. &lt;br /&gt;
+<a name="l00683"></a>00683                                                                                     Pour plus de sécurité, votre panier a été réinitialisé. &lt;br /&gt;
+<a name="l00684"></a>00684                                                                                     Merci de recommencer votre choix de documents.&lt;br /&gt;
+<a name="l00685"></a>00685                                                                                     &lt;br /&gt;
+<a name="l00686"></a>00686                                                                                     &lt;a href=<span class="stringliteral">&quot;publications-ifip-institut-du-porc.html&quot;</span>&gt;Consulter la base de données documentaire&lt;/a&gt;&lt;br /&gt; 
+<a name="l00687"></a>00687                                                                                                                                                                 &lt;br /&gt;
+<a name="l00688"></a>00688                                                                                         &lt;br /&gt;
+<a name="l00689"></a>00689                                                                                         
+<a name="l00690"></a>00690                                                                                         
+<a name="l00691"></a>00691                                                                                         Cordialement,&lt;br /&gt;
+<a name="l00692"></a>00692                                                                                         Brigitte Laval &lt;br /&gt;
+<a name="l00693"></a>00693                                                                                         l<span class="stringliteral">&#39;IFIP, Institut du Porc&lt;br /&gt;</span>
+<a name="l00694"></a>00694 <span class="stringliteral">                                                                                        Service Editions&lt;br /&gt;</span>
+<a name="l00695"></a>00695 <span class="stringliteral">149 rue de Bercy&lt;br /&gt;</span>
+<a name="l00696"></a>00696 <span class="stringliteral">75595 Paris Cedex 12&lt;br /&gt;</span>
+<a name="l00697"></a>00697 <span class="stringliteral">                                                                                        &lt;br /&gt;</span>
+<a name="l00698"></a>00698 <span class="stringliteral">                                                                                  &lt;br /&gt;&lt;/td&gt;</span>
+<a name="l00699"></a>00699 <span class="stringliteral">                                                                                &lt;/tr&gt;</span>
+<a name="l00700"></a>00700 <span class="stringliteral">                                        </span>
+<a name="l00701"></a>00701 <span class="stringliteral">                                        &lt;? unset($_SESSION[&#39;</span>numcom<span class="stringliteral">&#39;]); </span>
+<a name="l00702"></a>00702 <span class="stringliteral">                                                                                </span>
+<a name="l00703"></a>00703 <span class="stringliteral">                                                                /******************   Paiement annule **************************************/</span>
+<a name="l00704"></a>00704 <span class="stringliteral">                                                                } else if($paiement==&quot;annule&quot; &amp;&amp; $radioReg==&quot;cb&quot;){</span>
+<a name="l00705"></a>00705 <span class="stringliteral">                                                                        ?&gt;</span>
+<a name="l00706"></a>00706 <span class="stringliteral">                                                                                &lt;tr&gt;</span>
+<a name="l00707"></a>00707 <span class="stringliteral">                                                                                        &lt;td colspan=&quot;2&quot; class=&quot;sansmarge&quot;&gt;&lt;h1 class=&quot;sansmarge&quot;&gt;Etape 5 &lt;/h1&gt;&lt;/td&gt;</span>
+<a name="l00708"></a>00708 <span class="stringliteral">                                                                                &lt;/tr&gt;   </span>
+<a name="l00709"></a>00709 <span class="stringliteral">                                                                                &lt;tr&gt;</span>
+<a name="l00710"></a>00710 <span class="stringliteral">                                                                                  &lt;td colspan=&quot;2&quot; class=&quot;sansmarge&quot;&gt;L&#39;</span>opération de paiment bancaire en ligne a été annulée selon votre demande.&lt;br /&gt; 
+<a name="l00711"></a>00711                                                                                     Pour plus de sécurité, votre panier a été réinitialisé. &lt;br /&gt;
+<a name="l00712"></a>00712 Merci de recommencer votre choix de documents.&lt;br /&gt;
+<a name="l00713"></a>00713 &lt;br /&gt;
+<a name="l00714"></a>00714 &lt;a href=<span class="stringliteral">&quot;publications-ifip-institut-du-porc.html&quot;</span>&gt;Consulter la base de données documentaire&lt;/a&gt;&lt;br /&gt; 
+<a name="l00715"></a>00715                                                                                                                                                                 &lt;br /&gt;
+<a name="l00716"></a>00716                                                                                         &lt;br /&gt;
+<a name="l00717"></a>00717                                                                                         
+<a name="l00718"></a>00718                                                                                         
+<a name="l00719"></a>00719                                                                                         Cordialement,&lt;br /&gt;
+<a name="l00720"></a>00720                                                                                         Brigitte Laval&lt;br /&gt;
+<a name="l00721"></a>00721                                                                                         l<span class="stringliteral">&#39;IFIP, Institut du Porc&lt;br /&gt;</span>
+<a name="l00722"></a>00722 <span class="stringliteral">                                                                                        Service Editions&lt;br /&gt;</span>
+<a name="l00723"></a>00723 <span class="stringliteral">149 rue de Bercy&lt;br /&gt;</span>
+<a name="l00724"></a>00724 <span class="stringliteral">75595 Paris Cedex 12&lt;br /&gt;</span>
+<a name="l00725"></a>00725 <span class="stringliteral">                                                                                        &lt;br /&gt;</span>
+<a name="l00726"></a>00726 <span class="stringliteral">                                                                                  &lt;br /&gt;&lt;/td&gt;</span>
+<a name="l00727"></a>00727 <span class="stringliteral">                                                                                &lt;/tr&gt;</span>
+<a name="l00728"></a>00728 <span class="stringliteral">                                        </span>
+<a name="l00729"></a>00729 <span class="stringliteral">                                         &lt;? </span>
+<a name="l00730"></a>00730 <span class="stringliteral">                                                                                 //$laCom= new Commande();</span>
+<a name="l00731"></a>00731 <span class="stringliteral">                                                                                 //$laCom-&gt;numcom=$_SESSION[&#39;</span>numcom<span class="stringliteral">&#39;];</span>
+<a name="l00732"></a>00732 <span class="stringliteral">                                                                                 //$laCom-&gt;supprimerCommande();?&gt;</span>
+<a name="l00733"></a>00733 <span class="stringliteral">                                         &lt;? unset($_SESSION[&#39;</span>numcom<span class="stringliteral">&#39;]); </span>
+<a name="l00734"></a>00734 <span class="stringliteral">                                                                        </span>
+<a name="l00735"></a>00735 <span class="stringliteral">                                                                /******************   Cheque **************************************/</span>
+<a name="l00736"></a>00736 <span class="stringliteral">                                                                } else if ($radioReg==&quot;ch&quot;) { // paiement par chèque ?&gt;</span>
+<a name="l00737"></a>00737 <span class="stringliteral">                           &lt;tr&gt;</span>
+<a name="l00738"></a>00738 <span class="stringliteral">                                                                                        &lt;td colspan=&quot;2&quot; class=&quot;sansmarge&quot;&gt;&lt;h1 class=&quot;sansmarge&quot;&gt;Etape 5 &lt;/h1&gt;&lt;/td&gt;</span>
+<a name="l00739"></a>00739 <span class="stringliteral">                                                          &lt;/tr&gt; </span>
+<a name="l00740"></a>00740 <span class="stringliteral">                                                                                &lt;tr&gt;</span>
+<a name="l00741"></a>00741 <span class="stringliteral">                                                                                  &lt;td colspan=&quot;2&quot; class=&quot;sansmarge&quot;&gt;</span>
+<a name="l00742"></a>00742 <span class="stringliteral">                                                                                  Nous vous remercions pour votre commande qui a bien été enregistrée par l&#39;</span>Institut.&lt;br /&gt;
+<a name="l00743"></a>00743                                                                                     Un mail de confirmation vient de vous être envoyé à l<span class="stringliteral">&#39;adresse </span>
+<a name="l00744"></a>00744 <span class="stringliteral">                                                                                      &lt;?=$client-&gt;email?&gt;.</span>
+<a name="l00745"></a>00745 <span class="stringliteral">                                                                                &lt;br /&gt; </span>
+<a name="l00746"></a>00746 <span class="stringliteral">                                                                                    &lt;br /&gt;</span>
+<a name="l00747"></a>00747 <span class="stringliteral">                                                                                    Veuillez adresser un chèque bancaire d&#39;</span>un montant de 
+<a name="l00748"></a>00748                                                                                 &lt;?=$montantCh?&gt; 
+<a name="l00749"></a>00749                                                                                 € à l<span class="stringliteral">&#39;adresse suivante :&lt;br /&gt;</span>
+<a name="l00750"></a>00750 <span class="stringliteral">                                                                                &lt;br /&gt;</span>
+<a name="l00751"></a>00751 <span class="stringliteral">                                                                                        &lt;strong&gt;Ifip    -       Institut        du      porc&lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00752"></a>00752 <span class="stringliteral">                                                                                        A l&#39;</span>attention de Brigitte LAVAL &lt;br /&gt;
+<a name="l00753"></a>00753                                                                                         Service Editions&lt;br /&gt;
+<a name="l00754"></a>00754                                                                                         149 rue de Bercy&lt;br /&gt;
+<a name="l00755"></a>00755                                                                                         75595 Paris Cedex 12                                                                                    &lt;br /&gt;
+<a name="l00756"></a>00756                                                                                         &lt;br /&gt;
+<a name="l00757"></a>00757                                                                                         &lt;?php
+<a name="l00758"></a>00758                                                                                         $pageSpecMonCompte=<span class="keyword">new</span> Page();
+<a name="l00759"></a>00759                                                                                         $pageSpecMonCompte-&gt;pageSpecifique(<span class="stringliteral">&quot;compte-ifip&quot;</span>);
+<a name="l00760"></a>00760                                                                                         ?&gt;
+<a name="l00761"></a>00761                                                                                         &lt;strong&gt;Après réception de votre chèque de paiement, un mail de validation de votre commande sera envoyé à l<span class="stringliteral">&#39;adresse </span>
+<a name="l00762"></a>00762 <span class="stringliteral">                                                                                        &lt;?=$client-&gt;email?&gt;. &lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00763"></a>00763 <span class="stringliteral">                                                                                        &lt;strong&gt;Si vous avez acheté des documents téléchargeables en ligne, vous pourrez alors vous rendre dans la rubrique &lt;a href=&quot;index.php?spec=&lt;?=$pageSpecMonCompte-&gt;nomFichier?&gt;&amp;amp;numpage=&lt;?=$pageSpecMonCompte-&gt;numpage?&gt;&amp;amp;numrub=&lt;?=$pageSpecMonCompte-&gt;numrub?&gt;&amp;amp;numcateg=&lt;?=$pageSpecMonCompte-&gt;numcateg?&gt;&amp;amp;numsscateg=&lt;?=$pageSpecMonCompte-&gt;numsscateg?&gt;&amp;amp;lg=&lt;?=$pageSpecMonCompte-&gt;lg?&gt;&quot;&gt;Mon Compte&lt;/a&gt; (accessible en haut et à droite de toutes les pages du site) et cliquer sur le détail de votre commande. &lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00764"></a>00764 <span class="stringliteral">                                                                                        &lt;br /&gt;</span>
+<a name="l00765"></a>00765 <span class="stringliteral">                                                                                        Cordialement,&lt;br /&gt;</span>
+<a name="l00766"></a>00766 <span class="stringliteral">                                                                                        Brigitte Laval &lt;br /&gt;</span>
+<a name="l00767"></a>00767 <span class="stringliteral">                                                                                        l&#39;</span>IFIP, Institut du Porc&lt;br /&gt;
+<a name="l00768"></a>00768                                                                                         &lt;br /&gt;
+<a name="l00769"></a>00769                                                                                   &lt;br /&gt;&lt;/td&gt;
+<a name="l00770"></a>00770                                                                                 &lt;/tr&gt;
+<a name="l00771"></a>00771                                         
+<a name="l00772"></a>00772                            &lt;? unset($_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>]); 
+<a name="l00773"></a>00773                                                       <span class="comment">/******************   Virement **************************************/</span>
+<a name="l00774"></a>00774                                                                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($radioReg==<span class="stringliteral">&quot;vi&quot;</span>) { <span class="comment">// paiement par virement bancaire ?&gt;</span>
+<a name="l00775"></a>00775                            &lt;tr&gt;
+<a name="l00776"></a>00776                                                                                         &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;&lt;h1 <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Etape 5 &lt;/h1&gt;&lt;/td&gt;
+<a name="l00777"></a>00777                                                           &lt;/tr&gt; 
+<a name="l00778"></a>00778                                                                                 &lt;tr&gt;
+<a name="l00779"></a>00779                                                                                   &lt;td colspan=<span class="stringliteral">&quot;2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;
+<a name="l00780"></a>00780                                                                                     &lt;p&gt;Nous vous remercions pour votre commande qui a bien été enregistrée par l<span class="stringliteral">&#39;Institut.&lt;br /&gt;</span>
+<a name="l00781"></a>00781 <span class="stringliteral">                                                                                    Un mail de confirmation vient de vous être envoyé à l&#39;</span>adresse 
+<a name="l00782"></a>00782                                                                                       &lt;?=$client-&gt;email?&gt;
+<a name="l00783"></a>00783                                                                                       .
+<a name="l00784"></a>00784                                                                                   &lt;br /&gt; 
+<a name="l00785"></a>00785                                                                                       &lt;br /&gt;
+<a name="l00786"></a>00786                                                                                     Veuillez nous adresser un virement bancaire d<span class="stringliteral">&#39;un montant de </span>
+<a name="l00787"></a>00787 <span class="stringliteral">                                                                                &lt;?=$montantCh?&gt; </span>
+<a name="l00788"></a>00788 <span class="stringliteral">                                                                                €.&lt;br /&gt;</span>
+<a name="l00789"></a>00789 <span class="stringliteral">                                                                                &lt;br /&gt;</span>
+<a name="l00790"></a>00790 <span class="stringliteral">                                                                                        &lt;strong&gt;Coordonnées bancaires de l&#39;</span>IFIP-Institut du porc :&lt;/strong&gt;&lt;br /&gt;
+<a name="l00791"></a>00791                                                                                         &lt;strong&gt; &lt;br /&gt;
+<a name="l00792"></a>00792                                                                                     &lt;/strong&gt;&lt;a href=<span class="stringliteral">&quot;coordonnees-bancaires-ifip.pdf&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span>&gt;Télécharger les coordonnées bancaires &lt;/a&gt;&lt;strong&gt;&lt;br /&gt;
+<a name="l00793"></a>00793                                                                                   Crédit Agricole&lt;br /&gt;
+<a name="l00794"></a>00794                                                                                     &lt;/strong&gt;26, quai de la 
+<a name="l00795"></a>00795 Rapée - 75596 Paris Cedex 12 &lt;/p&gt;
+<a name="l00796"></a>00796                                                                                     &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00797"></a>00797                                               &lt;tr&gt;
+<a name="l00798"></a>00798                                                 &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;&lt;strong&gt;Domiciliation&lt;/strong&gt;&lt;/div&gt;                                                  &lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;&lt;/div&gt;                                                  &lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;&lt;/div&gt;                                                  &lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;&lt;/div&gt;&lt;/td&gt;
+<a name="l00799"></a>00799                                               &lt;/tr&gt;
+<a name="l00800"></a>00800                                               &lt;tr&gt;
+<a name="l00801"></a>00801                                                 &lt;td colspan=<span class="stringliteral">&quot;4&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;&lt;strong&gt;CRCA PARIS C AFF RENNES&lt;/strong&gt;&lt;/div&gt;&lt;/td&gt;
+<a name="l00802"></a>00802                                               &lt;/tr&gt;
+<a name="l00803"></a>00803                                               &lt;tr&gt;
+<a name="l00804"></a>00804                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;18206&lt;/div&gt;&lt;/td&gt;
+<a name="l00805"></a>00805                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;00280&lt;/div&gt;&lt;/td&gt;
+<a name="l00806"></a>00806                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;00220411001&lt;/div&gt;&lt;/td&gt;
+<a name="l00807"></a>00807                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;14&lt;/div&gt;&lt;/td&gt;
+<a name="l00808"></a>00808                                               &lt;/tr&gt;
+<a name="l00809"></a>00809                                               &lt;tr&gt;
+<a name="l00810"></a>00810                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;Banque&lt;/div&gt;&lt;/td&gt;
+<a name="l00811"></a>00811                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;Guichet&lt;/div&gt;&lt;/td&gt;
+<a name="l00812"></a>00812                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;N° de compte &lt;/div&gt;&lt;/td&gt;
+<a name="l00813"></a>00813                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;Clé RIB &lt;/div&gt;&lt;/td&gt;
+<a name="l00814"></a>00814                                               &lt;/tr&gt;
+<a name="l00815"></a>00815                                             &lt;/table&gt;                                                                                
+<a name="l00816"></a>00816                                                                                     &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+<a name="l00817"></a>00817                                                                                     &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00818"></a>00818                                               &lt;tr&gt;
+<a name="l00819"></a>00819                                                 &lt;td&gt;&lt;div align=<span class="stringliteral">&quot;center&quot;</span>&gt;&lt;strong&gt;I&lt;/strong&gt;nternational &lt;strong&gt;B&lt;/strong&gt;ank &lt;strong&gt;A&lt;/strong&gt;ccount &lt;strong&gt;N&lt;/strong&gt;umber&lt;br /&gt;
+<a name="l00820"></a>00820                                                     &lt;strong&gt;FR76&amp;nbsp;1820&amp;nbsp;&amp;nbsp;6002&amp;nbsp;&amp;nbsp;8000&amp;nbsp;&amp;nbsp;2204&amp;nbsp;1100&amp;nbsp;&amp;nbsp;114&lt;/strong&gt;&lt;br /&gt;
+<a name="l00821"></a>00821                                                     &lt;strong&gt;B&lt;/strong&gt;ank &lt;strong&gt;I&lt;/strong&gt;dentifier &lt;strong&gt;C&lt;/strong&gt;ode&lt;br /&gt;
+<a name="l00822"></a>00822                                                     &lt;strong&gt;AGRIFRPP882&lt;/strong&gt;&lt;/div&gt;&lt;/td&gt;
+<a name="l00823"></a>00823                                               &lt;/tr&gt;
+<a name="l00824"></a>00824                                             &lt;/table&gt;
+<a name="l00825"></a>00825                                                                                     &lt;p&gt;&lt;br /&gt;
+<a name="l00826"></a>00826                                                                                       &lt;br /&gt;
+<a name="l00827"></a>00827                                                                                   &lt;br /&gt;
+<a name="l00828"></a>00828                                                                                   &lt;?php
+<a name="l00829"></a>00829                                                                                         $pageSpecMonCompte=<span class="keyword">new</span> Page();
+<a name="l00830"></a>00830                                                                                         $pageSpecMonCompte-&gt;pageSpecifique(<span class="stringliteral">&quot;compte-ifip&quot;</span>);
+<a name="l00831"></a>00831                                                                                         ?&gt;
+<a name="l00832"></a>00832                                                                                   &lt;strong&gt;Après réception de votre virement bancaire, un mail de validation de votre commande sera envoyé à l<span class="stringliteral">&#39;adresse </span>
+<a name="l00833"></a>00833 <span class="stringliteral">                                                                                  &lt;?=$client-&gt;email?&gt;</span>
+<a name="l00834"></a>00834 <span class="stringliteral">                                                                                  . &lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00835"></a>00835 <span class="stringliteral">                                                                                      &lt;strong&gt;Si vous avez acheté des documents téléchargeables en ligne, vous pourrez alors vous rendre dans la rubrique &lt;a href=&quot;index.php?spec=&lt;?=$pageSpecMonCompte-&gt;nomFichier?&gt;&amp;amp;numpage=&lt;?=$pageSpecMonCompte-&gt;numpage?&gt;&amp;amp;numrub=&lt;?=$pageSpecMonCompte-&gt;numrub?&gt;&amp;amp;numcateg=&lt;?=$pageSpecMonCompte-&gt;numcateg?&gt;&amp;amp;numsscateg=&lt;?=$pageSpecMonCompte-&gt;numsscateg?&gt;&amp;amp;lg=&lt;?=$pageSpecMonCompte-&gt;lg?&gt;&quot;&gt;Mon Compte&lt;/a&gt; (accessible en haut et à droite de toutes les pages du site) et cliquer sur le détail de votre commande. &lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00836"></a>00836 <span class="stringliteral">                                                                                      &lt;br /&gt;</span>
+<a name="l00837"></a>00837 <span class="stringliteral">                                                                                      Cordialement,&lt;br /&gt;</span>
+<a name="l00838"></a>00838 <span class="stringliteral">                                                                                      Brigitte Laval &lt;br /&gt;</span>
+<a name="l00839"></a>00839 <span class="stringliteral">                                                                                      l&#39;</span>IFIP, Institut du Porc&lt;br /&gt;
+<a name="l00840"></a>00840                                                                                       Service Editions&lt;br /&gt;
+<a name="l00841"></a>00841 149 rue de Bercy&lt;br /&gt;
+<a name="l00842"></a>00842 75595 Paris Cedex 12 &lt;br /&gt;
+<a name="l00843"></a>00843                                                                                       &lt;br /&gt;
+<a name="l00844"></a>00844                                                                                   &lt;br /&gt;
+<a name="l00845"></a>00845                                                                             &lt;/p&gt;                                                                              &lt;/td&gt;
+<a name="l00846"></a>00846                                                                                 &lt;/tr&gt;
+<a name="l00847"></a>00847                                         
+<a name="l00848"></a>00848                            &lt;? unset($_SESSION[<span class="stringliteral">&#39;numcom&#39;</span>]);
+<a name="l00849"></a>00849                                                                 } <span class="comment">// fin </span>
+<a name="l00850"></a>00850                                                    ?&gt;
+<a name="l00851"></a>00851                                                         &lt;/table&gt;
+<a name="l00852"></a>00852                                                         &lt;?php
+<a name="l00853"></a>00853                                                         <span class="comment">/*-------------------------- ETAPE 6 --------------------------------------------------------*/</span>
+<a name="l00854"></a>00854                                                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($etape==6) {<span class="comment">//fin else if ($etape==4) : demande de devis</span>
+<a name="l00855"></a>00855                                                         ?&gt;
+<a name="l00856"></a>00856                                                         &lt;h1 <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Etape 4 &lt;/h1&gt;
+<a name="l00857"></a>00857                                                         &lt;br /&gt;
+<a name="l00858"></a>00858                                                         Nous vous remercions pour votre demande qui nous a bien été transmise pour une estimation  des frais de livraison sur votre pays. &lt;br /&gt;
+<a name="l00859"></a>00859                                                         Un mail de confirmation vient d<span class="stringliteral">&#39;être envoyé à l&#39;</span>adresse &lt;?=$client-&gt;email?&gt;.&lt;br /&gt;
+<a name="l00860"></a>00860                                                         Vous recevrez dans les prochains jours un mail précisant le coût de la livraison. &lt;br /&gt;
+<a name="l00861"></a>00861                                                         &lt;br /&gt;
+<a name="l00862"></a>00862                                                         &lt;br /&gt;
+<a name="l00863"></a>00863                                                         &lt;span <span class="keyword">class</span>=<span class="stringliteral">&quot;sansmarge&quot;</span>&gt;Cordialement,&lt;br /&gt;
+<a name="l00864"></a>00864 Brigitte Laval &lt;br /&gt;
+<a name="l00865"></a>00865 l<span class="stringliteral">&#39;IFIP, Institut du Porc&lt;br /&gt;</span>
+<a name="l00866"></a>00866 <span class="stringliteral">Service Editions&lt;br /&gt;</span>
+<a name="l00867"></a>00867 <span class="stringliteral">149 rue de Bercy&lt;br /&gt;</span>
+<a name="l00868"></a>00868 <span class="stringliteral">75595 Paris Cedex 12&lt;/span&gt;&lt;br /&gt;</span>
+<a name="l00869"></a>00869 <span class="stringliteral">                         &lt;br /&gt;</span>
+<a name="l00870"></a>00870 <span class="stringliteral">                                                        &lt;?php</span>
+<a name="l00871"></a>00871 <span class="stringliteral">                                                                unset($_SESSION[&#39;</span>numcom<span class="stringliteral">&#39;]);</span>
+<a name="l00872"></a>00872 <span class="stringliteral">                                                        } // fin else if ($etape==6)</span>
+<a name="l00873"></a>00873 <span class="stringliteral">                                                        ?&gt;</span>
+<a name="l00874"></a>00874 <span class="stringliteral">                                &lt;?php</span>
+<a name="l00875"></a>00875 <span class="stringliteral">                                } else {//fin if ($_SESSION[&#39;</span>numcom<span class="stringliteral">&#39;])</span>
+<a name="l00876"></a>00876 <span class="stringliteral">                                ?&gt;</span>
+<a name="l00877"></a>00877 <span class="stringliteral">&lt;p&gt;&lt;strong&gt;Votre panier est vide&lt;/strong&gt;&lt;br /&gt;</span>
+<a name="l00878"></a>00878 <span class="stringliteral">  Vous pouvez par exemple, &lt;a href=&quot;publications-ifip-institut-du-porc.html&quot;&gt;consulter la base de données documentaire&lt;/a&gt; &lt;br /&gt;</span>
+<a name="l00879"></a>00879 <span class="stringliteral">  pour connaître les publications disponibles à la vente et à la consultation .                                      &lt;/p&gt;</span>
+<a name="l00880"></a>00880 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00881"></a>00881 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00882"></a>00882 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00883"></a>00883 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00884"></a>00884 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00885"></a>00885 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00886"></a>00886 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00887"></a>00887 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00888"></a>00888 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00889"></a>00889 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00890"></a>00890 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00891"></a>00891 <span class="stringliteral">                                        &lt;br /&gt;</span>
+<a name="l00892"></a>00892 <span class="stringliteral">                                &lt;?php</span>
+<a name="l00893"></a>00893 <span class="stringliteral">                                }</span>
+<a name="l00894"></a>00894 <span class="stringliteral">                                ?&gt;</span>
+<a name="l00895"></a>00895 <span class="stringliteral">                                &lt;input type=&quot;hidden&quot; name=&quot;action&quot; id=&quot;action&quot; /&gt;</span>
+<a name="l00896"></a>00896 <span class="stringliteral">                                &lt;!-- Fin affichage contenu non dynamique (provenant du CMS) --&gt;</span>
+<a name="l00897"></a>00897 <span class="stringliteral">                                </span>
+<a name="l00898"></a>00898 <span class="stringliteral">        &lt;p&gt;&amp;nbsp;&lt;/p&gt;</span>
+<a name="l00899"></a>00899 <span class="stringliteral">        &lt;p&gt;&amp;nbsp;&lt;/p&gt;</span>
+<a name="l00900"></a>00900 <span class="stringliteral">        &lt;p&gt;&amp;nbsp;&lt;/p&gt;</span>
+<a name="l00901"></a>00901 <span class="stringliteral">        &lt;p&gt;&amp;nbsp;&lt;/p&gt;</span>
+<a name="l00902"></a>00902 <span class="stringliteral">        &lt;/div&gt;</span>
+<a name="l00903"></a>00903 <span class="stringliteral">&lt;/div&gt;                  </span>
+<a name="l00904"></a>00904 <span class="stringliteral">&lt;?php</span>
+<a name="l00905"></a>00905 <span class="stringliteral"></span>
+<a name="l00906"></a>00906 <span class="stringliteral">}//fin if ($laPage-&gt;nomPageGoogle)</span>
+<a name="l00907"></a>00907 <span class="stringliteral">?&gt;</span>
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

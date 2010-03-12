@@ -1,0 +1,632 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>phpDocumentor Parser Errors and Warnings</title>
+	<link rel="stylesheet" type="text/css" id="layout" href="media/layout.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="media/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="media/print.css" media="print">
+</head>
+
+<body>
+<div id="header">
+	<div id="navLinks">
+        
+                                    
+                                                	        [ <a href="classtrees_default.html">Class Tree: default</a> ]
+            [ <a href="elementindex_default.html">Index: default</a> ]
+        		[ <a href="elementindex.html">All elements</a> ]		
+	</div>
+	<div id="packagePosition">
+		<div id="packageTitle2">default</div>
+		<div id="packageTitle">default</div>
+		<div id="elementPath"> &middot; </div>
+	</div>
+</div>
+
+<div id="nav" class="small">
+	<div id="packages">
+		Packages:
+					<p><a href="li_default.html">default</a></p>
+					<p><a href="li_www_class.html">www_class</a></p>
+			</div>
+
+		</div>
+
+<div id="body">
+	    	<a href="#Post-parsing">Post-parsing</a><br>
+<a href="#accueil.php">accueil.php</a><br>
+<a href="#Actualite.inc.php">Actualite.inc.php</a><br>
+<a href="#actualites-filiere-production-porc.php">actualites-filiere-production-porc.php</a><br>
+<a href="#admin-site.php">admin-site.php</a><br>
+<a href="#ajouter-actu.php">ajouter-actu.php</a><br>
+<a href="#ajouter-arti.php">ajouter-arti.php</a><br>
+<a href="#ajouter-breve.php">ajouter-breve.php</a><br>
+<a href="#ajouter-contact.php">ajouter-contact.php</a><br>
+<a href="#ajouter-doc.php">ajouter-doc.php</a><br>
+<a href="#ajouter-forma.php">ajouter-forma.php</a><br>
+<a href="#ajouter-menu.php">ajouter-menu.php</a><br>
+<a href="#ajouter-page.php">ajouter-page.php</a><br>
+<a href="#ajouter-parag.php">ajouter-parag.php</a><br>
+<a href="#ajouter-prof.php">ajouter-prof.php</a><br>
+<a href="#ajouter-uti.php">ajouter-uti.php</a><br>
+<a href="#Article.inc.php">Article.inc.php</a><br>
+<a href="#Breve.inc.php">Breve.inc.php</a><br>
+<a href="#catalogue-ifip-institut-du-porc.php">catalogue-ifip-institut-du-porc.php</a><br>
+<a href="#classes.php">classes.php</a><br>
+<a href="#Client.inc.php">Client.inc.php</a><br>
+<a href="#Commande.inc.php">Commande.inc.php</a><br>
+<a href="#compte-ifip-profil.php">compte-ifip-profil.php</a><br>
+<a href="#compte-ifip.php">compte-ifip.php</a><br>
+<a href="#connexion.php">connexion.php</a><br>
+<a href="#Contact.inc.php">Contact.inc.php</a><br>
+<a href="#contact.php">contact.php</a><br>
+<a href="#content.php">content.php</a><br>
+<a href="#Documentation.inc.php">Documentation.inc.php</a><br>
+<a href="#equipes-ifip.php">equipes-ifip.php</a><br>
+<a href="#extranet-pro.php">extranet-pro.php</a><br>
+<a href="#Fichier.inc.php">Fichier.inc.php</a><br>
+<a href="#FichierAbsent.php">FichierAbsent.php</a><br>
+<a href="#fonctions.php">fonctions.php</a><br>
+<a href="#fonctions_ajax2.php">fonctions_ajax2.php</a><br>
+<a href="#fonctions_mails.php">fonctions_mails.php</a><br>
+<a href="#fonctions_mails_old.php">fonctions_mails_old.php</a><br>
+<a href="#footer.php">footer.php</a><br>
+<a href="#formation-inscription.php">formation-inscription.php</a><br>
+<a href="#Formation.inc.php">Formation.inc.php</a><br>
+<a href="#formations-ifip.php">formations-ifip.php</a><br>
+<a href="#header.php">header.php</a><br>
+<a href="#home.php">home.php</a><br>
+<a href="#homeheader.php">homeheader.php</a><br>
+<a href="#home_en.php">home_en.php</a><br>
+<a href="#index.php">index.php</a><br>
+<a href="#insertion-doc.php">insertion-doc.php</a><br>
+<a href="#javascript.php">javascript.php</a><br>
+<a href="#Lien.inc.php">Lien.inc.php</a><br>
+<a href="#ListeArticles.inc.php">ListeArticles.inc.php</a><br>
+<a href="#ListeClients.inc.php">ListeClients.inc.php</a><br>
+<a href="#ListeCommandes.inc.php">ListeCommandes.inc.php</a><br>
+<a href="#ListeContacts.inc.php">ListeContacts.inc.php</a><br>
+<a href="#ListeFichiers.inc.php">ListeFichiers.inc.php</a><br>
+<a href="#ListeLiens.inc.php">ListeLiens.inc.php</a><br>
+<a href="#ListeMenus.inc.php">ListeMenus.inc.php</a><br>
+<a href="#ListePages.inc.php">ListePages.inc.php</a><br>
+<a href="#ListeParagraphes.inc.php">ListeParagraphes.inc.php</a><br>
+<a href="#ListePhotos.inc.php">ListePhotos.inc.php</a><br>
+<a href="#lister-actu.php">lister-actu.php</a><br>
+<a href="#lister-arti.php">lister-arti.php</a><br>
+<a href="#lister-breve.php">lister-breve.php</a><br>
+<a href="#lister-client.php">lister-client.php</a><br>
+<a href="#lister-com.php">lister-com.php</a><br>
+<a href="#lister-contact.php">lister-contact.php</a><br>
+<a href="#lister-doc.php">lister-doc.php</a><br>
+<a href="#lister-formation.php">lister-formation.php</a><br>
+<a href="#lister-inscri.php">lister-inscri.php</a><br>
+<a href="#lister-menu.php">lister-menu.php</a><br>
+<a href="#lister-page.php">lister-page.php</a><br>
+<a href="#lister-prof.php">lister-prof.php</a><br>
+<a href="#lister-uti.php">lister-uti.php</a><br>
+<a href="#ListesIterator.inc.php">ListesIterator.inc.php</a><br>
+<a href="#ListeUtilisateurs.inc.php">ListeUtilisateurs.inc.php</a><br>
+<a href="#ListeVideos.inc.php">ListeVideos.inc.php</a><br>
+<a href="#Menu.inc.php">Menu.inc.php</a><br>
+<a href="#menu.php">menu.php</a><br>
+<a href="#modifier-client.php">modifier-client.php</a><br>
+<a href="#modifier-com.php">modifier-com.php</a><br>
+<a href="#modifier-page.php">modifier-page.php</a><br>
+<a href="#modifier-parag.php">modifier-parag.php</a><br>
+<a href="#modifier_fich.php">modifier_fich.php</a><br>
+<a href="#moteur-recherche-publications-ifip-pro.php">moteur-recherche-publications-ifip-pro.php</a><br>
+<a href="#moteur-recherche-publications-ifip.php">moteur-recherche-publications-ifip.php</a><br>
+<a href="#oublie.php">oublie.php</a><br>
+<a href="#ouverturepdf.php">ouverturepdf.php</a><br>
+<a href="#ouverturepdf_old.php">ouverturepdf_old.php</a><br>
+<a href="#Page.inc.php">Page.inc.php</a><br>
+<a href="#page.php">page.php</a><br>
+<a href="#paiement.php">paiement.php</a><br>
+<a href="#panier-ifip-institut-du-porc.php">panier-ifip-institut-du-porc.php</a><br>
+<a href="#Panier.inc.php">Panier.inc.php</a><br>
+<a href="#parag.php">parag.php</a><br>
+<a href="#Paragraphe.inc.php">Paragraphe.inc.php</a><br>
+<a href="#Paragraphe.inc_sav.php">Paragraphe.inc_sav.php</a><br>
+<a href="#pbxtestsign.lib.php">pbxtestsign.lib.php</a><br>
+<a href="#Photo.inc.php">Photo.inc.php</a><br>
+<a href="#pop_sup.php">pop_sup.php</a><br>
+<a href="#publications-ifip-institut-du-porc.php">publications-ifip-institut-du-porc.php</a><br>
+<a href="#rechercher-ifip.php">rechercher-ifip.php</a><br>
+<a href="#rechercher-ifip_old.php">rechercher-ifip_old.php</a><br>
+<a href="#styles.php">styles.php</a><br>
+<a href="#temp.php">temp.php</a><br>
+<a href="#Utilisateur.inc.php">Utilisateur.inc.php</a><br>
+<a href="#veille-economique-internationale-production-viande-porc.php">veille-economique-internationale-production-viande-porc.php</a><br>
+<a href="#Video.inc.php">Video.inc.php</a><br>
+<a name="Post-parsing"></a>
+<h1>Post-parsing</h1>
+<h2>Warnings:</h2><br>
+<b>Warning</b> - 
+duplicate function element "EnvoiMailCommandeCheque" in file C:\wamp\www\ifip_installation\fonctions_mails_old.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate function element "EnvoiMailCommandeChequeValidee" in file C:\wamp\www\ifip_installation\fonctions_mails_old.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - 
+duplicate function element "EnvoiMailCommande" in file C:\wamp\www\ifip_installation\fonctions_mails_old.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - Class Formation in file C:\wamp\www\ifip_installation\class\Formation.inc.php has multiple possible parents named Paragraphe.  Cannot resolve name conflict,
+ try ignoring a file that contains the conflicting parent class<br>
+<b>Warning</b> - Class Actualite in file C:\wamp\www\ifip_installation\class\Actualite.inc.php has multiple possible parents named Paragraphe.  Cannot resolve name conflict,
+ try ignoring a file that contains the conflicting parent class<br>
+<b>Warning</b> - Class Breve in file C:\wamp\www\ifip_installation\class\Breve.inc.php has multiple possible parents named Paragraphe.  Cannot resolve name conflict,
+ try ignoring a file that contains the conflicting parent class<br>
+<b>Warning</b> - 
+duplicate function element "EnvoiMailCommandeExpediee" in file C:\wamp\www\ifip_installation\fonctions_mails_old.php will be ignored.
+Use an @ignore tag on the original if you want this case to be documented.<br>
+<b>Warning</b> - Class Documentation in file C:\wamp\www\ifip_installation\class\Documentation.inc.php has multiple possible parents named Paragraphe.  Cannot resolve name conflict,
+ try ignoring a file that contains the conflicting parent class<br>
+<a name="accesrefuse.php"></a>
+<h1>accesrefuse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - File "C:\wamp\www\ifip_installation\accesrefuse.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="accueil.php"></a>
+<h1>accueil.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 36</b> - File "C:\wamp\www\ifip_installation\admin\accueil.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Actualite.inc.php"></a>
+<h1>Actualite.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class Actualite<br>
+<b>Warning on line 66</b> - File "C:\wamp\www\ifip_installation\class\Actualite.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="actualites-filiere-production-porc.php"></a>
+<h1>actualites-filiere-production-porc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 840</b> - File "C:\wamp\www\ifip_installation\actualites-filiere-production-porc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="admin-site.php"></a>
+<h1>admin-site.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 29</b> - File "C:\wamp\www\ifip_installation\admin\admin-site.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-actu.php"></a>
+<h1>ajouter-actu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 133</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-actu.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-arti.php"></a>
+<h1>ajouter-arti.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-arti.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-breve.php"></a>
+<h1>ajouter-breve.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 55</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-breve.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-contact.php"></a>
+<h1>ajouter-contact.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 128</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-contact.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-doc.php"></a>
+<h1>ajouter-doc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 328</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-doc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-forma.php"></a>
+<h1>ajouter-forma.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 158</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-forma.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-menu.php"></a>
+<h1>ajouter-menu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 120</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-menu.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-page.php"></a>
+<h1>ajouter-page.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 158</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-page.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-parag.php"></a>
+<h1>ajouter-parag.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 85</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-parag.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-prof.php"></a>
+<h1>ajouter-prof.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 95</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-prof.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ajouter-uti.php"></a>
+<h1>ajouter-uti.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 48</b> - File "C:\wamp\www\ifip_installation\admin\ajouter-uti.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Article.inc.php"></a>
+<h1>Article.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Article<br>
+<b>Warning on line 38</b> - File "C:\wamp\www\ifip_installation\class\Article.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Breve.inc.php"></a>
+<h1>Breve.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class Breve<br>
+<b>Warning on line 107</b> - File "C:\wamp\www\ifip_installation\class\Breve.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="catalogue-ifip-institut-du-porc.php"></a>
+<h1>catalogue-ifip-institut-du-porc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 429</b> - File "C:\wamp\www\ifip_installation\catalogue-ifip-institut-du-porc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="classes.php"></a>
+<h1>classes.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 33</b> - File "C:\wamp\www\ifip_installation\includes\classes.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 34</b> - File "C:\wamp\www\ifip_installation\admin\classes.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Client.inc.php"></a>
+<h1>Client.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class Client<br>
+<b>Warning on line 171</b> - File "C:\wamp\www\ifip_installation\class\Client.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Commande.inc.php"></a>
+<h1>Commande.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class Commande<br>
+<b>Warning on line 203</b> - File "C:\wamp\www\ifip_installation\class\Commande.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="compte-ifip-profil.php"></a>
+<h1>compte-ifip-profil.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 136</b> - File "C:\wamp\www\ifip_installation\compte-ifip-profil.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="compte-ifip.php"></a>
+<h1>compte-ifip.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 313</b> - File "C:\wamp\www\ifip_installation\compte-ifip.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="connexion.php"></a>
+<h1>connexion.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - File "C:\wamp\www\ifip_installation\connexion.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Contact.inc.php"></a>
+<h1>Contact.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class Contact<br>
+<b>Warning on line 101</b> - File "C:\wamp\www\ifip_installation\class\Contact.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="contact.php"></a>
+<h1>contact.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 319</b> - File "C:\wamp\www\ifip_installation\contact.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="content.php"></a>
+<h1>content.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 50</b> - File "C:\wamp\www\ifip_installation\admin\content.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Documentation.inc.php"></a>
+<h1>Documentation.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class Documentation<br>
+<b>Warning on line 145</b> - File "C:\wamp\www\ifip_installation\class\Documentation.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="equipes-ifip.php"></a>
+<h1>equipes-ifip.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 617</b> - File "C:\wamp\www\ifip_installation\equipes-ifip.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="extranet-pro.php"></a>
+<h1>extranet-pro.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 337</b> - File "C:\wamp\www\ifip_installation\extranet-pro.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Fichier.inc.php"></a>
+<h1>Fichier.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class Fichier<br>
+<b>Warning on line 65</b> - File "C:\wamp\www\ifip_installation\class\Fichier.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="FichierAbsent.php"></a>
+<h1>FichierAbsent.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - File "C:\wamp\www\ifip_installation\FichierAbsent.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fonctions.php"></a>
+<h1>fonctions.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 376</b> - File "C:\wamp\www\ifip_installation\fonctions.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fonctions_ajax2.php"></a>
+<h1>fonctions_ajax2.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 226</b> - File "C:\wamp\www\ifip_installation\fonctions_ajax2.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="fonctions_mails.php"></a>
+<h1>fonctions_mails.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for file C:\wamp\www\ifip_installation\fonctions_mails.php<br>
+<a name="fonctions_mails_old.php"></a>
+<h1>fonctions_mails_old.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for file C:\wamp\www\ifip_installation\fonctions_mails_old.php<br>
+<a name="footer.php"></a>
+<h1>footer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 0</b> - File "C:\wamp\www\ifip_installation\includes\footer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="formation-inscription.php"></a>
+<h1>formation-inscription.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 421</b> - File "C:\wamp\www\ifip_installation\formation-inscription.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Formation.inc.php"></a>
+<h1>Formation.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class Formation<br>
+<b>Warning on line 197</b> - File "C:\wamp\www\ifip_installation\class\Formation.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="formations-ifip.php"></a>
+<h1>formations-ifip.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 481</b> - File "C:\wamp\www\ifip_installation\formations-ifip.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="header.php"></a>
+<h1>header.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 56</b> - File "C:\wamp\www\ifip_installation\admin\header.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 60</b> - File "C:\wamp\www\ifip_installation\includes\header.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="home.php"></a>
+<h1>home.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 913</b> - File "C:\wamp\www\ifip_installation\includes\home.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="homeheader.php"></a>
+<h1>homeheader.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 56</b> - File "C:\wamp\www\ifip_installation\includes\homeheader.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="home_en.php"></a>
+<h1>home_en.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 788</b> - File "C:\wamp\www\ifip_installation\includes\home_en.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="index.php"></a>
+<h1>index.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 180</b> - File "C:\wamp\www\ifip_installation\admin\index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 2041</b> - File "C:\wamp\www\ifip_installation\index.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="insertion-doc.php"></a>
+<h1>insertion-doc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 105</b> - File "C:\wamp\www\ifip_installation\insertion-doc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="javascript.php"></a>
+<h1>javascript.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - File "C:\wamp\www\ifip_installation\admin\javascript.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 9</b> - File "C:\wamp\www\ifip_installation\javascript.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Lien.inc.php"></a>
+<h1>Lien.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class Lien<br>
+<b>Warning on line 46</b> - File "C:\wamp\www\ifip_installation\class\Lien.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeArticles.inc.php"></a>
+<h1>ListeArticles.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class ListeArticles<br>
+<b>Warning on line 28</b> - File "C:\wamp\www\ifip_installation\class\ListeArticles.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeClients.inc.php"></a>
+<h1>ListeClients.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class ListeClients<br>
+<b>Warning on line 30</b> - File "C:\wamp\www\ifip_installation\class\ListeClients.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeCommandes.inc.php"></a>
+<h1>ListeCommandes.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class ListeCommandes<br>
+<b>Warning on line 49</b> - File "C:\wamp\www\ifip_installation\class\ListeCommandes.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeContacts.inc.php"></a>
+<h1>ListeContacts.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class ListeContacts<br>
+<b>Warning on line 39</b> - File "C:\wamp\www\ifip_installation\class\ListeContacts.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeFichiers.inc.php"></a>
+<h1>ListeFichiers.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class ListeFichiers<br>
+<b>Warning on line 41</b> - File "C:\wamp\www\ifip_installation\class\ListeFichiers.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeLiens.inc.php"></a>
+<h1>ListeLiens.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class ListeLiens<br>
+<b>Warning on line 44</b> - File "C:\wamp\www\ifip_installation\class\ListeLiens.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeMenus.inc.php"></a>
+<h1>ListeMenus.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class ListeMenus<br>
+<b>Warning on line 97</b> - File "C:\wamp\www\ifip_installation\class\ListeMenus.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListePages.inc.php"></a>
+<h1>ListePages.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class ListePages<br>
+<b>Warning on line 31</b> - File "C:\wamp\www\ifip_installation\class\ListePages.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeParagraphes.inc.php"></a>
+<h1>ListeParagraphes.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class ListeParagraphes<br>
+<b>Warning on line 100</b> - File "C:\wamp\www\ifip_installation\class\ListeParagraphes.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListePhotos.inc.php"></a>
+<h1>ListePhotos.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - no @package tag was used in a DocBlock for class ListePhotos<br>
+<b>Warning on line 42</b> - File "C:\wamp\www\ifip_installation\class\ListePhotos.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-actu.php"></a>
+<h1>lister-actu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 51</b> - File "C:\wamp\www\ifip_installation\admin\lister-actu.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-arti.php"></a>
+<h1>lister-arti.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 52</b> - File "C:\wamp\www\ifip_installation\admin\lister-arti.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-breve.php"></a>
+<h1>lister-breve.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 51</b> - File "C:\wamp\www\ifip_installation\admin\lister-breve.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-client.php"></a>
+<h1>lister-client.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 66</b> - File "C:\wamp\www\ifip_installation\admin\lister-client.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-com.php"></a>
+<h1>lister-com.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 168</b> - File "C:\wamp\www\ifip_installation\admin\lister-com.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-contact.php"></a>
+<h1>lister-contact.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 76</b> - File "C:\wamp\www\ifip_installation\admin\lister-contact.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-doc.php"></a>
+<h1>lister-doc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 531</b> - File "C:\wamp\www\ifip_installation\admin\lister-doc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-formation.php"></a>
+<h1>lister-formation.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 82</b> - File "C:\wamp\www\ifip_installation\admin\lister-formation.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-inscri.php"></a>
+<h1>lister-inscri.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 109</b> - File "C:\wamp\www\ifip_installation\admin\lister-inscri.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-menu.php"></a>
+<h1>lister-menu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 205</b> - File "C:\wamp\www\ifip_installation\admin\lister-menu.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-page.php"></a>
+<h1>lister-page.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 110</b> - File "C:\wamp\www\ifip_installation\admin\lister-page.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-prof.php"></a>
+<h1>lister-prof.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 69</b> - File "C:\wamp\www\ifip_installation\admin\lister-prof.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="lister-uti.php"></a>
+<h1>lister-uti.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 74</b> - File "C:\wamp\www\ifip_installation\admin\lister-uti.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListesIterator.inc.php"></a>
+<h1>ListesIterator.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class ListesIterator<br>
+<b>Warning on line 39</b> - File "C:\wamp\www\ifip_installation\class\ListesIterator.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeUtilisateurs.inc.php"></a>
+<h1>ListeUtilisateurs.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class ListeUtilisateurs<br>
+<b>Warning on line 28</b> - File "C:\wamp\www\ifip_installation\class\ListeUtilisateurs.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ListeVideos.inc.php"></a>
+<h1>ListeVideos.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class ListeVideos<br>
+<b>Warning on line 41</b> - File "C:\wamp\www\ifip_installation\class\ListeVideos.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Menu.inc.php"></a>
+<h1>Menu.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Menu<br>
+<b>Warning on line 268</b> - File "C:\wamp\www\ifip_installation\class\Menu.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="menu.php"></a>
+<h1>menu.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 87</b> - File "C:\wamp\www\ifip_installation\includes\menu.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="modifier-client.php"></a>
+<h1>modifier-client.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 102</b> - File "C:\wamp\www\ifip_installation\admin\modifier-client.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="modifier-com.php"></a>
+<h1>modifier-com.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 108</b> - File "C:\wamp\www\ifip_installation\admin\modifier-com.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="modifier-page.php"></a>
+<h1>modifier-page.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 197</b> - File "C:\wamp\www\ifip_installation\admin\modifier-page.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="modifier-parag.php"></a>
+<h1>modifier-parag.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 170</b> - File "C:\wamp\www\ifip_installation\admin\modifier-parag.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="modifier_fich.php"></a>
+<h1>modifier_fich.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 446</b> - File "C:\wamp\www\ifip_installation\admin\modifier_fich.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="moteur-recherche-publications-ifip-pro.php"></a>
+<h1>moteur-recherche-publications-ifip-pro.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 644</b> - File "C:\wamp\www\ifip_installation\moteur-recherche-publications-ifip-pro.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="moteur-recherche-publications-ifip.php"></a>
+<h1>moteur-recherche-publications-ifip.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 644</b> - File "C:\wamp\www\ifip_installation\moteur-recherche-publications-ifip.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="oublie.php"></a>
+<h1>oublie.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 24</b> - File "C:\wamp\www\ifip_installation\oublie.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 173</b> - File "C:\wamp\www\ifip_installation\admin\oublie.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ouverturepdf.php"></a>
+<h1>ouverturepdf.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 22</b> - File "C:\wamp\www\ifip_installation\ouverturepdf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ouverturepdf_old.php"></a>
+<h1>ouverturepdf_old.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - File "C:\wamp\www\ifip_installation\ouverturepdf_old.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Page.inc.php"></a>
+<h1>Page.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class Page<br>
+<b>Warning on line 314</b> - File "C:\wamp\www\ifip_installation\class\Page.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="page.php"></a>
+<h1>page.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 900</b> - File "C:\wamp\www\ifip_installation\includes\page.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="paiement.php"></a>
+<h1>paiement.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 94</b> - File "C:\wamp\www\ifip_installation\paiement.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="panier-ifip-institut-du-porc.php"></a>
+<h1>panier-ifip-institut-du-porc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 703</b> - no @package tag was used in a DocBlock for file C:\wamp\www\ifip_installation\panier-ifip-institut-du-porc.php<br>
+<a name="Panier.inc.php"></a>
+<h1>Panier.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class Panier<br>
+<b>Warning on line 193</b> - File "C:\wamp\www\ifip_installation\class\Panier.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="parag.php"></a>
+<h1>parag.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 513</b> - no @package tag was used in a DocBlock for file C:\wamp\www\ifip_installation\admin\parag.php<br>
+<a name="Paragraphe.inc.php"></a>
+<h1>Paragraphe.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - Unknown tag "@date" used<br>
+<a name="Paragraphe.inc_sav.php"></a>
+<h1>Paragraphe.inc_sav.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class Paragraphe<br>
+<b>Warning on line 251</b> - File "C:\wamp\www\ifip_installation\class\Paragraphe.inc_sav.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pbxtestsign.lib.php"></a>
+<h1>pbxtestsign.lib.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - File "C:\wamp\www\ifip_installation\pbxtestsign.lib.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Photo.inc.php"></a>
+<h1>Photo.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class Photo<br>
+<b>Warning on line 115</b> - File "C:\wamp\www\ifip_installation\class\Photo.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="pop_sup.php"></a>
+<h1>pop_sup.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 70</b> - File "C:\wamp\www\ifip_installation\admin\pop_sup.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="publications-ifip-institut-du-porc.php"></a>
+<h1>publications-ifip-institut-du-porc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 94</b> - File "C:\wamp\www\ifip_installation\publications-ifip-institut-du-porc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="rechercher-ifip.php"></a>
+<h1>rechercher-ifip.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 179</b> - File "C:\wamp\www\ifip_installation\class\rechercher-ifip.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 204</b> - File "C:\wamp\www\ifip_installation\rechercher-ifip.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="rechercher-ifip_old.php"></a>
+<h1>rechercher-ifip_old.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 132</b> - File "C:\wamp\www\ifip_installation\rechercher-ifip_old.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="styles.php"></a>
+<h1>styles.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 11</b> - File "C:\wamp\www\ifip_installation\styles.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<b>Warning on line 11</b> - File "C:\wamp\www\ifip_installation\admin\styles.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="temp.php"></a>
+<h1>temp.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 26</b> - File "C:\wamp\www\ifip_installation\temp.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Utilisateur.inc.php"></a>
+<h1>Utilisateur.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class Utilisateur<br>
+<b>Warning on line 116</b> - File "C:\wamp\www\ifip_installation\class\Utilisateur.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="veille-economique-internationale-production-viande-porc.php"></a>
+<h1>veille-economique-internationale-production-viande-porc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 864</b> - File "C:\wamp\www\ifip_installation\veille-economique-internationale-production-viande-porc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Video.inc.php"></a>
+<h1>Video.inc.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class Video<br>
+<b>Warning on line 52</b> - File "C:\wamp\www\ifip_installation\class\Video.inc.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+	<div id="credit">
+		<hr>
+		Documentation generated on Fri, 05 Mar 2010 11:17:40 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/ListeArticles.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>ListeArticles.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de création: 30/03/2009*/</span> 
+<a name="l00002"></a>00002 
+<a name="l00010"></a><a class="code" href="class_liste_articles.html">00010</a> <span class="keyword">class </span><a class="code" href="class_liste_articles.html">ListeArticles</a> <span class="keyword">implements</span> IteratorAggregate {
+<a name="l00014"></a><a class="code" href="class_liste_articles.html#add8c4f0e373df00c2333c1471c37a659">00014</a>         <span class="keyword">public</span> <a class="code" href="class_liste_articles.html#add8c4f0e373df00c2333c1471c37a659">$articles</a> = array();
+<a name="l00019"></a><a class="code" href="class_liste_articles.html#ac90a40bc8d3b8870a9848c279729de2a">00019</a>         <span class="keyword">public</span> <a class="code" href="class_liste_articles.html#ac90a40bc8d3b8870a9848c279729de2a">$numarticle</a>;
+<a name="l00020"></a>00020         
+<a name="l00028"></a><a class="code" href="class_liste_articles.html#a562a4135b40ae28786bec7a2323bb961">00028</a>    function <a class="code" href="class_liste_articles.html#a562a4135b40ae28786bec7a2323bb961">afficherListeArticles</a>() {
+<a name="l00029"></a>00029                  $result=mysql_query(<span class="stringliteral">&quot;SELECT * FROM if_articles ORDER BY libelle&quot;</span>);
+<a name="l00030"></a>00030                  <span class="keywordflow">while</span> ($row=mysql_fetch_array($result)) {
+<a name="l00031"></a>00031                         $unArticle=<span class="keyword">new</span> <a class="code" href="class_article.html" title="Spécifique IFIP.">Article</a>();       
+<a name="l00032"></a>00032                         $unArticle-&gt;numarticle=$row[<span class="stringliteral">&quot;numarticle&quot;</span>];
+<a name="l00033"></a>00033                         $unArticle-&gt;infosArti();
+<a name="l00034"></a>00034                         $this-&gt;articles[]=$unArticle;
+<a name="l00035"></a>00035             }   <span class="comment">//fin du while  </span>
+<a name="l00036"></a>00036                 <span class="keywordflow">if</span> (count($this-&gt;articles)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>; 
+<a name="l00037"></a>00037    }
+<a name="l00038"></a>00038    
+<a name="l00039"></a>00039    function getIterator() {
+<a name="l00040"></a>00040           $iterator=<span class="keyword">new</span> <a class="code" href="class_listes_iterator.html">ListesIterator</a>($this-&gt;articles);
+<a name="l00041"></a>00041           <span class="keywordflow">return</span> $iterator;
+<a name="l00042"></a>00042    }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 }
+<a name="l00045"></a>00045 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>
