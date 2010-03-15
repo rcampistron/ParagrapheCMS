@@ -19,15 +19,15 @@
  * @date 19/11/2008 
  *
  *
- * On inclut le fichier cnnexion.php contenant les différentes 
- * infos de connexions puis on démarre la session
+ * On inclut le fichier cnnexion.php contenant les diffï¿½rentes 
+ * infos de connexions puis on dï¿½marre la session
  */
 include ("connexion.php");
 session_start();
 
 
 /**
- * On récupère le chemin serveur contenu dans la bdd
+ * On rï¿½cupï¿½re le chemin serveur contenu dans la bdd
  */
 
 $result=mysql_query("SELECT * FROM if_site");
@@ -35,19 +35,25 @@ $res_site=mysql_numrows($result);
 $if_site=mysql_fetch_array($result);
 $chem=$if_site["path"];	  //$chem="/home/web/croisix/ifip.croisix.com/www/";
 /**
- * On inclut toutes les fonctions utiles et surtout on récupère les variables POST et GET gràce à cet include
+ * On inclut toutes les fonctions utiles et surtout on rï¿½cupï¿½re les variables POST et GET grï¿½ce ï¿½ cet include
  */
 include ("fonctions.php");
-
+function antiHackHtml(){
+	unset($_SESSION['numcom']); 
+	unset($_SESSION['numclient']);
+	unset($_SESSION['numprof']);
+	header("Location:http://www.ifip.asso.fr");
+		
+	}
 /**********************************************
 Controle sur les variables
 **********************************************/
 /**
- * On vérifie s'il s'agit d'une page spécifique, c'est à dire si la 
+ * On vï¿½rifie s'il s'agit d'une page spï¿½cifique, c'est ï¿½ dire si la 
  * page est une page unique.
- * On vérifie tout d'abord si la variable $spec existe. Puis on vérifie si 
- * spec est différent de toutes les pages spécifiques.
- * Alors l'utilisateur est donc déconnecté ,on vide $spec et on déconnecte 
+ * On vï¿½rifie tout d'abord si la variable $spec existe. Puis on vï¿½rifie si 
+ * spec est diffï¿½rent de toutes les pages spï¿½cifiques.
+ * Alors l'utilisateur est donc dï¿½connectï¿½ ,on vide $spec et on dï¿½connecte 
  */
 if (
 	isset($spec) && $spec && ($spec!="actualites-filiere-production-porc"  
@@ -57,13 +63,10 @@ if (
  && $spec!="veille-economique-internationale-production-viande-porc" && $spec!="oublie" && $spec!="includes/home")
 ) {
  	$spec="";
-	unset($_SESSION['numcom']); 
-	unset($_SESSION['numclient']);
-	unset($_SESSION['numprof']);
-	header("Location:http://www.ifip.asso.fr");
+	antiHackHtml();
 }
 /**
- * ici on applique le même raisonnement pour $pg_admin, puis pour $numpage
+ * ici on applique le mï¿½me raisonnement pour $pg_admin, puis pour $numpage
  */
 if (isset($pg_admin) && $pg_admin && ($pg_admin!="accueil" && $pg_admin!="admin-site" && $pg_admin!="ajouter-actu" 
 && $pg_admin!="ajouter-arti" 
@@ -76,10 +79,7 @@ if (isset($pg_admin) && $pg_admin && ($pg_admin!="accueil" && $pg_admin!="admin-
  && $pg_admin!="lister-page" && $pg_admin!="lister-prof" && $pg_admin!="lister-uti" && $pg_admin!="modifier-client" 
  && $pg_admin!="modifier-com" && $pg_admin!="modifier-page" && $pg_admin!="modifier-parag")) {
  	$pg_admin="";
-	unset($_SESSION['numcom']); 
-	unset($_SESSION['numclient']);
-	unset($_SESSION['numprof']);
-	header("Location:http://www.ifip.asso.fr");
+	antiHackHtml();
 }
 if (
 	(isset($numpage) && $numpage && !is_numeric($numpage)) || 
@@ -100,10 +100,7 @@ if (
 	(isset($deconclient) && $deconclient && $deconclient!='o') ||
 	(isset($deconpro) && $deconpro && $deconpro!='o') 
 ) {
-	unset($_SESSION['numcom']); 
-	unset($_SESSION['numclient']);
-	unset($_SESSION['numprof']);
-	header("Location:http://www.ifip.asso.fr");
+		antiHackHtml();
 
 }
 
@@ -115,8 +112,8 @@ include ("includes/classes.php");
 include ("fonctions_mails.php"); 
 /**
  * On teste si le login est bon.
- * Si la variable existe, on créer un nouvel objet utilisateur avec l'id passé en param comme id.
- * On voit si l'id renvoyée est un chiffre alors on procède à la verification de session @see Utilisateur.inc.php#Verif_Session()  
+ * Si la variable existe, on crï¿½er un nouvel objet utilisateur avec l'id passï¿½ en param comme id.
+ * On voit si l'id renvoyï¿½e est un chiffre alors on procï¿½de ï¿½ la verification de session @see Utilisateur.inc.php#Verif_Session()  
  * Alors on renvoie vers
  */
 if ($id) {
@@ -132,7 +129,7 @@ if ($id) {
   }
 }
 /* 
- * On vérifie si on est dans le moteur de recherche
+ * On vï¿½rifie si on est dans le moteur de recherche
  * 
  */
 if ($moteur_rech || $rech_site_suite) {
@@ -148,9 +145,9 @@ if ($moteur_rech || $rech_site_suite) {
 	//Array ( [0] => Array ( [numpage] => 44 [titre] => RÃ©sultats des Ã©levages de porcs [lien] => resultats-economiques-elevages-de-porc.html [texte] => ) [1] => Array ( [numpage] => 56 [titre] => Expertise GÃ©nÃ©tique des porcs [lien] => genetique-races-porcs.html [texte] => ) [2] => Array ( [numpage] => 91 [titre] => Alimentation post-sevrage et des porcs charcutiers [lien] => alimentation-porcs-post-sevrage-et-charcutiers.html [texte] => ) ) 
 }
 /**
- * Si on est identifié et que la variable pg_admin =ajouter page alors l'utilisateur 
- * veut ajouter une page. Avant d'ajouter la page on vérifie bien que le champ titre page google est rempli 
- * puis on procède à l'ajout.
+ * Si on est identifiï¿½ et que la variable pg_admin =ajouter page alors l'utilisateur 
+ * veut ajouter une page. Avant d'ajouter la page on vï¿½rifie bien que le champ titre page google est rempli 
+ * puis on procï¿½de ï¿½ l'ajout.
  * 
  *  
  */
