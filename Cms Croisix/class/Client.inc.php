@@ -53,12 +53,10 @@ class Client {
 	public $cp;
 	/**
 	 * Ville du client.
-	 * 
-	 */
+	*/
 	public $ville;
 	/**
 	 * num(id) du pays.
-	 * 
 	 */
 	public $pays;
 	/**
@@ -177,7 +175,7 @@ class Client {
 		mysql_query("DELETE FROM if_bo_client WHERE numclient='$this->numclient'");
 	}
 	/**
-	 * Active le client
+	 * Active le client en changeant la valeur du champ "actif" dans la BDD
 	 */
 	function activerClient() {
 	   mysql_query("UPDATE if_bo_client SET actif='$this->actif' WHERE numclient='$this->numclient'");   
