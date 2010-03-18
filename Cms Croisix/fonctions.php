@@ -1,4 +1,8 @@
-<?php /* Date de creation: 05/06/2008 */
+<?php
+/**
+ * @file fonctions.php
+ * @Date 05/06/2008 
+ **/
 $getar = $_GET;	
 $getkeys = array_keys($getar);
 
@@ -37,7 +41,7 @@ function InitialisationVar(){
  return $tab_return;
 }
 
-// filtrage des donnees, a utiliser syst�matiquement pour toute variable externe
+// filtrage des donnees, a utiliser systï¿½matiquement pour toute variable externe
 function fx_filter($name, $type='STRING', $def='')
 {  	 
 // si la variable n'a pas ete recue, gerer proprement l'erreur
@@ -48,7 +52,7 @@ $unsafe=trim($_REQUEST[$name]);
 switch($type)
 {
 // on gere ici les entier et les flottants de la meme maniere, ceci est un exemple simplifie
-// ceci protege des injections sql sur les entiers et evite toute incoh�rence.
+// ceci protege des injections sql sur les entiers et evite toute incohï¿½rence.
 case 'INT':
 case 'FLOAT':
 if(!is_numeric($unsafe)) return $def;
@@ -75,7 +79,11 @@ $safe=str_replace("&gt;",">",$unsafe);
 return trim($safe);
 }  
 
-/*** Fonction de cryptage/dcryptage du mot de passe ****/
+/** Fonction de cryptage/décryptage du mot de passe 
+ * @todo Nom de fonction à renommer, "easy" est très peu explicite 
+ * @param $code la chaîne a dencoder 
+ * @param $tp "d" pour décoder, "e" pour encoder
+ **/
 function easy($code,$tp) {
 	$pass="";
 	$id="1078652900";		 
@@ -102,18 +110,18 @@ function easy($code,$tp) {
 }
 
 function supprAccents($objet) {
- $liste=array("à"=>"a",
- 			  "â"=>"a",
-			  "ç"=>"c",
-			  "è"=>"e",
-			  "é"=>"e",
-			  "ê"=>"e",
-			  "ï"=>"i",
-			  "î"=>"i",
-			  "ô"=>"o",
-			  "ù"=>"u",
-			  "û"=>"u",
-			  "ü"=>"u"
+ $liste=array("Ã "=>"a",
+ 			  "Ã¢"=>"a",
+			  "Ã§"=>"c",
+			  "Ã¨"=>"e",
+			  "Ã©"=>"e",
+			  "Ãª"=>"e",
+			  "Ã¯"=>"i",
+			  "Ã®"=>"i",
+			  "Ã´"=>"o",
+			  "Ã¹"=>"u",
+			  "Ã»"=>"u",
+			  "Ã¼"=>"u"
  			  );
 	
  foreach($liste as $accent=>$sansaccent) {
@@ -123,11 +131,11 @@ function supprAccents($objet) {
 }
 
 function ajoutAccents($objet) {
- $liste=array("a"=>"à",
-			  "c"=>"ç",
-			  "e"=>"é",
-			  "o"=>"ô",
-			  "u"=>"û"
+ $liste=array("a"=>"Ã ",
+			  "c"=>"Ã§",
+			  "e"=>"Ã©",
+			  "o"=>"Ã´",
+			  "u"=>"Ã»"
  			  );
 	
  foreach($liste as $accent=>$sansaccent) {
@@ -137,18 +145,18 @@ function ajoutAccents($objet) {
 }
 
 function Majuscules($objet) {
- $liste=array("à"=>"A",
- 			  "â"=>"A",
-			  "ç"=>"C",
-			  "è"=>"E",
-			  "é"=>"E",
-			  "ê"=>"E",
-			  "ï"=>"I",
-			  "î"=>"I",
-			  "ô"=>"O",
-			  "ù"=>"U",
-			  "û"=>"U",
-			  "ü"=>"U"
+ $liste=array("Ã "=>"A",
+ 			  "Ã¢"=>"A",
+			  "Ã§"=>"C",
+			  "Ã¨"=>"E",
+			  "Ã©"=>"E",
+			  "Ãª"=>"E",
+			  "Ã¯"=>"I",
+			  "Ã®"=>"I",
+			  "Ã´"=>"O",
+			  "Ã¹"=>"U",
+			  "Ã»"=>"U",
+			  "Ã¼"=>"U"
  			  );
 	
  foreach($liste as $accent=>$majuscule) {
@@ -161,7 +169,7 @@ function Majuscules($objet) {
 }
 
 function testerLettre($contenu,$exception="") {
- $alphabet=array(a,à,â,æ,b,c,ç,d,e,é,è,ê,ë,f,g,h,i,î,ï,j,k,l,m,n,o,ô,œ,p,q,r,s,t,u,ù,û,ü,v,w,x,y,ÿ,z);
+ $alphabet=array(a,Ã ,Ã¢,Ã¦,b,c,Ã§,d,e,Ã©,Ã¨,Ãª,Ã«,f,g,h,i,Ã®,Ã¯,j,k,l,m,n,o,Ã´,Å“,p,q,r,s,t,u,Ã¹,Ã»,Ã¼,v,w,x,y,Ã¿,z);
  $tab=array();
  foreach ($alphabet as $lettre) {
 	//if (ereg($lettre,$contenu)) {//fonction depreciee et a reserver a de l'expression reguliere
@@ -232,8 +240,8 @@ function formaterDate($date) {
 
 //Nettoie tous les accents
 function normaliza ($string){ 
-    $a = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ 
-ßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕ'; 
+    $a = 'Ã€Ã�Ã‚ÃƒÃ„Ã…Ã†Ã‡ÃˆÃ‰ÃŠÃ‹ÃŒÃ�ÃŽÃ�Ã�Ã‘Ã’Ã“Ã”Ã•Ã–Ã˜Ã™ÃšÃ›ÃœÃ�Ãž 
+ÃŸÃ Ã¡Ã¢Ã£Ã¤Ã¥Ã¦Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯Ã°Ã±Ã²Ã³Ã´ÃµÃ¶Ã¸Ã¹ÃºÃ»Ã½Ã½Ã¾Ã¿Å”Å•'; 
     $b = 'aaaaaaaceeeeiiiidnoooooouuuuy 
 bsaaaaaaaceeeeiiiidnoooooouuuyybyRr'; 
     $string = utf8_decode($string);     
@@ -334,7 +342,7 @@ function EnvoiMail($recipients,$From,$Bcc,$To,$ReturnPath,$ReplyTo,$Subject,$cor
 /**************FONCTION PROPRE AU PAIMENT EN LIGNE*****************************************************************/
 /**************VERIFICATION DE LA SIGNATURE E TRANSACTION*********************************************************/
 
-function LoadKey( $keyfile, $pub=true, $pass='' ) {         // chargement de la clé (publique par défaut)
+function LoadKey( $keyfile, $pub=true, $pass='' ) {         // chargement de la clÃ© (publique par dÃ©faut)
 
     $fp = $filedata = $key = FALSE;                         // initialisation variables
     $fsize =  filesize( $keyfile );                         // taille du fichier
@@ -351,8 +359,8 @@ function LoadKey( $keyfile, $pub=true, $pass='' ) {         // chargement de la 
     return $key;                                            // renvoi cle ( ou erreur )
 }
 
-// comme precise la documentation Paybox, la signature doit être
-// obligatoirement en dernière position pour que cela fonctionne
+// comme precise la documentation Paybox, la signature doit Ãªtre
+// obligatoirement en derniÃ¨re position pour que cela fonctionne
 
 function GetSignedData( $qrystr, &$data, &$sig ) {          // renvoi les donnes signees et la signature
 
@@ -363,14 +371,14 @@ function GetSignedData( $qrystr, &$data, &$sig ) {          // renvoi les donnes
     $sig = base64_decode( urldecode( $sig ));               // decodage signature
 }
 
-// $querystring = chaine entière retournée par Paybox lors du retour au site (méthode GET)
-// $keyfile = chemin d'accès complet au fichier de la clé publique Paybox
+// $querystring = chaine entiÃ¨re retournÃ©e par Paybox lors du retour au site (mÃ©thode GET)
+// $keyfile = chemin d'accÃ¨s complet au fichier de la clÃ© publique Paybox
 
 function PbxVerSign( $qrystr, $keyfile ) {                  // verification signature Paybox
 
     $key = LoadKey( $keyfile );                             // chargement de la cle
     if( !$key ) return -1;                                  // si erreur chargement cle
-//  penser à openssl_error_string() pour diagnostic openssl si erreur
+//  penser Ã  openssl_error_string() pour diagnostic openssl si erreur
     GetSignedData( $qrystr, $data, $sig );                  // separation et recuperation signature et donnees
     return openssl_verify( $data, $sig, $key );             // verification : 1 si valide, 0 si invalide, -1 si erreur
 }

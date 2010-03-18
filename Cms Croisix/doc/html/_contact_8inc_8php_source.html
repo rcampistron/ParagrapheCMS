@@ -73,33 +73,33 @@
 <a name="l00135"></a>00135                 $this-&gt;gsm=$row[<span class="stringliteral">&quot;gsm&quot;</span>];
 <a name="l00136"></a>00136                 $this-&gt;referent=$row[<span class="stringliteral">&quot;referent&quot;</span>];
 <a name="l00137"></a>00137         }
-<a name="l00142"></a><a class="code" href="class_contact.html#a6f212e759752f6e92221190315968a92">00142</a>         function <a class="code" href="class_contact.html#a6f212e759752f6e92221190315968a92">afficherCateg</a>() {
-<a name="l00143"></a>00143                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numcateg FROM if_cont_categ WHERE numcontact=&#39;$this-&gt;numcontact&#39;&quot;</span>);
-<a name="l00144"></a>00144                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
-<a name="l00145"></a>00145                           $laCateg=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
-<a name="l00146"></a>00146                           $laCateg-&gt;type=<span class="stringliteral">&quot;categorie&quot;</span>;
-<a name="l00147"></a>00147                           $laCateg-&gt;nomkey=<span class="stringliteral">&quot;numcateg&quot;</span>;
-<a name="l00148"></a>00148                           $laCateg-&gt;nummenu=$row[0];  
-<a name="l00149"></a>00149                           $laCateg-&gt;infosMenu();
-<a name="l00150"></a>00150                           $this-&gt;listcateg[]=$laCateg;
-<a name="l00151"></a>00151                 } 
-<a name="l00152"></a>00152                 <span class="keywordflow">if</span> (count($this-&gt;listcateg)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00153"></a>00153         }
-<a name="l00158"></a><a class="code" href="class_contact.html#afce00e1246e1eb7a8ef02e0e0d062d48">00158</a>         function <a class="code" href="class_contact.html#afce00e1246e1eb7a8ef02e0e0d062d48">afficherSscateg</a>() {
-<a name="l00159"></a>00159                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numsscateg FROM if_cont_sscateg WHERE numcontact=&#39;$this-&gt;numcontact&#39;&quot;</span>);
-<a name="l00160"></a>00160                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
-<a name="l00161"></a>00161                           $laSscateg=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
-<a name="l00162"></a>00162                           $laSscateg-&gt;type=<span class="stringliteral">&quot;sscateg&quot;</span>;
-<a name="l00163"></a>00163                           $laSscateg-&gt;nomkey=<span class="stringliteral">&quot;numsscateg&quot;</span>;
-<a name="l00164"></a>00164                           $laSscateg-&gt;nummenu=$row[0];  
-<a name="l00165"></a>00165                           $laSscateg-&gt;infosMenu();
-<a name="l00166"></a>00166                           $this-&gt;listsscateg[]=$laSscateg;
-<a name="l00167"></a>00167                 } 
-<a name="l00168"></a>00168                 <span class="keywordflow">if</span> (count($this-&gt;listsscateg)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00169"></a>00169         }
-<a name="l00170"></a>00170 }
-<a name="l00171"></a>00171 
-<a name="l00172"></a>00172 ?&gt;
+<a name="l00143"></a><a class="code" href="class_contact.html#a6f212e759752f6e92221190315968a92">00143</a>         function <a class="code" href="class_contact.html#a6f212e759752f6e92221190315968a92">afficherCateg</a>() {
+<a name="l00144"></a>00144                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numcateg FROM if_cont_categ WHERE numcontact=&#39;$this-&gt;numcontact&#39;&quot;</span>);
+<a name="l00145"></a>00145                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00146"></a>00146                           $laCateg=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00147"></a>00147                           $laCateg-&gt;type=<span class="stringliteral">&quot;categorie&quot;</span>;
+<a name="l00148"></a>00148                           $laCateg-&gt;nomkey=<span class="stringliteral">&quot;numcateg&quot;</span>;
+<a name="l00149"></a>00149                           $laCateg-&gt;nummenu=$row[0];  
+<a name="l00150"></a>00150                           $laCateg-&gt;infosMenu();
+<a name="l00151"></a>00151                           $this-&gt;listcateg[]=$laCateg;
+<a name="l00152"></a>00152                 } 
+<a name="l00153"></a>00153                 <span class="keywordflow">if</span> (count($this-&gt;listcateg)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00154"></a>00154         }
+<a name="l00159"></a><a class="code" href="class_contact.html#afce00e1246e1eb7a8ef02e0e0d062d48">00159</a>         function <a class="code" href="class_contact.html#afce00e1246e1eb7a8ef02e0e0d062d48">afficherSscateg</a>() {
+<a name="l00160"></a>00160                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numsscateg FROM if_cont_sscateg WHERE numcontact=&#39;$this-&gt;numcontact&#39;&quot;</span>);
+<a name="l00161"></a>00161                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00162"></a>00162                           $laSscateg=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00163"></a>00163                           $laSscateg-&gt;type=<span class="stringliteral">&quot;sscateg&quot;</span>;
+<a name="l00164"></a>00164                           $laSscateg-&gt;nomkey=<span class="stringliteral">&quot;numsscateg&quot;</span>;
+<a name="l00165"></a>00165                           $laSscateg-&gt;nummenu=$row[0];  
+<a name="l00166"></a>00166                           $laSscateg-&gt;infosMenu();
+<a name="l00167"></a>00167                           $this-&gt;listsscateg[]=$laSscateg;
+<a name="l00168"></a>00168                 } 
+<a name="l00169"></a>00169                 <span class="keywordflow">if</span> (count($this-&gt;listsscateg)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00170"></a>00170         }
+<a name="l00171"></a>00171 }
+<a name="l00172"></a>00172 
+<a name="l00173"></a>00173 ?&gt;
 </pre></div></div>
 <hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
 <a href="http://www.doxygen.org/index.html">

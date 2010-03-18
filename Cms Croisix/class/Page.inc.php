@@ -263,7 +263,7 @@ class Page {
 	/**
 	 * appeler cette methode en 1er :
 	 * @see Page#supprimerPage()
-	 * mise &agrave;� jour des liens - recup de ancienAlias au cas ou numpage n'est pas renseign&eacute; dans if_liens - ajout hc
+	 * mise &agrave;� jour des liens - recup de ancienAlias au cas ou numpage n'est pas renseign&eacute; dans if_liens - ajout hc
 	 */
 	function modifierPage() {
 		$this->publierPage();
@@ -355,6 +355,7 @@ class Page {
 	}
 	/**
 	 * Va r&eacute;p&eacute;rer toutes les infos concernant la page.
+	 * Va remplir toutes les propriétés de l'objet page pas leur équivalent dans la Bdd.
 	 */
 	function infosPage() {
 		if ($this->numpage) {

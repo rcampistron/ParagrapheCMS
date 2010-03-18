@@ -118,7 +118,8 @@ class Client {
 	
 	/**
 	 * Permet de cr&eacute;er le client.
-	 * @return $mes Renvoie un message de feedback.
+	 * @return $mes Renvoie un message de feedback
+	 * si le compte existe déjà ou si l'adresse mail est déjà utilisée.
 	 */
 	
 	function creerClient() {
@@ -175,7 +176,7 @@ class Client {
 		mysql_query("DELETE FROM if_bo_client WHERE numclient='$this->numclient'");
 	}
 	/**
-	 * Active le client en changeant la valeur du champ "actif" dans la BDD
+	 * Active le client en changeant la valeur du champ "actif" dans la table client de la BDD
 	 */
 	function activerClient() {
 	   mysql_query("UPDATE if_bo_client SET actif='$this->actif' WHERE numclient='$this->numclient'");   
@@ -190,7 +191,7 @@ class Client {
 	}
 	/**
 	 * Permet de connecter le client en v&eacute;rifiant son pass et son login 
-	 * @return $mes Renvoie un message de feedback
+	 * @return $mes Renvoie un message de feedback si les codes de connexion ne sont pas valides
 	 */
 	function connecte() {
   	$mes="";

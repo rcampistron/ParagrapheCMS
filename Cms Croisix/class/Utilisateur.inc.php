@@ -16,7 +16,7 @@ class Utilisateur {
   public $actif;
   /**
    * g&egrave;re la connection d'un utilisateur, d&eacute;termine si le mot de passe est bon 
-   * @return message confirmant ou infirmant la connexion
+   * @return message confirmant ou infirmant la connexion si le mot de passe est invalide
    */
   function connecte() {
   	$mes="";

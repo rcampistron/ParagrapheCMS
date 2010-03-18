@@ -27,7 +27,7 @@ session_start();
 
 
 /**
- * On r�cup�re le chemin serveur contenu dans la bdd
+ * On récupère le chemin serveur contenu dans la bdd
  */
 
 $result=mysql_query("SELECT * FROM if_site");
@@ -38,22 +38,37 @@ $chem=$if_site["path"];	  //$chem="/home/web/croisix/ifip.croisix.com/www/";
  * On inclut toutes les fonctions utiles et surtout on r�cup�re les variables POST et GET gr�ce � cet include
  */
 include ("fonctions.php");
-function antiHackHtml(){
+
+/**
+ * Ici, l'utilisateur a voulu rentrer des variables GET non valides
+ * on vide sa session et on le redirige vers l'accueil
+ * @todo (un message de feedback serait intéressant)
+ */
+function unsetSession(){
 	unset($_SESSION['numcom']); 
 	unset($_SESSION['numclient']);
 	unset($_SESSION['numprof']);
 	header("Location:http://www.ifip.asso.fr");
+}
+
+
+
+
+function verifPage(String $typePage){
+
+
 		
-	}
+}
 /**********************************************
 Controle sur les variables
 **********************************************/
 /**
- * On v�rifie s'il s'agit d'une page sp�cifique, c'est � dire si la 
+ * On vérifie s'il s'agit d'une page spécifique, c'est à dire si la 
  * page est une page unique.
- * On v�rifie tout d'abord si la variable $spec existe. Puis on v�rifie si 
- * spec est diff�rent de toutes les pages sp�cifiques.
- * Alors l'utilisateur est donc d�connect� ,on vide $spec et on d�connecte 
+ * Détermine si la variale globale de type GET $spec n'a pas été tapée directement dans l'adresse
+ * On vérifie tout d'abord si la variable $spec n'est pas vide et qu'elle existe. Puis on vérifie si 
+ * spec est diffèrent de toutes les pages spécifiques.
+ * Si le contenu de spec ne corresponf a rien c'est qu'on a essayé de rentrer une variable factice dans la barre d'adresse
  */
 if (
 	isset($spec) && $spec && ($spec!="actualites-filiere-production-porc"  
@@ -63,10 +78,10 @@ if (
  && $spec!="veille-economique-internationale-production-viande-porc" && $spec!="oublie" && $spec!="includes/home")
 ) {
  	$spec="";
-	antiHackHtml();
+	unsetSession();
 }
 /**
- * ici on applique le m�me raisonnement pour $pg_admin, puis pour $numpage
+ * ici on applique le même raisonnement pour $pg_admin
  */
 if (isset($pg_admin) && $pg_admin && ($pg_admin!="accueil" && $pg_admin!="admin-site" && $pg_admin!="ajouter-actu" 
 && $pg_admin!="ajouter-arti" 
@@ -77,10 +92,16 @@ if (isset($pg_admin) && $pg_admin && ($pg_admin!="accueil" && $pg_admin!="admin-
  && $pg_admin!="lister-breve" && $pg_admin!="lister-client" && $pg_admin!="lister-com" && $pg_admin!="lister-contact" 
  && $pg_admin!="lister-doc" && $pg_admin!="lister-formation" && $pg_admin!="lister-inscri" && $pg_admin!="lister-menu" 
  && $pg_admin!="lister-page" && $pg_admin!="lister-prof" && $pg_admin!="lister-uti" && $pg_admin!="modifier-client" 
- && $pg_admin!="modifier-com" && $pg_admin!="modifier-page" && $pg_admin!="modifier-parag")) {
+ && $pg_admin!="modifier-com" && $pg_admin!="modifier-page" && $pg_admin!="modifier-parag"))
+{
  	$pg_admin="";
-	antiHackHtml();
+	unsetSession();
 }
+/**
+ * Toutes les variable GET sont vérifiées.
+ * A savoir, si elles ne sont pas vides, et ont le typage adéquat. 
+ *  
+ */
 if (
 	(isset($numpage) && $numpage && !is_numeric($numpage)) || 
 	(isset($numrub) && $numrub && !is_numeric($numrub)) || 
@@ -100,7 +121,7 @@ if (
 	(isset($deconclient) && $deconclient && $deconclient!='o') ||
 	(isset($deconpro) && $deconpro && $deconpro!='o') 
 ) {
-		antiHackHtml();
+		unsetSession();
 
 }
 
@@ -112,9 +133,9 @@ include ("includes/classes.php");
 include ("fonctions_mails.php"); 
 /**
  * On teste si le login est bon.
- * Si la variable existe, on cr�er un nouvel objet utilisateur avec l'id pass� en param comme id.
- * On voit si l'id renvoy�e est un chiffre alors on proc�de � la verification de session @see Utilisateur.inc.php#Verif_Session()  
- * Alors on renvoie vers
+ * Si la variable existe, on créé un nouvel objet utilisateur avec l'id passée en param comme id.
+ * On voit si l'id renvoyée est un chiffre alors on procède à la vérification de session
+ * @see Utilisateur.inc.php#Verif_Session()  
  */
 if ($id) {
   $uti=new Utilisateur();
@@ -129,7 +150,7 @@ if ($id) {
   }
 }
 /* 
- * On v�rifie si on est dans le moteur de recherche
+ * On vérifie si on est dans le moteur de recherche
  * 
  */
 if ($moteur_rech || $rech_site_suite) {
@@ -145,9 +166,9 @@ if ($moteur_rech || $rech_site_suite) {
 	//Array ( [0] => Array ( [numpage] => 44 [titre] => Résultats des élevages de porcs [lien] => resultats-economiques-elevages-de-porc.html [texte] => ) [1] => Array ( [numpage] => 56 [titre] => Expertise Génétique des porcs [lien] => genetique-races-porcs.html [texte] => ) [2] => Array ( [numpage] => 91 [titre] => Alimentation post-sevrage et des porcs charcutiers [lien] => alimentation-porcs-post-sevrage-et-charcutiers.html [texte] => ) ) 
 }
 /**
- * Si on est identifi� et que la variable pg_admin =ajouter page alors l'utilisateur 
- * veut ajouter une page. Avant d'ajouter la page on v�rifie bien que le champ titre page google est rempli 
- * puis on proc�de � l'ajout.
+ * Si on est identifié et que la variable pg_admin =ajouter page alors l'utilisateur 
+ * veut ajouter une page. Avant d'ajouter la page on vérifie bien que le champ titre page google est rempli 
+ * puis on procède à l'ajout.
  * 
  *  
  */
@@ -1922,6 +1943,7 @@ if (!$accueil) { // pas de chemin en page d'accueil
 		  <div class="item" id="breadcrumbs">
 			<div class="sap-content">
 			<?php
+			//var_dump ($get_array );
 			//bouton de deconnexion de la session
 			if ($_SESSION["numclient"]) {
 			?>

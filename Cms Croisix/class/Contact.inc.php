@@ -138,6 +138,7 @@ class Contact {
 	/**
 	 * Affiche la cat&eacute;gorie associ&eacute; au contact
 	 * @return renvoie true si pas d'erreur
+	 * @see Menu
 	 */
 	function afficherCateg() {
 		$result=mysql_query("SELECT numcateg FROM if_cont_categ WHERE numcontact='$this->numcontact'");

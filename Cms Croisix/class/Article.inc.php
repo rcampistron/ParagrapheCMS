@@ -22,7 +22,7 @@ class Article {
 	public $libelle;
 	
 	/**
-	 * Cr&eacute;e l'article et l'insre dans la base.
+	 * Cr&eacute;e l'article et l'ins&egrav;re dans la base.
 	 */
 	function creerArti() {	
 	    mysql_query("INSERT INTO if_articles (libelle) VALUES ('$this->libelle')");

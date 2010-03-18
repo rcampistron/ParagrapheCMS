@@ -1,13 +1,10 @@
 <?php 
 
 /**
- * @author Anne
  * @class Paragraphe Paragraphe.inc.php
  * @date 19/11/2008 *  
  * @brief G&egrave;re le traitement des paragraphes
- * @par Utilisation  * 
  * @details Classe Paragraphe : cr&eacute;ation, modification, suppression d'un Paragraphe
- * @par notes
  */
 
 class Paragraphe {
@@ -72,7 +69,7 @@ class Paragraphe {
 	 */
 	public $numlien;
 	/**
-	 * 
+	 * Libellé du lien
 	 *  
 	 */
 	public $libLien;
@@ -117,7 +114,7 @@ class Paragraphe {
 	 * 
 	 * 
 	 */
-	// variables pour les vidéos
+	
 	public $numvideo;
 	/**
 	 * 
