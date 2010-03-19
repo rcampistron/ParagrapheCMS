@@ -38,6 +38,7 @@ $chem=$if_site["path"];	  //$chem="/home/web/croisix/ifip.croisix.com/www/";
  * On inclut toutes les fonctions utiles et surtout on r�cup�re les variables POST et GET gr�ce � cet include
  */
 include ("fonctions.php");
+include ("ajouter_paragraphe.php");
 
 /**
  * Ici, l'utilisateur a voulu rentrer des variables GET non valides
@@ -224,7 +225,8 @@ if ($pg_admin=="ajouter-page") {
  ************* en modification de page (action="ajouter_parag") ****************
  **************************************************************** */
 } else if ($pg_admin=="ajouter-parag" || $action=="ajouter_parag") {
-   //if ($textCont || is_array($checkPara)) {
+
+  //if ($textCont || is_array($checkPara)) {
    	   	   $newParag=new Paragraphe();	
 	   //if ($textTitrePara) { //on cree un nouveau paragraphe
 		   $newParag->titrePara=$textTitrePara;
