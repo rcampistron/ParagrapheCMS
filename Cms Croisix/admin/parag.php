@@ -1,12 +1,39 @@
 <?php /* Date de création: 11/12/2008 */  
+/**
+ * @todo supprimer accordeon 
+ * 
+ */
 if (!$cpt_acc) 	$cpt_acc=1;
 if ($paras->numpara) {
 ?> 
 	<script language="JavaScript" type="text/javascript">
+	  
 	  var nextHiddenIndex<?=$paras->numpara?> = 2; 
 	  var nextHiddenIndexP<?=$paras->numpara?> = 2;	 
 	  var nextHiddenIndexV<?=$paras->numpara?> = 2;
 	  var nextHiddenIndexF<?=$paras->numpara?> = 2;
+	  <?php 
+			    //recupère le nombre de paragraphes
+			    $nombrePara = new ListeParagraphes();
+			    $nombrePara->numpage = $numpage;
+			    $nombre_Para = $nombrePara->afficherListeParas();
+			    $array[]=$paras->numpara;
+	?>
+	 
+	   window.onload = function()
+	    {
+		for (i=1; i<<?php echo $array[0];?>; i++){
+		window["oFCKeditor_"+i] = new FCKeditor('textCont<?=$paras->numpara?>') ;		 
+	    window["oFCKeditor_"+i].ToolbarSet = 'Basic' ;
+	    window["oFCKeditor_"+i].BasePath = 'admin/fckeditor/' ;
+	    window["oFCKeditor_"+i].Height  = '600' ;
+	    window["oFCKeditor_"+i].Width  = '400' ;
+	    window["oFCKeditor_"+i].ReplaceTextarea();	
+		}		 
+	    } 
+	   
+	   	    
+ 
 	</script>
 <?php
 } else {
@@ -61,7 +88,7 @@ foreach ($listphot as $photos) {
 		  <input type="radio" id="radio" name="radioTypeTitre<?=$paras->numpara?>" value="h3" <?php if ($paras->typeTitre=="h3" ) echo "checked='checked'";?> /> 
 	      <span class="radio">titre3</span>
 	    (avec trait) </li>
-	    <li>
+	    <li><!--  FCKEDITOR  -->
 	      <label for="title">Contenu du paragraphe :</label>
 	      <textarea name="textCont<?=$paras->numpara?>"><?=miseEnFormeTextarea($paras->contenuPara)?></textarea>
 	    </li>

@@ -13,7 +13,7 @@
 		   $laPage->typeTitre=$_POST['radioTypeTitre'];
 		   $laPage->ajouterParagraphe();  // On l'ajoute à la page
 		   
-		   for ($i=1;$i<=$nbLiens;$i++) { // On traite l'ajout de liens
+		   for ($i=1;$i<=$_POST['nbLiens'];$i++) { // On traite l'ajout de liens
 			 $valUrl="textUrlLien".$i."_";
 			 $valPage="selectPage".$i."_";
 			 if ($$valUrl || $$valPage) {

@@ -39,6 +39,7 @@ $chem=$if_site["path"];	  //$chem="/home/web/croisix/ifip.croisix.com/www/";
  */
 include ("fonctions.php");
 include ("ajouter_paragraphe.php");
+include_once("admin/fckeditor/fckeditor.php");
 
 /**
  * Ici, l'utilisateur a voulu rentrer des variables GET non valides
@@ -2080,11 +2081,13 @@ pageTracker._trackPageview();
 } catch(err) {}</script>
 </body>
 <?php
+
 if ($mes) {
 echo"<script language=\"javascript1.2\"><!--\n";
 echo"alert('$mes');\n";
 echo"// --></script>";
 }
+echo 'mes variables'.var_dump($_POST);
 ?>
 </html>
 <?php
