@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/ListeMenus.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>ListeMenus.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de creation:  */</span> 
+<a name="l00002"></a>00002 
+<a name="l00010"></a><a class="code" href="class_liste_menus.html">00010</a> <span class="keyword">class </span><a class="code" href="class_liste_menus.html">ListeMenus</a> <span class="keyword">implements</span> IteratorAggregate {
+<a name="l00015"></a><a class="code" href="class_liste_menus.html#a87a99f10d846fea6ac6ff51282668f4e">00015</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#a87a99f10d846fea6ac6ff51282668f4e">$menus</a> = array();
+<a name="l00020"></a><a class="code" href="class_liste_menus.html#a3eee06db0c94bc7049e34a428ce9604f">00020</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#a3eee06db0c94bc7049e34a428ce9604f">$type</a>;
+<a name="l00025"></a><a class="code" href="class_liste_menus.html#ae13716120bfd4651540be81bc6488922">00025</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#ae13716120bfd4651540be81bc6488922">$zone</a>;
+<a name="l00030"></a><a class="code" href="class_liste_menus.html#a7ee8c8290539652c31d0924f1bfcb52e">00030</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#a7ee8c8290539652c31d0924f1bfcb52e">$nomkey</a>;
+<a name="l00035"></a><a class="code" href="class_liste_menus.html#a8f7c0bc1ff45a74faee938e815399c44">00035</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#a8f7c0bc1ff45a74faee938e815399c44">$numfkey</a>;
+<a name="l00040"></a><a class="code" href="class_liste_menus.html#aca1de6429cb65e4d66afcca822cc5286">00040</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#aca1de6429cb65e4d66afcca822cc5286">$affiche</a>;
+<a name="l00045"></a><a class="code" href="class_liste_menus.html#adfdc3edf0af018b3a2d7ebcafc1f811a">00045</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#adfdc3edf0af018b3a2d7ebcafc1f811a">$lg</a>;
+<a name="l00050"></a><a class="code" href="class_liste_menus.html#ab4ed51b7283bc214b1c5966360143b65">00050</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#ab4ed51b7283bc214b1c5966360143b65">$ordre_req</a>;
+<a name="l00055"></a><a class="code" href="class_liste_menus.html#a472da6d03ddc1fd677a3f1bb4d5aabcf">00055</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#a472da6d03ddc1fd677a3f1bb4d5aabcf">$amont</a>;
+<a name="l00060"></a><a class="code" href="class_liste_menus.html#ae7a37c03e12fb019a410e5830bfdcb6f">00060</a>    <span class="keyword">public</span> <a class="code" href="class_liste_menus.html#ae7a37c03e12fb019a410e5830bfdcb6f">$aval</a>; 
+<a name="l00066"></a><a class="code" href="class_liste_menus.html#ac2806933f29b0cfdde3b288ade4a2202">00066</a>    function <a class="code" href="class_liste_menus.html#ac2806933f29b0cfdde3b288ade4a2202">afficherListeMenus</a>() {
+<a name="l00067"></a>00067          <span class="comment">//requete sql dans table rubrique, categorie, souscateg suivant le type</span>
+<a name="l00068"></a>00068          <span class="keywordflow">if</span> ($this-&gt;zone) {
+<a name="l00069"></a>00069                 $fin_req=<span class="stringliteral">&quot; WHERE zone=&#39;$this-&gt;zone&#39; AND affiche=&#39;o&#39;&quot;</span>;  
+<a name="l00070"></a>00070                 <span class="keywordflow">if</span> ($this-&gt;numfkey) {
+<a name="l00071"></a>00071                   <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) $fin_req.=<span class="stringliteral">&quot;     AND numrub=&#39;$this-&gt;numfkey&#39;&quot;</span>;
+<a name="l00072"></a>00072                   <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) $fin_req.=<span class="stringliteral">&quot;  AND numcateg=&#39;$this-&gt;numfkey&#39;&quot;</span>;
+<a name="l00073"></a>00073                 }
+<a name="l00074"></a>00074          } <span class="keywordflow">else</span> {
+<a name="l00075"></a>00075                 <span class="keywordflow">if</span> ($this-&gt;numfkey) {
+<a name="l00076"></a>00076                   <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) {
+<a name="l00077"></a>00077                                 $fin_req=<span class="stringliteral">&quot; WHERE numrub=&#39;$this-&gt;numfkey&#39; &quot;</span>;
+<a name="l00078"></a>00078                                 <span class="keywordflow">if</span>($this-&gt;amont &amp;&amp; $this-&gt;aval) $fin_req.=<span class="stringliteral">&quot; &quot;</span>;
+<a name="l00079"></a>00079                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>($this-&gt;aval) $fin_req.=<span class="stringliteral">&quot; AND aval=&#39;o&#39;&quot;</span>;
+<a name="l00080"></a>00080                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>($this-&gt;amont) $fin_req.=<span class="stringliteral">&quot; AND amont=&#39;o&#39;&quot;</span>;
+<a name="l00081"></a>00081                   }
+<a name="l00082"></a>00082                   <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) $fin_req=<span class="stringliteral">&quot; WHERE numcateg=&#39;$this-&gt;numfkey&#39;&quot;</span>;  
+<a name="l00083"></a>00083                   <span class="keywordflow">if</span> ($this-&gt;affiche) $fin_req.=<span class="stringliteral">&quot; AND affiche=&#39;o&#39;&quot;</span>;
+<a name="l00084"></a>00084                 } <span class="keywordflow">else</span> {
+<a name="l00085"></a>00085                   $fin_req=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00086"></a>00086                 }
+<a name="l00087"></a>00087                 
+<a name="l00088"></a>00088          }
+<a name="l00089"></a>00089          
+<a name="l00090"></a>00090          <span class="comment">//if (!$this-&gt;lg) $this-&gt;lg=&quot;fr&quot;;</span>
+<a name="l00091"></a>00091          <span class="keywordflow">if</span> ($fin_req &amp;&amp; $this-&gt;lg) $fin_req.=<span class="stringliteral">&quot; AND lg=&#39;$this-&gt;lg&#39;&quot;</span>; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;lg) $fin_req.=<span class="stringliteral">&quot; WHERE lg=&#39;$this-&gt;lg&#39;&quot;</span>; 
+<a name="l00092"></a>00092          
+<a name="l00093"></a>00093          <span class="keywordflow">if</span> (!$this-&gt;ordre_req) $this-&gt;ordre_req=<span class="stringliteral">&quot;ordre&quot;</span>;
+<a name="l00094"></a>00094           
+<a name="l00095"></a>00095          <span class="comment">//if ($this-&gt;type==&quot;sscateg&quot;) $result=mysql_query(&quot;SELECT $this-&gt;nomkey FROM if_&quot;.$this-&gt;type.&quot; $fin_req&quot;);</span>
+<a name="l00096"></a>00096         <span class="comment">// else $result=mysql_query(&quot;SELECT $this-&gt;nomkey FROM if_&quot;.$this-&gt;type.&quot; $fin_req ORDER BY ordre&quot;); </span>
+<a name="l00097"></a>00097          $result=mysql_query(<span class="stringliteral">&quot;SELECT $this-&gt;nomkey FROM if_&quot;</span>.$this-&gt;type.<span class="stringliteral">&quot; $fin_req ORDER BY $this-&gt;ordre_req&quot;</span>); 
+<a name="l00098"></a>00098          <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00099"></a>00099                 $unMenu=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();      
+<a name="l00100"></a>00100                 $unMenu-&gt;type=$this-&gt;type; 
+<a name="l00101"></a>00101                 $unMenu-&gt;zone=$this-&gt;zone; 
+<a name="l00102"></a>00102                 $unMenu-&gt;nomkey=$this-&gt;nomkey; 
+<a name="l00103"></a>00103                 $unMenu-&gt;nummenu=$row[0]; 
+<a name="l00104"></a>00104                 $unMenu-&gt;infosMenu();
+<a name="l00105"></a>00105                 $this-&gt;menus[]=$unMenu;
+<a name="l00106"></a>00106          } 
+<a name="l00107"></a>00107          <span class="keywordflow">if</span> (count($this-&gt;menus)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00108"></a>00108    }
+<a name="l00114"></a><a class="code" href="class_liste_menus.html#ad7339366abe679dadc9daf2018035a2f">00114</a>    function <a class="code" href="class_liste_menus.html#ad7339366abe679dadc9daf2018035a2f">afficherLesMenus</a>() {
+<a name="l00115"></a>00115      <span class="keywordflow">if</span> ($this-&gt;numfkey) {
+<a name="l00116"></a>00116                 <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;categorie&quot;</span>) 
+<a name="l00117"></a>00117                         $req.=<span class="stringliteral">&quot;SELECT numcateg FROM if_categorie,if_page WHERE if_categorie.numrub=&#39;$this-&gt;numfkey&#39; </span>
+<a name="l00118"></a>00118 <span class="stringliteral">                        AND if_page.numpage=if_categorie.numpage AND if_page.publiee=&#39;o&#39; AND if_categorie.zone=&#39;3&#39; &quot;</span>;
+<a name="l00119"></a>00119                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;type==<span class="stringliteral">&quot;sscateg&quot;</span>) 
+<a name="l00120"></a>00120                         $req.=<span class="stringliteral">&quot;SELECT numsscateg FROM if_sscateg,if_page WHERE numcateg=&#39;$this-&gt;numfkey&#39; </span>
+<a name="l00121"></a>00121 <span class="stringliteral">                        AND if_page.numpage=if_sscateg.numpage AND if_page.publiee=&#39;o&#39;&quot;</span>;         
+<a name="l00122"></a>00122                 <span class="keywordflow">if</span> ($this-&gt;affiche) $req.=<span class="stringliteral">&quot; AND affiche=&#39;o&#39;&quot;</span>;
+<a name="l00123"></a>00123                 $req.=<span class="stringliteral">&quot; ORDER BY ordre&quot;</span>;
+<a name="l00124"></a>00124           } <span class="keywordflow">else</span> {
+<a name="l00125"></a>00125                   $req=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00126"></a>00126           }
+<a name="l00127"></a>00127           $result=mysql_query($req);
+<a name="l00128"></a>00128           <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00129"></a>00129                 $unMenu=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();      
+<a name="l00130"></a>00130                 $unMenu-&gt;type=$this-&gt;type; 
+<a name="l00131"></a>00131                 $unMenu-&gt;zone=$this-&gt;zone; 
+<a name="l00132"></a>00132                 $unMenu-&gt;nomkey=$this-&gt;nomkey; 
+<a name="l00133"></a>00133                 $unMenu-&gt;nummenu=$row[0]; 
+<a name="l00134"></a>00134                 $unMenu-&gt;infosMenu();
+<a name="l00135"></a>00135                 $this-&gt;menus[]=$unMenu;
+<a name="l00136"></a>00136          } 
+<a name="l00137"></a>00137          <span class="keywordflow">if</span> (count($this-&gt;menus)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00138"></a>00138    }
+<a name="l00139"></a>00139    
+<a name="l00140"></a>00140    function getIterator() {
+<a name="l00141"></a>00141           $iterator=<span class="keyword">new</span> <a class="code" href="class_listes_iterator.html">ListesIterator</a>($this-&gt;menus);
+<a name="l00142"></a>00142           <span class="keywordflow">return</span> $iterator;
+<a name="l00143"></a>00143    }
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145 }
+<a name="l00146"></a>00146 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

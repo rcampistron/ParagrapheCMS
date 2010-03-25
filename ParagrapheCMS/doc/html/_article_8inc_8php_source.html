@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/Article.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>Article.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php 
+<a name="l00011"></a><a class="code" href="class_article.html">00011</a> <span class="keyword">class </span><a class="code" href="class_article.html" title="Spécifique IFIP.">Article</a> {
+<a name="l00012"></a>00012         
+<a name="l00021"></a><a class="code" href="class_article.html#a5b26135b4ca5ab89df23513c3519779f">00021</a>         <span class="keyword">public</span> <a class="code" href="class_article.html#a5b26135b4ca5ab89df23513c3519779f">$numarticle</a>;
+<a name="l00022"></a>00022         <span class="keyword">public</span> $libelle;
+<a name="l00023"></a>00023         
+<a name="l00027"></a><a class="code" href="class_article.html#a6c4552f46b5beeaa63b4ff362a018232">00027</a>         function <a class="code" href="class_article.html#a6c4552f46b5beeaa63b4ff362a018232">creerArti</a>() {  
+<a name="l00028"></a>00028             mysql_query(<span class="stringliteral">&quot;INSERT INTO if_articles (libelle) VALUES (&#39;$this-&gt;libelle&#39;)&quot;</span>);
+<a name="l00029"></a>00029                 
+<a name="l00030"></a>00030         }
+<a name="l00031"></a>00031         
+<a name="l00035"></a><a class="code" href="class_article.html#ab8aebba631482a763f5f530a7741a2e0">00035</a>         function <a class="code" href="class_article.html#ab8aebba631482a763f5f530a7741a2e0">modifierArti</a>() {
+<a name="l00036"></a>00036             mysql_query(<span class="stringliteral">&quot;UPDATE if_articles SET libelle=&#39;$this-&gt;libelle&#39; WHERE numarticle=&#39;$this-&gt;numarticle&#39;&quot;</span>);
+<a name="l00037"></a>00037                 
+<a name="l00038"></a>00038         }
+<a name="l00042"></a><a class="code" href="class_article.html#a284584b01aef1c301571f86634ce4975">00042</a>         function <a class="code" href="class_article.html#a284584b01aef1c301571f86634ce4975">supprimerArti</a>() {      
+<a name="l00043"></a>00043            mysql_query(<span class="stringliteral">&quot;DELETE FROM if_articles WHERE numarticle=&#39;$this-&gt;numarticle&#39;&quot;</span>);
+<a name="l00044"></a>00044         } 
+<a name="l00045"></a>00045         
+<a name="l00050"></a><a class="code" href="class_article.html#aafa613ac228c4354dd792495c9a10a13">00050</a>         function <a class="code" href="class_article.html#aafa613ac228c4354dd792495c9a10a13">infosArti</a>(){
+<a name="l00051"></a>00051                 $row=SelectMultiple(<span class="stringliteral">&quot;if_articles&quot;</span>,<span class="stringliteral">&quot;numarticle&quot;</span>,$this-&gt;numarticle);
+<a name="l00052"></a>00052                 $this-&gt;libelle=$row[<span class="stringliteral">&quot;libelle&quot;</span>]; 
+<a name="l00053"></a>00053                 <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;numarticle&quot;</span>]) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00054"></a>00054         } 
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056         
+<a name="l00057"></a>00057 }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

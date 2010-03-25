@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de compte-ifip.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+<h1>compte-ifip.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de création: 13/03/2009*/</span> 
+<a name="l00002"></a>00002 $laPage = <span class="keyword">new</span> Page();
+<a name="l00003"></a>00003 $laPage-&gt;numpage=$numpage;
+<a name="l00004"></a>00004 $laPage-&gt;infosPage();
+<a name="l00005"></a>00005 $laPage-&gt;infosColonnes();
+<a name="l00006"></a>00006  
+<a name="l00007"></a>00007         <span class="comment">//echo &quot;sess=&quot;.$_SESSION[&#39;numclient&#39;];  </span>
+<a name="l00008"></a>00008 <span class="keywordflow">if</span> ($laPage-&gt;nomPageGoogle) { 
+<a name="l00009"></a>00009 ?&gt;
+<a name="l00010"></a>00010 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;coltexte785&quot;</span>&gt; 
+<a name="l00011"></a>00011                    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;sap-content&quot;</span>&gt;
+<a name="l00012"></a>00012                                 &lt;!-- item 1 585 pixels wide --&gt;
+<a name="l00013"></a>00013                                 &lt;p <span class="keyword">class</span>=<span class="stringliteral">&quot;titre785&quot;</span>&gt;&lt;?=$laPage-&gt;titrePage?&gt;&lt;/p&gt;
+<a name="l00014"></a>00014         
+<a name="l00015"></a>00015   &lt;?php
+<a name="l00016"></a>00016   <span class="keywordflow">if</span> (!$action &amp;&amp; !$_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>])  {
+<a name="l00017"></a>00017   ?&gt;
+<a name="l00018"></a>00018           &lt;fieldset&gt;
+<a name="l00019"></a>00019           &lt;legend&gt;&lt;strong&gt;Pour accéder à votre compte, veuillez saisir votre email de connexion et votre &lt;br /&gt;mot de passe ci-dessous : &lt;/strong&gt;&lt;/legend&gt;&lt;br /&gt;
+<a name="l00020"></a>00020                            
+<a name="l00021"></a>00021                 &lt;br /&gt;&lt;br /&gt;
+<a name="l00022"></a>00022                   
+<a name="l00023"></a>00023                   &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;Votre email de connexion :&lt;/label&gt;
+<a name="l00024"></a>00024                   &lt;input type=<span class="stringliteral">&quot;text&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;name&quot;</span> name=<span class="stringliteral">&quot;textEmailCpte&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;
+<a name="l00025"></a>00025                 &lt;br /&gt;
+<a name="l00026"></a>00026                   &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;Votre mot de passe :&lt;/label&gt;
+<a name="l00027"></a>00027                   &lt;input type=<span class="stringliteral">&quot;password&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;name&quot;</span> name=<span class="stringliteral">&quot;textPwdCpte&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>/&gt;
+<a name="l00028"></a>00028                  &lt;br /&gt;
+<a name="l00029"></a>00029                   &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;&lt;/label&gt;
+<a name="l00030"></a>00030                  &lt;a href=<span class="stringliteral">&quot;index.php?spec=oublie&amp;numrub=&lt;?=$numrub?&gt;&amp;numcateg=&lt;?=$numcateg?&gt;&amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;lg=&lt;?=$lg?&gt;&quot;</span>&gt;mot de passe oublié ?&lt;/a&gt;
+<a name="l00031"></a>00031                   &lt;br /&gt; 
+<a name="l00032"></a>00032                 &lt;br /&gt;
+<a name="l00033"></a>00033                 &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;&lt;/label&gt;
+<a name="l00034"></a>00034                 &lt;input <span class="keywordtype">id</span>=<span class="stringliteral">&quot;validerCpte&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> name=<span class="stringliteral">&quot;validerCpte&quot;</span> type=<span class="stringliteral">&quot;button&quot;</span> value=<span class="stringliteral">&quot;Valider&quot;</span> onClick=<span class="stringliteral">&quot;javascript:validerCpteForma()&quot;</span>/&gt;  
+<a name="l00035"></a>00035                 &lt;br /&gt;
+<a name="l00036"></a>00036                 &lt;br /&gt; 
+<a name="l00037"></a>00037                 &lt;br /&gt;
+<a name="l00038"></a>00038                 &lt;br /&gt;
+<a name="l00039"></a>00039                 &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;&lt;/label&gt;
+<a name="l00040"></a>00040                    &lt;strong&gt;Vous n<span class="stringliteral">&#39;êtes pas enregistré ? Inscrivez-vous :&lt;/strong&gt;</span>
+<a name="l00041"></a>00041 <span class="stringliteral">                &lt;br /&gt;&lt;br /&gt;</span>
+<a name="l00042"></a>00042 <span class="stringliteral">                &lt;label for=&quot;name&quot;&gt;Civilité :&lt;/label&gt;</span>
+<a name="l00043"></a>00043 <span class="stringliteral">                  &lt;select name=&quot;selectCiv &quot; class=&quot;public&quot;&gt;</span>
+<a name="l00044"></a>00044 <span class="stringliteral">                        &lt;option&gt;-&lt;/option&gt;</span>
+<a name="l00045"></a>00045 <span class="stringliteral">                        &lt;option value=&quot;Mr&quot;&gt;Mr&lt;/option&gt;</span>
+<a name="l00046"></a>00046 <span class="stringliteral">                        &lt;option value=&quot;Mme&quot;&gt;Mme&lt;/option&gt;</span>
+<a name="l00047"></a>00047 <span class="stringliteral">                        &lt;option value=&quot;Mlle&quot;&gt;Mlle&lt;/option&gt;</span>
+<a name="l00048"></a>00048 <span class="stringliteral">                &lt;/select&gt;</span>
+<a name="l00049"></a>00049 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00050"></a>00050 <span class="stringliteral">                  &lt;label for=&quot;name&quot;&gt;Nom&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00051"></a>00051 <span class="stringliteral">                  &lt;input type=&quot;text&quot; name=&quot;textNom&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00052"></a>00052 <span class="stringliteral">                 &lt;br /&gt;</span>
+<a name="l00053"></a>00053 <span class="stringliteral">                 &lt;label for=&quot;name&quot;&gt;Prénom&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00054"></a>00054 <span class="stringliteral">                  &lt;input type=&quot;text&quot; name=&quot;textPrenom&quot; class=&quot;public&quot;/&gt;</span>
+<a name="l00055"></a>00055 <span class="stringliteral">                 &lt;br /&gt;</span>
+<a name="l00056"></a>00056 <span class="stringliteral">                 &lt;label for=&quot;textSociete&quot;&gt;Société&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00057"></a>00057 <span class="stringliteral">                 &lt;input type=&quot;text&quot; name=&quot;textSociete&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00058"></a>00058 <span class="stringliteral">                 &lt;br /&gt;</span>
+<a name="l00059"></a>00059 <span class="stringliteral">                 </span>
+<a name="l00060"></a>00060 <span class="stringliteral">                &lt;label for=&quot;name&quot;&gt;Email&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00061"></a>00061 <span class="stringliteral">                  &lt;input type=&quot;text&quot; name=&quot;textEmail&quot; class=&quot;public&quot;/&gt;</span>
+<a name="l00062"></a>00062 <span class="stringliteral">                 &lt;br /&gt;</span>
+<a name="l00063"></a>00063 <span class="stringliteral">                 &lt;label for=&quot;name&quot;&gt;Mot de passe&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00064"></a>00064 <span class="stringliteral">                  &lt;input type=&quot;text&quot; name=&quot;textPwd&quot; class=&quot;public&quot;/&gt;</span>
+<a name="l00065"></a>00065 <span class="stringliteral">                &lt;br /&gt; </span>
+<a name="l00066"></a>00066 <span class="stringliteral">                &lt;label for=&quot;textAdr1&quot;&gt;Adresse&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00067"></a>00067 <span class="stringliteral">                &lt;input type=&quot;text&quot; name=&quot;textAdr1&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00068"></a>00068 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00069"></a>00069 <span class="stringliteral">                &lt;label for=&quot;textAdr2&quot;&gt;&lt;/label&gt;</span>
+<a name="l00070"></a>00070 <span class="stringliteral">                &lt;input type=&quot;text&quot; name=&quot;textAdr2&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00071"></a>00071 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00072"></a>00072 <span class="stringliteral">                &lt;label for=&quot;textCp&quot;&gt;Code Postal&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00073"></a>00073 <span class="stringliteral">                &lt;input type=&quot;text&quot; name=&quot;textCp&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00074"></a>00074 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00075"></a>00075 <span class="stringliteral">                &lt;label for=&quot;textVille&quot;&gt;Ville&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00076"></a>00076 <span class="stringliteral">                &lt;input type=&quot;text&quot; name=&quot;textVille&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00077"></a>00077 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00078"></a>00078 <span class="stringliteral">                &lt;label for=&quot;selectPays&quot;&gt;Pays&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00079"></a>00079 <span class="stringliteral">                &lt;select name=&quot;selectPays&quot; class=&quot;public&quot;&gt;</span>
+<a name="l00080"></a>00080 <span class="stringliteral">                &lt;option&gt;Sélectionnez un pays&lt;/option&gt;</span>
+<a name="l00081"></a>00081 <span class="stringliteral">                &lt;option&gt;------------------------------------------------------&lt;/option&gt;</span>
+<a name="l00082"></a>00082 <span class="stringliteral">                &lt;option value=&quot;247&quot;&gt;France metropolitaine&lt;/option&gt;</span>
+<a name="l00083"></a>00083 <span class="stringliteral">                &lt;option&gt;------------------------------------------------------&lt;/option&gt;</span>
+<a name="l00084"></a>00084 <span class="stringliteral">                &lt;?php</span>
+<a name="l00085"></a>00085 <span class="stringliteral">                $result = mysql_query(&quot;SELECT * FROM if_pays ORDER BY pays&quot;);</span>
+<a name="l00086"></a>00086 <span class="stringliteral">                while ($row=mysql_fetch_array($result)) {</span>
+<a name="l00087"></a>00087 <span class="stringliteral">                ?&gt;</span>
+<a name="l00088"></a>00088 <span class="stringliteral">                        &lt;option value=&quot;&lt;?=$row[&#39;</span>numpays<span class="stringliteral">&#39;]?&gt;&quot;&gt;&lt;?=utf8_encode($row[&#39;</span>pays<span class="stringliteral">&#39;])?&gt;&lt;/option&gt;</span>
+<a name="l00089"></a>00089 <span class="stringliteral">                &lt;?php</span>
+<a name="l00090"></a>00090 <span class="stringliteral">                }//fin du while</span>
+<a name="l00091"></a>00091 <span class="stringliteral">                ?&gt;</span>
+<a name="l00092"></a>00092 <span class="stringliteral">                &lt;/select&gt;</span>
+<a name="l00093"></a>00093 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00094"></a>00094 <span class="stringliteral">                &lt;label for=&quot;textTel&quot;&gt;Tel&lt;em class=&quot;important&quot;&gt;*&lt;/em&gt; :&lt;/label&gt;</span>
+<a name="l00095"></a>00095 <span class="stringliteral">                &lt;input type=&quot;text&quot; name=&quot;textTel&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00096"></a>00096 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00097"></a>00097 <span class="stringliteral">                &lt;label for=&quot;textFax&quot;&gt;Fax :&lt;/label&gt;</span>
+<a name="l00098"></a>00098 <span class="stringliteral">                &lt;input type=&quot;text&quot; name=&quot;textFax&quot; class=&quot;public&quot; /&gt;</span>
+<a name="l00099"></a>00099 <span class="stringliteral">                &lt;br /&gt;</span>
+<a name="l00100"></a>00100 <span class="stringliteral">                &lt;label for=&quot;name&quot;&gt;&lt;/label&gt;</span>
+<a name="l00101"></a>00101 <span class="stringliteral">                &lt;input id=&quot;validerInscr&quot; name=&quot;validerInscr&quot; type=&quot;button&quot;  class=&quot;bouton&quot; value=&quot;Valider&quot; onClick=&quot;javascript:validerInscrForma(&#39;</span>creerCompte<span class="stringliteral">&#39;)&quot;/&gt; </span>
+<a name="l00102"></a>00102 <span class="stringliteral">                &lt;/fieldset&gt;</span>
+<a name="l00103"></a>00103 <span class="stringliteral">        &lt;?php</span>
+<a name="l00104"></a>00104 <span class="stringliteral">        } else if ($_SESSION[&#39;</span>numclient<span class="stringliteral">&#39;] &amp;&amp; !$numcom) {//fin if (!$action &amp;&amp; !$_SESSION[&#39;</span>numclient<span class="stringliteral">&#39;])</span>
+<a name="l00105"></a>00105 <span class="stringliteral">                if ($action==&quot;creerCompte&quot;) {</span>
+<a name="l00106"></a>00106 <span class="stringliteral">        ?&gt;</span>
+<a name="l00107"></a>00107 <span class="stringliteral">                        &lt;strong&gt;Merci, vous êtes maintenant enregistré sur notre site.&lt;/strong&gt;</span>
+<a name="l00108"></a>00108 <span class="stringliteral">                        &lt;br /&gt;&lt;br /&gt;</span>
+<a name="l00109"></a>00109 <span class="stringliteral">                </span>
+<a name="l00110"></a>00110 <span class="stringliteral">        &lt;?php</span>
+<a name="l00111"></a>00111 <span class="stringliteral">                }</span>
+<a name="l00112"></a>00112 <span class="stringliteral">                $listcom = new ListeCommandes();</span>
+<a name="l00113"></a>00113 <span class="stringliteral">                $listcom-&gt;numclient=$_SESSION[&#39;</span>numclient<span class="stringliteral">&#39;];</span>
+<a name="l00114"></a>00114 <span class="stringliteral">                $listcom-&gt;etat=&quot;&gt;=1&quot;;</span>
+<a name="l00115"></a>00115 <span class="stringliteral">                $listcom-&gt;erreur_paiement=&quot;non&quot;;</span>
+<a name="l00116"></a>00116 <span class="stringliteral">                $nb_com=$listcom-&gt;afficherListeCommandes();</span>
+<a name="l00117"></a>00117 <span class="stringliteral">                </span>
+<a name="l00118"></a>00118 <span class="stringliteral">                if ($nb_com) {</span>
+<a name="l00119"></a>00119 <span class="stringliteral">    ?&gt;</span>
+<a name="l00120"></a>00120 <span class="stringliteral">                &lt;h1 class=&quot;sansmarge&quot;&gt;Liste de vos commandes&lt;/h1&gt;</span>
+<a name="l00121"></a>00121 <span class="stringliteral">                &lt;table&gt;</span>
+<a name="l00122"></a>00122 <span class="stringliteral">                  &lt;tr class=&quot;entete&quot;&gt;&lt;td&gt;Numéro&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Date&lt;/td&gt;&lt;td&gt;Montant&lt;/td&gt;&lt;td&gt;Réglée&lt;/td&gt;&lt;td&gt;Etat&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+<a name="l00123"></a>00123 <span class="stringliteral">                  &lt;?php</span>
+<a name="l00124"></a>00124 <span class="stringliteral">                  foreach ($listcom as $commandes) {   </span>
+<a name="l00125"></a>00125 <span class="stringliteral">                        if (!$cl) $cl=&quot;class=\&quot;fond_clair\&quot;&quot;; else $cl=&quot;&quot;;</span>
+<a name="l00126"></a>00126 <span class="stringliteral">                  ?&gt;</span>
+<a name="l00127"></a>00127 <span class="stringliteral">                   &lt;tr &lt;?=$cl?&gt;&gt;</span>
+<a name="l00128"></a>00128 <span class="stringliteral">                                &lt;td&gt;&lt;?=$commandes-&gt;numcom?&gt;&lt;/td&gt;</span>
+<a name="l00129"></a>00129 <span class="stringliteral">                                &lt;td&gt;&lt;?php if ($commandes-&gt;formation) echo &quot;Inscription formation&quot;; else echo &quot;Achat documentation&quot;;?&gt;&lt;/td&gt;</span>
+<a name="l00130"></a>00130 <span class="stringliteral">                                &lt;td&gt;&lt;?=$commandes-&gt;dcrea?&gt;&lt;/td&gt;</span>
+<a name="l00131"></a>00131 <span class="stringliteral">                                &lt;td&gt;&lt;?=$commandes-&gt;montantTTC.&quot; €&quot;?&gt;&lt;/td&gt;</span>
+<a name="l00132"></a>00132 <span class="stringliteral">                                &lt;td&gt;&lt;?php </span>
+<a name="l00133"></a>00133 <span class="stringliteral">                                if ($commandes-&gt;tpereg==&quot;cb&quot; &amp;&amp; $commandes-&gt;erreurpaiement==&quot;non&quot;) echo &quot;Oui, par Carte Bancaire&quot;;</span>
+<a name="l00134"></a>00134 <span class="stringliteral">                                else if ($commandes-&gt;tpereg==&quot;ch&quot; &amp;&amp; $commandes-&gt;etat==&quot;1&quot;) echo &quot;Non, par chèque&quot;; </span>
+<a name="l00135"></a>00135 <span class="stringliteral">                                else if ($commandes-&gt;tpereg==&quot;ch&quot; &amp;&amp; $commandes-&gt;etat&gt;=2) echo &quot;Oui, par chèque&quot;; </span>
+<a name="l00136"></a>00136 <span class="stringliteral">                                else if ($commandes-&gt;tpereg==&quot;dv&quot; &amp;&amp; $commandes-&gt;etat&gt;=1) echo &quot;Demande de devis&quot;;?&gt;&lt;/td&gt;</span>
+<a name="l00137"></a>00137 <span class="stringliteral">                                &lt;td&gt;&lt;?php if ($commandes-&gt;etat==&quot;1&quot;) echo &quot;en attente de validation&quot;; else if ($commandes-&gt;etat==&quot;2&quot;) echo &quot;validée&quot;; else if ($commandes-&gt;etat==&quot;3&quot;) echo &quot;expédiée&quot;; else echo &quot;traitée&quot;;?&gt;&lt;/td&gt;</span>
+<a name="l00138"></a>00138 <span class="stringliteral">                                &lt;td&gt;</span>
+<a name="l00139"></a>00139 <span class="stringliteral">                                        &lt;a href=&quot;index.php?numpage=&lt;?=$laPage-&gt;numpage?&gt;&amp;spec=&lt;?=$spec?&gt;&amp;numrub=&lt;?=$numrub?&gt;&amp;numcateg=&lt;?=$numcateg?&gt;&amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;lg=&lt;?=$lg?&gt;&amp;numcom=&lt;?=$commandes-&gt;numcom?&gt;&quot;&gt;voir le détail&lt;/a&gt;</span>
+<a name="l00140"></a>00140 <span class="stringliteral">                                &lt;/td&gt;</span>
+<a name="l00141"></a>00141 <span class="stringliteral">                   &lt;/tr&gt; </span>
+<a name="l00142"></a>00142 <span class="stringliteral">                  &lt;?php </span>
+<a name="l00143"></a>00143 <span class="stringliteral">                  }     //fin du foreach  listcom</span>
+<a name="l00144"></a>00144 <span class="stringliteral">                  ?&gt;</span>
+<a name="l00145"></a>00145 <span class="stringliteral">          </span>
+<a name="l00146"></a>00146 <span class="stringliteral">                &lt;/table&gt;</span>
+<a name="l00147"></a>00147 <span class="stringliteral">        </span>
+<a name="l00148"></a>00148 <span class="stringliteral">        &lt;?php           </span>
+<a name="l00149"></a>00149 <span class="stringliteral">                } else {</span>
+<a name="l00150"></a>00150 <span class="stringliteral">        ?&gt;      </span>
+<a name="l00151"></a>00151 <span class="stringliteral">                Vous n&#39;</span>avez aucune commande en cours.
+<a name="l00152"></a>00152         &lt;?php
+<a name="l00153"></a>00153                 }<span class="comment">//fin du else if ($nb_com)</span>
+<a name="l00154"></a>00154         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($numcom) {<span class="comment">//fin else if ($_SESSION[&#39;numclient&#39;] &amp;&amp; !$numcom)</span>
+<a name="l00155"></a>00155                 $voirCom = <span class="keyword">new</span> <a class="code" href="class_commande.html" title="G&amp;egrave;re les commandes faites sur la boutique.">Commande</a>();
+<a name="l00156"></a>00156                 $voirCom-&gt;numcom=$numcom;
+<a name="l00157"></a>00157                 $voirCom-&gt;infosCommande();
+<a name="l00158"></a>00158         ?&gt;
+<a name="l00159"></a>00159                         &lt;h2 <span class="keyword">class</span>=<span class="stringliteral">&quot;supprmarge&quot;</span>&gt;Détail de la commande n° &lt;?=$numcom?&gt;&lt;!--&lt;?=$voirCom-&gt;numerop?&gt;--&gt; du &lt;?=$voirCom-&gt;dcrea?&gt;&lt;/h2&gt; 
+<a name="l00160"></a>00160                         &lt;strong&gt;Etat : &lt;/strong&gt;&lt;?php <span class="keywordflow">if</span> ($voirCom-&gt;etat==<span class="stringliteral">&quot;1&quot;</span>) echo <span class="stringliteral">&quot;en attente de validation&quot;</span>; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($voirCom-&gt;etat==<span class="stringliteral">&quot;2&quot;</span>) echo <span class="stringliteral">&quot;validée&quot;</span>; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($voirCom-&gt;etat==<span class="stringliteral">&quot;3&quot;</span>) echo <span class="stringliteral">&quot;expédiée&quot;</span>; <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;traitée&quot;</span>;?&gt;
+<a name="l00161"></a>00161                  &lt;br /&gt;
+<a name="l00162"></a>00162                 &lt;?php
+<a name="l00163"></a>00163                 <span class="keywordflow">if</span> (!$voirCom-&gt;formation &amp;&amp; !$voirCom-&gt;article) {<span class="comment">//documentation</span>
+<a name="l00164"></a>00164                 ?&gt;        
+<a name="l00165"></a>00165                           &lt;br /&gt;&lt;strong&gt;Votre adresse de livraison :&lt;/strong&gt;&lt;br /&gt;
+<a name="l00166"></a>00166                           &lt;?php
+<a name="l00167"></a>00167                           $voirCom-&gt;infosLivraison();
+<a name="l00168"></a>00168                           echo $voirCom-&gt;raison_l.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;nom_l.<span class="stringliteral">&quot; &quot;</span>.$voirCom-&gt;prenom_l.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;adr1_l.<span class="stringliteral">&quot; &quot;</span>.$voirCom-&gt;adr2_l.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;cp_l.<span class="stringliteral">&quot; &quot;</span>.$voirCom-&gt;ville_l.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;nompays_l;
+<a name="l00169"></a>00169                           <span class="keywordflow">if</span> ($voirCom-&gt;tel_l) echo <span class="stringliteral">&quot;&lt;br /&gt;Téléphone : &quot;</span>.$voirCom-&gt;tel_l;
+<a name="l00170"></a>00170                           ?&gt;
+<a name="l00171"></a>00171                         &lt;br /&gt;&lt;br /&gt;
+<a name="l00172"></a>00172                           &lt;strong&gt;Votre adresse de facturation :&lt;/strong&gt;&lt;br /&gt;
+<a name="l00173"></a>00173                           &lt;?php
+<a name="l00174"></a>00174                           echo $voirCom-&gt;raison_f.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;nom_f.<span class="stringliteral">&quot; &quot;</span>.$voirCom-&gt;prenom_f.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;adr1_f.<span class="stringliteral">&quot; &quot;</span>.$voirCom-&gt;adr2_f.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;cp_f.<span class="stringliteral">&quot; &quot;</span>.$voirCom-&gt;ville_f.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>.$voirCom-&gt;nompays_f;
+<a name="l00175"></a>00175                           <span class="keywordflow">if</span> ($voirCom-&gt;tel_f) echo <span class="stringliteral">&quot;&lt;br /&gt;Téléphone : &quot;</span>.$voirCom-&gt;tel_f;
+<a name="l00176"></a>00176                           <span class="keywordflow">if</span> ($voirCom-&gt;fax_f) echo <span class="stringliteral">&quot;&lt;br /&gt;Fax : &quot;</span>.$voirCom-&gt;fax_f;
+<a name="l00177"></a>00177                           ?&gt;
+<a name="l00178"></a>00178                         &lt;br /&gt;&lt;br /&gt;
+<a name="l00179"></a>00179                 &lt;?php
+<a name="l00180"></a>00180                 }<span class="comment">//fin if (!$voirCom-&gt;formation)</span>
+<a name="l00181"></a>00181                 ?&gt;
+<a name="l00182"></a>00182                 
+<a name="l00183"></a>00183                           Montant de la commande : &lt;strong&gt;&lt;?=$voirCom-&gt;montantTTC?&gt; €&lt;/strong&gt;
+<a name="l00184"></a>00184            &lt;?php
+<a name="l00185"></a>00185                 <span class="keywordflow">if</span> (!$voirCom-&gt;formation &amp;&amp; !$voirCom-&gt;article) { <span class="comment">// documentation</span>
+<a name="l00186"></a>00186                 ?&gt;              
+<a name="l00187"></a>00187                          &lt;br /&gt;&lt;br /&gt;
+<a name="l00188"></a>00188                           Frais de port : &lt;strong&gt;&lt;?=$voirCom-&gt;fraisPort?&gt; €&lt;/strong&gt;
+<a name="l00189"></a>00189                 &lt;?php
+<a name="l00190"></a>00190                 }<span class="comment">//fin if (!$voirCom-&gt;formation)</span>
+<a name="l00191"></a>00191                 ?&gt;
+<a name="l00192"></a>00192                 
+<a name="l00193"></a>00193                         &lt;br /&gt;&lt;br /&gt;
+<a name="l00194"></a>00194                           Réglement :&amp;nbsp;
+<a name="l00195"></a>00195                           &lt;?php <span class="keywordflow">if</span> ($voirCom-&gt;tpereg==<span class="stringliteral">&quot;ch&quot;</span>) echo <span class="stringliteral">&quot;par chèque&quot;</span>; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($voirCom-&gt;tpereg==<span class="stringliteral">&quot;vi&quot;</span>) echo <span class="stringliteral">&quot;par virement bancaire&quot;</span>; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($voirCom-&gt;tpereg==<span class="stringliteral">&quot;cb&quot;</span>) echo <span class="stringliteral">&quot;par Carte Bancaire&quot;</span>; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($voirCom-&gt;tpereg==<span class="stringliteral">&quot;dv&quot;</span>) echo <span class="stringliteral">&quot;demande de devis&quot;</span>; ?&gt;
+<a name="l00196"></a>00196                          &lt;br /&gt;
+<a name="l00197"></a>00197                          &lt;table width=<span class="stringliteral">&quot;100%&quot;</span> cellpadding=<span class="stringliteral">&quot;0&quot;</span> cellspacing=<span class="stringliteral">&quot;0&quot;</span> border=<span class="stringliteral">&quot;0&quot;</span>&gt;
+<a name="l00198"></a>00198                          &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;entete&quot;</span>&gt;
+<a name="l00199"></a>00199                          &lt;td width=<span class="stringliteral">&quot;7%&quot;</span>&gt;Référence&lt;/td&gt;
+<a name="l00200"></a>00200                          &lt;td width=<span class="stringliteral">&quot;19%&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt;<a class="code" href="class_formation.html" title="s&amp;eacute;pcifique IFIP">Formation</a> ou documentation&lt;/div&gt;&lt;/td&gt;
+<a name="l00201"></a>00201                          &lt;td width=<span class="stringliteral">&quot;6%&quot;</span>&gt;Quantité&lt;/td&gt;
+<a name="l00202"></a>00202                          &lt;td width=<span class="stringliteral">&quot;6%&quot;</span>&gt;Prix&lt;/td&gt;
+<a name="l00203"></a>00203                          &lt;td width=<span class="stringliteral">&quot;62%&quot;</span>&gt;&lt;div align=<span class="stringliteral">&quot;left&quot;</span>&gt;Obtenir&lt;/div&gt;&lt;/td&gt;
+<a name="l00204"></a>00204                          &lt;/tr&gt;
+<a name="l00205"></a>00205                          &lt;?php
+<a name="l00206"></a>00206                          $detail=<span class="keyword">new</span> <a class="code" href="class_panier.html">Panier</a>();
+<a name="l00207"></a>00207                          $detail-&gt;numcom=$voirCom-&gt;numcom;
+<a name="l00208"></a>00208                          
+<a name="l00209"></a>00209                          <span class="keywordflow">if</span> ($voirCom-&gt;formation) $list_articles=$detail-&gt;listerArticlesForm(); <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($voirCom-&gt;article) $list_articles=$detail-&gt;listerArticlesCrees(); <span class="keywordflow">else</span> $list_articles=$detail-&gt;listerArticles();
+<a name="l00210"></a>00210                          <span class="keywordflow">for</span> ($i=0; $i&lt;count($list_articles); $i++) {
+<a name="l00211"></a>00211                                 $article=$list_articles[$i];
+<a name="l00212"></a>00212                                 <span class="keywordflow">if</span> (!$voirCom-&gt;formation &amp;&amp; !$voirCom-&gt;article) { <span class="comment">// une doc</span>
+<a name="l00213"></a>00213                          ?&gt;
+<a name="l00214"></a>00214                                   &lt;tr&gt;
+<a name="l00215"></a>00215                                         &lt;td&gt;&lt;?=$article[<span class="stringliteral">&quot;reference&quot;</span>]?&gt; - &lt;?=$article[<span class="stringliteral">&quot;numpara&quot;</span>]?&gt;&lt;/td&gt;
+<a name="l00216"></a>00216                                         &lt;td&gt;&lt;?=$article[<span class="stringliteral">&quot;titre&quot;</span>]?&gt;&lt;/td&gt;
+<a name="l00217"></a>00217                                         &lt;td align=<span class="stringliteral">&quot;center&quot;</span>&gt;&lt;?=$article[<span class="stringliteral">&quot;qte&quot;</span>]?&gt;&lt;/td&gt;
+<a name="l00218"></a>00218                                         &lt;td&gt;&lt;?=$article[<span class="stringliteral">&quot;prix_total&quot;</span>]?&gt;&amp;nbsp;€&lt;/td&gt;
+<a name="l00219"></a>00219                                         &lt;td&gt;
+<a name="l00220"></a>00220                                         &lt;?php
+<a name="l00221"></a>00221                                         <span class="keywordflow">if</span> ($voirCom-&gt;etat==<span class="stringliteral">&quot;2&quot;</span> || $voirCom-&gt;etat==<span class="stringliteral">&quot;3&quot;</span> || $voirCom-&gt;etat==<span class="stringliteral">&quot;4&quot;</span>) {
+<a name="l00222"></a>00222                                                 <span class="keywordflow">if</span> ($article[<span class="stringliteral">&quot;numpara&quot;</span>]) {
+<a name="l00223"></a>00223                                                         $fiche=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00224"></a>00224                                                         $fiche-&gt;numpara=$article[<span class="stringliteral">&quot;numpara&quot;</span>]; 
+<a name="l00225"></a>00225                                                         $nb_fichiers=$fiche-&gt;afficherListeFichiers();
+<a name="l00226"></a>00226                                                         <span class="comment">//print_r($fiche);</span>
+<a name="l00227"></a>00227                                                         
+<a name="l00228"></a>00228                                                         <span class="keywordflow">if</span> ($nb_fichiers) {
+<a name="l00229"></a>00229                                                                 <span class="keywordflow">foreach</span> ($fiche as $fichiers) {
+<a name="l00230"></a>00230                                                                         $nom_fiche=$fichiers-&gt;nomFichier;
+<a name="l00231"></a>00231                                                                         $poids_fiche=$fichiers-&gt;poidsFichier;
+<a name="l00232"></a>00232                                                                         <span class="keywordflow">if</span> ($nom_fiche) {<span class="comment">//le pdf existe</span>
+<a name="l00233"></a>00233                                                                         ?&gt;
+<a name="l00234"></a>00234                                                                                 &lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$nom_fiche?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;pdf&quot;</span>&gt;
+<a name="l00235"></a>00235                                                                                 Télécharger (&lt;?=$poids_fiche?&gt;)&lt;/a&gt;
+<a name="l00236"></a>00236                                                                                 &lt;br /&gt;
+<a name="l00237"></a>00237                                                                         &lt;?php
+<a name="l00238"></a>00238                                                                         }<span class="comment">// fin if ($nom_fiche)</span>
+<a name="l00239"></a>00239                                                                 } <span class="comment">// fin foreach </span>
+<a name="l00240"></a>00240                                                         } <span class="keywordflow">else</span> {
+<a name="l00241"></a>00241                                                                 <span class="keywordflow">if</span> ($voirCom-&gt;etat==<span class="stringliteral">&quot;2&quot;</span>) {
+<a name="l00242"></a>00242                                                                 ?&gt;
+<a name="l00243"></a>00243                                                                 La documentation est en cours d<span class="stringliteral">&#39;expédition</span>
+<a name="l00244"></a>00244 <span class="stringliteral">                                        </span>
+<a name="l00245"></a>00245 <span class="stringliteral">                                                                &lt;?php</span>
+<a name="l00246"></a>00246 <span class="stringliteral">                                                                } else if ($voirCom-&gt;etat==&quot;3&quot;) {</span>
+<a name="l00247"></a>00247 <span class="stringliteral">                                                                ?&gt;</span>
+<a name="l00248"></a>00248 <span class="stringliteral">                                                                La documentation a été expédiée</span>
+<a name="l00249"></a>00249 <span class="stringliteral">                                        </span>
+<a name="l00250"></a>00250 <span class="stringliteral">                                                                &lt;?php</span>
+<a name="l00251"></a>00251 <span class="stringliteral">                                                                } else if ($voirCom-&gt;etat==&quot;4&quot;) {</span>
+<a name="l00252"></a>00252 <span class="stringliteral">                                                                ?&gt;</span>
+<a name="l00253"></a>00253 <span class="stringliteral">                                                                Commande archivée</span>
+<a name="l00254"></a>00254 <span class="stringliteral">                                                                &lt;?php</span>
+<a name="l00255"></a>00255 <span class="stringliteral">                                                                </span>
+<a name="l00256"></a>00256 <span class="stringliteral">                                                                }</span>
+<a name="l00257"></a>00257 <span class="stringliteral">                                                        } //fin else</span>
+<a name="l00258"></a>00258 <span class="stringliteral"></span>
+<a name="l00259"></a>00259 <span class="stringliteral">                                                }//fin if ($article[&quot;numpara&quot;])</span>
+<a name="l00260"></a>00260 <span class="stringliteral">                                        }//fin if ($voirCom-&gt;etat==&quot;2&quot; || $voirCom-&gt;etat==&quot;3&quot;)</span>
+<a name="l00261"></a>00261 <span class="stringliteral">                                        ?&gt;</span>
+<a name="l00262"></a>00262 <span class="stringliteral">                                        </span>
+<a name="l00263"></a>00263 <span class="stringliteral">                                        </span>
+<a name="l00264"></a>00264 <span class="stringliteral">                                        &lt;/td&gt;</span>
+<a name="l00265"></a>00265 <span class="stringliteral">                                  &lt;/tr&gt;</span>
+<a name="l00266"></a>00266 <span class="stringliteral">                                &lt;?php</span>
+<a name="l00267"></a>00267 <span class="stringliteral">                                } else if ($voirCom-&gt;formation) {</span>
+<a name="l00268"></a>00268 <span class="stringliteral">                                        $laForma=new Formation();</span>
+<a name="l00269"></a>00269 <span class="stringliteral">                                        $laForma-&gt;numpara=$article[&quot;numpara&quot;];</span>
+<a name="l00270"></a>00270 <span class="stringliteral">                                        $laForma-&gt;infosFormation();</span>
+<a name="l00271"></a>00271 <span class="stringliteral">                                ?&gt;</span>
+<a name="l00272"></a>00272 <span class="stringliteral">                                        &lt;tr&gt;</span>
+<a name="l00273"></a>00273 <span class="stringliteral">                                          &lt;td colspan=&quot;5&quot;&gt;</span>
+<a name="l00274"></a>00274 <span class="stringliteral">                                          &lt;?php echo $article[&quot;designation&quot;]; if ($article[&quot;designation&quot;]==&quot;Inscription formation&quot;) echo &quot; \&quot;&quot;.$laForma-&gt;titrePara.&quot;\&quot;&quot;;?&gt;</span>
+<a name="l00275"></a>00275 <span class="stringliteral">                                          &lt;/td&gt;</span>
+<a name="l00276"></a>00276 <span class="stringliteral">                                        &lt;/tr&gt;</span>
+<a name="l00277"></a>00277 <span class="stringliteral">                                &lt;?php</span>
+<a name="l00278"></a>00278 <span class="stringliteral">                                } else {//fin du else if ($voirCom-&gt;formation)</span>
+<a name="l00279"></a>00279 <span class="stringliteral">                                ?&gt;</span>
+<a name="l00280"></a>00280 <span class="stringliteral">                                        &lt;tr&gt;</span>
+<a name="l00281"></a>00281 <span class="stringliteral">                                          &lt;td colspan=&quot;5&quot;&gt;&lt;?=$article[&quot;designation&quot;]?&gt;&lt;/td&gt;</span>
+<a name="l00282"></a>00282 <span class="stringliteral">                                        &lt;/tr&gt;</span>
+<a name="l00283"></a>00283 <span class="stringliteral">                                &lt;?php</span>
+<a name="l00284"></a>00284 <span class="stringliteral">                                }//fin du else if ($voirCom-&gt;article)</span>
+<a name="l00285"></a>00285 <span class="stringliteral">                                ?&gt;</span>
+<a name="l00286"></a>00286 <span class="stringliteral">                                &lt;br /&gt;&lt;br /&gt;</span>
+<a name="l00287"></a>00287 <span class="stringliteral">                         &lt;?php</span>
+<a name="l00288"></a>00288 <span class="stringliteral">                         }//fin du for ($i=0; $i&lt;count($list_articles); $i++)</span>
+<a name="l00289"></a>00289 <span class="stringliteral">                         ?&gt;</span>
+<a name="l00290"></a>00290 <span class="stringliteral">                         &lt;/table&gt;</span>
+<a name="l00291"></a>00291 <span class="stringliteral">                          &lt;br /&gt;&lt;br /&gt;</span>
+<a name="l00292"></a>00292 <span class="stringliteral">                          &lt;?php</span>
+<a name="l00293"></a>00293 <span class="stringliteral">                          if ($voirCom-&gt;suivi_coliposte) {</span>
+<a name="l00294"></a>00294 <span class="stringliteral">                          ?&gt;</span>
+<a name="l00295"></a>00295 <span class="stringliteral">                                &lt;strong&gt;Suivi Coliposte :&lt;/strong&gt;&amp;nbsp;</span>
+<a name="l00296"></a>00296 <span class="stringliteral">                                </span>
+<a name="l00297"></a>00297 <span class="stringliteral">                          &lt;?php</span>
+<a name="l00298"></a>00298 <span class="stringliteral">                                echo $voirCom-&gt;suivi_coliposte;</span>
+<a name="l00299"></a>00299 <span class="stringliteral">                          }//fin if ($voirCom-&gt;suivi_coliposte)</span>
+<a name="l00300"></a>00300 <span class="stringliteral">                          ?&gt;</span>
+<a name="l00301"></a>00301 <span class="stringliteral">        &lt;?php</span>
+<a name="l00302"></a>00302 <span class="stringliteral">        }//fin else if ($numcom) </span>
+<a name="l00303"></a>00303 <span class="stringliteral">        ?&gt;      </span>
+<a name="l00304"></a>00304 <span class="stringliteral">        &lt;input type=&quot;hidden&quot; name=&quot;numpara&quot; value=&quot;&lt;?=$numpara?&gt;&quot;/&gt;</span>
+<a name="l00305"></a>00305 <span class="stringliteral">&lt;input type=&quot;hidden&quot; name=&quot;action&quot; /&gt;</span>
+<a name="l00306"></a>00306 <span class="stringliteral"></span>
+<a name="l00307"></a>00307 <span class="stringliteral">                                &lt;p&gt;&amp;nbsp;&lt;/p&gt;</span>
+<a name="l00308"></a>00308 <span class="stringliteral">                                &lt;p&gt;&amp;nbsp;&lt;/p&gt;</span>
+<a name="l00309"></a>00309 <span class="stringliteral">                                </span>
+<a name="l00310"></a>00310 <span class="stringliteral">  &lt;/div&gt;</span>
+<a name="l00311"></a>00311 <span class="stringliteral">&lt;/div&gt;</span>
+<a name="l00312"></a>00312 <span class="stringliteral">&lt;?php</span>
+<a name="l00313"></a>00313 <span class="stringliteral">}//fin if ($laPage-&gt;nomPageGoogle)</span>
+<a name="l00314"></a>00314 <span class="stringliteral">?&gt;</span>
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

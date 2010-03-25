@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/Formation.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>Formation.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php 
+<a name="l00010"></a><a class="code" href="class_formation.html">00010</a> <span class="keyword">class </span><a class="code" href="class_formation.html" title="s&amp;eacute;pcifique IFIP">Formation</a> <span class="keyword">extends</span> <a class="code" href="class_paragraphe.html" title="G&amp;egrave;re le traitement des paragraphes.">Paragraphe</a> {
+<a name="l00015"></a><a class="code" href="class_formation.html#af7b389f8d5f674e93fef1698a1bfd943">00015</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#af7b389f8d5f674e93fef1698a1bfd943">$datedeb</a>;
+<a name="l00020"></a><a class="code" href="class_formation.html#a237d273073c3e16697b90a4ab26983e7">00020</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#a237d273073c3e16697b90a4ab26983e7">$datefin</a>;
+<a name="l00025"></a><a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">00025</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>;
+<a name="l00030"></a><a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">00030</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>;
+<a name="l00035"></a><a class="code" href="class_formation.html#aecfb5392a73140cacdf4c753320ca931">00035</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#aecfb5392a73140cacdf4c753320ca931">$enligne</a>;
+<a name="l00040"></a><a class="code" href="class_formation.html#ace18b70412f3a9731988f6548265ac60">00040</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#ace18b70412f3a9731988f6548265ac60">$surMesure</a>;
+<a name="l00045"></a><a class="code" href="class_formation.html#aa28539945c15f9671c15affe9399bab4">00045</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#aa28539945c15f9671c15affe9399bab4">$listcateg</a> = array();
+<a name="l00050"></a><a class="code" href="class_formation.html#acc4a32be5ec68fdd221741cb210bc6c2">00050</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#acc4a32be5ec68fdd221741cb210bc6c2">$listsscateg</a> = array();
+<a name="l00055"></a><a class="code" href="class_formation.html#a60948dae7b6b906e3ae0e44c255601a1">00055</a>         <span class="keyword">public</span> <a class="code" href="class_formation.html#a60948dae7b6b906e3ae0e44c255601a1">$numclient</a>;
+<a name="l00060"></a><a class="code" href="class_formation.html#a19760d8f7f858a2a87fac9e8c58e005f">00060</a>         function <a class="code" href="class_formation.html#a19760d8f7f858a2a87fac9e8c58e005f">creerFormation</a>() {      
+<a name="l00061"></a>00061                 <span class="keywordflow">if</span> ($this-&gt;datedeb_admin) <a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>=formaterDate($this-&gt;datedeb_admin); <span class="keywordflow">else</span> <a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>=0;  
+<a name="l00062"></a>00062                 <span class="keywordflow">if</span> ($this-&gt;datefin_admin) <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>=formaterDate($this-&gt;datefin_admin); <span class="keywordflow">else</span> <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>=0;
+<a name="l00063"></a>00063             mysql_query(<span class="stringliteral">&quot;INSERT INTO if_formations (numpara,sur_mesure,date_deb,date_fin,enligne) </span>
+<a name="l00064"></a>00064 <span class="stringliteral">                VALUES (&#39;$this-&gt;numpara&#39;,&#39;$this-&gt;surMesure&#39;,&#39;&quot;</span>.<a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>.<span class="stringliteral">&quot;&#39;,&#39;&quot;</span>.<a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>.<span class="stringliteral">&quot;&#39;,&#39;$this-&gt;enligne&#39;)&quot;</span>);              
+<a name="l00065"></a>00065         }
+<a name="l00066"></a>00066         
+<a name="l00070"></a><a class="code" href="class_formation.html#abd0498f5aed98576d0cc74e630b31418">00070</a>         function <a class="code" href="class_formation.html#abd0498f5aed98576d0cc74e630b31418">modifierFormation</a>() {     
+<a name="l00071"></a>00071                 <span class="keywordflow">if</span> ($this-&gt;datedeb_admin) <a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>=formaterDate($this-&gt;datedeb_admin); <span class="keywordflow">else</span> <a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>=0;  
+<a name="l00072"></a>00072                 <span class="keywordflow">if</span> ($this-&gt;datefin_admin) <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>=formaterDate($this-&gt;datefin_admin); <span class="keywordflow">else</span> <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>=0;
+<a name="l00073"></a>00073             mysql_query(<span class="stringliteral">&quot;UPDATE if_formations SET sur_mesure=&#39;$this-&gt;surMesure&#39;,date_deb=&#39;$datedeb_admin&#39;, date_fin=&#39;$datefin_admin&#39;, enligne=&#39;$this-&gt;enligne&#39; WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00074"></a>00074                 mysql_query(<span class="stringliteral">&quot;DELETE FROM if_para_categ WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00075"></a>00075             mysql_query(<span class="stringliteral">&quot;DELETE FROM if_para_sscateg WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00076"></a>00076         }
+<a name="l00080"></a><a class="code" href="class_formation.html#a1e0e03b09b889a63b7691c8b57613e48">00080</a>         function <a class="code" href="class_formation.html#a1e0e03b09b889a63b7691c8b57613e48">supprimerFormation</a>() { 
+<a name="l00081"></a>00081            mysql_query(<span class="stringliteral">&quot;DELETE FROM if_paragraphe WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00082"></a>00082            mysql_query(<span class="stringliteral">&quot;DELETE FROM if_formations WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00083"></a>00083            mysql_query(<span class="stringliteral">&quot;DELETE FROM if_para_fichier WHERE numparafichier=&#39;$this-&gt;numparafichier&#39;&quot;</span>);
+<a name="l00084"></a>00084            
+<a name="l00085"></a>00085         } 
+<a name="l00089"></a><a class="code" href="class_formation.html#ab3b103a64520e89e24a5e30c1d2622e4">00089</a>         function <a class="code" href="class_formation.html#ab3b103a64520e89e24a5e30c1d2622e4">afficherCateg</a>() {
+<a name="l00090"></a>00090                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numcateg FROM if_para_categ WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00091"></a>00091                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00092"></a>00092                           $laCateg=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00093"></a>00093                           $laCateg-&gt;type=<span class="stringliteral">&quot;categorie&quot;</span>;
+<a name="l00094"></a>00094                           $laCateg-&gt;nomkey=<span class="stringliteral">&quot;numcateg&quot;</span>;
+<a name="l00095"></a>00095                           $laCateg-&gt;nummenu=$row[0];  
+<a name="l00096"></a>00096                           $laCateg-&gt;infosMenu();
+<a name="l00097"></a>00097                           $this-&gt;listcateg[]=$laCateg;
+<a name="l00098"></a>00098                 } 
+<a name="l00099"></a>00099                 <span class="keywordflow">if</span> (count($this-&gt;listcateg)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00100"></a>00100         }
+<a name="l00104"></a><a class="code" href="class_formation.html#a38b1ab28558b9ee35297e1ac6b3fe21c">00104</a>         function <a class="code" href="class_formation.html#a38b1ab28558b9ee35297e1ac6b3fe21c">afficherSscateg</a>() {
+<a name="l00105"></a>00105                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numsscateg FROM if_para_sscateg WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00106"></a>00106                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00107"></a>00107                           $laSscateg=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00108"></a>00108                           $laSscateg-&gt;type=<span class="stringliteral">&quot;sscateg&quot;</span>;
+<a name="l00109"></a>00109                           $laSscateg-&gt;nomkey=<span class="stringliteral">&quot;numsscateg&quot;</span>;
+<a name="l00110"></a>00110                           $laSscateg-&gt;nummenu=$row[0];  
+<a name="l00111"></a>00111                           $laSscateg-&gt;infosMenu();
+<a name="l00112"></a>00112                           $this-&gt;listsscateg[]=$laSscateg;
+<a name="l00113"></a>00113                 } 
+<a name="l00114"></a>00114                 <span class="keywordflow">if</span> (count($this-&gt;listsscateg)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00115"></a>00115         }
+<a name="l00119"></a><a class="code" href="class_formation.html#a21459cfe9d22d1823c51e8f9167b20e2">00119</a>         function <a class="code" href="class_formation.html#a21459cfe9d22d1823c51e8f9167b20e2">associerFormaCateg</a>() {
+<a name="l00120"></a>00120                 <span class="keywordflow">if</span> (is_array($this-&gt;listcateg)) {
+<a name="l00121"></a>00121                    <span class="keywordflow">for</span> ($i=0;$i&lt;count($this-&gt;listcateg);$i++) {  
+<a name="l00122"></a>00122                                 $categ=$this-&gt;listcateg[$i];
+<a name="l00123"></a>00123                                 mysql_query(<span class="stringliteral">&quot;INSERT INTO if_para_categ (numpara,numcateg) VALUES (&#39;$this-&gt;numpara&#39;,&#39;$categ&#39;)&quot;</span>);
+<a name="l00124"></a>00124                    }
+<a name="l00125"></a>00125                 }
+<a name="l00126"></a>00126         }
+<a name="l00130"></a><a class="code" href="class_formation.html#af5d7de6ebff6d96b358373c61b172f03">00130</a>         function <a class="code" href="class_formation.html#af5d7de6ebff6d96b358373c61b172f03">associerFormaSscateg</a>() {
+<a name="l00131"></a>00131                  <span class="keywordflow">if</span> (is_array($this-&gt;listsscateg)) {
+<a name="l00132"></a>00132                    <span class="keywordflow">for</span> ($i=0;$i&lt;count($this-&gt;listsscateg);$i++) {
+<a name="l00133"></a>00133                                 $sscateg=$this-&gt;listsscateg[$i];
+<a name="l00134"></a>00134                                 mysql_query(<span class="stringliteral">&quot;INSERT INTO if_para_sscateg (numpara,numsscateg) VALUES (&#39;$this-&gt;numpara&#39;,&#39;$sscateg&#39;)&quot;</span>);
+<a name="l00135"></a>00135                    }
+<a name="l00136"></a>00136                 }
+<a name="l00137"></a>00137         }
+<a name="l00141"></a><a class="code" href="class_formation.html#a388b22a573bad90ce13c4baa5ca5b9eb">00141</a>         function <a class="code" href="class_formation.html#a388b22a573bad90ce13c4baa5ca5b9eb">infosFormation</a>(){
+<a name="l00142"></a>00142                 $row=SelectMultiple(<span class="stringliteral">&quot;if_v_form&quot;</span>,<span class="stringliteral">&quot;numpara&quot;</span>,$this-&gt;numpara);
+<a name="l00143"></a>00143                 $this-&gt;titrePara=miseEnForme($row[<span class="stringliteral">&quot;titre&quot;</span>]);    
+<a name="l00144"></a>00144                 $this-&gt;contenuPara=miseEnForme($row[<span class="stringliteral">&quot;contenu&quot;</span>]);
+<a name="l00145"></a>00145                 <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;date_deb&quot;</span>]) $this-&gt;datedeb=iconv(<span class="stringliteral">&#39;ISO-8859-1&#39;</span>, <span class="stringliteral">&#39;UTF-8&#39;</span>,(strftime(<span class="stringliteral">&quot;%d %B %Y&quot;</span>,$row[<span class="stringliteral">&quot;date_deb&quot;</span>])));
+<a name="l00146"></a>00146                 <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;date_fin&quot;</span>]) $this-&gt;datefin=iconv(<span class="stringliteral">&#39;ISO-8859-1&#39;</span>, <span class="stringliteral">&#39;UTF-8&#39;</span>,(strftime(<span class="stringliteral">&quot;%d %B %Y&quot;</span>,$row[<span class="stringliteral">&quot;date_fin&quot;</span>])));
+<a name="l00147"></a>00147                 <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;date_deb&quot;</span>]) $this-&gt;datedeb_admin=date(<span class="stringliteral">&quot;d/m/Y&quot;</span>,$row[<span class="stringliteral">&quot;date_deb&quot;</span>]);
+<a name="l00148"></a>00148                 <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;date_fin&quot;</span>]) $this-&gt;datefin_admin=date(<span class="stringliteral">&quot;d/m/Y&quot;</span>,$row[<span class="stringliteral">&quot;date_fin&quot;</span>]);
+<a name="l00149"></a>00149                 $this-&gt;surMesure=$row[<span class="stringliteral">&quot;sur_mesure&quot;</span>];
+<a name="l00150"></a>00150                 $this-&gt;enligne=$row[<span class="stringliteral">&quot;enligne&quot;</span>];
+<a name="l00151"></a>00151         } 
+<a name="l00156"></a><a class="code" href="class_formation.html#a7d725fb007fbdd0d5b542f03b821dcb7">00156</a>         function <a class="code" href="class_formation.html#a7d725fb007fbdd0d5b542f03b821dcb7">avertirAdmin</a>() {
+<a name="l00157"></a>00157                         <span class="keywordflow">if</span> ($this-&gt;numclient) {
+<a name="l00158"></a>00158                                 $leClient=<span class="keyword">new</span> <a class="code" href="class_client.html" title="G&amp;egrave;re les diff&amp;eacute;rents clients.">Client</a>();
+<a name="l00159"></a>00159                                 $leClient-&gt;numclient=$this-&gt;numclient;
+<a name="l00160"></a>00160                                 $leClient-&gt;infosClient();
+<a name="l00161"></a>00161                                 
+<a name="l00162"></a>00162                                 $corps.=<span class="stringliteral">&quot;Bonjour Catherine Verrecke,\n&quot;</span>;
+<a name="l00163"></a>00163                                 $corps.= <span class="stringliteral">&quot;Un client s&#39;est inscrit une formation \&quot;&quot;</span>.$this-&gt;titrePara.<span class="stringliteral">&quot;\&quot;\n&quot;</span>;
+<a name="l00164"></a>00164                                 $corps.=<span class="stringliteral">&quot;----------------------------------------------\n&quot;</span>;
+<a name="l00165"></a>00165                                 $corps.=<span class="stringliteral">&quot;FORMATION\n&quot;</span>;
+<a name="l00166"></a>00166                                 $corps.=<span class="stringliteral">&quot;----------------------------------------------\n&quot;</span>;
+<a name="l00167"></a>00167                                 $corps.=<span class="stringliteral">&quot;Intitulé : &quot;</span>.$this-&gt;titrePara.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00168"></a>00168                                 $corps.=<span class="stringliteral">&quot;Date : &quot;</span>;
+<a name="l00169"></a>00169                                 <span class="keywordflow">if</span> ($this-&gt;datefin) $corps.= <span class="stringliteral">&quot; du &quot;</span>.$this-&gt;datedeb.<span class="stringliteral">&quot; au &quot;</span>.$this-&gt;datefin; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;datedeb &amp;&amp; !$this-&gt;datefin) $corps.=<span class="stringliteral">&quot; le &quot;</span>. $this-&gt;datedeb; <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;surMesure==<span class="stringliteral">&quot;o&quot;</span>) $corps.= <span class="stringliteral">&quot; sur mesure&quot;</span>; 
+<a name="l00170"></a>00170                                 
+<a name="l00171"></a>00171                                 $corps.=<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00172"></a>00172                                 $corps.=<span class="stringliteral">&quot;----------------------------------------------\n&quot;</span>;
+<a name="l00173"></a>00173                                 $corps.=<span class="stringliteral">&quot;STAGIAIRE\n&quot;</span>;
+<a name="l00174"></a>00174                                 $corps.=<span class="stringliteral">&quot;----------------------------------------------\n&quot;</span>;
+<a name="l00175"></a>00175                                 $corps.=$leClient-&gt;nom.<span class="stringliteral">&quot; &quot;</span>.$leClient-&gt;prenom.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00176"></a>00176                                 $corps.=$leClient-&gt;raison.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00177"></a>00177                                 $corps.=$leClient-&gt;adr1.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00178"></a>00178                                 $corps.=$leClient-&gt;adr2.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00179"></a>00179                                 $corps.=$leClient-&gt;cp.<span class="stringliteral">&quot; &quot;</span>.$leClient-&gt;ville.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00180"></a>00180                                 $corps.=utf8_encode(SelectSimple(<span class="stringliteral">&quot;pays&quot;</span>,<span class="stringliteral">&quot;if_pays&quot;</span>,<span class="stringliteral">&quot;numpays&quot;</span>,$laLivraison[<span class="stringliteral">&quot;numpays_l&quot;</span>],<span class="stringliteral">&quot;&quot;</span>)).<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00181"></a>00181                                 $corps.=<span class="stringliteral">&quot;Tél. &quot;</span>.$leClient-&gt;tel.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00182"></a>00182                                 $corps.=<span class="stringliteral">&quot;Fax. &quot;</span>.$leClient-&gt;fax.<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00183"></a>00183                                 
+<a name="l00184"></a>00184                                 $corps=nl2br(stripslashes($corps));
+<a name="l00185"></a>00185                                 
+<a name="l00186"></a>00186                 
+<a name="l00187"></a>00187                                 $entete=<span class="stringliteral">&quot;Content-type: text/html; charset=UTF-8\nStatus: U\nReply-To: &quot;</span>.$leClient-&gt;email.<span class="stringliteral">&quot;\nFrom: &quot;</span>.$leClient-&gt;email;
+<a name="l00188"></a>00188                                 mail(<span class="stringliteral">&quot;catherine.vereecke@ifip.asso.fr&quot;</span>,<span class="stringliteral">&quot;Inscription à la formation&quot;</span>,$corps,$entete);
+<a name="l00189"></a>00189                                 mail(<span class="stringliteral">&quot;henriette.cuny@wanadoo.fr&quot;</span>,<span class="stringliteral">&quot;Copie/Inscription à la formation&quot;</span>,$corps,$entete);
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191                         }
+<a name="l00192"></a>00192         }
+<a name="l00197"></a><a class="code" href="class_formation.html#a5e9a4250559d2decd7de95b661890092">00197</a>         function <a class="code" href="class_formation.html#a5e9a4250559d2decd7de95b661890092">nbInscrits</a>() {
+<a name="l00198"></a>00198                 $result=mysql_query(<span class="stringliteral">&quot;SELECT if_bo_detail.numpara FROM if_bo_detail, if_formations WHERE if_bo_detail.numpara=&#39;$this-&gt;numpara&#39; AND if_bo_detail.numpara=if_formations.numpara AND sur_mesure=&#39;o&#39; AND validee!=&#39;o&#39; GROUP BY if_bo_detail.numcom&quot;</span>);
+<a name="l00199"></a>00199                 <span class="keywordflow">return</span> mysql_numrows($result);
+<a name="l00200"></a>00200         }
+<a name="l00205"></a><a class="code" href="class_formation.html#ab8bddd467b817d392eed88e8b05139db">00205</a>         function <a class="code" href="class_formation.html#ab8bddd467b817d392eed88e8b05139db">listerInscrits</a>() {
+<a name="l00206"></a>00206                 $list_inscrits=array();
+<a name="l00207"></a>00207                 
+<a name="l00208"></a>00208                 $result=mysql_query(<span class="stringliteral">&quot;SELECT if_bo_detail.numcom FROM if_bo_detail, if_formations WHERE if_bo_detail.numpara=&#39;$this-&gt;numpara&#39; AND if_bo_detail.numpara=if_formations.numpara AND sur_mesure=&#39;o&#39; AND validee!=&#39;o&#39; GROUP BY if_bo_detail.numcom&quot;</span>);
+<a name="l00209"></a>00209                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00210"></a>00210                         <span class="comment">// Recherche des articles</span>
+<a name="l00211"></a>00211                         $lePanier = <span class="keyword">new</span> <a class="code" href="class_panier.html">Panier</a>();
+<a name="l00212"></a>00212                         $lePanier-&gt;numcom=$row[0];
+<a name="l00213"></a>00213                         $listeArt=$lePanier-&gt;listerArticlesForm();
+<a name="l00214"></a>00214                         
+<a name="l00215"></a>00215                         <span class="comment">//Infos sur le client</span>
+<a name="l00216"></a>00216                         $inscrit = <span class="keyword">new</span> <a class="code" href="class_client.html" title="G&amp;egrave;re les diff&amp;eacute;rents clients.">Client</a>();
+<a name="l00217"></a>00217                         $inscrit-&gt;numclient=SelectSimple(<span class="stringliteral">&quot;numclient&quot;</span>,<span class="stringliteral">&quot;if_bo_com&quot;</span>,<span class="stringliteral">&quot;numcom&quot;</span>,$row[0]);
+<a name="l00218"></a>00218                         $inscrit-&gt;infosClient();
+<a name="l00219"></a>00219                         
+<a name="l00220"></a>00220                         $list_inscrits[]=array($inscrit,$listeArt);
+<a name="l00221"></a>00221                 }
+<a name="l00222"></a>00222                 
+<a name="l00223"></a>00223                 <span class="keywordflow">return</span> $list_inscrits;
+<a name="l00224"></a>00224         }
+<a name="l00229"></a><a class="code" href="class_formation.html#a0fc0c08174440e5b38a6a17e981742ae">00229</a>         function <a class="code" href="class_formation.html#a0fc0c08174440e5b38a6a17e981742ae">validerForma</a>($url) {
+<a name="l00230"></a>00230                 <span class="keywordflow">if</span> ($this-&gt;datedeb_admin) <a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>=formaterDate($this-&gt;datedeb_admin); <span class="keywordflow">else</span> <a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>=0;  
+<a name="l00231"></a>00231                 <span class="keywordflow">if</span> ($this-&gt;datefin_admin) <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>=formaterDate($this-&gt;datefin_admin); <span class="keywordflow">else</span> <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>=0;
+<a name="l00232"></a>00232                 <span class="comment">//mysql_query(&quot;UPDATE if_formations SET sur_mesure=&#39;o&#39;, date_deb=&#39;$datedeb_admin&#39;, date_fin=&#39;$datefin_admin&#39;, validee=&#39;o&#39; WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;);</span>
+<a name="l00233"></a>00233                 
+<a name="l00234"></a>00234                 $this-&gt;<a class="code" href="class_formation.html#a388b22a573bad90ce13c4baa5ca5b9eb">infosFormation</a>();
+<a name="l00235"></a>00235                 
+<a name="l00236"></a>00236                 <span class="comment">//Envoi d&#39;un mail à chaque inscrit</span>
+<a name="l00237"></a>00237                 $list_inscrits=$this-&gt;<a class="code" href="class_formation.html#ab8bddd467b817d392eed88e8b05139db">listerInscrits</a>();
+<a name="l00238"></a>00238                 <span class="keywordflow">for</span> ($i=0; $i&lt;count($list_inscrits);$i++) {
+<a name="l00239"></a>00239                         $list_detail=$list_inscrits[$i];
+<a name="l00240"></a>00240                         $leClient=$list_detail[0];
+<a name="l00241"></a>00241                         $sesArticles=$list_detail[1];
+<a name="l00242"></a>00242                         $sonDetail=$sesArticles[0];
+<a name="l00243"></a>00243                         
+<a name="l00244"></a>00244                         $corps= <span class="stringliteral">&quot;Bonjour &quot;</span>.$leClient-&gt;prenom.<span class="stringliteral">&quot; &quot;</span>.$leClient-&gt;nom.<span class="stringliteral">&quot;,\n\nSuite à votre inscription à la formation \&quot;&quot;</span>.$this-&gt;titrePara.<span class="stringliteral">&quot;\&quot;, nous avons le plaisir de vous annoncer que celle-ci aura lieu&quot;</span>;
+<a name="l00245"></a>00245                         <span class="keywordflow">if</span> (<a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a> &amp;&amp; <a class="code" href="class_formation.html#a9da0d874ecd1a2ef6d164c206103426f">$datefin_admin</a>) $corps.=<span class="stringliteral">&quot; du &quot;</span>.$this-&gt;datedeb_admin.<span class="stringliteral">&quot; au &quot;</span>.$this-&gt;datefin_admin;
+<a name="l00246"></a>00246                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_formation.html#a21cff847d6853d5531b73bd5c56c0505">$datedeb_admin</a>) $corps.=<span class="stringliteral">&quot; le &quot;</span>.$this-&gt;datedeb_admin;
+<a name="l00247"></a>00247                         
+<a name="l00248"></a>00248                         $corps.=<span class="stringliteral">&quot;.\n\nPour finaliser votre inscription, veuillez cliquer sur le lien suivant : \n\n&quot;</span>;
+<a name="l00249"></a>00249                         $corps.=<span class="stringliteral">&quot;http://&quot;</span>.$url.<span class="stringliteral">&quot;/index.php?t6mpnh=&quot;</span>.base64_encode(<span class="stringliteral">&quot;lien=&quot;</span>.$sonDetail[<span class="stringliteral">&quot;numcom&quot;</span>].<span class="stringliteral">&quot;&amp;email=&quot;</span>.$leClient-&gt;email.<span class="stringliteral">&quot;&amp;pwd=&quot;</span>.$leClient-&gt;pwd);
+<a name="l00250"></a>00250                         $corps.=<span class="stringliteral">&quot;\n\nVous souhaitant bonne réception,\n\n&quot;</span>;
+<a name="l00251"></a>00251                         $corps.=<span class="stringliteral">&quot;----------------------\n&quot;</span>;
+<a name="l00252"></a>00252                         $corps.=<span class="stringliteral">&quot;www.ifip.asso.fr\n&quot;</span>;
+<a name="l00253"></a>00253                         $corps.=<span class="stringliteral">&quot;----------------------\n&quot;</span>;
+<a name="l00254"></a>00254         
+<a name="l00255"></a>00255                 $entete=<span class="stringliteral">&quot;Content-type: text/plain; charset=UTF-8\nStatus: U\nReply-To: ifip@ifip.asso.fr\nFrom: www.ifip.asso.fr &lt;ifip@ifip.asso.fr&gt;&quot;</span>;
+<a name="l00256"></a>00256                         <span class="comment">//mail($leClient-&gt;email,&quot;Inscription à la formation \&quot;&quot;.$this-&gt;titrePara.&quot;\&quot;&quot;,$corps,$entete,&quot;-f &#39;ifip@ifip.asso.fr&#39;&quot;);</span>
+<a name="l00257"></a>00257                         mail($leClient-&gt;email,<span class="stringliteral">&quot;Inscription à la formation \&quot;&quot;</span>.$this-&gt;titrePara.<span class="stringliteral">&quot;\&quot;&quot;</span>,$corps,$entete);           
+<a name="l00258"></a>00258                 }
+<a name="l00259"></a>00259         }
+<a name="l00260"></a>00260         
+<a name="l00261"></a>00261 }
+<a name="l00262"></a>00262 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

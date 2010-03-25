@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/Lien.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>Lien.inc.php</h1><a href="_lien_8inc_8php.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php 
+<a name="l00012"></a><a class="code" href="class_lien.html">00012</a> <span class="keyword">class </span><a class="code" href="class_lien.html">Lien</a> { 
+<a name="l00017"></a><a class="code" href="class_lien.html#adde31722c1d5d33e7d4fc331530a5dcb">00017</a>     <span class="keyword">public</span> <a class="code" href="class_lien.html#adde31722c1d5d33e7d4fc331530a5dcb">$numlien</a>;
+<a name="l00022"></a><a class="code" href="class_lien.html#a90e204c486ca4d0e5f6ac98bcd073658">00022</a>         <span class="keyword">public</span> <a class="code" href="class_lien.html#a90e204c486ca4d0e5f6ac98bcd073658">$libLien</a>;
+<a name="l00027"></a><a class="code" href="class_lien.html#a9b2b6b12f523591859ef8ef2e825f227">00027</a>         <span class="keyword">public</span> <a class="code" href="class_lien.html#a9b2b6b12f523591859ef8ef2e825f227">$texteLien</a>;
+<a name="l00032"></a><a class="code" href="class_lien.html#addb3108208fab68d5c4e88dd963ffc9f">00032</a>         <span class="keyword">public</span> <a class="code" href="class_lien.html#addb3108208fab68d5c4e88dd963ffc9f">$ordreLien</a>;
+<a name="l00037"></a><a class="code" href="class_lien.html#a64bfa8673870ee0e7470b65e6c86181c">00037</a>         <span class="keyword">public</span> <a class="code" href="class_lien.html#a64bfa8673870ee0e7470b65e6c86181c">$urlLien</a>;
+<a name="l00042"></a><a class="code" href="class_lien.html#a07f12929ae859f29123f6223628b03fd">00042</a>         <span class="keyword">public</span> <a class="code" href="class_lien.html#a07f12929ae859f29123f6223628b03fd">$fenLien</a>;
+<a name="l00047"></a><a class="code" href="class_lien.html#a80207751166144deeb05c06ec3ad4a9f">00047</a>         <span class="keyword">public</span> <a class="code" href="class_lien.html#a80207751166144deeb05c06ec3ad4a9f">$numpara</a>;
+<a name="l00052"></a><a class="code" href="class_lien.html#a3d2bef6adb64689ab48472eb292b3d7a">00052</a>         <span class="keyword">public</span> <a class="code" href="class_lien.html#a3d2bef6adb64689ab48472eb292b3d7a">$numpage</a>;
+<a name="l00053"></a>00053         
+<a name="l00057"></a><a class="code" href="class_lien.html#a4412b2313d44f9f6c7795aadf935431d">00057</a>         function <a class="code" href="class_lien.html#a4412b2313d44f9f6c7795aadf935431d">creerLien</a>() {
+<a name="l00058"></a>00058            <span class="keywordflow">if</span> (!$this-&gt;numpage) $this-&gt;numpage=0;
+<a name="l00059"></a>00059            mysql_query(<span class="stringliteral">&quot;INSERT INTO if_liens (numpara,libelle,texte,url,numpage,fenetre,ordre) </span>
+<a name="l00060"></a>00060 <span class="stringliteral">                VALUES (&#39;$this-&gt;numpara&#39;,&#39;$this-&gt;libLien&#39;,&#39;$this-&gt;texteLien&#39;,&#39;$this-&gt;urlLien&#39;,&#39;$this-&gt;numpage&#39;,&#39;$this-&gt;fenLien&#39;,&#39;$this-&gt;ordreLien&#39;)&quot;</span>);
+<a name="l00061"></a>00061                 
+<a name="l00062"></a>00062         }
+<a name="l00066"></a><a class="code" href="class_lien.html#aec4b6bc0264ff1665fc4fb7b91b1c079">00066</a>         function <a class="code" href="class_lien.html#aec4b6bc0264ff1665fc4fb7b91b1c079">supprimerLien</a>() {
+<a name="l00067"></a>00067            mysql_query(<span class="stringliteral">&quot;DELETE FROM if_liens WHERE numlien=&#39;$this-&gt;numlien&#39;&quot;</span>);   
+<a name="l00068"></a>00068         }
+<a name="l00072"></a><a class="code" href="class_lien.html#a19e0041b91842b0761873ab8b0a387fb">00072</a>         function <a class="code" href="class_lien.html#a19e0041b91842b0761873ab8b0a387fb">modifierLien</a>() {
+<a name="l00073"></a>00073             <span class="keywordflow">if</span> (!$this-&gt;numpage) $this-&gt;numpage=0;
+<a name="l00074"></a>00074            mysql_query(<span class="stringliteral">&quot;UPDATE if_liens SET libelle=&#39;$this-&gt;libLien&#39;, texte=&#39;$this-&gt;texteLien&#39;, url=&#39;$this-&gt;urlLien&#39;, numpage=&#39;$this-&gt;numpage&#39;, fenetre=&#39;$this-&gt;fenLien&#39;, ordre=&#39;$this-&gt;ordreLien&#39; WHERE numlien =&#39;$this-&gt;numlien&#39;&quot;</span>);
+<a name="l00075"></a>00075         }       
+<a name="l00079"></a><a class="code" href="class_lien.html#a9998283b86c605a7fcde50c131a6426e">00079</a>         function <a class="code" href="class_lien.html#a9998283b86c605a7fcde50c131a6426e">infosLien</a>() {
+<a name="l00080"></a>00080                 <span class="keywordflow">if</span> ($this-&gt;numlien) {
+<a name="l00081"></a>00081                         $row=SelectMultiple(<span class="stringliteral">&quot;if_liens&quot;</span>,<span class="stringliteral">&quot;numlien&quot;</span>,$this-&gt;numlien);
+<a name="l00082"></a>00082                         $this-&gt;libLien=$row[<span class="stringliteral">&quot;libelle&quot;</span>];
+<a name="l00083"></a>00083                         $this-&gt;texteLien=miseEnForme($row[<span class="stringliteral">&quot;texte&quot;</span>]);
+<a name="l00084"></a>00084                         $this-&gt;urlLien=$row[<span class="stringliteral">&quot;url&quot;</span>];
+<a name="l00085"></a>00085                         $this-&gt;ordreLien=$row[<span class="stringliteral">&quot;ordre&quot;</span>];
+<a name="l00086"></a>00086                         $this-&gt;fenLien=$row[<span class="stringliteral">&quot;fenetre&quot;</span>];
+<a name="l00087"></a>00087                         
+<a name="l00088"></a>00088                 }
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090         
+<a name="l00091"></a>00091 }
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

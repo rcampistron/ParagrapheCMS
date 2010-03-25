@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/Paragraphe.inc_sav.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>Paragraphe.inc_sav.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de cration: 19/11/2008 */</span> 
+<a name="l00007"></a>00007 <span class="keyword">class </span><a class="code" href="class_paragraphe.html" title="G&amp;egrave;re le traitement des paragraphes.">Paragraphe</a> {
+<a name="l00008"></a>00008         
+<a name="l00009"></a>00009         <span class="comment">// variables pour le paragraphe</span>
+<a name="l00010"></a>00010         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a33be3d8d9e87b8f2644345ce2d383638" title="Num&amp;eacute;ro du paragraphe.">$numpara</a>;
+<a name="l00011"></a>00011         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#aa07e8b62c1dd9825080066f498419721">$titrePara</a>;
+<a name="l00012"></a>00012         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a9c27e32d34e93a288918dc844f97cf21">$contenuPara</a>;
+<a name="l00013"></a>00013         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a46269c4de97cd86f36959c798b81af57">$colonnePara</a>;
+<a name="l00014"></a>00014         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a344ed9ece5c15711831c545a482fef7b">$listePara</a>;
+<a name="l00015"></a>00015         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a5662751d772a266bdf90c1b318a71d18">$ordrePara</a>;
+<a name="l00016"></a>00016         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a3905b594fd4e42ea8632d85c4d7bd9bb">$typeTitre</a>;<span class="comment">//type de titre : h1 ou h2</span>
+<a name="l00017"></a>00017         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#ab4ad8e048c193c2ec92286612dae08d7">$numpage</a>;
+<a name="l00018"></a>00018         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a6c56557399706e433175c4af3494fe5f">$recherche</a>;<span class="comment">//moteur de recherche du site public</span>
+<a name="l00019"></a>00019         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#ad6ba329b4b71a67afd20910c1e8776ab">$lg</a>;<span class="comment">//langue pour le moteur de recherche</span>
+<a name="l00020"></a>00020         
+<a name="l00021"></a>00021         <span class="comment">// variables pour les liens</span>
+<a name="l00022"></a>00022         <span class="keyword">public</span> <a class="code" href="class_paragraphe.html#a597ee4d645da98d89363b3aa3c93b04c">$numlien</a>;
+<a name="l00023"></a>00023         <span class="keyword">public</span> $libLien;
+<a name="l00024"></a>00024         <span class="keyword">public</span> $texteLien;
+<a name="l00025"></a>00025         <span class="keyword">public</span> $urlLien;
+<a name="l00026"></a>00026         <span class="keyword">public</span> $ordreLien;
+<a name="l00027"></a>00027         
+<a name="l00028"></a>00028         <span class="comment">// variables pour les photos</span>
+<a name="l00029"></a>00029         <span class="keyword">public</span> $numphoto;
+<a name="l00030"></a>00030         <span class="keyword">public</span> $numparaphoto;
+<a name="l00031"></a>00031         <span class="keyword">public</span> $ordrePhoto;
+<a name="l00032"></a>00032         <span class="keyword">public</span> $legPhoto;
+<a name="l00033"></a>00033         
+<a name="l00034"></a>00034         <span class="comment">// variables pour les vid&amp;eacute;os</span>
+<a name="l00035"></a>00035         <span class="keyword">public</span> $numvideo;
+<a name="l00036"></a>00036         <span class="keyword">public</span> $numparavideo;
+<a name="l00037"></a>00037         <span class="keyword">public</span> $ordreVideo;
+<a name="l00038"></a>00038         <span class="keyword">public</span> $legVideo;
+<a name="l00039"></a>00039         
+<a name="l00040"></a>00040         <span class="comment">// variables pour les fichiers</span>
+<a name="l00041"></a>00041         <span class="keyword">public</span> $numfichier;
+<a name="l00042"></a>00042         <span class="keyword">public</span> $numparafichier;
+<a name="l00043"></a>00043         <span class="keyword">public</span> $ordreFichier;
+<a name="l00044"></a>00044         <span class="keyword">public</span> $libFichier;
+<a name="l00045"></a>00045         
+<a name="l00046"></a>00046         function <a class="code" href="class_paragraphe.html#a7f5093a2654009f06cfc31796c242b43">creerParagraphe</a>() {
+<a name="l00047"></a>00047             mysql_query(<span class="stringliteral">&quot;INSERT INTO if_paragraphe (titre,contenu) VALUES (&#39;$this-&gt;titrePara&#39;,&#39;$this-&gt;contenuPara&#39;)&quot;</span>);
+<a name="l00048"></a>00048                 $this-&gt;numpara=mysql_insert_id();
+<a name="l00049"></a>00049                 <span class="keywordflow">return</span> $this-&gt;numpara;
+<a name="l00050"></a>00050         }
+<a name="l00051"></a>00051         
+<a name="l00052"></a>00052         function <a class="code" href="class_paragraphe.html#a95f7580774e1b9caa294acbe7690bc7e">modifierParagraphe</a>() {
+<a name="l00053"></a>00053                 mysql_query(<span class="stringliteral">&quot;UPDATE if_paragraphe SET titre=&#39;$this-&gt;titrePara&#39;, contenu=&#39;$this-&gt;contenuPara&#39; WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055         
+<a name="l00056"></a>00056         function <a class="code" href="class_paragraphe.html#a0a265e37a476d2cbb715b3358eec2abc">supprimerParagraphe</a>() {
+<a name="l00057"></a>00057                 mysql_query(<span class="stringliteral">&quot;DELETE FROM if_paragraphe WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00058"></a>00058                 mysql_query(<span class="stringliteral">&quot;DELETE FROM if_liens WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00059"></a>00059                 mysql_query(<span class="stringliteral">&quot;DELETE FROM if_para_photo WHERE numpara=&#39;$this-&gt;numpara&#39;&quot;</span>);
+<a name="l00060"></a>00060         }
+<a name="l00061"></a>00061         
+<a name="l00062"></a>00062         function <a class="code" href="class_paragraphe.html#aeffa22afc5a235aa4239e9b0802ee197">associerFichier</a>() {
+<a name="l00063"></a>00063            <span class="comment">//insertion dans la table d&#39;association paragraphe-fichier </span>
+<a name="l00064"></a>00064             mysql_query(<span class="stringliteral">&quot;INSERT INTO if_para_fichier (numpara,numfichier,libelle,ordre) </span>
+<a name="l00065"></a>00065 <span class="stringliteral">                VALUES (&#39;$this-&gt;numpara&#39;,&#39;$this-&gt;numfichier&#39;,&#39;$this-&gt;libFichier&#39;,&#39;$this-&gt;ordreFichier&#39;)&quot;</span>); 
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067         
+<a name="l00068"></a>00068         function <a class="code" href="class_paragraphe.html#ad08991ee1400ce6fff487ec7ed70b5b5">modifierFichier</a>() {
+<a name="l00069"></a>00069             mysql_query(<span class="stringliteral">&quot;UPDATE if_para_fichier SET numfichier=&#39;$this-&gt;numfichier&#39;, libelle=&#39;$this-&gt;libFichier&#39;, ordre=&#39;$this-&gt;ordreFichier&#39; WHERE numparafichier=&#39;$this-&gt;numparafichier&#39;&quot;</span>); 
+<a name="l00070"></a>00070         }
+<a name="l00071"></a>00071         
+<a name="l00072"></a>00072         function <a class="code" href="class_paragraphe.html#a112cb32f752ad8184b4b5eeafa0ec079">enleverFichier</a>() {
+<a name="l00073"></a>00073            <span class="comment">//suppression dans la table d&#39;association paragraphe-fichier  </span>
+<a name="l00074"></a>00074            mysql_query(<span class="stringliteral">&quot;DELETE FROM if_para_fichier WHERE numparafichier=&#39;$this-&gt;numparafichier&#39;&quot;</span>);
+<a name="l00075"></a>00075         }
+<a name="l00076"></a>00076         
+<a name="l00077"></a>00077         function <a class="code" href="class_paragraphe.html#a929305f038cb402dd2efbba2a6d84537">associerPhoto</a>() {
+<a name="l00078"></a>00078            <span class="comment">//insertion dans la table d&#39;association paragraphe-photo</span>
+<a name="l00079"></a>00079            mysql_query(<span class="stringliteral">&quot;INSERT INTO if_para_photo (numpara,numphoto,ordre,legende) </span>
+<a name="l00080"></a>00080 <span class="stringliteral">                VALUES (&#39;$this-&gt;numpara&#39;,&#39;$this-&gt;numphoto&#39;,&#39;$this-&gt;ordrePhoto&#39;,&#39;$this-&gt;legPhoto&#39;)&quot;</span>); 
+<a name="l00081"></a>00081         }
+<a name="l00082"></a>00082         
+<a name="l00083"></a>00083         function <a class="code" href="class_paragraphe.html#a1dd9695352cdb9bdfcf09942c0939a04">modifierPhoto</a>() {
+<a name="l00084"></a>00084             mysql_query(<span class="stringliteral">&quot;UPDATE if_para_photo SET numphoto=&#39;$this-&gt;numphoto&#39;, legende=&#39;$this-&gt;legPhoto&#39;, ordre=&#39;$this-&gt;ordrePhoto&#39; WHERE numparaphoto=&#39;$this-&gt;numparaphoto&#39;&quot;</span>); 
+<a name="l00085"></a>00085         }
+<a name="l00086"></a>00086         
+<a name="l00087"></a>00087         function <a class="code" href="class_paragraphe.html#afc0bd61616438ae867bf49458d1a9a9d">enleverPhoto</a>() {
+<a name="l00088"></a>00088            <span class="comment">//suppression dans la table d&#39;association paragraphe-image </span>
+<a name="l00089"></a>00089            mysql_query(<span class="stringliteral">&quot;DELETE FROM if_para_photo WHERE numparaphoto=&#39;$this-&gt;numparaphoto&#39;&quot;</span>);
+<a name="l00090"></a>00090            <span class="comment">//$result=mysql_query(&quot;SELECT numparaphoto FROM if_para_photo WHERE numphoto=&#39;$this-&gt;numphoto&#39; AND numparaphoto!=&#39;$this-&gt;numparaphoto&#39;&quot;);</span>
+<a name="l00091"></a>00091            $numparaphoto=SelectSimple(<span class="stringliteral">&quot;numparaphoto&quot;</span>,<span class="stringliteral">&quot;if_para_photo&quot;</span>,<span class="stringliteral">&quot;numphoto&quot;</span>,$this-&gt;numphoto,<span class="stringliteral">&quot;AND numparaphoto!=&#39;$this-&gt;numparaphoto&#39;&quot;</span>);
+<a name="l00092"></a>00092            <span class="keywordflow">if</span> (!$numparaphoto) {
+<a name="l00093"></a>00093                 $supPhoto=<span class="keyword">new</span> <a class="code" href="class_photo.html">Photo</a>();
+<a name="l00094"></a>00094                 $supPhoto-&gt;numphoto=$this-&gt;numphoto;
+<a name="l00095"></a>00095                 $supPhoto-&gt;modif=<span class="stringliteral">&quot;o&quot;</span>;
+<a name="l00096"></a>00096                 $supPhoto-&gt;supprimerPhoto();
+<a name="l00097"></a>00097            }
+<a name="l00098"></a>00098            
+<a name="l00099"></a>00099         }
+<a name="l00100"></a>00100         
+<a name="l00101"></a>00101         function <a class="code" href="class_paragraphe.html#a6bfca68a66a1fabf7c540f44c9e338cb">associerVideo</a>() {
+<a name="l00102"></a>00102            <span class="comment">//insertion dans la table d&#39;association paragraphe-vido      </span>
+<a name="l00103"></a>00103            mysql_query(<span class="stringliteral">&quot;INSERT INTO if_para_video (numpara,numvideo,ordre,legende) </span>
+<a name="l00104"></a>00104 <span class="stringliteral">                VALUES (&#39;$this-&gt;numpara&#39;,&#39;$this-&gt;numvideo&#39;,&#39;$this-&gt;ordreVideo&#39;,&#39;$this-&gt;legVideo&#39;)&quot;</span>); 
+<a name="l00105"></a>00105         }
+<a name="l00106"></a>00106         
+<a name="l00107"></a>00107         function modifierVideo() {
+<a name="l00108"></a>00108             mysql_query(<span class="stringliteral">&quot;UPDATE if_para_video SET numvideo=&#39;$this-&gt;numvideo&#39;, legende=&#39;$this-&gt;legVideo&#39;, ordre=&#39;$this-&gt;ordreVideo&#39; WHERE numparavideo=&#39;$this-&gt;numparavideo&#39;&quot;</span>); 
+<a name="l00109"></a>00109         }
+<a name="l00110"></a>00110         
+<a name="l00111"></a>00111         function enleverVideo() {
+<a name="l00112"></a>00112                 <span class="comment">//suppression dans la table d&#39;association paragraphe-video </span>
+<a name="l00113"></a>00113                 mysql_query(<span class="stringliteral">&quot;DELETE FROM if_para_video WHERE numparavideo=&#39;$this-&gt;numparavideo&#39;&quot;</span>);
+<a name="l00114"></a>00114         }
+<a name="l00115"></a>00115         
+<a name="l00116"></a>00116         function <a class="code" href="class_paragraphe.html#a0cb3d7ac6c7b248664cf89ddee8ac5ed">rechercherPara</a>() {
+<a name="l00117"></a>00117         
+<a name="l00118"></a>00118                 <span class="comment">/***** Les titres des pages *******************/</span>
+<a name="l00119"></a>00119                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numpage,titre,alias FROM if_page WHERE titre LIKE &#39;%&quot;</span>.utf8_encode($this-&gt;recherche).<span class="stringliteral">&quot;%&#39; AND publiee=&#39;o&#39; AND lg=&#39;$this-&gt;lg&#39;&quot;</span>);
+<a name="l00120"></a>00120                 <span class="comment">//echo &quot;SELECT numpage,titre,alias FROM if_page WHERE titre LIKE &#39;%&quot;.utf8_encode($this-&gt;recherche).&quot;%&#39; AND publiee=&#39;o&#39;&quot;;</span>
+<a name="l00121"></a>00121                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00122"></a>00122                          $point1=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00123"></a>00123                          $point2=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00124"></a>00124                          $pos = strpos($row[1], $this-&gt;recherche);
+<a name="l00125"></a>00125                         <span class="comment">// echo &quot;numpppppppppppppppppppppppppp=&quot;.$pos ;</span>
+<a name="l00126"></a>00126                          <span class="keywordflow">if</span> ($pos) {
+<a name="l00127"></a>00127                                  <span class="keywordflow">if</span> ($pos&lt;200) {$deb=0; $int=$pos;} <span class="keywordflow">else</span> {$deb=$pos-200; $int=200; $point1=<span class="stringliteral">&quot;...&quot;</span>;}
+<a name="l00128"></a>00128                                  <span class="keywordflow">if</span> ((strlen($row[1])-$pos)&gt;200) $point2=<span class="stringliteral">&quot;...&quot;</span>;
+<a name="l00129"></a>00129                                  $extrait=substr($row[1],$deb,($pos-$deb+200+strlen($this-&gt;recherche)));
+<a name="l00130"></a>00130                                  $extrait=str_replace($this-&gt;recherche,<span class="stringliteral">&quot;&lt;strong&gt;&quot;</span>.stripslashes($this-&gt;recherche).<span class="stringliteral">&quot;&lt;/strong&gt;&quot;</span>,$extrait);
+<a name="l00131"></a>00131                                  <span class="comment">//$resultat[]=array(&quot;titre&quot;=&gt;$row[1],&quot;lien&quot;=&gt;$row[2],&quot;texte&quot;=&gt;$point1.$extrait.$point2);</span>
+<a name="l00132"></a>00132                                  $resultat[$row[0]]=array(<span class="stringliteral">&quot;type&quot;</span>=&gt;<span class="stringliteral">&quot;page&quot;</span>,<span class="stringliteral">&quot;titre&quot;</span>=&gt;$row[1],<span class="stringliteral">&quot;lien&quot;</span>=&gt;$row[2],<span class="stringliteral">&quot;texte&quot;</span>=&gt;<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00133"></a>00133                                  
+<a name="l00134"></a>00134                          }
+<a name="l00135"></a>00135                 }
+<a name="l00136"></a>00136                 
+<a name="l00137"></a>00137                 <span class="comment">/*********** Les titres des paragraphes *******************/</span>
+<a name="l00138"></a>00138                 $result=mysql_query(<span class="stringliteral">&quot;SELECT if_page.numpage,if_page.titre,alias,if_paragraphe.contenu FROM if_page,if_paragraphe,if_page_para WHERE if_paragraphe.numpara=if_page_para.numpara AND if_page_para.numpage=if_page.numpage AND if_paragraphe.titre LIKE &#39;%&quot;</span>.utf8_encode($this-&gt;recherche).<span class="stringliteral">&quot;%&#39; AND if_page.publiee=&#39;o&#39; AND if_page.lg=&#39;$this-&gt;lg&#39;&quot;</span>);
+<a name="l00139"></a>00139                 <span class="comment">//echo &quot;SELECT if_page.numpage,if_page.titre,alias,if_paragraphe.contenu FROM if_page,if_paragraphe,if_page_para WHERE if_paragraphe.numpara=if_page_para.numpara AND if_page_para.numpage=if_page.numpage AND if_paragraphe.contenu LIKE &#39;%&quot;.utf8_encode($this-&gt;recherche).&quot;%&#39; AND if_page.publiee=&#39;o&#39;&quot;;</span>
+<a name="l00140"></a>00140                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00141"></a>00141                          <span class="keywordflow">if</span> (!is_array($resultat) || !in_array($row[0],$resultat)) {
+<a name="l00142"></a>00142                                  $point1=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00143"></a>00143                                  $point2=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00144"></a>00144                                  $pos = strpos($row[3], $this-&gt;recherche);
+<a name="l00145"></a>00145                                  <span class="keywordflow">if</span> ($pos) {
+<a name="l00146"></a>00146                                          <span class="keywordflow">if</span> ($pos&lt;200) {$deb=0; $int=$pos;} <span class="keywordflow">else</span> {$deb=$pos-200; $int=200; $point1=<span class="stringliteral">&quot;...&quot;</span>;}
+<a name="l00147"></a>00147                                          <span class="keywordflow">if</span> ((strlen($row[1])-$pos)&gt;200) $point2=<span class="stringliteral">&quot;...&quot;</span>;
+<a name="l00148"></a>00148                                          $extrait=substr($row[3],$deb,($pos-$deb+200+strlen($this-&gt;recherche)));
+<a name="l00149"></a>00149                                          $extrait=str_replace($this-&gt;recherche,<span class="stringliteral">&quot;&lt;strong&gt;&quot;</span>.stripslashes($this-&gt;recherche).<span class="stringliteral">&quot;&lt;/strong&gt;&quot;</span>,$extrait);
+<a name="l00150"></a>00150                                          $resultat[$row[0]]=array(<span class="stringliteral">&quot;type&quot;</span>=&gt;<span class="stringliteral">&quot;page&quot;</span>,<span class="stringliteral">&quot;titre&quot;</span>=&gt;$row[1],<span class="stringliteral">&quot;lien&quot;</span>=&gt;$row[2],<span class="stringliteral">&quot;texte&quot;</span>=&gt;$point1.$extrait.$point2);
+<a name="l00151"></a>00151                                          
+<a name="l00152"></a>00152                                  }
+<a name="l00153"></a>00153                         }
+<a name="l00154"></a>00154                 }
+<a name="l00155"></a>00155                 
+<a name="l00156"></a>00156                 <span class="comment">/*********** Les contenus des paragraphes *******************/</span>
+<a name="l00157"></a>00157                 $result=mysql_query(<span class="stringliteral">&quot;SELECT if_page.numpage,if_page.titre,alias,if_paragraphe.contenu FROM if_page,if_paragraphe,if_page_para WHERE if_paragraphe.numpara=if_page_para.numpara AND if_page_para.numpage=if_page.numpage AND if_paragraphe.contenu LIKE &#39;%&quot;</span>.utf8_encode($this-&gt;recherche).<span class="stringliteral">&quot;%&#39; AND if_page.publiee=&#39;o&#39; AND if_page.lg=&#39;$this-&gt;lg&#39;&quot;</span>);
+<a name="l00158"></a>00158                 <span class="comment">//echo &quot;SELECT if_page.numpage,if_page.titre,alias,if_paragraphe.contenu FROM if_page,if_paragraphe,if_page_para WHERE if_paragraphe.numpara=if_page_para.numpara AND if_page_para.numpage=if_page.numpage AND if_paragraphe.contenu LIKE &#39;%&quot;.utf8_encode($this-&gt;recherche).&quot;%&#39; AND if_page.publiee=&#39;o&#39;&quot;;</span>
+<a name="l00159"></a>00159                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00160"></a>00160                          <span class="keywordflow">if</span> (!is_array($resultat) || !in_array($row[0],$resultat)) {
+<a name="l00161"></a>00161                                  $point1=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00162"></a>00162                                  $point2=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00163"></a>00163                                  $pos = strpos($row[3], $this-&gt;recherche);
+<a name="l00164"></a>00164                                  <span class="keywordflow">if</span> ($pos) {
+<a name="l00165"></a>00165                                          <span class="keywordflow">if</span> ($pos&lt;200) {$deb=0; $int=$pos;} <span class="keywordflow">else</span> {$deb=$pos-200; $int=200; $point1=<span class="stringliteral">&quot;...&quot;</span>;}
+<a name="l00166"></a>00166                                          <span class="keywordflow">if</span> ((strlen($row[1])-$pos)&gt;200) $point2=<span class="stringliteral">&quot;...&quot;</span>;
+<a name="l00167"></a>00167                                          $extrait=substr($row[3],$deb,($pos-$deb+200+strlen($this-&gt;recherche)));
+<a name="l00168"></a>00168                                          $extrait=str_replace($this-&gt;recherche,<span class="stringliteral">&quot;&lt;strong&gt;&quot;</span>.stripslashes($this-&gt;recherche).<span class="stringliteral">&quot;&lt;/strong&gt;&quot;</span>,$extrait);
+<a name="l00169"></a>00169                                          $resultat[$row[0]]=array(<span class="stringliteral">&quot;type&quot;</span>=&gt;<span class="stringliteral">&quot;page&quot;</span>,<span class="stringliteral">&quot;titre&quot;</span>=&gt;$row[1],<span class="stringliteral">&quot;lien&quot;</span>=&gt;$row[2],<span class="stringliteral">&quot;texte&quot;</span>=&gt;$point1.$extrait.$point2);
+<a name="l00170"></a>00170                                          
+<a name="l00171"></a>00171                                  }
+<a name="l00172"></a>00172                         }
+<a name="l00173"></a>00173                 }
+<a name="l00174"></a>00174                 
+<a name="l00175"></a>00175         
+<a name="l00176"></a>00176                 <span class="comment">/*********** Les titres des docs *******************/</span>
+<a name="l00177"></a>00177                 <span class="keywordflow">if</span> ($this-&gt;lg==<span class="stringliteral">&quot;fr&quot;</span>) $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara, titre, contenu,tarif,acces_res FROM if_v_doc WHERE titre LIKE &#39;%&quot;</span>.utf8_encode($this-&gt;recherche).<span class="stringliteral">&quot;%&#39; AND publiee=&#39;o&#39;&quot;</span>);
+<a name="l00178"></a>00178                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;lg==<span class="stringliteral">&quot;en&quot;</span>) $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara, titre_en, contenu_en,tarif,acces_res FROM if_v_doc WHERE titre_en LIKE &#39;%&quot;</span>.utf8_encode($this-&gt;recherche).<span class="stringliteral">&quot;%&#39; AND publiee=&#39;o&#39;&quot;</span>);
+<a name="l00179"></a>00179                 
+<a name="l00180"></a>00180                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00181"></a>00181                         <span class="keywordflow">if</span> (!is_array($resultat) || !in_array(<span class="stringliteral">&quot;doc-&quot;</span>.$row[0],$resultat)) {
+<a name="l00182"></a>00182                                  $point1=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00183"></a>00183                                  $point2=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00184"></a>00184                                  $pos = strpos($row[1], $this-&gt;recherche);
+<a name="l00185"></a>00185                                  <span class="keywordflow">if</span> ($pos) {
+<a name="l00186"></a>00186                                          <span class="keywordflow">if</span> ($pos&lt;200) {$deb=0; $int=$pos;} <span class="keywordflow">else</span> {$deb=$pos-200; $int=200; $point1=<span class="stringliteral">&quot;...&quot;</span>;}
+<a name="l00187"></a>00187                                          <span class="keywordflow">if</span> ((strlen($row[1])-$pos)&gt;200) $point2=<span class="stringliteral">&quot;...&quot;</span>;
+<a name="l00188"></a>00188                                          $extrait=substr($row[1],$deb,($pos-$deb+200+strlen($this-&gt;recherche)));
+<a name="l00189"></a>00189                                          $extrait=str_replace($this-&gt;recherche,<span class="stringliteral">&quot;&lt;strong&gt;&quot;</span>.stripslashes($this-&gt;recherche).<span class="stringliteral">&quot;&lt;/strong&gt;&quot;</span>,$extrait);
+<a name="l00190"></a>00190                                          
+<a name="l00191"></a>00191                                          $nom_fiche=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00192"></a>00192                                          $fiche=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00193"></a>00193                                                 $fiche-&gt;numpara= $row[0]; 
+<a name="l00194"></a>00194                                                 $fiche-&gt;afficherListeFichiers();
+<a name="l00195"></a>00195                                                 <span class="keywordflow">foreach</span> ($fiche as $fichiers) {
+<a name="l00196"></a>00196                                                         $nom_fiche=<span class="stringliteral">&quot;fichiers/&quot;</span>.$fichiers-&gt;nomFichier;
+<a name="l00197"></a>00197                                                         <span class="keywordflow">break</span>;  
+<a name="l00198"></a>00198                                                 }
+<a name="l00199"></a>00199                                          $resultat[<span class="stringliteral">&quot;doc-&quot;</span>.$row[0]]=array(<span class="stringliteral">&quot;type&quot;</span>=&gt;<span class="stringliteral">&quot;doc&quot;</span>,<span class="stringliteral">&quot;titre&quot;</span>=&gt;$row[1],<span class="stringliteral">&quot;lien&quot;</span>=&gt;$nom_fiche,<span class="stringliteral">&quot;texte&quot;</span>=&gt;<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;tarif&quot;</span>=&gt;$row[3],<span class="stringliteral">&quot;acces_res&quot;</span>=&gt;$row[4]);
+<a name="l00200"></a>00200                                          
+<a name="l00201"></a>00201                                  }
+<a name="l00202"></a>00202                         }
+<a name="l00203"></a>00203                 }
+<a name="l00204"></a>00204                 
+<a name="l00205"></a>00205                 
+<a name="l00206"></a>00206                 <span class="comment">/*********** Les contenus des docs *******************/</span>
+<a name="l00207"></a>00207                 <span class="keywordflow">if</span> ($this-&gt;lg==<span class="stringliteral">&quot;fr&quot;</span>) $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara, titre, contenu,tarif,acces_res FROM if_v_doc WHERE contenu LIKE &#39;%&quot;</span>.utf8_encode($this-&gt;recherche).<span class="stringliteral">&quot;%&#39; AND publiee=&#39;o&#39;&quot;</span>);
+<a name="l00208"></a>00208                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;lg==<span class="stringliteral">&quot;en&quot;</span>) $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara, titre_en, contenu_en,tarif,acces_res FROM if_v_doc WHERE contenu_en LIKE &#39;%&quot;</span>.utf8_encode($this-&gt;recherche).<span class="stringliteral">&quot;%&#39; AND publiee=&#39;o&#39;&quot;</span>);
+<a name="l00209"></a>00209                 
+<a name="l00210"></a>00210                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00211"></a>00211                          <span class="keywordflow">if</span> (!is_array($resultat) || !in_array(<span class="stringliteral">&quot;doc-&quot;</span>.$row[0],$resultat)) {
+<a name="l00212"></a>00212                                  $point1=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00213"></a>00213                                  $point2=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00214"></a>00214                                  $pos = strpos($row[1], $this-&gt;recherche);
+<a name="l00215"></a>00215                                  <span class="keywordflow">if</span> ($pos) {
+<a name="l00216"></a>00216                                          <span class="keywordflow">if</span> ($pos&lt;200) {$deb=0; $int=$pos;} <span class="keywordflow">else</span> {$deb=$pos-200; $int=200; $point1=<span class="stringliteral">&quot;...&quot;</span>;}
+<a name="l00217"></a>00217                                          <span class="keywordflow">if</span> ((strlen($row[1])-$pos)&gt;200) $point2=<span class="stringliteral">&quot;...&quot;</span>;
+<a name="l00218"></a>00218                                          $extrait=substr($row[1],$deb,($pos-$deb+200+strlen($this-&gt;recherche)));
+<a name="l00219"></a>00219                                          $extrait=str_replace($rechercher,<span class="stringliteral">&quot;&lt;strong&gt;&quot;</span>.stripslashes($this-&gt;recherche).<span class="stringliteral">&quot;&lt;/strong&gt;&quot;</span>,$extrait);
+<a name="l00220"></a>00220                                          
+<a name="l00221"></a>00221                                           $nom_fiche=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00222"></a>00222                                          $fiche=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00223"></a>00223                                                 $fiche-&gt;numpara= $row[0]; 
+<a name="l00224"></a>00224                                                 $fiche-&gt;afficherListeFichiers();
+<a name="l00225"></a>00225                                                 <span class="keywordflow">foreach</span> ($fiche as $fichiers) {
+<a name="l00226"></a>00226                                                         $nom_fiche=<span class="stringliteral">&quot;fichiers/&quot;</span>.$fichiers-&gt;nomFichier;
+<a name="l00227"></a>00227                                                         <span class="keywordflow">break</span>;  
+<a name="l00228"></a>00228                                                 }
+<a name="l00229"></a>00229                                          $resultat[<span class="stringliteral">&quot;doc-&quot;</span>.$row[0]]=array(<span class="stringliteral">&quot;type&quot;</span>=&gt;<span class="stringliteral">&quot;doc&quot;</span>,<span class="stringliteral">&quot;titre&quot;</span>=&gt;$row[1],<span class="stringliteral">&quot;lien&quot;</span>=&gt;$nom_fiche,<span class="stringliteral">&quot;texte&quot;</span>=&gt;<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;tarif&quot;</span>=&gt;$row[3],<span class="stringliteral">&quot;acces_res&quot;</span>=&gt;$row[4]);
+<a name="l00230"></a>00230                                          
+<a name="l00231"></a>00231                                  }
+<a name="l00232"></a>00232                         }
+<a name="l00233"></a>00233                 }
+<a name="l00234"></a>00234                 
+<a name="l00235"></a>00235                 <span class="keywordflow">return</span> $resultat;
+<a name="l00236"></a>00236         }       
+<a name="l00237"></a>00237         
+<a name="l00238"></a>00238         function infosPara() {
+<a name="l00239"></a>00239                 $row=SelectMultiple(<span class="stringliteral">&quot;if_paragraphe&quot;</span>,<span class="stringliteral">&quot;numpara&quot;</span>,$this-&gt;numpara);
+<a name="l00240"></a>00240                 $this-&gt;titrePara=miseEnForme($row[<span class="stringliteral">&quot;titre&quot;</span>]);    
+<a name="l00241"></a>00241                 $this-&gt;contenuPara=miseEnForme($row[<span class="stringliteral">&quot;contenu&quot;</span>]);
+<a name="l00242"></a>00242                 $this-&gt;accueil=$row[<span class="stringliteral">&quot;accueil&quot;</span>];
+<a name="l00243"></a>00243                 
+<a name="l00244"></a>00244                 $row=SelectMultiple(<span class="stringliteral">&quot;if_page_para&quot;</span>,<span class="stringliteral">&quot;numpara&quot;</span>,$this-&gt;numpara,$fin_req=<span class="stringliteral">&quot; AND numpage=&#39;$this-&gt;numpage&#39;&quot;</span>); 
+<a name="l00245"></a>00245                 $this-&gt;colonnePara=$row[<span class="stringliteral">&quot;colonne&quot;</span>];
+<a name="l00246"></a>00246                 $this-&gt;ordrePara=$row[<span class="stringliteral">&quot;ordre&quot;</span>];
+<a name="l00247"></a>00247                 $this-&gt;listePara=$row[<span class="stringliteral">&quot;liste&quot;</span>];
+<a name="l00248"></a>00248                 $this-&gt;typeTitre=$row[<span class="stringliteral">&quot;type_titre&quot;</span>];
+<a name="l00249"></a>00249         }
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251 }<span class="comment">//fin de classe</span>
+<a name="l00252"></a>00252 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>
