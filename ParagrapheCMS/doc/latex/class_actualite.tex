@@ -1,0 +1,61 @@
+\hypertarget{class_actualite}{
+\section{Actualite Class Reference}
+\label{class_actualite}\index{Actualite@{Actualite}}
+}
+Inheritance diagram for Actualite::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_actualite}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_actualite_ad808999280b3d9bff7b1970abf172c31}{
+{\bfseries creerActu} ()}
+\label{class_actualite_ad808999280b3d9bff7b1970abf172c31}
+
+\item 
+\hypertarget{class_actualite_a395be213597980a30290c37535feb95e}{
+{\bfseries modifierActu} ()}
+\label{class_actualite_a395be213597980a30290c37535feb95e}
+
+\item 
+\hypertarget{class_actualite_a302913bb577b788ed556943e0118d783}{
+{\bfseries supprimerActu} ()}
+\label{class_actualite_a302913bb577b788ed556943e0118d783}
+
+\item 
+\hyperlink{class_actualite_ac2b51cc4f1589ec1a238b130741928ba}{infosActu} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_actualite_a4b65d7d6122e3416bd94e9f559d2bd3f}{
+{\bfseries \$date\_\-actu}}
+\label{class_actualite_a4b65d7d6122e3416bd94e9f559d2bd3f}
+
+\item 
+\hypertarget{class_actualite_a6fca37e42a9afbd9550ee2d6bc87f9c0}{
+{\bfseries \$datebrut}}
+\label{class_actualite_a6fca37e42a9afbd9550ee2d6bc87f9c0}
+
+\item 
+\hypertarget{class_actualite_aa5ae954e67fb2a1f429f17559490bcbb}{
+{\bfseries \$accueil}}
+\label{class_actualite_aa5ae954e67fb2a1f429f17559490bcbb}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_actualite_ac2b51cc4f1589ec1a238b130741928ba}{
+\index{Actualite@{Actualite}!infosActu@{infosActu}}
+\index{infosActu@{infosActu}!Actualite@{Actualite}}
+\subsubsection[{infosActu}]{\setlength{\rightskip}{0pt plus 5cm}Actualite.infosActu ()}}
+\label{class_actualite_ac2b51cc4f1589ec1a238b130741928ba}
+function listerDates() \{ \$result=mysql\_\-query(\char`\"{}SELECT date FROM if\_\-breves\char`\"{}); while (\$row=mysql\_\-fetch\_\-row(\$result)) \{ \$dat=mktime(0,0,0,date(\char`\"{}m\char`\"{},\$row\mbox{[}0\mbox{]}),1,date(\char`\"{}Y\char`\"{},\$row\mbox{[}0\mbox{]})); if ( !is\_\-array(\$list\_\-date) $|$$|$ (is\_\-array(\$list\_\-date) \&\& !in\_\-array(\$dat,\$list\_\-date)) ) \$list\_\-date\mbox{[}\mbox{]}=\$dat; \} return \$list\_\-date; \} 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+class/Actualite.inc.php\end{DoxyCompactItemize}

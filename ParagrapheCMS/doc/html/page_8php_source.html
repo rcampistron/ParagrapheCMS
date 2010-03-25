@@ -1,0 +1,915 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de includes/page.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_4e9fe22354634932d7e5fb2483c41cbe.html">includes</a>
+  </div>
+<div class="contents">
+<h1>page.php</h1><a href="page_8php.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de création: 10/12/2008 */</span> 
+<a name="l00015"></a>00015 $laPage = <span class="keyword">new</span> Page(); 
+<a name="l00016"></a>00016 <span class="keywordflow">if</span> ($numpage) {
+<a name="l00017"></a>00017         $laPage-&gt;numpage=$numpage;
+<a name="l00018"></a>00018         $laPage-&gt;infosPage();
+<a name="l00019"></a>00019         $laPage-&gt;infosColonnes(); 
+<a name="l00020"></a>00020         
+<a name="l00021"></a>00021         <span class="comment">// Recuperation des formations, contacts, docs (l&#39;affichage est gere plus bas)</span>
+<a name="l00022"></a>00022         <span class="comment">// Les formations liées à la catégorie ou sous-catégorie</span>
+<a name="l00023"></a>00023         $nb_forma=0;
+<a name="l00024"></a>00024         $tri_date=<span class="stringliteral">&quot; AND sur_mesure!=&#39;o&#39; AND date_deb&gt;=&quot;</span>.time().<span class="stringliteral">&quot; ORDER BY date_deb&quot;</span>;
+<a name="l00025"></a>00025         <span class="keywordflow">if</span> ($numsscateg) {
+<a name="l00026"></a>00026            $menuForma=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00027"></a>00027            $menuForma-&gt;type=<span class="stringliteral">&quot;sscateg&quot;</span>;
+<a name="l00028"></a>00028            $menuForma-&gt;nummenu=$numsscateg;     
+<a name="l00029"></a>00029            $menuForma-&gt;tri_date=$tri_date;
+<a name="l00030"></a>00030            $nb_forma=$menuForma-&gt;afficherFormations();
+<a name="l00031"></a>00031         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($numcateg) {<span class="comment">//fin if ($numsscateg) </span>
+<a name="l00032"></a>00032             $menuForma=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00033"></a>00033             $menuForma-&gt;type=<span class="stringliteral">&quot;categ&quot;</span>;
+<a name="l00034"></a>00034             $menuForma-&gt;nummenu=$numcateg;
+<a name="l00035"></a>00035                 $menuForma-&gt;tri_date=$tri_date; 
+<a name="l00036"></a>00036             $nb_forma=$menuForma-&gt;afficherFormations();   
+<a name="l00037"></a>00037                 
+<a name="l00038"></a>00038         }
+<a name="l00039"></a>00039         
+<a name="l00040"></a>00040         <span class="comment">// Les documentations liées à la catégorie ou sous-catégorie</span>
+<a name="l00041"></a>00041         <span class="comment">//QUE les docs qui ont des pdf (d&#39;où l&#39;utilisation des types sscat et categ pour Menu-&gt;afficherDocs)</span>
+<a name="l00042"></a>00042         <span class="comment">// NON, modifié HC : on cherche aussi sur les ouvrages de référence (qui n&#39;ont pas de pdf donc on passe à type sscateg)</span>
+<a name="l00043"></a>00043         $nb_doc=0;
+<a name="l00044"></a>00044         $tri_date=<span class="stringliteral">&quot; AND type_doc!=&#39;1&#39; &quot;</span>; <span class="comment">// type_doc=&#39;1&#39; : fiches actions - publiee=&#39;o&#39; est compris dans l&#39;objet Menu</span>
+<a name="l00045"></a>00045         <span class="keywordflow">if</span> ($numsscateg) {<span class="comment">//on est dans une page de type sous domaine</span>
+<a name="l00046"></a>00046            $menuDoc=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00047"></a>00047            $menuDoc-&gt;type=<span class="stringliteral">&quot;sscateg&quot;</span>; <span class="comment">//toutes les docs (pas que celles qui ont un pdf)</span>
+<a name="l00048"></a>00048            $menuDoc-&gt;nummenu=$numsscateg;
+<a name="l00049"></a>00049            $menuDoc-&gt;tri_date=$tri_date;
+<a name="l00050"></a>00050            $nb_doc=$menuDoc-&gt;afficherDocs();
+<a name="l00051"></a>00051         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($numcateg) {<span class="comment">//fin if ($numsscateg) on est dans une page de type dom</span>
+<a name="l00052"></a>00052                 $menuDoc=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00053"></a>00053             $menuDoc-&gt;type=<span class="stringliteral">&quot;categorie&quot;</span>; <span class="comment">//toutes les docs</span>
+<a name="l00054"></a>00054             $menuDoc-&gt;nummenu=$numcateg;
+<a name="l00055"></a>00055                 $menuDoc-&gt;tri_date=$tri_date;   
+<a name="l00056"></a>00056             $nb_doc=$menuDoc-&gt;afficherDocs();
+<a name="l00057"></a>00057                 <span class="comment">//if ($nb_doc==0) $nb_doc=$menuDoc-&gt;afficherDocsSousCateg();    </span>
+<a name="l00058"></a>00058         }
+<a name="l00059"></a>00059         
+<a name="l00060"></a>00060         <span class="comment">// Les contacts liés à la catégorie ou sous-categorie</span>
+<a name="l00061"></a>00061         $nb_cont=0;
+<a name="l00062"></a>00062         <span class="keywordflow">if</span> ($numsscateg) {
+<a name="l00063"></a>00063            $menuCont=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00064"></a>00064            $menuCont-&gt;type=<span class="stringliteral">&quot;sscateg&quot;</span>;
+<a name="l00065"></a>00065            $menuCont-&gt;nummenu=$numsscateg;      
+<a name="l00066"></a>00066            $nb_cont=$menuCont-&gt;afficherContacts(<span class="stringliteral">&quot;o&quot;</span>);
+<a name="l00067"></a>00067         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($numcateg) {<span class="comment">//fin if ($numsscateg) </span>
+<a name="l00068"></a>00068             $menuCont=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00069"></a>00069             $menuCont-&gt;type=<span class="stringliteral">&quot;categorie&quot;</span>;
+<a name="l00070"></a>00070             $menuCont-&gt;nummenu=$numcateg;       
+<a name="l00071"></a>00071             $nb_cont=$menuCont-&gt;afficherContacts(<span class="stringliteral">&quot;o&quot;</span>);    
+<a name="l00072"></a>00072                 
+<a name="l00073"></a>00073         }
+<a name="l00074"></a>00074         
+<a name="l00075"></a>00075         <span class="comment">//Mise en page particuliere pour la colonne C3 si 1 seul contenu dedans (contact)</span>
+<a name="l00076"></a>00076         <span class="comment">//mais pas de contenu contributif propre à la page</span>
+<a name="l00077"></a>00077         <span class="comment">// pour eviter de perdre 1 colonne en hauteur</span>
+<a name="l00078"></a>00078         <span class="keywordflow">if</span> (($laPage-&gt;C0 &amp;&amp; !$laPage-&gt;C3 &amp;&amp; !$nb_cont &amp;&amp; !$nb_forma &amp;&amp; !$nb_doc) ||
+<a name="l00079"></a>00079         ($laPage-&gt;C0 &amp;&amp; !$laPage-&gt;C3 &amp;&amp; $nb_cont &amp;&amp; !$nb_forma &amp;&amp; !$nb_doc)) 
+<a name="l00080"></a>00080         $divflotte=1;
+<a name="l00081"></a>00081         <span class="keywordflow">else</span> $divflotte=0;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 <span class="keywordflow">if</span> ($numpage) {
+<a name="l00085"></a>00085 <span class="comment">/*----------------------------------- COLONNE C0 ou C1 --------------------------------------------------------------*/</span>
+<a name="l00086"></a>00086 ?&gt;
+<a name="l00087"></a>00087 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;&lt;?php</span>
+<a name="l00088"></a>00088 <span class="stringliteral">                        if ($laPage-&gt;C0) {</span>
+<a name="l00089"></a>00089 <span class="stringliteral">                                if (!$divflotte) echo &quot;</span>coltexte585<span class="stringliteral">&quot;;</span>
+<a name="l00090"></a>00090 <span class="stringliteral">                                else echo &quot;</span>coltexte785<span class="stringliteral">&quot;;</span>
+<a name="l00091"></a>00091 <span class="stringliteral">                        } else if ($laPage-&gt;C1) echo &quot;</span>coltexte385<span class="stringliteral">&quot;; else echo&quot;</span>coltexte785<span class="stringliteral">&quot;;</span>
+<a name="l00092"></a>00092 <span class="stringliteral">                ?&gt;&quot;</span>&gt; 
+<a name="l00093"></a>00093                    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;sap-content&quot;</span>&gt;
+<a name="l00094"></a>00094                                 &lt;!-- item 1 | 785 pixels de large ou 585 pixels ou 385 --&gt;
+<a name="l00095"></a>00095                                 &lt;p <span class="keyword">class</span>=<span class="stringliteral">&quot;&lt;?php</span>
+<a name="l00096"></a>00096 <span class="stringliteral">                        if ($laPage-&gt;C0) {</span>
+<a name="l00097"></a>00097 <span class="stringliteral">                                if (!$divflotte)  echo &quot;</span>titre585<span class="stringliteral">&quot;; </span>
+<a name="l00098"></a>00098 <span class="stringliteral">                                else echo &quot;</span>titre785<span class="stringliteral">&quot;; </span>
+<a name="l00099"></a>00099 <span class="stringliteral">                        } else if ($laPage-&gt;C1) echo &quot;</span>titre385<span class="stringliteral">&quot;;else echo &quot;</span>titre785<span class="stringliteral">&quot;;?&gt;&quot;</span>&gt;&lt;?=$laPage-&gt;titrePage?&gt;&lt;/p&gt;
+<a name="l00100"></a>00100                                 &lt;?php
+<a name="l00101"></a>00101                                 <span class="comment">// div flotte à droite si pas de contenu contributif mais des contacts</span>
+<a name="l00102"></a>00102                                 <span class="keywordflow">if</span> ($divflotte) {
+<a name="l00103"></a>00103                                 ?&gt;
+<a name="l00104"></a>00104                                 &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;colBoxFarRightFlotte&quot;</span>&gt;
+<a name="l00105"></a>00105                                  &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;colBoxFarRightFlotteint&quot;</span>&gt;
+<a name="l00106"></a>00106                                 &lt;?php
+<a name="l00107"></a>00107                                 <span class="comment">// affichage des contacts</span>
+<a name="l00108"></a>00108                                 <span class="keywordflow">if</span> ($nb_cont) {
+<a name="l00109"></a>00109                                 ?&gt;
+<a name="l00110"></a>00110                                                  &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;titre185&quot;</span>&gt;<a class="code" href="class_contact.html" title="Gestion des contacts.">Contact&lt;? if ($nb_cont&gt;</a>1) echo<span class="stringliteral">&quot;s&quot;</span>;?&gt;&lt;/div&gt;
+<a name="l00111"></a>00111                                                  &lt;?php
+<a name="l00112"></a>00112                                                   <span class="keywordflow">for</span> ($i=0;$i&lt;count($menuCont-&gt;listcontact);$i++) { 
+<a name="l00113"></a>00113                                                         $leContact=     $menuCont-&gt;listcontact[$i];
+<a name="l00114"></a>00114                                                         $pageSpecContact=<span class="keyword">new</span> Page();
+<a name="l00115"></a>00115                                                         $pageSpecContact-&gt;pageSpecifique(<span class="stringliteral">&quot;contact&quot;</span>);
+<a name="l00116"></a>00116                                                 ?&gt;  
+<a name="l00117"></a>00117                                                   &lt;p&gt;&lt;strong&gt;&lt;?=$leContact-&gt;prenom.<span class="stringliteral">&quot; &quot;</span>.$leContact-&gt;nom?&gt;&lt;/strong&gt;&lt;br /&gt; 
+<a name="l00118"></a>00118                                                   &lt;?=miseEnForme($leContact-&gt;fonction)?&gt;&lt;br /&gt;
+<a name="l00119"></a>00119                                                   &lt;? <span class="keywordflow">if</span>($leContact-&gt;tel) echo<span class="stringliteral">&quot;&lt;span class=\&quot;carreliens\&quot;&gt;Tél.&amp;nbsp;&quot;</span>.$leContact-&gt;tel.<span class="stringliteral">&quot;&lt;/span&gt;&lt;br /&gt;&quot;</span>;?&gt;
+<a name="l00120"></a>00120                                                   &lt;a href=<span class="stringliteral">&quot;index.php?spec=contact&amp;numpage=&lt;?=$pageSpecContact-&gt;numpage?&gt;&amp;numrub=&lt;?=$pageSpecContact-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageSpecContact-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageSpecContact-&gt;numsscateg?&gt;&amp;numcontact=&lt;?=$leContact-&gt;numcontact?&gt;&amp;lg=&lt;?=$lg?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;carreliens&quot;</span>&gt;Envoyer un courriel&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<a name="l00121"></a>00121                                                         
+<a name="l00122"></a>00122                                                 &lt;?php  
+<a name="l00123"></a>00123                                                   }<span class="comment">// fin du for ($i=0;$i&lt;count($menuCont-&gt;listcontact);$i++)</span>
+<a name="l00124"></a>00124                                                  ?&gt;
+<a name="l00125"></a>00125                                                  &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;spacer&quot;</span>&gt;&lt;/div&gt;
+<a name="l00126"></a>00126                                                  &lt;?php 
+<a name="l00127"></a>00127                                 }<span class="comment">//fin if ($nb_cont)</span>
+<a name="l00128"></a>00128                                 
+<a name="l00129"></a>00129                                 ?&gt;
+<a name="l00130"></a>00130                                  &lt;!-- end of colBoxFarRightFlotteint --&gt;
+<a name="l00131"></a>00131                                  &lt;/div&gt;
+<a name="l00132"></a>00132                                  &lt;!-- end of colBoxFarRightFlotte --&gt;
+<a name="l00133"></a>00133                                 &lt;/div&gt;
+<a name="l00134"></a>00134                                 &lt;?php
+<a name="l00135"></a>00135                                 } <span class="comment">// fin if ($divflotte)</span>
+<a name="l00136"></a>00136                                 ?&gt;
+<a name="l00137"></a>00137                                 &lt;?php
+<a name="l00138"></a>00138                                 $listparas1=<span class="keyword">new</span> <a class="code" href="class_liste_paragraphes.html" title="Sp&amp;eacute;cifique IFIP.">ListeParagraphes</a>();     
+<a name="l00139"></a>00139                                 $listparas1-&gt;numpage=$laPage-&gt;numpage; 
+<a name="l00140"></a>00140                                 <span class="keywordflow">if</span> ($laPage-&gt;C0) $listparas1-&gt;colonne=<span class="stringliteral">&quot;0&quot;</span>;       <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($laPage-&gt;C1) $listparas1-&gt;colonne=<span class="stringliteral">&quot;1&quot;</span>; 
+<a name="l00141"></a>00141                                 $listparas1-&gt;afficherListeParas();
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143                                 <span class="keywordflow">foreach</span> ($listparas1 as $paras) {
+<a name="l00144"></a>00144                                    
+<a name="l00145"></a>00145                                         
+<a name="l00146"></a>00146                                         <span class="keywordflow">if</span> ($paras-&gt;titrePara) {
+<a name="l00147"></a>00147                                                 echo <span class="stringliteral">&quot;&lt;&quot;</span>.$paras-&gt;typeTitre.<span class="stringliteral">&quot;&gt;&quot;</span>;
+<a name="l00148"></a>00148                                                 echo $paras-&gt;titrePara;
+<a name="l00149"></a>00149                                                 echo <span class="stringliteral">&quot;&lt;/&quot;</span>.$paras-&gt;typeTitre.<span class="stringliteral">&quot;&gt;&quot;</span>;
+<a name="l00150"></a>00150                                         }<span class="comment">//fin if ($paras-&gt;titrePara)</span>
+<a name="l00151"></a>00151                                         
+<a name="l00152"></a>00152                                         <span class="comment">//les liens (pour mettre un lien sur une photo - l&#39;affichage est realise plus bas)</span>
+<a name="l00153"></a>00153                                         $url_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00154"></a>00154                                         $libelle_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00155"></a>00155                                         $fenetre_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00156"></a>00156                                         $listliens=<span class="keyword">new</span> <a class="code" href="class_liste_liens.html">ListeLiens</a>();
+<a name="l00157"></a>00157                                         $listliens-&gt;numpara= $paras-&gt;numpara;
+<a name="l00158"></a>00158                                         $nb_liens=$listliens-&gt;afficherListeLiens();
+<a name="l00159"></a>00159                                         <span class="keywordflow">foreach</span> ($listliens as $liens) {
+<a name="l00160"></a>00160                                                 $url_lien=$liens-&gt;urlLien;
+<a name="l00161"></a>00161                                                 $libelle_lien=$liens-&gt;libLien;
+<a name="l00162"></a>00162                                                 $fenetre_lien=$liens-&gt;fenLien;
+<a name="l00163"></a>00163                                                 <span class="keywordflow">break</span>;
+<a name="l00164"></a>00164                                         }
+<a name="l00165"></a>00165                                         
+<a name="l00166"></a>00166                                         <span class="comment">// les photos</span>
+<a name="l00167"></a>00167                                         $listphotos=<span class="keyword">new</span> <a class="code" href="class_liste_photos.html">ListePhotos</a>();
+<a name="l00168"></a>00168                                         $listphotos-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00169"></a>00169                                         $nb_photos=$listphotos-&gt;afficherListePhotos();
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171                                         <span class="keywordflow">if</span> ($nb_photos) { <span class="comment">// on fait un tableau plutot qu&#39;un flottement qui met trop le bazar</span>
+<a name="l00172"></a>00172                                                 echo<span class="stringliteral">&quot;&lt;table&gt;&lt;tr&gt;&lt;td class=&#39;sansmarge&#39;&gt;&quot;</span>;
+<a name="l00173"></a>00173                                         ?&gt;
+<a name="l00174"></a>00174                                         
+<a name="l00175"></a>00175                                         &lt;?php
+<a name="l00176"></a>00176                                                 <span class="keywordflow">foreach</span> ($listphotos as $photos) {
+<a name="l00177"></a>00177                                         ?&gt; 
+<a name="l00178"></a>00178                                                         &lt;!--
+<a name="l00179"></a>00179                                                         &lt;?php <span class="comment">//if ($paras-&gt;contenuPara) { ?&gt;</span>
+<a name="l00180"></a>00180                                                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;floatG&quot;</span>&gt;
+<a name="l00181"></a>00181                                                         &lt;? <span class="comment">//} else { ?&gt;</span>
+<a name="l00182"></a>00182                                                         --&gt;
+<a name="l00183"></a>00183                                                         &lt;p&gt;
+<a name="l00184"></a>00184                                                         &lt;? <span class="comment">//} ?&gt;</span>
+<a name="l00185"></a>00185                                                         
+<a name="l00186"></a>00186                                                         &lt;?php
+<a name="l00187"></a>00187                                                         <span class="keywordflow">if</span> ($photos-&gt;ext==<span class="stringliteral">&quot;swf&quot;</span> ) {<span class="comment">// c&#39;est un flash</span>
+<a name="l00188"></a>00188                                                         ?&gt;
+<a name="l00189"></a>00189                                                                 &lt;script type=<span class="stringliteral">&quot;text/javascript&quot;</span>&gt;
+<a name="l00190"></a>00190                                                                 AC_FL_RunContent( 
+<a name="l00191"></a>00191                                                                 <span class="stringliteral">&#39;codebase&#39;</span>,<span class="stringliteral">&#39;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0&#39;</span>,<span class="stringliteral">&#39;width&#39;</span>,<span class="stringliteral">&#39;180&#39;</span>,<span class="stringliteral">&#39;height&#39;</span>,<span class="stringliteral">&#39;240&#39;</span>,<span class="stringliteral">&#39;src&#39;</span>,<span class="stringliteral">&#39;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&#39;</span>,<span class="stringliteral">&#39;quality&#39;</span>,<span class="stringliteral">&#39;high&#39;</span>,<span class="stringliteral">&#39;pluginspage&#39;</span>,<span class="stringliteral">&#39;http://www.macromedia.com/go/getflashplayer&#39;</span>,<span class="stringliteral">&#39;movie&#39;</span>,<span class="stringliteral">&#39;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&#39;</span> 
+<a name="l00192"></a>00192                                                                 ); <span class="comment">//end AC code  </span>
+<a name="l00193"></a>00193                                                                 &lt;/script&gt;&lt;noscript&gt;&lt;<span class="keywordtype">object</span> 
+<a name="l00194"></a>00194                                                                 classid=<span class="stringliteral">&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;</span> 
+<a name="l00195"></a>00195                                                                 codebase=<span class="stringliteral">&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0&quot;</span> 
+<a name="l00196"></a>00196                                                                 width=<span class="stringliteral">&quot;180&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span>&gt;
+<a name="l00197"></a>00197                                                                                                          &lt;param name=<span class="stringliteral">&quot;movie&quot;</span> value=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> /&gt;
+<a name="l00198"></a>00198                                                                                                          &lt;param name=<span class="stringliteral">&quot;quality&quot;</span> value=<span class="stringliteral">&quot;high&quot;</span> /&gt;
+<a name="l00199"></a>00199                                                                                                          &lt;embed src=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> quality=<span class="stringliteral">&quot;high&quot;</span> 
+<a name="l00200"></a>00200                                                                 pluginspage=<span class="stringliteral">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span> 
+<a name="l00201"></a>00201                                                                 type=<span class="stringliteral">&quot;application/x-shockwave-flash&quot;</span> width=<span class="stringliteral">&quot;180&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span>&gt;&lt;/embed&gt;
+<a name="l00202"></a>00202                                                                                                   &lt;/<span class="keywordtype">object</span>&gt;&lt;/noscript&gt;
+<a name="l00203"></a>00203 
+<a name="l00204"></a>00204                                                         &lt;?php
+<a name="l00205"></a>00205                                                                 <span class="keywordflow">if</span> ($url_lien) echo <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>;
+<a name="l00206"></a>00206                                                         } <span class="keywordflow">else</span> {<span class="comment">//c&#39;est une photo / image gif ou jpg</span>
+<a name="l00207"></a>00207                                                         ?&gt;
+<a name="l00208"></a>00208                                                                 &lt;? <span class="keywordflow">if</span> ($url_lien) { 
+<a name="l00209"></a>00209                                                                           echo <span class="stringliteral">&quot;&lt;a href=&#39;&quot;</span>.$url_lien.<span class="stringliteral">&quot;&#39; title=\&quot;&quot;</span>.$libelle_lien.<span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00210"></a>00210                                                                           <span class="keywordflow">if</span> ($fenetre_lien==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot; target=&#39;_blank&#39;&quot;</span>;
+<a name="l00211"></a>00211                                                                           echo<span class="stringliteral">&quot;&gt;&quot;</span>; 
+<a name="l00212"></a>00212                                                                         } 
+<a name="l00213"></a>00213                                                                  ?&gt;
+<a name="l00214"></a>00214                                                                 &lt;img src=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> (!$url_lien) {?&gt;alt=<span class="stringliteral">&quot;&lt;? if ($photos-&gt;legende) echo $photos-&gt;legende; ?&gt;&quot;</span> &lt;?php } ?&gt;/&gt; &lt;br /&gt;
+<a name="l00215"></a>00215                                                                 &lt;? <span class="keywordflow">if</span> ($url_lien) echo <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>; ?&gt;
+<a name="l00216"></a>00216                                                                 
+<a name="l00217"></a>00217                                                         &lt;?php
+<a name="l00218"></a>00218                                                         }<span class="comment">//fin du else</span>
+<a name="l00219"></a>00219                                                         
+<a name="l00220"></a>00220                                                         ?&gt;
+<a name="l00221"></a>00221                                                         &lt;!--
+<a name="l00222"></a>00222                                                         &lt;?php <span class="comment">//if ($paras-&gt;contenuPara) { ?&gt;</span>
+<a name="l00223"></a>00223                                                         &lt;/div&gt;
+<a name="l00224"></a>00224                                                         &lt;? <span class="comment">//} else { ?&gt;</span>
+<a name="l00225"></a>00225                                                         --&gt;
+<a name="l00226"></a>00226                                                         &lt;/p&gt;
+<a name="l00227"></a>00227                                                         &lt;? <span class="comment">//} ?&gt;</span>
+<a name="l00228"></a>00228                                         &lt;?php
+<a name="l00229"></a>00229                                                 }<span class="comment">//fin du foreach ($listphotos as $photos)</span>
+<a name="l00230"></a>00230                                                 echo<span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00231"></a>00231                                                 echo<span class="stringliteral">&quot;&lt;td class=&#39;sansmarge&#39;&gt;&quot;</span>;
+<a name="l00232"></a>00232                                         }<span class="comment">//fin  if ($nb_photos)</span>
+<a name="l00233"></a>00233                                          
+<a name="l00234"></a>00234                                         <span class="keywordflow">if</span> ($paras-&gt;contenuPara) {
+<a name="l00235"></a>00235                                                 <span class="keywordflow">if</span> ($paras-&gt;listePara==<span class="stringliteral">&quot;li&quot;</span>) echo miseEnFormeListe($paras-&gt;contenuPara); <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;&lt;p&gt;&quot;</span>.$paras-&gt;contenuPara.<span class="stringliteral">&quot;&lt;/p&gt;&quot;</span>;
+<a name="l00236"></a>00236                                         }
+<a name="l00237"></a>00237                                          
+<a name="l00238"></a>00238                                         
+<a name="l00239"></a>00239                                         <span class="comment">// affichage des liens</span>
+<a name="l00240"></a>00240                                         <span class="keywordflow">if</span> ($nb_liens) {
+<a name="l00241"></a>00241                                                 <span class="comment">//$cpt_lien=0;</span>
+<a name="l00242"></a>00242                                                 reset($listliens);
+<a name="l00243"></a>00243                                                 <span class="keywordflow">foreach</span> ($listliens as $liens) {
+<a name="l00244"></a>00244                                                         <span class="comment">//if (!$cpt_lien) $url_lien=$liens-&gt;urlLien;</span>
+<a name="l00245"></a>00245                                         ?&gt;
+<a name="l00246"></a>00246                                                   &lt;p&gt;
+<a name="l00247"></a>00247                                                         &lt;?php <span class="keywordflow">if</span> ($liens-&gt;texteLien) echo $liens-&gt;texteLien.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>; ?&gt;
+<a name="l00248"></a>00248                                                         &lt;a href=<span class="stringliteral">&quot;&lt;?=$liens-&gt;urlLien?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> ($liens-&gt;fenLien==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot;target=&#39;_blank&#39;&quot;</span>;?&gt;&gt;&lt;?=$liens-&gt;libLien?&gt;&lt;/a&gt;
+<a name="l00249"></a>00249                                                   &lt;/p&gt;
+<a name="l00250"></a>00250                                         &lt;?php
+<a name="l00251"></a>00251                                                         <span class="comment">//$cpt_lien++;</span>
+<a name="l00252"></a>00252                                                 }<span class="comment">//fin du foreach ($listliens as $liens)  </span>
+<a name="l00253"></a>00253                                         } <span class="comment">//fin if ($nb_liens)</span>
+<a name="l00254"></a>00254 
+<a name="l00255"></a>00255                                         <span class="comment">// les fichiers</span>
+<a name="l00256"></a>00256                                         $listfichiers=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00257"></a>00257                                         $listfichiers-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00258"></a>00258                                         $nb_fichiers=$listfichiers-&gt;afficherListeFichiers();
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260                                         <span class="keywordflow">if</span> ($nb_fichiers) {
+<a name="l00261"></a>00261                                                 <span class="keywordflow">foreach</span> ($listfichiers as $fichiers) {
+<a name="l00262"></a>00262                                         ?&gt; 
+<a name="l00263"></a>00263                                                   &lt;p&gt;
+<a name="l00264"></a>00264                                                         &lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$fichiers-&gt;nomFichier?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;pdf&quot;</span>&gt;&lt;?=$fichiers-&gt;libFichier?&gt;&lt;/a&gt;
+<a name="l00265"></a>00265                                                   &lt;/p&gt;
+<a name="l00266"></a>00266                                                  
+<a name="l00267"></a>00267                                         &lt;?php
+<a name="l00268"></a>00268                                                 }<span class="comment">//fin du foreach ($listfichiers as $fichiers)   </span>
+<a name="l00269"></a>00269                                         }<span class="comment">//fin  if ($nb_fichiers)  </span>
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271                                         
+<a name="l00272"></a>00272 
+<a name="l00273"></a>00273                                         <span class="comment">//Les vidéos  </span>
+<a name="l00274"></a>00274                                         $listvideos=<span class="keyword">new</span> <a class="code" href="class_liste_videos.html">ListeVideos</a>();
+<a name="l00275"></a>00275                                         $listvideos-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00276"></a>00276                                         $nb_videos=$listvideos-&gt;afficherListeVideos();
+<a name="l00277"></a>00277 
+<a name="l00278"></a>00278                                         <span class="keywordflow">if</span> ($nb_videos) {
+<a name="l00279"></a>00279                                                 <span class="keywordflow">foreach</span> ($listvideos as $videos) {
+<a name="l00280"></a>00280                                         ?&gt; 
+<a name="l00281"></a>00281                                                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;positionnement&quot;</span>&gt;
+<a name="l00282"></a>00282                                                         &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+<a name="l00283"></a>00283                                                         &lt;<span class="keywordtype">object</span> classid=<span class="stringliteral">&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;</span> codebase=<span class="stringliteral">&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0&quot;</span> width=<span class="stringliteral">&quot;320&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;FLVPlayer1&quot;</span>&gt;
+<a name="l00284"></a>00284                                                   &lt;param name=<span class="stringliteral">&quot;movie&quot;</span> value=<span class="stringliteral">&quot;FLVPlayer_Progressive.swf&quot;</span> /&gt;
+<a name="l00285"></a>00285                                                   &lt;param name=<span class="stringliteral">&quot;salign&quot;</span> value=<span class="stringliteral">&quot;lt&quot;</span> /&gt;
+<a name="l00286"></a>00286                                                   &lt;param name=<span class="stringliteral">&quot;quality&quot;</span> value=<span class="stringliteral">&quot;high&quot;</span> /&gt;
+<a name="l00287"></a>00287                                                   &lt;param name=<span class="stringliteral">&quot;scale&quot;</span> value=<span class="stringliteral">&quot;noscale&quot;</span> /&gt;
+<a name="l00288"></a>00288                                                   &lt;param name=<span class="stringliteral">&quot;FlashVars&quot;</span> value=<span class="stringliteral">&quot;&amp;MM_ComponentVersion=1&amp;skinName=Clear_Skin_1&amp;streamName=videos/&lt;?=$videos-&gt;nomVideo?&gt;&amp;autoPlay=false&amp;autoRewind=true&quot;</span> /&gt;
+<a name="l00289"></a>00289                                                   &lt;embed src=<span class="stringliteral">&quot;FLVPlayer_Progressive.swf&quot;</span> flashvars=<span class="stringliteral">&quot;&amp;MM_ComponentVersion=1&amp;skinName=Clear_Skin_1&amp;streamName=videos/&lt;?=$videos-&gt;nomVideo?&gt;&amp;autoPlay=false&amp;autoRewind=true&quot;</span> quality=<span class="stringliteral">&quot;high&quot;</span> scale=<span class="stringliteral">&quot;noscale&quot;</span> width=<span class="stringliteral">&quot;320&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span> name=<span class="stringliteral">&quot;FLVPlayer1&quot;</span> salign=<span class="stringliteral">&quot;LT&quot;</span> type=<span class="stringliteral">&quot;application/x-shockwave-flash&quot;</span> pluginspage=<span class="stringliteral">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span> /&gt;                 
+<a name="l00290"></a>00290         &lt;/<span class="keywordtype">object</span>&gt;
+<a name="l00291"></a>00291                                                         &lt;?=$videos-&gt;legende?&gt;&lt;br /&gt;
+<a name="l00292"></a>00292                                                         &lt;/div&gt;
+<a name="l00293"></a>00293                                         &lt;?php
+<a name="l00294"></a>00294                                                 }<span class="comment">//fin du foreach ($listvideos as $videos)</span>
+<a name="l00295"></a>00295                                         }<span class="comment">//fin  if ($nb_videos)</span>
+<a name="l00296"></a>00296                                         <span class="keywordflow">if</span> ($nb_photos) echo<span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
+<a name="l00297"></a>00297                                 } <span class="comment">//fin du foreach</span>
+<a name="l00298"></a>00298                                 ?&gt;
+<a name="l00299"></a>00299                         &lt;/div&gt;
+<a name="l00300"></a>00300         &lt;/div&gt;
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302         &lt;?php
+<a name="l00303"></a>00303         <span class="comment">/*----------------------------------- COLONNE C2 -------------------------------------------------------------------*/</span>
+<a name="l00304"></a>00304         <span class="keywordflow">if</span> ($laPage-&gt;C2) {<span class="comment">//colonne de droite</span>
+<a name="l00305"></a>00305         ?&gt;
+<a name="l00306"></a>00306                 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;colBoxRight&quot;</span>&gt;
+<a name="l00307"></a>00307                     &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;sap-content&quot;</span>&gt;
+<a name="l00308"></a>00308                                 &lt;!-- item 2 185 pixels wide --&gt;
+<a name="l00309"></a>00309                                 
+<a name="l00310"></a>00310                                 &lt;?php
+<a name="l00311"></a>00311                                 $listparas2=<span class="keyword">new</span> <a class="code" href="class_liste_paragraphes.html" title="Sp&amp;eacute;cifique IFIP.">ListeParagraphes</a>();     
+<a name="l00312"></a>00312                                 $listparas2-&gt;numpage=$laPage-&gt;numpage;
+<a name="l00313"></a>00313                                 $listparas2-&gt;colonne=2;
+<a name="l00314"></a>00314                                 $listparas2-&gt;afficherListeParas();
+<a name="l00315"></a>00315 
+<a name="l00316"></a>00316                                 <span class="keywordflow">foreach</span> ($listparas2 as $paras) {
+<a name="l00317"></a>00317                                         <span class="keywordflow">if</span> ($paras-&gt;titrePara) {
+<a name="l00318"></a>00318                                                 <span class="keywordflow">if</span> ($laPage-&gt;accueilPage==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot;&lt;div class=&#39;titre185&#39;&gt;&quot;</span>; <span class="keywordflow">else</span>  echo <span class="stringliteral">&quot;&lt;div class=&#39;titre185&#39;&gt;&quot;</span>;
+<a name="l00319"></a>00319                                                 <span class="comment">//else echo &quot;&lt;&quot;.$paras-&gt;typeTitre.&quot;&gt;&quot;; Mise en commentaire Henriette - on maintient un titre 185</span>
+<a name="l00320"></a>00320                                                 echo $paras-&gt;titrePara;
+<a name="l00321"></a>00321                                                 <span class="keywordflow">if</span> ($laPage-&gt;accueilPage==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>; <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
+<a name="l00322"></a>00322                                         }<span class="comment">//fin if ($paras-&gt;titrePara)</span>
+<a name="l00323"></a>00323                                         
+<a name="l00324"></a>00324                                         <span class="comment">//les liens (pour mettre un lien sur une photo - l&#39;affichage est realise plus bas)</span>
+<a name="l00325"></a>00325                                         $url_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00326"></a>00326                                         $libelle_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00327"></a>00327                                         $fenetre_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00328"></a>00328                                         
+<a name="l00329"></a>00329                                         $listliens=<span class="keyword">new</span> <a class="code" href="class_liste_liens.html">ListeLiens</a>();
+<a name="l00330"></a>00330                                         $listliens-&gt;numpara= $paras-&gt;numpara;
+<a name="l00331"></a>00331                                         $nb_liens=$listliens-&gt;afficherListeLiens();
+<a name="l00332"></a>00332                                         <span class="keywordflow">foreach</span> ($listliens as $liens) {
+<a name="l00333"></a>00333                                                 $url_lien=$liens-&gt;urlLien;
+<a name="l00334"></a>00334                                                 $libelle_lien=$liens-&gt;libLien;
+<a name="l00335"></a>00335                                                 $fenetre_lien=$liens-&gt;fenLien;
+<a name="l00336"></a>00336                                                 <span class="keywordflow">break</span>;
+<a name="l00337"></a>00337                                         }
+<a name="l00338"></a>00338                                         
+<a name="l00339"></a>00339                                         <span class="comment">// les photos</span>
+<a name="l00340"></a>00340                                         $listphotos=<span class="keyword">new</span> <a class="code" href="class_liste_photos.html">ListePhotos</a>();
+<a name="l00341"></a>00341                                         $listphotos-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00342"></a>00342                                         $nb_photos=$listphotos-&gt;afficherListePhotos();
+<a name="l00343"></a>00343                                         <span class="keywordflow">if</span> ($nb_photos) {
+<a name="l00344"></a>00344                                                 <span class="keywordflow">foreach</span> ($listphotos as $photos) {
+<a name="l00345"></a>00345                                         ?&gt; 
+<a name="l00346"></a>00346                                                         &lt;?php
+<a name="l00347"></a>00347                                                         <span class="keywordflow">if</span> ($photos-&gt;ext==<span class="stringliteral">&quot;swf&quot;</span> ) {
+<a name="l00348"></a>00348                                                         ?&gt;
+<a name="l00349"></a>00349                                                                 &lt;script type=<span class="stringliteral">&quot;text/javascript&quot;</span>&gt;
+<a name="l00350"></a>00350                                                                 AC_FL_RunContent( 
+<a name="l00351"></a>00351                                                                 <span class="stringliteral">&#39;codebase&#39;</span>,<span class="stringliteral">&#39;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0&#39;</span>,<span class="stringliteral">&#39;width&#39;</span>,<span class="stringliteral">&#39;180&#39;</span>,<span class="stringliteral">&#39;height&#39;</span>,<span class="stringliteral">&#39;240&#39;</span>,<span class="stringliteral">&#39;src&#39;</span>,<span class="stringliteral">&#39;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&#39;</span>,<span class="stringliteral">&#39;quality&#39;</span>,<span class="stringliteral">&#39;high&#39;</span>,<span class="stringliteral">&#39;pluginspage&#39;</span>,<span class="stringliteral">&#39;http://www.macromedia.com/go/getflashplayer&#39;</span>,<span class="stringliteral">&#39;movie&#39;</span>,<span class="stringliteral">&#39;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&#39;</span> 
+<a name="l00352"></a>00352                                                                 ); <span class="comment">//end AC code</span>
+<a name="l00353"></a>00353                                                                 &lt;/script&gt;&lt;noscript&gt;&lt;<span class="keywordtype">object</span> 
+<a name="l00354"></a>00354                                                                 classid=<span class="stringliteral">&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;</span> 
+<a name="l00355"></a>00355                                                                 codebase=<span class="stringliteral">&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0&quot;</span> 
+<a name="l00356"></a>00356                                                                 width=<span class="stringliteral">&quot;180&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span>&gt;
+<a name="l00357"></a>00357                                                                                                          &lt;param name=<span class="stringliteral">&quot;movie&quot;</span> value=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> /&gt;
+<a name="l00358"></a>00358                                                                                                          &lt;param name=<span class="stringliteral">&quot;quality&quot;</span> value=<span class="stringliteral">&quot;high&quot;</span> /&gt;
+<a name="l00359"></a>00359                                                                                                          &lt;embed src=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> quality=<span class="stringliteral">&quot;high&quot;</span> 
+<a name="l00360"></a>00360                                                                 pluginspage=<span class="stringliteral">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span> 
+<a name="l00361"></a>00361                                                                 type=<span class="stringliteral">&quot;application/x-shockwave-flash&quot;</span> width=<span class="stringliteral">&quot;180&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span>&gt;&lt;/embed&gt;
+<a name="l00362"></a>00362                                                                                                   &lt;/<span class="keywordtype">object</span>&gt;&lt;/noscript&gt;
+<a name="l00363"></a>00363 
+<a name="l00364"></a>00364                                                         &lt;?php
+<a name="l00365"></a>00365                                                         } <span class="keywordflow">else</span> {
+<a name="l00366"></a>00366                                                         ?&gt;
+<a name="l00367"></a>00367                                                                 &lt;? <span class="keywordflow">if</span> ($url_lien) { 
+<a name="l00368"></a>00368                                                                           echo <span class="stringliteral">&quot;&lt;a href=&#39;&quot;</span>.$url_lien.<span class="stringliteral">&quot;&#39; title=\&quot;&quot;</span>.$libelle_lien.<span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00369"></a>00369                                                                           <span class="keywordflow">if</span> ($fenetre_lien==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot; target=&#39;_blank&#39;&quot;</span>;
+<a name="l00370"></a>00370                                                                           echo<span class="stringliteral">&quot;&gt;&quot;</span>; 
+<a name="l00371"></a>00371                                                                         } 
+<a name="l00372"></a>00372                                                                  ?&gt;
+<a name="l00373"></a>00373                                                                 &lt;img src=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> (!$url_lien) {?&gt;alt=<span class="stringliteral">&quot;&lt;? if ($photos-&gt;legende) echo $photos-&gt;legende; ?&gt;&quot;</span> &lt;?php } ?&gt;/&gt; &lt;br /&gt;
+<a name="l00374"></a>00374                                                                 &lt;? <span class="keywordflow">if</span> ($url_lien) echo <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>; ?&gt;
+<a name="l00375"></a>00375                                                         &lt;?php
+<a name="l00376"></a>00376                                                         }<span class="comment">//fin du else</span>
+<a name="l00377"></a>00377                                                         ?&gt;
+<a name="l00378"></a>00378                                         &lt;?php
+<a name="l00379"></a>00379                                                 }<span class="comment">//fin du foreach ($listphotos as $photos)</span>
+<a name="l00380"></a>00380                                         }<span class="comment">//fin  if ($nb_photos)</span>
+<a name="l00381"></a>00381                                         
+<a name="l00382"></a>00382                                         <span class="comment">//Les vidéos  </span>
+<a name="l00383"></a>00383                                         $listvideos=<span class="keyword">new</span> <a class="code" href="class_liste_videos.html">ListeVideos</a>();
+<a name="l00384"></a>00384                                         $listvideos-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00385"></a>00385                                         $nb_videos=$listvideos-&gt;afficherListeVideos();
+<a name="l00386"></a>00386 
+<a name="l00387"></a>00387                                         <span class="keywordflow">if</span> ($nb_videos) {
+<a name="l00388"></a>00388                                                 <span class="keywordflow">foreach</span> ($listvideos as $videos) {
+<a name="l00389"></a>00389                                         ?&gt; 
+<a name="l00390"></a>00390                                                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;positionnement&quot;</span>&gt;
+<a name="l00391"></a>00391                                                         &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+<a name="l00392"></a>00392                                                         &lt;<span class="keywordtype">object</span> classid=<span class="stringliteral">&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;</span> codebase=<span class="stringliteral">&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0&quot;</span> width=<span class="stringliteral">&quot;320&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;FLVPlayer1&quot;</span>&gt;
+<a name="l00393"></a>00393                                                   &lt;param name=<span class="stringliteral">&quot;movie&quot;</span> value=<span class="stringliteral">&quot;FLVPlayer_Progressive.swf&quot;</span> /&gt;
+<a name="l00394"></a>00394                                                   &lt;param name=<span class="stringliteral">&quot;salign&quot;</span> value=<span class="stringliteral">&quot;lt&quot;</span> /&gt;
+<a name="l00395"></a>00395                                                   &lt;param name=<span class="stringliteral">&quot;quality&quot;</span> value=<span class="stringliteral">&quot;high&quot;</span> /&gt;
+<a name="l00396"></a>00396                                                   &lt;param name=<span class="stringliteral">&quot;scale&quot;</span> value=<span class="stringliteral">&quot;noscale&quot;</span> /&gt;
+<a name="l00397"></a>00397                                                   &lt;param name=<span class="stringliteral">&quot;FlashVars&quot;</span> value=<span class="stringliteral">&quot;&amp;MM_ComponentVersion=1&amp;skinName=Clear_Skin_1&amp;streamName=videos/&lt;?=$videos-&gt;nomVideo?&gt;&amp;autoPlay=false&amp;autoRewind=true&quot;</span> /&gt;
+<a name="l00398"></a>00398                                                   &lt;embed src=<span class="stringliteral">&quot;FLVPlayer_Progressive.swf&quot;</span> flashvars=<span class="stringliteral">&quot;&amp;MM_ComponentVersion=1&amp;skinName=Clear_Skin_1&amp;streamName=videos/&lt;?=$videos-&gt;nomVideo?&gt;&amp;autoPlay=false&amp;autoRewind=true&quot;</span> quality=<span class="stringliteral">&quot;high&quot;</span> scale=<span class="stringliteral">&quot;noscale&quot;</span> width=<span class="stringliteral">&quot;320&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span> name=<span class="stringliteral">&quot;FLVPlayer1&quot;</span> salign=<span class="stringliteral">&quot;LT&quot;</span> type=<span class="stringliteral">&quot;application/x-shockwave-flash&quot;</span> pluginspage=<span class="stringliteral">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span> /&gt;                 
+<a name="l00399"></a>00399         &lt;/<span class="keywordtype">object</span>&gt;
+<a name="l00400"></a>00400                                                         &lt;?=$videos-&gt;legende?&gt;&lt;br /&gt;
+<a name="l00401"></a>00401                                                         &lt;/div&gt;
+<a name="l00402"></a>00402                                         &lt;?php
+<a name="l00403"></a>00403                                                 }<span class="comment">//fin du foreach ($listvideos as $videos)</span>
+<a name="l00404"></a>00404                                         }<span class="comment">//fin  if ($nb_videos)</span>
+<a name="l00405"></a>00405                                         
+<a name="l00406"></a>00406                                         <span class="comment">//le contenu</span>
+<a name="l00407"></a>00407                                         <span class="keywordflow">if</span> ($paras-&gt;contenuPara) {
+<a name="l00408"></a>00408                                                 <span class="keywordflow">if</span> ($paras-&gt;listePara==<span class="stringliteral">&quot;li&quot;</span>) echo miseEnFormeListe($paras-&gt;contenuPara); <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;&lt;p&gt;&quot;</span>.$paras-&gt;contenuPara.<span class="stringliteral">&quot;&lt;/p&gt;&quot;</span>;
+<a name="l00409"></a>00409                                         }
+<a name="l00410"></a>00410                                         
+<a name="l00411"></a>00411                                                 
+<a name="l00412"></a>00412                                         
+<a name="l00413"></a>00413                                                 
+<a name="l00414"></a>00414                                         <span class="comment">//les liens : affichage</span>
+<a name="l00415"></a>00415                                         $url_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00416"></a>00416                                         $libelle_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00417"></a>00417                                         $fenetre_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00418"></a>00418                                         
+<a name="l00419"></a>00419                                         <span class="keywordflow">if</span> ($nb_liens) {
+<a name="l00420"></a>00420                                                 $cpt_lien=0;
+<a name="l00421"></a>00421                                                 <span class="keywordflow">foreach</span> ($listliens as $liens) {
+<a name="l00422"></a>00422                                                         <span class="keywordflow">if</span> (!$cpt_lien) $url_lien=$liens-&gt;urlLien;
+<a name="l00423"></a>00423                                                         <span class="keywordflow">if</span> (!$cpt_lien) $libelle_lien=$liens-&gt;libLien;
+<a name="l00424"></a>00424                                                         <span class="keywordflow">if</span> (!$cpt_lien) $fenetre_lien=$liens-&gt;fenLien;
+<a name="l00425"></a>00425                                         ?&gt;
+<a name="l00426"></a>00426                                                   &lt;?php
+<a name="l00427"></a>00427                                                   <span class="keywordflow">if</span> ($liens-&gt;libLien &amp;&amp; $laPage-&gt;accueilPage!=<span class="stringliteral">&quot;o&quot;</span>) {
+<a name="l00428"></a>00428                                                   ?&gt;
+<a name="l00429"></a>00429                                                   &lt;p&gt;
+<a name="l00430"></a>00430                                                         &lt;?php <span class="keywordflow">if</span> ($liens-&gt;texteLien) echo $liens-&gt;texteLien.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>; ?&gt;
+<a name="l00431"></a>00431                                                         &lt;a href=<span class="stringliteral">&quot;&lt;?=$liens-&gt;urlLien?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> ($liens-&gt;fenLien==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot;target=&#39;_blank&#39;&quot;</span>;?&gt;&gt;&lt;?=$liens-&gt;libLien?&gt;&lt;/a&gt;
+<a name="l00432"></a>00432                                                   &lt;/p&gt;
+<a name="l00433"></a>00433                                                   &lt;? } <span class="comment">// fin if ($liens-&gt;libLien)?&gt;</span>
+<a name="l00434"></a>00434                                         &lt;?php
+<a name="l00435"></a>00435                                                         $cpt_lien++;
+<a name="l00436"></a>00436                                                 }<span class="comment">//fin du foreach ($listliens as $liens)  </span>
+<a name="l00437"></a>00437                                         } <span class="comment">//fin if ($nb_liens)</span>
+<a name="l00438"></a>00438 
+<a name="l00439"></a>00439                                         <span class="comment">// les fichiers</span>
+<a name="l00440"></a>00440                                         $listfichiers=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00441"></a>00441                                         $listfichiers-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00442"></a>00442                                         $nb_fichiers=$listfichiers-&gt;afficherListeFichiers();
+<a name="l00443"></a>00443                                         <span class="keywordflow">if</span> ($nb_fichiers) {
+<a name="l00444"></a>00444                                         ?&gt;
+<a name="l00445"></a>00445                                         &lt;ul <span class="keyword">class</span>=<span class="stringliteral">&quot;ficheactions&quot;</span>&gt;
+<a name="l00446"></a>00446                                         &lt;?php
+<a name="l00447"></a>00447                                                 <span class="keywordflow">foreach</span> ($listfichiers as $fichiers) {
+<a name="l00448"></a>00448                                         ?&gt; 
+<a name="l00449"></a>00449                                                   &lt;?php <span class="keywordflow">if</span> ($fichiers-&gt;nomFichier) { ?&gt;
+<a name="l00450"></a>00450                                                   &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;ficheactions petit&quot;</span>&gt;
+<a name="l00451"></a>00451                                                         &lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$fichiers-&gt;nomFichier?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span>&gt;&lt;?=$fichiers-&gt;libFichier?&gt;&lt;/a&gt;
+<a name="l00452"></a>00452                                                   &lt;/li&gt;
+<a name="l00453"></a>00453                                                   &lt;? } <span class="comment">// fin if ($fichiers-&gt;libFichier)</span>
+<a name="l00454"></a>00454                                                   ?&gt;
+<a name="l00455"></a>00455                                                  
+<a name="l00456"></a>00456                                         &lt;?php
+<a name="l00457"></a>00457                                                 }<span class="comment">//fin du foreach ($listfichiers as $fichiers)  </span>
+<a name="l00458"></a>00458                                         ?&gt;
+<a name="l00459"></a>00459                                         &lt;/ul&gt;
+<a name="l00460"></a>00460                                         &lt;?php 
+<a name="l00461"></a>00461                                         }<span class="comment">//fin  if ($nb_fichiers) </span>
+<a name="l00462"></a>00462                                         
+<a name="l00463"></a>00463                                         
+<a name="l00464"></a>00464                                         
+<a name="l00465"></a>00465                                 } <span class="comment">//fin du foreach</span>
+<a name="l00466"></a>00466                                 
+<a name="l00467"></a>00467                                 <span class="comment">// Les fiches actions liées à la catégorie ou sous-catégorie (domaines d&#39;expertise)</span>
+<a name="l00468"></a>00468                                 $nb_fiches=0;
+<a name="l00469"></a>00469                                 $tri_date=<span class="stringliteral">&quot; AND publiee=&#39;o&#39; AND type_doc=&#39;1&#39;&quot;</span>;
+<a name="l00470"></a>00470                                 <span class="keywordflow">if</span> ($numsscateg) {
+<a name="l00471"></a>00471                                    $menuDocAction=<span class="keyword">new</span> <a class="code" href="class_menu.html" title="création, modification, suppression d&amp;#39;un menu">Menu</a>();
+<a name="l00472"></a>00472                                    $menuDocAction-&gt;type=<span class="stringliteral">&quot;sscateg&quot;</span>;
+<a name="l00473"></a>00473                                    $menuDocAction-&gt;nummenu=$numsscateg; 
+<a name="l00474"></a>00474                                    $menuDocAction-&gt;tri_date=$tri_date;
+<a name="l00475"></a>00475                                    $nb_fiches=$menuDocAction-&gt;afficherDocs();
+<a name="l00476"></a>00476                                 } <span class="comment">/* Mise en commentaire Henriette - pas d&#39;affichage dans les pages categ, ça fait trop.</span>
+<a name="l00477"></a>00477 <span class="comment">                                        else if ($numcateg) {//fin if ($numsscateg) </span>
+<a name="l00478"></a>00478 <span class="comment">                                        $menuDoc=new Menu();</span>
+<a name="l00479"></a>00479 <span class="comment">                                        $menuDoc-&gt;type=&quot;categ&quot;;</span>
+<a name="l00480"></a>00480 <span class="comment">                                        $menuDoc-&gt;nummenu=$numcateg;</span>
+<a name="l00481"></a>00481 <span class="comment">                                        $menuDoc-&gt;tri_date=$tri_date;   </span>
+<a name="l00482"></a>00482 <span class="comment">                                        $nb_fiches=$menuDoc-&gt;afficherDocs();      </span>
+<a name="l00483"></a>00483 <span class="comment">                                        </span>
+<a name="l00484"></a>00484 <span class="comment">                                }*/</span>
+<a name="l00485"></a>00485                                 
+<a name="l00486"></a>00486                                 <span class="keywordflow">if</span> ($nb_fiches) {
+<a name="l00487"></a>00487                                 ?&gt;
+<a name="l00488"></a>00488                                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;titre185rouge&quot;</span>&gt;Nos actions R&amp;D &lt;/div&gt;
+<a name="l00489"></a>00489                                         &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;divficheaction1&quot;</span> style=<span class="stringliteral">&quot;visibility:visible;&quot;</span>&gt;
+<a name="l00490"></a>00490                                         &lt;ul <span class="keyword">class</span>=<span class="stringliteral">&quot;ficheactions&quot;</span>&gt;
+<a name="l00491"></a>00491                                     &lt;?php
+<a name="l00492"></a>00492                                         <span class="comment">//Les 5 premieres fiches action</span>
+<a name="l00493"></a>00493                                         <span class="keywordflow">for</span> ($i=0;$i&lt;5;$i++) { 
+<a name="l00494"></a>00494                                                         $laDoc=$menuDocAction-&gt;listdoc[$i];
+<a name="l00495"></a>00495                                                         $fiche=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00496"></a>00496                                                         $fiche-&gt;numpara= $laDoc-&gt;numpara; 
+<a name="l00497"></a>00497                                                         $fiche-&gt;afficherListeFichiers();
+<a name="l00498"></a>00498                                                         <span class="keywordflow">foreach</span> ($fiche as $fichiers) {
+<a name="l00499"></a>00499                                                                 $nom_fiche=$fichiers-&gt;nomFichier;
+<a name="l00500"></a>00500                                                                 $poids_fiche=$fichiers-&gt;poidsFichier;
+<a name="l00501"></a>00501                                                                 <span class="keywordflow">break</span>;
+<a name="l00502"></a>00502                                                         }
+<a name="l00503"></a>00503                                                   <span class="keywordflow">if</span> ($nom_fiche) {
+<a name="l00504"></a>00504                                                   ?&gt;
+<a name="l00505"></a>00505                                                         &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;ficheactions petit&quot;</span>&gt;&lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$nom_fiche?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> title=<span class="stringliteral">&quot;&lt;?=$poids_fiche?&gt;&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;/a&gt;&lt;/li&gt;&lt;!-- <span class="keyword">class</span>=<span class="stringliteral">&quot;pdf petit&quot;</span> --&gt;
+<a name="l00506"></a>00506                                                   &lt;?php
+<a name="l00507"></a>00507                                                   }<span class="comment">//fin if ($nom_fiche) </span>
+<a name="l00508"></a>00508                                                   ?&gt;
+<a name="l00509"></a>00509                                                 &lt;?php 
+<a name="l00510"></a>00510                                          }<span class="comment">//fin for ($i=0;$i&lt;5;$i++)</span>
+<a name="l00511"></a>00511                                          ?&gt;
+<a name="l00512"></a>00512                                          &lt;/ul&gt;
+<a name="l00513"></a>00513                                          &lt;?php
+<a name="l00514"></a>00514                                          <span class="keywordflow">if</span> (count($menuDocAction-&gt;listdoc)&gt;5) {
+<a name="l00515"></a>00515                                          ?&gt;
+<a name="l00516"></a>00516                                          &lt;p align=<span class="stringliteral">&quot;right&quot;</span>&gt;&lt;a href=<span class="stringliteral">&quot;javascript:montrerFichesAction(&#39;divficheaction&#39;,&#39;divficheaction1&#39;)&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;petit carreliens&quot;</span>&gt;voir toutes les actions&lt;/a&gt;&lt;/p&gt;
+<a name="l00517"></a>00517                                          &lt;?php
+<a name="l00518"></a>00518                                          }
+<a name="l00519"></a>00519                                          ?&gt;
+<a name="l00520"></a>00520                                          &lt;/div&gt;
+<a name="l00521"></a>00521                                          &lt;?php
+<a name="l00522"></a>00522                                         <span class="comment">//toutes les fiches actions</span>
+<a name="l00523"></a>00523                                         <span class="keywordflow">if</span> (count($menuDocAction-&gt;listdoc)&gt;5) {
+<a name="l00524"></a>00524                                         ?&gt;
+<a name="l00525"></a>00525                                                 &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;divficheaction&quot;</span> style=<span class="stringliteral">&quot;visibility:hidden; height:0&quot;</span>&gt;
+<a name="l00526"></a>00526                                                 &lt;ul <span class="keyword">class</span>=<span class="stringliteral">&quot;ficheactions&quot;</span>&gt;
+<a name="l00527"></a>00527                                                  &lt;?php
+<a name="l00528"></a>00528                                                 <span class="keywordflow">for</span> ($i=0;$i&lt;count($menuDocAction-&gt;listdoc);$i++) { 
+<a name="l00529"></a>00529                                                                 $laDoc=$menuDocAction-&gt;listdoc[$i];
+<a name="l00530"></a>00530                                                                 $fiche=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00531"></a>00531                                                                 $fiche-&gt;numpara= $laDoc-&gt;numpara; 
+<a name="l00532"></a>00532                                                                 $fiche-&gt;afficherListeFichiers();
+<a name="l00533"></a>00533                                                                 <span class="keywordflow">foreach</span> ($fiche as $fichiers) {
+<a name="l00534"></a>00534                                                                         $nom_fiche=$fichiers-&gt;nomFichier;
+<a name="l00535"></a>00535                                                                         <span class="keywordflow">break</span>;
+<a name="l00536"></a>00536                                                                 }
+<a name="l00537"></a>00537                                                           <span class="keywordflow">if</span> ($nom_fiche) {
+<a name="l00538"></a>00538                                                           ?&gt;
+<a name="l00539"></a>00539                                                                 &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;ficheactions petit&quot;</span>&gt;&lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$nom_fiche?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> &gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;/a&gt;&lt;/li&gt;&lt;!-- <span class="keyword">class</span>=<span class="stringliteral">&quot;pdf petit&quot;</span> --&gt;
+<a name="l00540"></a>00540                                                           &lt;?php
+<a name="l00541"></a>00541                                                           }<span class="comment">//fin if ($nom_fiche) </span>
+<a name="l00542"></a>00542                                                           ?&gt;
+<a name="l00543"></a>00543                                                         &lt;?php 
+<a name="l00544"></a>00544                                                  }<span class="comment">//fin for ($i=0;$i&lt;count($menuDocAction-&gt;listdoc);$i++)</span>
+<a name="l00545"></a>00545                                                  ?&gt;
+<a name="l00546"></a>00546                                                  &lt;/ul&gt;
+<a name="l00547"></a>00547                                                  &lt;p align=<span class="stringliteral">&quot;right&quot;</span>&gt;&lt;a href=<span class="stringliteral">&quot;javascript:montrerFichesAction(&#39;divficheaction&#39;,&#39;divficheaction1&#39;)&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;petit carreliens&quot;</span>&gt;masquer&lt;/a&gt;
+<a name="l00548"></a>00548                         &lt;/p&gt;
+<a name="l00549"></a>00549                                                 &lt;/div&gt;
+<a name="l00550"></a>00550                                         &lt;?php
+<a name="l00551"></a>00551                                         } <span class="comment">//fin if (count($menuDocAction-&gt;listdoc)&gt;5)</span>
+<a name="l00552"></a>00552                                         ?&gt;
+<a name="l00553"></a>00553                                         &lt;/ul&gt;
+<a name="l00554"></a>00554                                         &lt;?php
+<a name="l00555"></a>00555                                 } <span class="comment">// fin if ($nb_fiches)</span>
+<a name="l00556"></a>00556                                         ?&gt;
+<a name="l00557"></a>00557 
+<a name="l00558"></a>00558                         &lt;/div&gt;
+<a name="l00559"></a>00559                 &lt;/div&gt;  
+<a name="l00560"></a>00560         &lt;?php
+<a name="l00561"></a>00561         } <span class="comment">//fin  if ($laPage-&gt;C2)</span>
+<a name="l00562"></a>00562         ?&gt;
+<a name="l00563"></a>00563         &lt;?php
+<a name="l00564"></a>00564         <span class="comment">/*----------------------------------- COLONNE CONTRIBUTIFS C3 --------------------------------------------------------*/</span>
+<a name="l00565"></a>00565         <span class="keywordflow">if</span> (!$divflotte)  {
+<a name="l00566"></a>00566         ?&gt;
+<a name="l00567"></a>00567 
+<a name="l00568"></a>00568                 
+<a name="l00569"></a>00569         &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;colBoxFarRight&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span>&gt;
+<a name="l00570"></a>00570                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;sap-content&quot;</span>&gt;
+<a name="l00571"></a>00571         &lt;?php
+<a name="l00572"></a>00572         
+<a name="l00573"></a>00573         <span class="comment">// affichage des formations</span>
+<a name="l00574"></a>00574         <span class="keywordflow">if</span> ($nb_forma) {
+<a name="l00575"></a>00575         ?&gt;
+<a name="l00576"></a>00576                          &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;titre185&quot;</span>&gt;Formations&lt;/div&gt;
+<a name="l00577"></a>00577                          &lt;?php
+<a name="l00578"></a>00578                                 $laForma=$menuForma-&gt;listforma[0];
+<a name="l00579"></a>00579                                 $pageSpecForma=<span class="keyword">new</span> Page();
+<a name="l00580"></a>00580                                 $pageSpecForma-&gt;pageSpecifique(<span class="stringliteral">&quot;formations-ifip&quot;</span>);
+<a name="l00581"></a>00581                                 
+<a name="l00582"></a>00582                                 $nom_fiche=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00583"></a>00583                                 $listfichiers=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00584"></a>00584                                 $listfichiers-&gt;numpara= $laForma-&gt;numpara; 
+<a name="l00585"></a>00585                                 $nb_fichiers=$listfichiers-&gt;afficherListeFichiers();
+<a name="l00586"></a>00586                                 <span class="keywordflow">foreach</span> ($listfichiers as $fichiers) {
+<a name="l00587"></a>00587                                         $nom_fiche=$fichiers-&gt;nomFichier;
+<a name="l00588"></a>00588                                         <span class="keywordflow">break</span>;
+<a name="l00589"></a>00589                                 }
+<a name="l00590"></a>00590                                 
+<a name="l00591"></a>00591                         ?&gt;  
+<a name="l00592"></a>00592                           &lt;p&gt;&lt;strong&gt;Prochaine session&lt;/strong&gt;&lt;/p&gt; 
+<a name="l00593"></a>00593                           &lt;p&gt;&lt;?=$laForma-&gt;titrePara?&gt;&lt;/p&gt; 
+<a name="l00594"></a>00594                           &lt;p&gt;Dates : &lt;?php <span class="keywordflow">if</span> ($laForma-&gt;datefin) echo <span class="stringliteral">&quot;du &quot;</span>.$laForma-&gt;datedeb.<span class="stringliteral">&quot; au &quot;</span>.$laForma-&gt;datefin; <span class="keywordflow">else</span> echo $laForma-&gt;datedeb;?&gt; &lt;/p&gt;
+<a name="l00595"></a>00595                           &lt;p&gt;
+<a name="l00596"></a>00596                           &lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$nom_fiche?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;carreliens&quot;</span>&gt;consulter la fiche&lt;/a&gt; | &lt;a href=<span class="stringliteral">&quot;index.php?spec=formation-inscription&amp;numpage=&lt;?=$pageSpecForma-&gt;numpage?&gt;&amp;numrub=&lt;?=$pageSpecForma-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageSpecForma-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageSpecForma-&gt;numsscateg?&gt;&amp;numpara=&lt;?=$laForma-&gt;numpara?&gt;&amp;lg=&lt;?=$lg?&gt;&quot;</span>&gt;S<span class="stringliteral">&#39;inscrire&lt;/a&gt;&lt;/p&gt;    </span>
+<a name="l00597"></a>00597 <span class="stringliteral">                           &lt;p&gt;&lt;a href=&quot;index.php?spec=formations-ifip&amp;numpage=&lt;?=$pageSpecForma-&gt;numpage?&gt;&amp;numrub=&lt;?=$pageSpec-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageSpecForma-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageSpecForma-&gt;numsscateg?&gt;&amp;lg=&lt;?=$lg?&gt;&quot; class=&quot;carreliens&quot;&gt;Toutes les formations&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/p&gt;</span>
+<a name="l00598"></a>00598 <span class="stringliteral">                           &lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;</span>
+<a name="l00599"></a>00599 <span class="stringliteral">                        &lt;?php  </span>
+<a name="l00600"></a>00600 <span class="stringliteral">        }//fin if ($nb_forma)</span>
+<a name="l00601"></a>00601 <span class="stringliteral">        </span>
+<a name="l00602"></a>00602 <span class="stringliteral">        </span>
+<a name="l00603"></a>00603 <span class="stringliteral">        // affichage des docs</span>
+<a name="l00604"></a>00604 <span class="stringliteral">        </span>
+<a name="l00605"></a>00605 <span class="stringliteral">        if ($nb_doc) {</span>
+<a name="l00606"></a>00606 <span class="stringliteral">        ?&gt;</span>
+<a name="l00607"></a>00607 <span class="stringliteral">                &lt;div class=&quot;titre185&quot;&gt;Documentation&lt;/div&gt;</span>
+<a name="l00608"></a>00608 <span class="stringliteral">                &lt;table width=&quot;185&quot;&gt;</span>
+<a name="l00609"></a>00609 <span class="stringliteral">        &lt;?php</span>
+<a name="l00610"></a>00610 <span class="stringliteral">                $j=0;//compteur des fiches effectivement affichées</span>
+<a name="l00611"></a>00611 <span class="stringliteral">                for ($i=0;$i&lt;count($menuDoc-&gt;listdoc);$i++) {</span>
+<a name="l00612"></a>00612 <span class="stringliteral">                        $nom_fiche=&quot;&quot;;</span>
+<a name="l00613"></a>00613 <span class="stringliteral">                        if ($menuDoc-&gt;listdoc[$i]) {</span>
+<a name="l00614"></a>00614 <span class="stringliteral">                                        $laDoc=$menuDoc-&gt;listdoc[$i];</span>
+<a name="l00615"></a>00615 <span class="stringliteral">                                        $fiche=new ListeFichiers();</span>
+<a name="l00616"></a>00616 <span class="stringliteral">                                        $fiche-&gt;numpara= $laDoc-&gt;numpara; </span>
+<a name="l00617"></a>00617 <span class="stringliteral">                                        $fiche-&gt;afficherListeFichiers();</span>
+<a name="l00618"></a>00618 <span class="stringliteral">                                        </span>
+<a name="l00619"></a>00619 <span class="stringliteral">                                        foreach ($fiche as $fichiers) {</span>
+<a name="l00620"></a>00620 <span class="stringliteral">                                                $nom_fiche=$fichiers-&gt;nomFichier;</span>
+<a name="l00621"></a>00621 <span class="stringliteral">                                                $poids_fiche=$fichiers-&gt;poidsFichier;</span>
+<a name="l00622"></a>00622 <span class="stringliteral">                                                break; // on ne va chercher q&#39;</span>un seul fichier pdf
+<a name="l00623"></a>00623                                         }
+<a name="l00624"></a>00624                                   <span class="keywordflow">if</span> ($laDoc-&gt;type_doc==<span class="charliteral">&#39;5&#39;</span> || ($laDoc-&gt;type_doc!=<span class="charliteral">&#39;5&#39;</span> &amp;&amp; $nom_fiche)) {
+<a name="l00625"></a>00625                                         $j++;
+<a name="l00626"></a>00626                                         <span class="keywordflow">if</span> ($j&gt;3) <span class="keywordflow">break</span>; <span class="comment">// on ne liste que 3 docs</span>
+<a name="l00627"></a>00627                           ?&gt;
+<a name="l00628"></a>00628                                         &lt;tr&gt;
+<a name="l00629"></a>00629                                          &lt;td&gt;&lt;p&gt; 
+<a name="l00630"></a>00630                                          &lt;img src=<span class="stringliteral">&quot;../images/&lt;? if($laDoc-&gt;type_doc==&#39;5&#39;) echo&quot;</span>picto-panier.gif<span class="stringliteral">&quot;;</span>
+<a name="l00631"></a>00631 <span class="stringliteral">                                         else if ($laDoc-&gt;acces_res==&quot;</span>o<span class="stringliteral">&quot;) echo&quot;</span>picto-pdf-acces-reserve.gif<span class="stringliteral">&quot;;</span>
+<a name="l00632"></a>00632 <span class="stringliteral">                                         else  echo&quot;</span>picto-pdf.gif<span class="stringliteral">&quot;; ?&gt;&quot;</span> alt=<span class="stringliteral">&quot;&quot;</span> /&gt;&lt;/p&gt;
+<a name="l00633"></a>00633                                          &lt;/td&gt;
+<a name="l00634"></a>00634                                          &lt;td&gt;&lt;!--&lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$nom_fiche?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;carreliens&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;/a&gt;--&gt;
+<a name="l00635"></a>00635                                         &lt;?php 
+<a name="l00636"></a>00636                                                                         
+<a name="l00637"></a>00637                                                                         <span class="comment">/* -------------------- LA DOC EST RESERVEE AUX PROFESSIONNELS -------------------- */</span>
+<a name="l00638"></a>00638                                                                         <span class="keywordflow">if</span> ($laDoc-&gt;acces_res==<span class="stringliteral">&quot;o&quot;</span>) {
+<a name="l00639"></a>00639                                                                                 
+<a name="l00640"></a>00640                                                                                 $pagePro = <span class="keyword">new</span> Page();
+<a name="l00641"></a>00641                                                                                 $pagePro-&gt;pageSpecifique(<span class="stringliteral">&quot;extranet-pro&quot;</span>);
+<a name="l00642"></a>00642                                                                                 
+<a name="l00643"></a>00643                                                                         
+<a name="l00644"></a>00644                                                                                 <span class="keywordflow">if</span> (!$_SESSION[<span class="stringliteral">&#39;numprof&#39;</span>]) {<span class="comment">//Le professionnel n&#39;est pas connecté</span>
+<a name="l00645"></a>00645                                                                         ?&gt;
+<a name="l00646"></a>00646                                                                                 &lt;a href=<span class="stringliteral">&quot;index.php?numpage=&lt;?=$pagePro-&gt;numpage?&gt;&amp;spec=&lt;?=$pagePro-&gt;nomFichier?&gt;&amp;numrub=&lt;?=$pagePro-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pagePro-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pagePro-&gt;numsscateg?&gt;&amp;numdoc=&lt;?=$laDoc-&gt;numpara?&gt;&amp;lg=&lt;?=$lg?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;gris&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;br /&gt;
+<a name="l00647"></a>00647 &lt;strong&gt;Rapport réservé Espace Pro | identifiez-vous&lt;/strong&gt;&lt;/a&gt;
+<a name="l00648"></a>00648                                                                         &lt;?php
+<a name="l00649"></a>00649                                                                                 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($laDoc-&gt;tarif) {<span class="comment">//Le professionnel est connecté et la doc est payante</span>
+<a name="l00650"></a>00650                                                                         ?&gt;
+<a name="l00651"></a>00651                                                                                         &lt;a href=<span class="stringliteral">&quot;index.php?numpage=&lt;?=$pagePro-&gt;numpage?&gt;&amp;spec=&lt;?=$pagePro-&gt;nomFichier?&gt;&amp;numrub=&lt;?=$numrub?&gt;&amp;numcateg=&lt;?=$numcateg?&gt;&amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;numpara=&lt;?=$laDoc-&gt;numpara?&gt;&amp;textQte=1&amp;lg=&lt;?=$lg?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;gris&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;br /&gt;
+<a name="l00652"></a>00652                                                                                         &lt;strong&gt;&lt;?=$laDoc-&gt;tarif?&gt; &amp;euro;&amp;nbsp;|&amp;nbsp;rapport réservé Espace Pro &amp;nbsp;|&amp;nbsp;consulter le résumé&lt;/strong&gt;&lt;/a&gt;
+<a name="l00653"></a>00653                                                                         &lt;?php
+<a name="l00654"></a>00654                                                                                 } <span class="keywordflow">else</span> {<span class="comment">//Le professionnel est connecté et la doc n&#39;est pas payante</span>
+<a name="l00655"></a>00655                                                                                         <span class="keywordflow">if</span> ($nom_fiche) {<span class="comment">//le pdf existe (a priori oui, vu que l&#39;on ne prend que les docs avec pdf)</span>
+<a name="l00656"></a>00656                                                                         ?&gt;
+<a name="l00657"></a>00657                                                                                         &lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$nom_fiche?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;br /&gt;
+<a name="l00658"></a>00658                                                                                         &lt;strong&gt;Rapport gratuit réservé Espace Pro | télécharger ce rapport (&lt;?=$poids_fiche?&gt;)&lt;/strong&gt;&lt;/a&gt;
+<a name="l00659"></a>00659                                                                         &lt;?php
+<a name="l00660"></a>00660                                                                                         }
+<a name="l00661"></a>00661                                                                                 }<span class="comment">//fin du else if ($laDoc-&gt;tarif) </span>
+<a name="l00662"></a>00662                                                                         
+<a name="l00663"></a>00663                                                                         <span class="comment">/* -------------------- LA DOC N&#39;EST PAS RESERVEE mais elle est payante -------------------- */</span>
+<a name="l00664"></a>00664                                                                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($laDoc-&gt;tarif) {
+<a name="l00665"></a>00665                                                                                 
+<a name="l00666"></a>00666                                                                                 <span class="keywordflow">if</span> ($laDoc-&gt;type_doc==<span class="charliteral">&#39;5&#39;</span>) {<span class="comment">//ouvrage de référence</span>
+<a name="l00667"></a>00667                                                                                   $pageBdd = <span class="keyword">new</span> Page();
+<a name="l00668"></a>00668                                                                                   $pageBdd-&gt;pageSpecifique(<span class="stringliteral">&quot;catalogue-ifip-institut-du-porc&quot;</span>);
+<a name="l00669"></a>00669                                                                                   
+<a name="l00670"></a>00670                                                                         ?&gt;
+<a name="l00671"></a>00671                                                                                 &lt;!--&lt;a href=<span class="stringliteral">&quot;index.php?numpage=&lt;?=$pagePanier-&gt;numpage?&gt;&amp;spec=&lt;?=$pagePanier-&gt;nomFichier?&gt;&amp;numrub=&lt;?=$numrub?&gt;&amp;numcateg=&lt;?=$numcateg?&gt;&amp;numsscateg=&lt;?=$numsscateg?&gt;&amp;numdoc=&lt;?=$laDoc-&gt;numpara?&gt;&amp;textQte=1&amp;lg=&lt;?=$lg?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;panier&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;/a&gt;--&gt;
+<a name="l00672"></a>00672                                                                                   &lt;a href=<span class="stringliteral">&quot;index.php?numpage=&lt;?=$pageBdd-&gt;numpage?&gt;&amp;spec=&lt;?=$pageBdd-&gt;nomFichier?&gt;&amp;numrub=&lt;?=$pageBdd-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageBdd-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageBdd-&gt;numsscateg?&gt;&amp;numpara=&lt;?=$laDoc-&gt;numpara?&gt;&amp;textQte=1&amp;lg=&lt;?=$lg?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;gris&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;br /&gt;
+<a name="l00673"></a>00673                                                                                 &lt;strong&gt;&lt;?=$laDoc-&gt;tarif?&gt; &amp;euro;&amp;nbsp;|&amp;nbsp;consulter le descriptif&lt;/strong&gt;&lt;/a&gt;
+<a name="l00674"></a>00674                                                                         &lt;?php
+<a name="l00675"></a>00675                                                                                 } <span class="keywordflow">else</span> { <span class="comment">// publication</span>
+<a name="l00676"></a>00676                                                                                   $pageBdd = <span class="keyword">new</span> Page();
+<a name="l00677"></a>00677                                                                                   $pageBdd-&gt;pageSpecifique(<span class="stringliteral">&quot;publications-ifip-institut-du-porc&quot;</span>);
+<a name="l00678"></a>00678                                                                         ?&gt;
+<a name="l00679"></a>00679                                                                                   &lt;a href=<span class="stringliteral">&quot;index.php?numpage=&lt;?=$pageBdd-&gt;numpage?&gt;&amp;spec=&lt;?=$pageBdd-&gt;nomFichier?&gt;&amp;numrub=&lt;?=$pageBdd-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageBdd-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageBdd-&gt;numsscateg?&gt;&amp;numpara=&lt;?=$laDoc-&gt;numpara?&gt;&amp;textQte=1&amp;lg=&lt;?=$lg?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;gris&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;br /&gt;
+<a name="l00680"></a>00680                                                                                 &lt;strong&gt;&lt;?=$laDoc-&gt;tarif?&gt; &amp;euro;&amp;nbsp;|&amp;nbsp;consulter le résumé&lt;/strong&gt;&lt;/a&gt;
+<a name="l00681"></a>00681                                                                         &lt;?php
+<a name="l00682"></a>00682                                                                                 }
+<a name="l00683"></a>00683                                                                         
+<a name="l00684"></a>00684                                                                         <span class="comment">/* -------------------- LA DOC N&#39;EST PAS RESERVEE et elle est gratuite -------------------- */</span>
+<a name="l00685"></a>00685                                                                         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($nom_fiche &amp;&amp; $laDoc-&gt;acces_res==<span class="stringliteral">&quot;n&quot;</span> &amp;&amp; !$laDoc-&gt;tarif) {
+<a name="l00686"></a>00686                                                                         ?&gt; 
+<a name="l00687"></a>00687                                                                                 &lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$nom_fiche?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;gris&quot;</span>&gt;&lt;?=$laDoc-&gt;titrePara?&gt;&lt;br /&gt;
+<a name="l00688"></a>00688                                                                                 &lt;strong&gt;Gratuit | télécharger cet article (&lt;?=$poids_fiche?&gt;)&lt;/strong&gt;&lt;/a&gt;
+<a name="l00689"></a>00689                                                                         &lt;?php
+<a name="l00690"></a>00690                                                                         }
+<a name="l00691"></a>00691                                                                         ?&gt;
+<a name="l00692"></a>00692                                         &lt;/td&gt;
+<a name="l00693"></a>00693                                         &lt;/tr&gt;
+<a name="l00694"></a>00694                           &lt;?php
+<a name="l00695"></a>00695                                    }<span class="comment">//fin if ($laDoc-&gt;type_doc==&#39;5&#39; || ($laDoc-&gt;type_doc!=&#39;5&#39; &amp;&amp; $nom_fiche))</span>
+<a name="l00696"></a>00696                           ?&gt;
+<a name="l00697"></a>00697                         &lt;?php 
+<a name="l00698"></a>00698                         }
+<a name="l00699"></a>00699                  }<span class="comment">//fin for ($i=0;$i&lt;count($menuDoc-&gt;listdoc);$i++)</span>
+<a name="l00700"></a>00700                  ?&gt;
+<a name="l00701"></a>00701                  &lt;/table&gt;
+<a name="l00702"></a>00702                  &lt;?php
+<a name="l00703"></a>00703                  <span class="comment">//Lien vers toutes les docs de ce domaine et/ou sous domaine</span>
+<a name="l00704"></a>00704                  $pageSpecDoc=<span class="keyword">new</span> Page();
+<a name="l00705"></a>00705                  $pageSpecDoc-&gt;pageSpecifique(<span class="stringliteral">&quot;publications-ifip-institut-du-porc&quot;</span>);
+<a name="l00706"></a>00706                 ?&gt;
+<a name="l00707"></a>00707                  &lt;p&gt;&lt;a <span class="keyword">class</span>=<span class="stringliteral">&quot;carreliens&quot;</span> href=<span class="stringliteral">&quot;index.php?spec=&lt;?=$pageSpecDoc-&gt;nomFichier?&gt;&amp;numpage=&lt;?=$pageSpecDoc-&gt;numpage?&gt;&amp;numrub=&lt;?=$pageSpecDoc-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageSpecDoc-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageSpecDoc-&gt;numsscateg?&gt;&amp;lg=&lt;?=$pageSpecDoc-&gt;lg?&gt;&amp;dom=&lt;?=$numcateg?&gt;&amp;ssdom=&lt;?=$numsscateg?&gt;&quot;</span>&gt;Toute la doc sur ce thème&lt;/a&gt;&lt;br /&gt;&amp;nbsp;&lt;/p&gt;
+<a name="l00708"></a>00708                  &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;spacer&quot;</span>&gt;&lt;/div&gt;
+<a name="l00709"></a>00709                  &lt;?php
+<a name="l00710"></a>00710         }<span class="comment">//fin if ($nb_doc)</span>
+<a name="l00711"></a>00711         
+<a name="l00712"></a>00712         
+<a name="l00713"></a>00713         ?&gt;
+<a name="l00714"></a>00714         &lt;?php
+<a name="l00715"></a>00715         <span class="comment">// affichage des contacts</span>
+<a name="l00716"></a>00716         <span class="keywordflow">if</span> ($nb_cont) {
+<a name="l00717"></a>00717         ?&gt;
+<a name="l00718"></a>00718                          &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;titre185&quot;</span>&gt;<a class="code" href="class_contact.html" title="Gestion des contacts.">Contact&lt;? if ($nb_cont&gt;</a>1) echo<span class="stringliteral">&quot;s&quot;</span>;?&gt;&lt;/div&gt;
+<a name="l00719"></a>00719                          &lt;?php
+<a name="l00720"></a>00720                           <span class="keywordflow">for</span> ($i=0;$i&lt;count($menuCont-&gt;listcontact);$i++) { 
+<a name="l00721"></a>00721                                 $leContact=     $menuCont-&gt;listcontact[$i];
+<a name="l00722"></a>00722                                 $pageSpecContact=<span class="keyword">new</span> Page();
+<a name="l00723"></a>00723                                 $pageSpecContact-&gt;pageSpecifique(<span class="stringliteral">&quot;contact&quot;</span>);
+<a name="l00724"></a>00724                         ?&gt;  
+<a name="l00725"></a>00725                           &lt;p&gt;&lt;strong&gt;&lt;?=$leContact-&gt;prenom.<span class="stringliteral">&quot; &quot;</span>.$leContact-&gt;nom?&gt;&lt;/strong&gt;&lt;br /&gt; 
+<a name="l00726"></a>00726                           &lt;?=miseEnForme($leContact-&gt;fonction)?&gt;&lt;br /&gt;
+<a name="l00727"></a>00727                           &lt;? <span class="keywordflow">if</span>($leContact-&gt;tel) echo <span class="stringliteral">&quot;&lt;span class=\&quot;carreliens\&quot;&gt;Tél.&amp;nbsp;&quot;</span>.$leContact-&gt;tel.<span class="stringliteral">&quot;&lt;/span&gt;&lt;br /&gt;&quot;</span>;?&gt;
+<a name="l00728"></a>00728                           &lt;a href=<span class="stringliteral">&quot;index.php?spec=contact&amp;numpage=&lt;?=$pageSpecContact-&gt;numpage?&gt;&amp;numrub=&lt;?=$pageSpecContact-&gt;numrub?&gt;&amp;numcateg=&lt;?=$pageSpecContact-&gt;numcateg?&gt;&amp;numsscateg=&lt;?=$pageSpecContact-&gt;numsscateg?&gt;&amp;numcontact=&lt;?=$leContact-&gt;numcontact?&gt;&amp;lg=&lt;?=$lg?&gt;&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;carreliens&quot;</span>&gt;Envoyer un courriel&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<a name="l00729"></a>00729                                 
+<a name="l00730"></a>00730                         &lt;?php  
+<a name="l00731"></a>00731                           }<span class="comment">// fin du for ($i=0;$i&lt;count($menuCont-&gt;listcontact);$i++)</span>
+<a name="l00732"></a>00732                          ?&gt;
+<a name="l00733"></a>00733                          &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;spacer&quot;</span>&gt;&lt;/div&gt;
+<a name="l00734"></a>00734                          &lt;?php 
+<a name="l00735"></a>00735         }<span class="comment">//fin if ($nb_cont)</span>
+<a name="l00736"></a>00736         
+<a name="l00737"></a>00737         ?&gt;
+<a name="l00738"></a>00738                 &lt;?php
+<a name="l00739"></a>00739                                 <span class="comment">// Les paragraphes</span>
+<a name="l00740"></a>00740                                 $listparas=<span class="keyword">new</span> <a class="code" href="class_liste_paragraphes.html" title="Sp&amp;eacute;cifique IFIP.">ListeParagraphes</a>();      
+<a name="l00741"></a>00741                                 $listparas-&gt;numpage=$laPage-&gt;numpage;
+<a name="l00742"></a>00742                                 $listparas-&gt;colonne=3; 
+<a name="l00743"></a>00743                                 $listparas-&gt;afficherListeParas();
+<a name="l00744"></a>00744 
+<a name="l00745"></a>00745                                 <span class="keywordflow">foreach</span> ($listparas as $paras) {
+<a name="l00746"></a>00746                                         <span class="keywordflow">if</span> ($paras-&gt;titrePara) {
+<a name="l00747"></a>00747                                 ?&gt;
+<a name="l00748"></a>00748                                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;titre185&quot;</span>&gt;&lt;?=$paras-&gt;titrePara?&gt;&lt;/div&gt;
+<a name="l00749"></a>00749                                 &lt;?php   
+<a name="l00750"></a>00750                                         }
+<a name="l00751"></a>00751                                         <span class="comment">//les liens (pour mettre un lien sur une photo - l&#39;affichage est realise plus bas)</span>
+<a name="l00752"></a>00752                                         $url_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00753"></a>00753                                         $libelle_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00754"></a>00754                                         $fenetre_lien=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00755"></a>00755                                         
+<a name="l00756"></a>00756                                         $listliens=<span class="keyword">new</span> <a class="code" href="class_liste_liens.html">ListeLiens</a>();
+<a name="l00757"></a>00757                                         $listliens-&gt;numpara= $paras-&gt;numpara;
+<a name="l00758"></a>00758                                         $nb_liens=$listliens-&gt;afficherListeLiens();
+<a name="l00759"></a>00759                                         <span class="keywordflow">foreach</span> ($listliens as $liens) {
+<a name="l00760"></a>00760                                                 $url_lien=$liens-&gt;urlLien;
+<a name="l00761"></a>00761                                                 $libelle_lien=$liens-&gt;libLien;
+<a name="l00762"></a>00762                                                 $fenetre_lien=$liens-&gt;fenLien;
+<a name="l00763"></a>00763                                                 <span class="keywordflow">break</span>;
+<a name="l00764"></a>00764                                         }
+<a name="l00765"></a>00765                                         
+<a name="l00766"></a>00766                                         <span class="comment">// les photos</span>
+<a name="l00767"></a>00767                                         $listphotos=<span class="keyword">new</span> <a class="code" href="class_liste_photos.html">ListePhotos</a>();
+<a name="l00768"></a>00768                                         $listphotos-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00769"></a>00769                                         $nb_photos=$listphotos-&gt;afficherListePhotos();
+<a name="l00770"></a>00770                                         <span class="keywordflow">if</span> ($nb_photos) {
+<a name="l00771"></a>00771                                                 <span class="keywordflow">foreach</span> ($listphotos as $photos) {
+<a name="l00772"></a>00772                                         ?&gt; 
+<a name="l00773"></a>00773                                                         &lt;?php
+<a name="l00774"></a>00774                                                         <span class="keywordflow">if</span> ($photos-&gt;ext==<span class="stringliteral">&quot;swf&quot;</span> ) {
+<a name="l00775"></a>00775                                                         ?&gt;
+<a name="l00776"></a>00776                                                                 &lt;script type=<span class="stringliteral">&quot;text/javascript&quot;</span>&gt;
+<a name="l00777"></a>00777                                                                 AC_FL_RunContent( 
+<a name="l00778"></a>00778                                                                 <span class="stringliteral">&#39;codebase&#39;</span>,<span class="stringliteral">&#39;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0&#39;</span>,<span class="stringliteral">&#39;width&#39;</span>,<span class="stringliteral">&#39;180&#39;</span>,<span class="stringliteral">&#39;height&#39;</span>,<span class="stringliteral">&#39;240&#39;</span>,<span class="stringliteral">&#39;src&#39;</span>,<span class="stringliteral">&#39;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&#39;</span>,<span class="stringliteral">&#39;quality&#39;</span>,<span class="stringliteral">&#39;high&#39;</span>,<span class="stringliteral">&#39;pluginspage&#39;</span>,<span class="stringliteral">&#39;http://www.macromedia.com/go/getflashplayer&#39;</span>,<span class="stringliteral">&#39;movie&#39;</span>,<span class="stringliteral">&#39;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&#39;</span> 
+<a name="l00779"></a>00779                                                                 ); <span class="comment">//end AC code</span>
+<a name="l00780"></a>00780                                                                 &lt;/script&gt;&lt;noscript&gt;&lt;<span class="keywordtype">object</span> 
+<a name="l00781"></a>00781                                                                 classid=<span class="stringliteral">&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;</span> 
+<a name="l00782"></a>00782                                                                 codebase=<span class="stringliteral">&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0&quot;</span> 
+<a name="l00783"></a>00783                                                                 width=<span class="stringliteral">&quot;180&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span>&gt;
+<a name="l00784"></a>00784                                                                                                          &lt;param name=<span class="stringliteral">&quot;movie&quot;</span> value=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> /&gt;
+<a name="l00785"></a>00785                                                                                                          &lt;param name=<span class="stringliteral">&quot;quality&quot;</span> value=<span class="stringliteral">&quot;high&quot;</span> /&gt;
+<a name="l00786"></a>00786                                                                                                          &lt;embed src=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> quality=<span class="stringliteral">&quot;high&quot;</span> 
+<a name="l00787"></a>00787                                                                 pluginspage=<span class="stringliteral">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span> 
+<a name="l00788"></a>00788                                                                 type=<span class="stringliteral">&quot;application/x-shockwave-flash&quot;</span> width=<span class="stringliteral">&quot;180&quot;</span> height=<span class="stringliteral">&quot;240&quot;</span>&gt;&lt;/embed&gt;
+<a name="l00789"></a>00789                                                                                                   &lt;/<span class="keywordtype">object</span>&gt;&lt;/noscript&gt;
+<a name="l00790"></a>00790 
+<a name="l00791"></a>00791                                                         &lt;?php
+<a name="l00792"></a>00792                                                         } <span class="keywordflow">else</span> {
+<a name="l00793"></a>00793                                                         ?&gt;
+<a name="l00794"></a>00794                                                                 &lt;? <span class="keywordflow">if</span> ($url_lien) { 
+<a name="l00795"></a>00795                                                                           echo <span class="stringliteral">&quot;&lt;a href=&#39;&quot;</span>.$url_lien.<span class="stringliteral">&quot;&#39;  title=\&quot;&quot;</span>.$libelle_lien.<span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00796"></a>00796                                                                           <span class="keywordflow">if</span> ($fenetre_lien==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot; target=&#39;_blank&#39;&quot;</span>;
+<a name="l00797"></a>00797                                                                           echo<span class="stringliteral">&quot;&gt;&quot;</span>; 
+<a name="l00798"></a>00798                                                                         } 
+<a name="l00799"></a>00799                                                                  ?&gt;
+<a name="l00800"></a>00800                                                                 &lt;img src=<span class="stringliteral">&quot;photos/&lt;?=$photos-&gt;nomPhoto?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> (!$url_lien) {?&gt;alt=<span class="stringliteral">&quot;&lt;? if ($photos-&gt;legende) echo $photos-&gt;legende;?&gt;&quot;</span> &lt;?php } ?&gt; /&gt;
+<a name="l00801"></a>00801                                                                 &lt;? <span class="keywordflow">if</span> ($laPage-&gt;accueilPage!=<span class="stringliteral">&quot;o&quot;</span> &amp;&amp; $paras-&gt;titrePara) echo<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>;?&gt;
+<a name="l00802"></a>00802                                                                 &lt;? <span class="keywordflow">if</span> ($url_lien) echo <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>; ?&gt;
+<a name="l00803"></a>00803                                                                 
+<a name="l00804"></a>00804                                                         &lt;?php
+<a name="l00805"></a>00805                                                         }<span class="comment">//fin du else</span>
+<a name="l00806"></a>00806                                                         
+<a name="l00807"></a>00807                                                         
+<a name="l00808"></a>00808                                                         ?&gt;
+<a name="l00809"></a>00809                                         &lt;?php
+<a name="l00810"></a>00810                                                 }<span class="comment">//fin du foreach ($listphotos as $photos)</span>
+<a name="l00811"></a>00811                                         }<span class="comment">//fin  if ($nb_photos)</span>
+<a name="l00812"></a>00812 
+<a name="l00813"></a>00813                                         <span class="comment">//Les vidéos  </span>
+<a name="l00814"></a>00814                                         $listvideos=<span class="keyword">new</span> <a class="code" href="class_liste_videos.html">ListeVideos</a>();
+<a name="l00815"></a>00815                                         $listvideos-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00816"></a>00816                                         $nb_videos=$listvideos-&gt;afficherListeVideos();
+<a name="l00817"></a>00817                                         <span class="keywordflow">if</span> ($nb_videos) {
+<a name="l00818"></a>00818                                                 <span class="keywordflow">foreach</span> ($listvideos as $videos) {
+<a name="l00819"></a>00819                                         ?&gt; 
+<a name="l00820"></a>00820                                                    &lt;<span class="keywordtype">object</span> classid=<span class="stringliteral">&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;</span> codebase=<span class="stringliteral">&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0&quot;</span> width=<span class="stringliteral">&quot;185&quot;</span> height=<span class="stringliteral">&quot;139&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;FLVPlayer1&quot;</span>&gt;
+<a name="l00821"></a>00821                                                   &lt;param name=<span class="stringliteral">&quot;movie&quot;</span> value=<span class="stringliteral">&quot;FLVPlayer_Progressive.swf&quot;</span> /&gt;
+<a name="l00822"></a>00822                                                   &lt;param name=<span class="stringliteral">&quot;salign&quot;</span> value=<span class="stringliteral">&quot;lt&quot;</span> /&gt;
+<a name="l00823"></a>00823                                                   &lt;param name=<span class="stringliteral">&quot;quality&quot;</span> value=<span class="stringliteral">&quot;high&quot;</span> /&gt;
+<a name="l00824"></a>00824                                                   &lt;param name=<span class="stringliteral">&quot;scale&quot;</span> value=<span class="stringliteral">&quot;noscale&quot;</span> /&gt;
+<a name="l00825"></a>00825                                                   &lt;param name=<span class="stringliteral">&quot;FlashVars&quot;</span> value=<span class="stringliteral">&quot;&amp;MM_ComponentVersion=1&amp;skinName=Clear_Skin_1&amp;streamName=videos/&lt;?=$videos-&gt;nomVideo?&gt;&amp;autoPlay=false&amp;autoRewind=true&quot;</span> /&gt;
+<a name="l00826"></a>00826                                                   &lt;embed src=<span class="stringliteral">&quot;FLVPlayer_Progressive.swf&quot;</span> flashvars=<span class="stringliteral">&quot;&amp;MM_ComponentVersion=1&amp;skinName=Clear_Skin_1&amp;streamName=videos/&lt;?=$videos-&gt;nomVideo?&gt;&amp;autoPlay=false&amp;autoRewind=true&quot;</span> quality=<span class="stringliteral">&quot;high&quot;</span> scale=<span class="stringliteral">&quot;noscale&quot;</span> width=<span class="stringliteral">&quot;185&quot;</span> height=<span class="stringliteral">&quot;139&quot;</span> name=<span class="stringliteral">&quot;FLVPlayer1&quot;</span> salign=<span class="stringliteral">&quot;LT&quot;</span> type=<span class="stringliteral">&quot;application/x-shockwave-flash&quot;</span> pluginspage=<span class="stringliteral">&quot;http://www.macromedia.com/go/getflashplayer&quot;</span> /&gt;                 
+<a name="l00827"></a>00827         &lt;/<span class="keywordtype">object</span>&gt;
+<a name="l00828"></a>00828                                                         &lt;?=$videos-&gt;legendeVideo?&gt;&lt;br /&gt;
+<a name="l00829"></a>00829                                         &lt;?php
+<a name="l00830"></a>00830                                                 }<span class="comment">//fin du foreach ($listphotos as $photos)</span>
+<a name="l00831"></a>00831                                         }<span class="comment">//fin  if ($nb_photos)</span>
+<a name="l00832"></a>00832                                         
+<a name="l00833"></a>00833                                         <span class="comment">//le contenu du paragraphe</span>
+<a name="l00834"></a>00834                                         <span class="keywordflow">if</span> ($paras-&gt;contenuPara) {
+<a name="l00835"></a>00835                                         ?&gt;
+<a name="l00836"></a>00836                                         &lt;p&gt;&lt;?=$paras-&gt;contenuPara?&gt;&lt;/p&gt;
+<a name="l00837"></a>00837                                         &lt;? } ?&gt;
+<a name="l00838"></a>00838                                         
+<a name="l00839"></a>00839                                         &lt;?php
+<a name="l00840"></a>00840                                         <span class="comment">// les fichiers</span>
+<a name="l00841"></a>00841                                         $listfichiers=<span class="keyword">new</span> <a class="code" href="class_liste_fichiers.html">ListeFichiers</a>();
+<a name="l00842"></a>00842                                         $listfichiers-&gt;numpara= $paras-&gt;numpara; 
+<a name="l00843"></a>00843                                         $nb_fichiers=$listfichiers-&gt;afficherListeFichiers();
+<a name="l00844"></a>00844                                         <span class="keywordflow">if</span> ($nb_fichiers) {
+<a name="l00845"></a>00845                                         ?&gt;
+<a name="l00846"></a>00846                                         &lt;ul <span class="keyword">class</span>=<span class="stringliteral">&quot;listepdf&quot;</span>&gt;
+<a name="l00847"></a>00847                                         &lt;?php
+<a name="l00848"></a>00848                                                 <span class="keywordflow">foreach</span> ($listfichiers as $fichiers) {
+<a name="l00849"></a>00849                                         ?&gt; 
+<a name="l00850"></a>00850                                                   &lt;?php <span class="keywordflow">if</span> ($fichiers-&gt;nomFichier &amp;&amp; $fichiers-&gt;libFichier) { ?&gt;
+<a name="l00851"></a>00851                                                   &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;listepdf&quot;</span>&gt;
+<a name="l00852"></a>00852                                                         &lt;a href=<span class="stringliteral">&quot;ouverturepdf.php?file=&lt;?=$fichiers-&gt;nomFichier?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span>&gt;&lt;?=$fichiers-&gt;libFichier?&gt;&lt;/a&gt;
+<a name="l00853"></a>00853                                                   &lt;/li&gt;
+<a name="l00854"></a>00854                                                   &lt;? } <span class="comment">// fin if ($fichiers-&gt;libFichier)</span>
+<a name="l00855"></a>00855                                                   ?&gt;
+<a name="l00856"></a>00856                                                  
+<a name="l00857"></a>00857                                         &lt;?php
+<a name="l00858"></a>00858                                                 }<span class="comment">//fin du foreach ($listfichiers as $fichiers)  </span>
+<a name="l00859"></a>00859                                         ?&gt;
+<a name="l00860"></a>00860                                         &lt;/ul&gt;
+<a name="l00861"></a>00861                                         &lt;?php 
+<a name="l00862"></a>00862                                         }<span class="comment">//fin  if ($nb_fichiers)</span>
+<a name="l00863"></a>00863                                         
+<a name="l00864"></a>00864                                         <span class="comment">//les liens</span>
+<a name="l00865"></a>00865                                         $listliens=<span class="keyword">new</span> <a class="code" href="class_liste_liens.html">ListeLiens</a>();
+<a name="l00866"></a>00866                                         $listliens-&gt;numpara= $paras-&gt;numpara;
+<a name="l00867"></a>00867                                         $nb_liens=$listliens-&gt;afficherListeLiens();
+<a name="l00868"></a>00868                                         
+<a name="l00869"></a>00869                                         <span class="keywordflow">if</span> ($nb_liens) {?&gt;
+<a name="l00870"></a>00870                                         &lt;ul <span class="keyword">class</span>=<span class="stringliteral">&quot;listecarres&quot;</span>&gt;
+<a name="l00871"></a>00871                                         &lt;?php
+<a name="l00872"></a>00872                                                 <span class="keywordflow">foreach</span> ($listliens as $liens) {
+<a name="l00873"></a>00873                                         ?&gt;
+<a name="l00874"></a>00874                                                   &lt;?php
+<a name="l00875"></a>00875                                                   <span class="keywordflow">if</span> ($liens-&gt;libLien &amp;&amp; $laPage-&gt;accueilPage!=<span class="stringliteral">&quot;o&quot;</span>) {
+<a name="l00876"></a>00876                                                   ?&gt;
+<a name="l00877"></a>00877                                                   &lt;li <span class="keyword">class</span>=<span class="stringliteral">&quot;listecarres&quot;</span>&gt;
+<a name="l00878"></a>00878                                                         &lt;?php <span class="keywordflow">if</span> ($liens-&gt;texteLien) echo $liens-&gt;texteLien.<span class="stringliteral">&quot;&lt;br /&gt;&quot;</span>; ?&gt;
+<a name="l00879"></a>00879                                                         &lt;a href=<span class="stringliteral">&quot;&lt;?=$liens-&gt;urlLien?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> ($liens-&gt;fenLien==<span class="stringliteral">&quot;o&quot;</span>) echo <span class="stringliteral">&quot;target=&#39;_blank&#39;&quot;</span>;?&gt;&gt;&lt;?=$liens-&gt;libLien?&gt;&lt;/a&gt;
+<a name="l00880"></a>00880                                                   &lt;/li&gt;
+<a name="l00881"></a>00881                                                   &lt;? } <span class="comment">//fin if ($liens-&gt;libLien &amp;&amp; $laPage-&gt;accueilPage!=&quot;o&quot;)</span>
+<a name="l00882"></a>00882                                                 }<span class="comment">//fin du foreach ($listliens as $liens) </span>
+<a name="l00883"></a>00883                                         ?&gt;
+<a name="l00884"></a>00884                                         &lt;/ul&gt;
+<a name="l00885"></a>00885                                         &lt;?php
+<a name="l00886"></a>00886                                         } <span class="comment">//fin if ($nb_liens)</span>
+<a name="l00887"></a>00887                                         ?&gt;
+<a name="l00888"></a>00888                                  &lt;p style=<span class="stringliteral">&quot;background-color:#FFFFFF&quot;</span>&gt;&amp;nbsp;&lt;br /&gt;&lt;/p&gt;
+<a name="l00889"></a>00889                                 &lt;?php
+<a name="l00890"></a>00890                                 } <span class="comment">//fin du foreach</span>
+<a name="l00891"></a>00891 ?&gt;
+<a name="l00892"></a>00892 
+<a name="l00893"></a>00893         &lt;/div&gt;
+<a name="l00894"></a>00894 &lt;/div&gt;
+<a name="l00895"></a>00895 &lt;?php
+<a name="l00896"></a>00896         } <span class="comment">// fin if (!$divflotte)</span>
+<a name="l00897"></a>00897 ?&gt;
+<a name="l00898"></a>00898 &lt;?php
+<a name="l00899"></a>00899         
+<a name="l00900"></a>00900 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!$id) {<span class="comment">//fin if ($numpage)     -----&gt; on est en page d&#39;accueil sur le site public : utiliser l&#39;objet $accueilPage</span>
+<a name="l00901"></a>00901 ?&gt;
+<a name="l00902"></a>00902 
+<a name="l00903"></a>00903 &lt;h1&gt;Bienvenue sur la page d<span class="stringliteral">&#39;accueil de l&#39;</span>IFIP.&lt;/h1&gt; &lt;h2&gt;Ce site est en construction.&lt;/h2&gt;
+<a name="l00904"></a>00904 
+<a name="l00905"></a>00905 &lt;?php
+<a name="l00906"></a>00906 }  <span class="comment">// fin if ($numpage) =&gt; else if (!$id)</span>
+<a name="l00907"></a>00907 ?&gt;
+<a name="l00908"></a>00908         
+<a name="l00909"></a>00909 
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

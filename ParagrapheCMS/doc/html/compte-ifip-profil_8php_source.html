@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de compte-ifip-profil.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+<h1>compte-ifip-profil.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php <span class="comment">/* Date de création: 13/03/2009*/</span> 
+<a name="l00002"></a>00002 $laPage = <span class="keyword">new</span> Page();
+<a name="l00003"></a>00003 $laPage-&gt;numpage=$numpage;
+<a name="l00004"></a>00004 $laPage-&gt;infosPage();
+<a name="l00005"></a>00005 $laPage-&gt;infosColonnes();
+<a name="l00006"></a>00006  
+<a name="l00007"></a>00007         <span class="comment">//echo &quot;sess=&quot;.$_SESSION[&#39;numclient&#39;];  </span>
+<a name="l00008"></a>00008 <span class="keywordflow">if</span> ($laPage-&gt;nomPageGoogle) { 
+<a name="l00009"></a>00009 ?&gt;
+<a name="l00010"></a>00010 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;coltexte785&quot;</span>&gt; 
+<a name="l00011"></a>00011                    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;sap-content&quot;</span>&gt;
+<a name="l00012"></a>00012                                 &lt;!-- item 1 585 pixels wide --&gt;
+<a name="l00013"></a>00013                                 &lt;p <span class="keyword">class</span>=<span class="stringliteral">&quot;titre785&quot;</span>&gt;&lt;?=$laPage-&gt;titrePage?&gt;&lt;/p&gt;
+<a name="l00014"></a>00014         
+<a name="l00015"></a>00015   &lt;?php
+<a name="l00016"></a>00016   <span class="keywordflow">if</span> ($_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>])  {
+<a name="l00017"></a>00017         $client=<span class="keyword">new</span> <a class="code" href="class_client.html" title="G&amp;egrave;re les diff&amp;eacute;rents clients.">Client</a>();
+<a name="l00018"></a>00018         $client-&gt;numclient=$_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>];
+<a name="l00019"></a>00019         $client-&gt;infosClient();
+<a name="l00020"></a>00020         
+<a name="l00021"></a>00021         <span class="keywordflow">if</span> ($action==<span class="stringliteral">&quot;modifierCompte&quot;</span>) {
+<a name="l00022"></a>00022         ?&gt;
+<a name="l00023"></a>00023                         &lt;strong&gt;Merci, votre profil a été mis à jour.&lt;/strong&gt;
+<a name="l00024"></a>00024                         &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+<a name="l00025"></a>00025                 
+<a name="l00026"></a>00026         &lt;?php
+<a name="l00027"></a>00027         }
+<a name="l00028"></a>00028         ?&gt;
+<a name="l00029"></a>00029           &lt;fieldset&gt;
+<a name="l00030"></a>00030            
+<a name="l00031"></a>00031                 &lt;br /&gt;
+<a name="l00032"></a>00032                 &lt;br /&gt;
+<a name="l00033"></a>00033                 
+<a name="l00034"></a>00034                 &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;&lt;/label&gt;
+<a name="l00035"></a>00035                    &lt;strong&gt;Vos informations personnelles :&lt;/strong&gt;
+<a name="l00036"></a>00036                 &lt;br /&gt;
+<a name="l00037"></a>00037                 
+<a name="l00038"></a>00038                 
+<a name="l00039"></a>00039                 &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;Civilité :&lt;/label&gt;
+<a name="l00040"></a>00040                   &lt;select name=<span class="stringliteral">&quot;selectCiv &quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>&gt;
+<a name="l00041"></a>00041                         &lt;option&gt;-&lt;/option&gt;
+<a name="l00042"></a>00042                         &lt;option value=<span class="stringliteral">&quot;Mr&quot;</span> &lt;?php <span class="keywordflow">if</span> ($client-&gt;civilite==<span class="stringliteral">&quot;Mr&quot;</span>) echo <span class="stringliteral">&quot;selected=&#39;selected&#39;&quot;</span>;?&gt;&gt;Mr&lt;/option&gt;
+<a name="l00043"></a>00043                         &lt;option value=<span class="stringliteral">&quot;Mme&quot;</span> &lt;?php <span class="keywordflow">if</span> ($client-&gt;civilite==<span class="stringliteral">&quot;Mme&quot;</span>) echo <span class="stringliteral">&quot;selected=&#39;selected&#39;&quot;</span>;?&gt;&gt;Mme&lt;/option&gt;
+<a name="l00044"></a>00044                         &lt;option value=<span class="stringliteral">&quot;Mlle&quot;</span> &lt;?php <span class="keywordflow">if</span> ($client-&gt;civilite==<span class="stringliteral">&quot;Mlle&quot;</span>) echo <span class="stringliteral">&quot;selected=&#39;selected&#39;&quot;</span>;?&gt;&gt;Mlle&lt;/option&gt;
+<a name="l00045"></a>00045                 &lt;/select&gt;
+<a name="l00046"></a>00046                 &lt;br /&gt;
+<a name="l00047"></a>00047                 
+<a name="l00048"></a>00048                 &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textPrenom&quot;</span>&gt;Prénom&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; :&lt;/label&gt;
+<a name="l00049"></a>00049       &lt;input type=<span class="stringliteral">&quot;text&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textPrenom&quot;</span> name=<span class="stringliteral">&quot;textPrenom&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;prenom?&gt;&quot;</span> /&gt;
+<a name="l00050"></a>00050     &lt;br /&gt;
+<a name="l00051"></a>00051         
+<a name="l00052"></a>00052         
+<a name="l00053"></a>00053       &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textNom&quot;</span>&gt;Nom&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; :&lt;/label&gt;
+<a name="l00054"></a>00054       &lt;input type=<span class="stringliteral">&quot;text&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textNom&quot;</span> name=<span class="stringliteral">&quot;textNom&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>value=<span class="stringliteral">&quot;&lt;?=$client-&gt;nom?&gt;&quot;</span> /&gt;
+<a name="l00055"></a>00055     &lt;br /&gt;
+<a name="l00056"></a>00056         
+<a name="l00057"></a>00057         
+<a name="l00058"></a>00058       &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textEmail&quot;</span>&gt;Email &lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; :&lt;/label&gt;
+<a name="l00059"></a>00059       &lt;input type=<span class="stringliteral">&quot;text&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textEmail&quot;</span> name=<span class="stringliteral">&quot;textEmail&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;email?&gt;&quot;</span> /&gt;
+<a name="l00060"></a>00060         &lt;br /&gt;
+<a name="l00061"></a>00061         
+<a name="l00062"></a>00062         
+<a name="l00063"></a>00063           &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textSociete&quot;</span>&gt;Société / organisation&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; :&lt;/label&gt;
+<a name="l00064"></a>00064       &lt;input type=<span class="stringliteral">&quot;text&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textSociete&quot;</span> name=<span class="stringliteral">&quot;textSociete&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;raison?&gt;&quot;</span> /&gt;
+<a name="l00065"></a>00065         &lt;br /&gt;
+<a name="l00066"></a>00066         
+<a name="l00067"></a>00067         
+<a name="l00068"></a>00068           &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textSociete&quot;</span>&gt;Fonction :&lt;/label&gt;
+<a name="l00069"></a>00069       &lt;input type=<span class="stringliteral">&quot;text&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textFonction&quot;</span> name=<span class="stringliteral">&quot;textFonction&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;fonction?&gt;&quot;</span> /&gt;
+<a name="l00070"></a>00070         &lt;br /&gt;
+<a name="l00071"></a>00071         
+<a name="l00072"></a>00072          
+<a name="l00073"></a>00073          &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textAdr1&quot;</span>&gt;Adresse&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; : &lt;/label&gt;
+<a name="l00074"></a>00074           &amp;nbsp;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textAdr1&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textAdr1&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;adr1?&gt;&quot;</span> /&gt;
+<a name="l00075"></a>00075         &lt;br /&gt;
+<a name="l00076"></a>00076         
+<a name="l00077"></a>00077         
+<a name="l00078"></a>00078           &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textAdr2&quot;</span>&gt;&amp;nbsp;&lt;/label&gt;
+<a name="l00079"></a>00079           &lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textAdr2&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textAdr2&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;adr2?&gt;&quot;</span>  /&gt;
+<a name="l00080"></a>00080         &lt;br /&gt;
+<a name="l00081"></a>00081         
+<a name="l00082"></a>00082         
+<a name="l00083"></a>00083           &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textCp&quot;</span>&gt;Code Postal&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; : &lt;/label&gt;
+<a name="l00084"></a>00084           &amp;nbsp;&lt;input type=<span class="stringliteral">&quot;textCp&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textCp&quot;</span> name=<span class="stringliteral">&quot;textCp&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;cp?&gt;&quot;</span>  /&gt;
+<a name="l00085"></a>00085          &lt;br /&gt;
+<a name="l00086"></a>00086          
+<a name="l00087"></a>00087          
+<a name="l00088"></a>00088            &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textVille&quot;</span>&gt;Ville&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; : &lt;/label&gt;
+<a name="l00089"></a>00089            &amp;nbsp;&lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;textVille&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textVille&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;ville?&gt;&quot;</span>  /&gt;
+<a name="l00090"></a>00090          &lt;br /&gt;
+<a name="l00091"></a>00091          
+<a name="l00092"></a>00092          
+<a name="l00093"></a>00093            &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;selectPays&quot;</span>&gt;Pays&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; : &lt;/label&gt;
+<a name="l00094"></a>00094           &amp;nbsp;&lt;select name=<span class="stringliteral">&quot;selectPays&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span>&gt;
+<a name="l00095"></a>00095           &lt;option&gt;Choisir...&lt;/option&gt;
+<a name="l00096"></a>00096                 &lt;?php
+<a name="l00097"></a>00097                 $result = mysql_query(<span class="stringliteral">&quot;SELECT * FROM if_pays ORDER BY pays&quot;</span>);
+<a name="l00098"></a>00098                 <span class="keywordflow">while</span> ($row=mysql_fetch_array($result)) {
+<a name="l00099"></a>00099                 ?&gt;
+<a name="l00100"></a>00100                         &lt;option value=<span class="stringliteral">&quot;&lt;?=$row[&#39;numpays&#39;]?&gt;&quot;</span> &lt;?php <span class="keywordflow">if</span> ($client-&gt;numpays==$row[<span class="stringliteral">&#39;numpays&#39;</span>] || $row[<span class="stringliteral">&#39;numpays&#39;</span>]==<span class="stringliteral">&quot;247&quot;</span>) echo <span class="stringliteral">&quot;selected=&#39;selected&#39;&quot;</span>;?&gt;&gt;
+<a name="l00101"></a>00101                         &lt;?=utf8_encode($row[<span class="stringliteral">&#39;pays&#39;</span>])?&gt;&lt;/option&gt;
+<a name="l00102"></a>00102                 &lt;?php
+<a name="l00103"></a>00103                 }<span class="comment">//fin du while</span>
+<a name="l00104"></a>00104                 ?&gt;
+<a name="l00105"></a>00105         &lt;/select&gt;
+<a name="l00106"></a>00106         &lt;br /&gt;
+<a name="l00107"></a>00107         
+<a name="l00108"></a>00108         
+<a name="l00109"></a>00109         &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textTel&quot;</span>&gt;Téléphone&lt;em <span class="keyword">class</span>=<span class="stringliteral">&quot;important&quot;</span>&gt;*&lt;/em&gt; : &lt;/label&gt;
+<a name="l00110"></a>00110         &amp;nbsp;&lt;input name=<span class="stringliteral">&quot;textTel&quot;</span> type=<span class="stringliteral">&quot;text&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textTel&quot;</span> maxlength=<span class="stringliteral">&quot;25&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;tel?&gt;&quot;</span> /&gt;
+<a name="l00111"></a>00111         &lt;br /&gt;
+<a name="l00112"></a>00112         
+<a name="l00113"></a>00113         
+<a name="l00114"></a>00114         &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;textFax&quot;</span>&gt;Fax : &lt;/label&gt;
+<a name="l00115"></a>00115         &amp;nbsp;&lt;input name=<span class="stringliteral">&quot;textFax&quot;</span> type=<span class="stringliteral">&quot;text&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;public&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;textFax&quot;</span> maxlength=<span class="stringliteral">&quot;25&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$client-&gt;fax?&gt;&quot;</span> /&gt;
+<a name="l00116"></a>00116         &lt;br /&gt;
+<a name="l00117"></a>00117         
+<a name="l00118"></a>00118         
+<a name="l00119"></a>00119                 &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;name&quot;</span>&gt;&lt;/label&gt;
+<a name="l00120"></a>00120                 &lt;input <span class="keywordtype">id</span>=<span class="stringliteral">&quot;validerInscr&quot;</span> name=<span class="stringliteral">&quot;validerInscr&quot;</span> type=<span class="stringliteral">&quot;button&quot;</span>  <span class="keyword">class</span>=<span class="stringliteral">&quot;bouton&quot;</span> value=<span class="stringliteral">&quot;Valider&quot;</span> onClick=<span class="stringliteral">&quot;javascript:validerInscrForma(&#39;modifierCompte&#39;)&quot;</span>/&gt; 
+<a name="l00121"></a>00121         
+<a name="l00122"></a>00122                 &lt;/fieldset&gt;
+<a name="l00123"></a>00123         &lt;?php
+<a name="l00124"></a>00124         } 
+<a name="l00125"></a>00125         ?&gt;
+<a name="l00126"></a>00126                 
+<a name="l00127"></a>00127         &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;numpara&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$numpara?&gt;&quot;</span>/&gt;
+<a name="l00128"></a>00128 &lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;action&quot;</span> value=<span class="stringliteral">&quot;&lt;?=$action?&gt;&quot;</span> /&gt;
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130                                 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+<a name="l00131"></a>00131                                 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+<a name="l00132"></a>00132                                 
+<a name="l00133"></a>00133   &lt;/div&gt;
+<a name="l00134"></a>00134 &lt;/div&gt;
+<a name="l00135"></a>00135 &lt;?php
+<a name="l00136"></a>00136 }<span class="comment">//fin if ($laPage-&gt;nomPageGoogle)</span>
+<a name="l00137"></a>00137 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

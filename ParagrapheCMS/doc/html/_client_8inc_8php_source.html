@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/Client.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>Client.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php 
+<a name="l00009"></a><a class="code" href="class_client.html">00009</a> <span class="keyword">class </span><a class="code" href="class_client.html" title="G&amp;egrave;re les diff&amp;eacute;rents clients.">Client</a> {
+<a name="l00014"></a><a class="code" href="class_client.html#ac4e097b8701396fed22fbf2045c44bd4">00014</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#ac4e097b8701396fed22fbf2045c44bd4">$numclient</a>;
+<a name="l00019"></a><a class="code" href="class_client.html#a778029aae0ea2d90ef9436b60f46d38d">00019</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a778029aae0ea2d90ef9436b60f46d38d">$raison</a>;
+<a name="l00024"></a><a class="code" href="class_client.html#ab19a25404a256e2a4238eabff437a79d">00024</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#ab19a25404a256e2a4238eabff437a79d">$nom</a>;
+<a name="l00029"></a><a class="code" href="class_client.html#aa6419a31687eb51850bdf3efd6dde8af">00029</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#aa6419a31687eb51850bdf3efd6dde8af">$prenom</a>;
+<a name="l00033"></a><a class="code" href="class_client.html#a43daf35f62bc7451346c59b5d80ef961">00033</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a43daf35f62bc7451346c59b5d80ef961">$civilite</a>;
+<a name="l00038"></a><a class="code" href="class_client.html#a592005f03998bd9cbb01c01734bcfcdb">00038</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a592005f03998bd9cbb01c01734bcfcdb">$fonction</a>;
+<a name="l00043"></a><a class="code" href="class_client.html#a716f1ff751217e0ceac93fa2e3806fbb">00043</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a716f1ff751217e0ceac93fa2e3806fbb">$adr1</a>;
+<a name="l00048"></a><a class="code" href="class_client.html#af6fc39ee3670e9057bb7fb3484c5bbd6">00048</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#af6fc39ee3670e9057bb7fb3484c5bbd6">$adr2</a>;
+<a name="l00053"></a><a class="code" href="class_client.html#a5314e7a5ed5f2cc2b1e16f26355d1686">00053</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a5314e7a5ed5f2cc2b1e16f26355d1686">$cp</a>;
+<a name="l00057"></a><a class="code" href="class_client.html#abb4458ceb8fd2da780cdb5e705ba24d0">00057</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#abb4458ceb8fd2da780cdb5e705ba24d0">$ville</a>;
+<a name="l00061"></a><a class="code" href="class_client.html#a3411127363f42c28c120f087541d6c40">00061</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a3411127363f42c28c120f087541d6c40">$pays</a>;
+<a name="l00066"></a><a class="code" href="class_client.html#a2256873774f3180dee0e4104ff2c924b">00066</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a2256873774f3180dee0e4104ff2c924b">$nompays</a>;
+<a name="l00071"></a><a class="code" href="class_client.html#a270b1519e58e1b46edc99540c95fb15b">00071</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a270b1519e58e1b46edc99540c95fb15b">$tel</a>;
+<a name="l00076"></a><a class="code" href="class_client.html#a46aec1a1c9bbe6973e4eb902220b13f2">00076</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a46aec1a1c9bbe6973e4eb902220b13f2">$gsm</a>;
+<a name="l00081"></a><a class="code" href="class_client.html#a3a634f31293a238a3d1e3664b73c15ae">00081</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a3a634f31293a238a3d1e3664b73c15ae">$fax</a>;
+<a name="l00086"></a><a class="code" href="class_client.html#a3daf0e94bdbfa40df4fecbfd56d9a84d">00086</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a3daf0e94bdbfa40df4fecbfd56d9a84d">$email</a>;
+<a name="l00091"></a><a class="code" href="class_client.html#a733f046ba82f735a32d99d8662b1ae80">00091</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a733f046ba82f735a32d99d8662b1ae80">$pwd</a>;
+<a name="l00096"></a><a class="code" href="class_client.html#a9d902e0b8272e2ed307e0a74a7089288">00096</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a9d902e0b8272e2ed307e0a74a7089288">$cnx</a>;
+<a name="l00101"></a><a class="code" href="class_client.html#a257c45964d97515db3836ab585fc8abb">00101</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a257c45964d97515db3836ab585fc8abb">$actif</a>;
+<a name="l00106"></a><a class="code" href="class_client.html#a685e9c81742d2be2814b38b6e0ec1726">00106</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a685e9c81742d2be2814b38b6e0ec1726">$professionnel</a>;
+<a name="l00112"></a><a class="code" href="class_client.html#ace1057afecfc1f10e83e9f6a26f08ecf">00112</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#ace1057afecfc1f10e83e9f6a26f08ecf">$amont</a>; 
+<a name="l00117"></a><a class="code" href="class_client.html#a5febd9b219af4c01917f166cd87b4250">00117</a>         <span class="keyword">public</span> <a class="code" href="class_client.html#a5febd9b219af4c01917f166cd87b4250">$aval</a>; 
+<a name="l00118"></a>00118         
+<a name="l00124"></a><a class="code" href="class_client.html#a1522f14905bc6e3b265d9a74fd9adfba">00124</a>         function <a class="code" href="class_client.html#a1522f14905bc6e3b265d9a74fd9adfba">creerClient</a>() {
+<a name="l00125"></a>00125                 $mes=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00126"></a>00126                 $query=<span class="stringliteral">&quot;INSERT INTO if_bo_client (raison,nom,prenom,civilite,fonction,adr1,adr2,cp,ville,numpays,tel,gsm,fax,email,pwd,actif,profes,amont,aval) VALUES (&#39;$this-&gt;raison&#39;,&#39;$this-&gt;nom&#39;,&#39;$this-&gt;prenom&#39;,&#39;$this-&gt;civilite&#39;,&#39;$this-&gt;fonction&#39;,&#39;$this-&gt;adr1&#39;,&#39;$this-&gt;adr2&#39;,&#39;$this-&gt;cp&#39;,&#39;$this-&gt;ville&#39;,&#39;$this-&gt;pays&#39;,&#39;$this-&gt;tel&#39;,&#39;$this-&gt;gsm&#39;,&#39;$this-&gt;fax&#39;,&#39;$this-&gt;email&#39;,&#39;&quot;</span>.easy($this-&gt;pwd,<span class="stringliteral">&quot;e&quot;</span>).<span class="stringliteral">&quot;&#39;,&#39;$this-&gt;actif&#39;,&#39;$this-&gt;professionnel&#39;,&#39;$this-&gt;amont&#39;,&#39;$this-&gt;aval&#39;)&quot;</span>;
+<a name="l00127"></a>00127                 $emailexiste=SelectSimple(<span class="stringliteral">&quot;email&quot;</span>,<span class="stringliteral">&quot;if_bo_client&quot;</span>,<span class="stringliteral">&quot;email&quot;</span>,$this-&gt;email,<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00128"></a>00128                 <span class="keywordflow">if</span> ($this-&gt;professionnel) { <span class="comment">// creation d&#39;un pro dans l&#39;admin</span>
+<a name="l00129"></a>00129                         <span class="keywordflow">if</span> ($emailexiste) { <span class="comment">// et il est deja client de la boutique - maj du client</span>
+<a name="l00130"></a>00130                                 $numclientexiste=SelectSimple(<span class="stringliteral">&quot;numclient&quot;</span>,<span class="stringliteral">&quot;if_bo_client&quot;</span>,<span class="stringliteral">&quot;email&quot;</span>,$this-&gt;email,<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00131"></a>00131                                 mysql_query(<span class="stringliteral">&quot;UPDATE if_bo_client SET profes=&#39;o&#39;,amont=&#39;$this-&gt;amont&#39;,aval=&#39;$this-&gt;aval&#39; </span>
+<a name="l00132"></a>00132 <span class="stringliteral">                                WHERE numclient=&#39;&quot;</span>.$numclientexiste.<span class="stringliteral">&quot;&#39;&quot;</span>);
+<a name="l00133"></a>00133                                 $mes=<span class="stringliteral">&quot;Un compte client existait déjà pour cette adresse email. Le profil (amont,aval) a été mis à jour. Le client conserve le même mot de passe et peut ainsi accéder à l\&#39;ensemble du site&quot;</span>;
+<a name="l00134"></a>00134                                 
+<a name="l00135"></a>00135                         } <span class="keywordflow">else</span> {
+<a name="l00136"></a>00136                                 mysql_query($query);
+<a name="l00137"></a>00137                                 $this-&gt;numclient=mysql_insert_id();
+<a name="l00138"></a>00138                         }
+<a name="l00139"></a>00139                 } <span class="keywordflow">else</span> { <span class="comment">// c&#39;est un client qui se cree un compte en ligne</span>
+<a name="l00140"></a>00140                         <span class="keywordflow">if</span> ($emailexiste) {
+<a name="l00141"></a>00141                                 $mes=<span class="stringliteral">&quot;Cette adresse e-mail existe déjà, vous avez déjà un compte.&quot;</span>;
+<a name="l00142"></a>00142                         } <span class="keywordflow">else</span> {
+<a name="l00143"></a>00143                                 mysql_query($query);
+<a name="l00144"></a>00144                                 $this-&gt;numclient=mysql_insert_id();
+<a name="l00145"></a>00145                                 $_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>]=$this-&gt;numclient; <span class="comment">// activation de la session pour les clients</span>
+<a name="l00146"></a>00146                         }
+<a name="l00147"></a>00147                 }
+<a name="l00148"></a>00148                 <span class="keywordflow">return</span> $mes;
+<a name="l00149"></a>00149         }
+<a name="l00154"></a><a class="code" href="class_client.html#a4cfc678acb9a42a67e18fcfb49f0743d">00154</a>         function <a class="code" href="class_client.html#a4cfc678acb9a42a67e18fcfb49f0743d">modifierClient</a>() {
+<a name="l00155"></a>00155                 $mes=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00156"></a>00156                 mysql_query(<span class="stringliteral">&quot;UPDATE if_bo_client SET raison=&#39;$this-&gt;raison&#39;, nom=&#39;$this-&gt;nom&#39;, prenom=&#39;$this-&gt;prenom&#39;, civilite=&#39;$this-&gt;civilite&#39;, fonction=&#39;$this-&gt;fonction&#39;, adr1=&#39;$this-&gt;adr1&#39;, adr2=&#39;$this-&gt;adr2&#39;, cp=&#39;$this-&gt;cp&#39;, ville=&#39;$this-&gt;ville&#39;, numpays=&#39;$this-&gt;pays&#39;, tel=&#39;$this-&gt;tel&#39;, gsm=&#39;$this-&gt;gsm&#39;, fax=&#39;$this-&gt;fax&#39;, actif=&#39;$this-&gt;actif&#39;, amont=&#39;$this-&gt;amont&#39;, aval=&#39;$this-&gt;aval&#39; WHERE numclient=&#39;$this-&gt;numclient&#39;&quot;</span>);
+<a name="l00157"></a>00157                 
+<a name="l00158"></a>00158                 <span class="keywordflow">if</span> ($this-&gt;email) {
+<a name="l00159"></a>00159                         <a class="code" href="class_client.html#a3daf0e94bdbfa40df4fecbfd56d9a84d">$email</a>=SelectSimple(<span class="stringliteral">&quot;email&quot;</span>,<span class="stringliteral">&quot;if_bo_client&quot;</span>,<span class="stringliteral">&quot;email&quot;</span>,$this-&gt;email,<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00160"></a>00160                         <span class="keywordflow">if</span> (<a class="code" href="class_client.html#a3daf0e94bdbfa40df4fecbfd56d9a84d">$email</a>) {
+<a name="l00161"></a>00161                                 $mes=<span class="stringliteral">&quot;Cette adresse e-mail existe déjà. Veuillez en chosir une autre !&quot;</span>;
+<a name="l00162"></a>00162                         } <span class="keywordflow">else</span> {
+<a name="l00163"></a>00163                                 mysql_query(<span class="stringliteral">&quot;UPDATE if_bo_client SET email=&#39;$this-&gt;email&#39; WHERE numclient=&#39;$this-&gt;numclient&#39;&quot;</span>);
+<a name="l00164"></a>00164                         }
+<a name="l00165"></a>00165                 }
+<a name="l00166"></a>00166                 
+<a name="l00167"></a>00167                 <span class="keywordflow">if</span> ($this-&gt;pwd) mysql_query(<span class="stringliteral">&quot;UPDATE if_bo_client SET pwd=&#39;&quot;</span>.<a class="code" href="fonctions_8php.html#a27a3678cae05ad658a6d0d26a326b939">easy</a>($this-&gt;pwd,<span class="stringliteral">&quot;e&quot;</span>).<span class="stringliteral">&quot;&#39; WHERE numclient=&#39;$this-&gt;numclient&#39;&quot;</span>);
+<a name="l00168"></a>00168                 
+<a name="l00169"></a>00169                 <span class="keywordflow">return</span> $mes;
+<a name="l00170"></a>00170         }
+<a name="l00174"></a><a class="code" href="class_client.html#a71793eec11b869651b1cbadcbc6b31c8">00174</a>         function <a class="code" href="class_client.html#a71793eec11b869651b1cbadcbc6b31c8">supprimerClient</a>() {
+<a name="l00175"></a>00175                 mysql_query(<span class="stringliteral">&quot;DELETE FROM if_bo_client WHERE numclient=&#39;$this-&gt;numclient&#39;&quot;</span>);
+<a name="l00176"></a>00176         }
+<a name="l00180"></a><a class="code" href="class_client.html#a2c11ad9c3aeb78e5ce28b6f2cda4aaf2">00180</a>         function <a class="code" href="class_client.html#a2c11ad9c3aeb78e5ce28b6f2cda4aaf2">activerClient</a>() {
+<a name="l00181"></a>00181            mysql_query(<span class="stringliteral">&quot;UPDATE if_bo_client SET actif=&#39;$this-&gt;actif&#39; WHERE numclient=&#39;$this-&gt;numclient&#39;&quot;</span>);   
+<a name="l00182"></a>00182         }
+<a name="l00187"></a><a class="code" href="class_client.html#a0875033c4df36470fdf3a55d5cef7e7e">00187</a>         function <a class="code" href="class_client.html#a0875033c4df36470fdf3a55d5cef7e7e">getNumclient</a>() {
+<a name="l00188"></a>00188                 $numcli=SelectSimple(<span class="stringliteral">&quot;numclient&quot;</span>,<span class="stringliteral">&quot;if_bo_client&quot;</span>,<span class="stringliteral">&quot;email&quot;</span>,$this-&gt;email,<span class="stringliteral">&quot; AND pwd=&#39;&quot;</span>.<a class="code" href="fonctions_8php.html#a27a3678cae05ad658a6d0d26a326b939">easy</a>($this-&gt;pwd,<span class="stringliteral">&quot;e&quot;</span>).<span class="stringliteral">&quot;&#39; AND actif=&#39;o&#39;&quot;</span>);
+<a name="l00189"></a>00189                 <span class="keywordflow">return</span> $numcli;
+<a name="l00190"></a>00190         }
+<a name="l00195"></a><a class="code" href="class_client.html#ada91530ae5c3d0bf43b520b60632ab81">00195</a>         function <a class="code" href="class_client.html#ada91530ae5c3d0bf43b520b60632ab81">connecte</a>() {
+<a name="l00196"></a>00196         $mes=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00197"></a>00197         <span class="keywordflow">if</span> ($this-&gt;professionnel) $fin_req=<span class="stringliteral">&quot; AND profes=&#39;o&#39;&quot;</span>;
+<a name="l00198"></a>00198         <span class="comment">//else $fin_req=&quot; AND profes!=&#39;o&#39;&quot;;</span>
+<a name="l00199"></a>00199         $row=SelectMultiple(<span class="stringliteral">&quot;if_bo_client&quot;</span>,<span class="stringliteral">&quot;email&quot;</span>,$this-&gt;email,<span class="stringliteral">&quot; AND pwd=&#39;&quot;</span>.<a class="code" href="fonctions_8php.html#a27a3678cae05ad658a6d0d26a326b939">easy</a>($this-&gt;pwd,<span class="stringliteral">&quot;e&quot;</span>).<span class="stringliteral">&quot;&#39; AND actif=&#39;o&#39; $fin_req&quot;</span>);
+<a name="l00200"></a>00200         <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;numclient&quot;</span>]) {
+<a name="l00201"></a>00201                 $this-&gt;numclient=$row[<span class="stringliteral">&quot;numclient&quot;</span>];
+<a name="l00202"></a>00202                 <span class="keywordflow">if</span> (!$this-&gt;professionnel &amp;&amp; $row[<span class="stringliteral">&quot;profes&quot;</span>]==<span class="stringliteral">&quot;o&quot;</span>)  $this-&gt;professionnel=<span class="stringliteral">&quot;o&quot;</span>; 
+<a name="l00203"></a>00203                 $icnx=time()+36000;
+<a name="l00204"></a>00204                 <a class="code" href="class_client.html#a9d902e0b8272e2ed307e0a74a7089288">$cnx</a>=(string)$icnx;
+<a name="l00205"></a>00205                 <a class="code" href="class_client.html#a9d902e0b8272e2ed307e0a74a7089288">$cnx</a>=<a class="code" href="class_client.html#a9d902e0b8272e2ed307e0a74a7089288">$cnx</a>.<span class="stringliteral">&quot;-&quot;</span>.$this-&gt;id;
+<a name="l00206"></a>00206                 
+<a name="l00207"></a>00207                 $ip=getenv(<span class="stringliteral">&quot;REMOTE_ADDR&quot;</span>);
+<a name="l00208"></a>00208                 mysql_query(<span class="stringliteral">&quot;INSERT INTO if_bo_acces (numclient,cnx,tps,ip) VALUES (&#39;$this-&gt;numclient&#39;,&#39;$cnx&#39;,now(),&#39;$ip&#39;)&quot;</span>);
+<a name="l00209"></a>00209                 $this-&gt;cnx=<a class="code" href="class_client.html#a9d902e0b8272e2ed307e0a74a7089288">$cnx</a>;        
+<a name="l00210"></a>00210                 <span class="keywordflow">if</span> ($this-&gt;professionnel) {
+<a name="l00211"></a>00211                         $_SESSION[<span class="stringliteral">&#39;numprof&#39;</span>]=$row[<span class="stringliteral">&quot;numclient&quot;</span>];
+<a name="l00212"></a>00212                         $_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>]=$row[<span class="stringliteral">&quot;numclient&quot;</span>];
+<a name="l00213"></a>00213                 } <span class="keywordflow">else</span> {
+<a name="l00214"></a>00214                         $_SESSION[<span class="stringliteral">&#39;numclient&#39;</span>]=$row[<span class="stringliteral">&quot;numclient&quot;</span>];
+<a name="l00215"></a>00215                         unset($_SESSION[<span class="stringliteral">&#39;numprof&#39;</span>]);
+<a name="l00216"></a>00216                 }
+<a name="l00217"></a>00217                 <span class="comment">/*mysql_close();</span>
+<a name="l00218"></a>00218 <span class="comment">                HEADER (&quot;Location: ../index.php?id=$this-&gt;id&amp;cnx=$this-&gt;cnx&amp;pg_admin=accueil&amp;numrub=$larub-&gt;nummenu&quot;);**/</span>
+<a name="l00219"></a>00219         }  <span class="keywordflow">else</span> {
+<a name="l00220"></a>00220            $mes=<span class="stringliteral">&quot;Vos codes de connexion ne sont pas valides !&quot;</span>;
+<a name="l00221"></a>00221         }
+<a name="l00222"></a>00222         <span class="keywordflow">return</span> $mes;
+<a name="l00223"></a>00223   }
+<a name="l00227"></a><a class="code" href="class_client.html#a970aec28006c78992333429ea2877c27">00227</a>   function <a class="code" href="class_client.html#a970aec28006c78992333429ea2877c27">deconnecte</a>() {
+<a name="l00228"></a>00228           mysql_query(<span class="stringliteral">&quot;UPDATE if_bo_acces SET inactif=&#39;o&#39; WHERE numclient=&#39;$this-&gt;numclient&#39; AND cnx=&#39;$this-&gt;cnx&#39;&quot;</span>);
+<a name="l00229"></a>00229   }
+<a name="l00234"></a><a class="code" href="class_client.html#a6f9b9930ee5b5449a16f966aa17adcf3">00234</a>   function <a class="code" href="class_client.html#a6f9b9930ee5b5449a16f966aa17adcf3">envoyerPwd</a>() {
+<a name="l00235"></a>00235         
+<a name="l00236"></a>00236                 <span class="comment">//$row=SelectMultiple(&quot;if_bo_client&quot;,&quot;email&quot;,$this-&gt;email); Modifie car un meme email peut être utilise pour public &amp; pro</span>
+<a name="l00237"></a>00237                 <span class="keywordflow">if</span> ($this-&gt;professionnel) $fin_req=<span class="stringliteral">&quot; AND profes=&#39;o&#39;&quot;</span>;
+<a name="l00238"></a>00238                 <span class="comment">//else $fin_req=&quot; AND profes!=&#39;o&#39;&quot;;</span>
+<a name="l00239"></a>00239                 $row=SelectMultiple(<span class="stringliteral">&quot;if_bo_client&quot;</span>,<span class="stringliteral">&quot;email&quot;</span>,$this-&gt;email,<span class="stringliteral">&quot; AND actif=&#39;o&#39; $fin_req&quot;</span>);
+<a name="l00240"></a>00240         <span class="keywordflow">if</span> ($row[<span class="stringliteral">&quot;numclient&quot;</span>]) {
+<a name="l00241"></a>00241                         $corps= <span class="stringliteral">&quot;Bonjour &quot;</span>.$row[<span class="stringliteral">&quot;prenom&quot;</span>].<span class="stringliteral">&quot; &quot;</span>.$row[<span class="stringliteral">&quot;nom&quot;</span>].<span class="stringliteral">&quot;,\n\nSuite à votre demande, voici votre mot de passe : \n\n&quot;</span>;
+<a name="l00242"></a>00242                         $corps.=<span class="stringliteral">&quot;            --&gt; &quot;</span>.easy($row[<span class="stringliteral">&quot;pwd&quot;</span>],<span class="stringliteral">&quot;d&quot;</span>);
+<a name="l00243"></a>00243                         $corps.=<span class="stringliteral">&quot;\n\nVous souhaitant bonne réception,\n\n&quot;</span>;
+<a name="l00244"></a>00244                         $corps.=<span class="stringliteral">&quot;--------------------\n&quot;</span>;
+<a name="l00245"></a>00245                         $corps.=<span class="stringliteral">&quot;www.ifip.asso.fr\n\n&quot;</span>;
+<a name="l00246"></a>00246                         <span class="comment">//$corps.=$bv_rvd[&quot;email&quot;].&quot;\n\n&quot;;</span>
+<a name="l00247"></a>00247                         <span class="comment">//$corps.=$bv_rvd[&quot;tel&quot;].&quot;\n&quot;;</span>
+<a name="l00248"></a>00248                         $corps.=<span class="stringliteral">&quot;--------------------\n&quot;</span>;
+<a name="l00249"></a>00249         
+<a name="l00250"></a>00250                 $entete=<span class="stringliteral">&quot;Content-type: text/plain\nStatus: U\nReply-To: ifip@ifip.asso.fr\nFrom: www.ifip.asso.fr &lt;ifip@ifip.asso.fr&gt;&quot;</span>;
+<a name="l00251"></a>00251                         mail($this-&gt;email,<span class="stringliteral">&quot;Mot de passe !&quot;</span>,$corps,$entete,<span class="stringliteral">&quot;-f &#39;ifip@ifip.asso.fr&#39;&quot;</span>);            
+<a name="l00252"></a>00252                         $m=<span class="stringliteral">&quot;Nous venons de vous adresser votre mot de passe à $this-&gt;email&quot;</span>;
+<a name="l00253"></a>00253                 } <span class="keywordflow">else</span> {
+<a name="l00254"></a>00254                         $m=<span class="stringliteral">&quot;Votre adresse e-mail n\&#39;est pas valide.&quot;</span>;
+<a name="l00255"></a>00255                 }  
+<a name="l00256"></a>00256                 <span class="keywordflow">return</span> $m;
+<a name="l00257"></a>00257   }
+<a name="l00261"></a><a class="code" href="class_client.html#ab51c499bcf5f7bd895bb44223e837ceb">00261</a>   function <a class="code" href="class_client.html#ab51c499bcf5f7bd895bb44223e837ceb">infosClient</a>() {
+<a name="l00262"></a>00262                 $row=SelectMultiple(<span class="stringliteral">&quot;if_bo_client&quot;</span>,<span class="stringliteral">&quot;numclient&quot;</span>,$this-&gt;numclient);
+<a name="l00263"></a>00263                 $this-&gt;raison=$row[<span class="stringliteral">&quot;raison&quot;</span>];   
+<a name="l00264"></a>00264                 $this-&gt;nom=$row[<span class="stringliteral">&quot;nom&quot;</span>]; 
+<a name="l00265"></a>00265                 $this-&gt;prenom=$row[<span class="stringliteral">&quot;prenom&quot;</span>];
+<a name="l00266"></a>00266                 $this-&gt;pwd=<a class="code" href="fonctions_8php.html#a27a3678cae05ad658a6d0d26a326b939">easy</a>($row[<span class="stringliteral">&quot;pwd&quot;</span>],<span class="stringliteral">&quot;d&quot;</span>);
+<a name="l00267"></a>00267                 $this-&gt;email=$row[<span class="stringliteral">&quot;email&quot;</span>];
+<a name="l00268"></a>00268                 $this-&gt;civilite=$row[<span class="stringliteral">&quot;civilite&quot;</span>];
+<a name="l00269"></a>00269                 $this-&gt;fonction=$row[<span class="stringliteral">&quot;fonction&quot;</span>];
+<a name="l00270"></a>00270                 $this-&gt;adr1=$row[<span class="stringliteral">&quot;adr1&quot;</span>];
+<a name="l00271"></a>00271                 $this-&gt;adr2=$row[<span class="stringliteral">&quot;adr2&quot;</span>];
+<a name="l00272"></a>00272                 $this-&gt;cp=$row[<span class="stringliteral">&quot;cp&quot;</span>];
+<a name="l00273"></a>00273                 $this-&gt;ville=$row[<span class="stringliteral">&quot;ville&quot;</span>];
+<a name="l00274"></a>00274                 $this-&gt;pays=$row[<span class="stringliteral">&quot;numpays&quot;</span>];
+<a name="l00275"></a>00275                 $this-&gt;nompays=utf8_encode(SelectSimple(<span class="stringliteral">&quot;pays&quot;</span>,<span class="stringliteral">&quot;if_pays&quot;</span>,<span class="stringliteral">&quot;numpays&quot;</span>,$this-&gt;pays));
+<a name="l00276"></a>00276                 $this-&gt;tel=$row[<span class="stringliteral">&quot;tel&quot;</span>];
+<a name="l00277"></a>00277                 $this-&gt;gsm=$row[<span class="stringliteral">&quot;gsm&quot;</span>];
+<a name="l00278"></a>00278                 $this-&gt;fax=$row[<span class="stringliteral">&quot;fax&quot;</span>];
+<a name="l00279"></a>00279                 $this-&gt;actif=$row[<span class="stringliteral">&quot;actif&quot;</span>];
+<a name="l00280"></a>00280                 $this-&gt;amont=$row[<span class="stringliteral">&quot;amont&quot;</span>];
+<a name="l00281"></a>00281                 $this-&gt;aval=$row[<span class="stringliteral">&quot;aval&quot;</span>];
+<a name="l00282"></a>00282   }
+<a name="l00283"></a>00283   
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285 }
+<a name="l00286"></a>00286 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/ListeParagraphes.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>ListeParagraphes.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php 
+<a name="l00002"></a>00002 
+<a name="l00012"></a><a class="code" href="class_liste_paragraphes.html">00012</a> <span class="keyword">class </span><a class="code" href="class_liste_paragraphes.html" title="Sp&amp;eacute;cifique IFIP.">ListeParagraphes</a>  <span class="keyword">implements</span> IteratorAggregate {
+<a name="l00017"></a><a class="code" href="class_liste_paragraphes.html#ac1f3017111822ce88454d2be8d46d61b">00017</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#ac1f3017111822ce88454d2be8d46d61b">$paras</a> = array();
+<a name="l00018"></a>00018         <span class="keyword">public</span> $parascourt = array();
+<a name="l00023"></a><a class="code" href="class_liste_paragraphes.html#a74dac18ffe9c9cb728143819edb4f3e3">00023</a>     <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a74dac18ffe9c9cb728143819edb4f3e3">$numpage</a>;
+<a name="l00027"></a><a class="code" href="class_liste_paragraphes.html#a1278219c0f27afb937ad8db667d757fc">00027</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a1278219c0f27afb937ad8db667d757fc">$colonne</a>;
+<a name="l00032"></a><a class="code" href="class_liste_paragraphes.html#a7cb9b8eeb9e7dd8e917708f3c870655b">00032</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a7cb9b8eeb9e7dd8e917708f3c870655b">$formation</a>; <span class="comment">//</span>
+<a name="l00037"></a><a class="code" href="class_liste_paragraphes.html#a9465772b4c5b2d1f7eb948258e918c23">00037</a> <span class="comment"></span>        <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a9465772b4c5b2d1f7eb948258e918c23">$tri_date</a>;<span class="comment">// </span>
+<a name="l00042"></a><a class="code" href="class_liste_paragraphes.html#a3dcc928cd7b7402df08de83ee387ace5">00042</a> <span class="comment"></span>        <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a3dcc928cd7b7402df08de83ee387ace5">$req_doc</a>;
+<a name="l00047"></a><a class="code" href="class_liste_paragraphes.html#a8599e8ae8b2098a565c41e60fa3eaed3">00047</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a8599e8ae8b2098a565c41e60fa3eaed3">$doc</a>; 
+<a name="l00052"></a><a class="code" href="class_liste_paragraphes.html#ae1f198da4e72e78712a51e984475861a">00052</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#ae1f198da4e72e78712a51e984475861a">$docvcourte</a>; 
+<a name="l00057"></a><a class="code" href="class_liste_paragraphes.html#a96354320be869c6bbdebcc7de4f748e3">00057</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a96354320be869c6bbdebcc7de4f748e3">$borneinf</a>;
+<a name="l00062"></a><a class="code" href="class_liste_paragraphes.html#a1fc98b89d080155b88b0c5f22d6bb6e9">00062</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a1fc98b89d080155b88b0c5f22d6bb6e9">$bornesup</a>;
+<a name="l00067"></a><a class="code" href="class_liste_paragraphes.html#ab65d2a87cf29a927e9c93d74301dac9f">00067</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#ab65d2a87cf29a927e9c93d74301dac9f">$nbdocs</a>; 
+<a name="l00072"></a><a class="code" href="class_liste_paragraphes.html#aba409d41e3fc275153071c5e95db08e1">00072</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#aba409d41e3fc275153071c5e95db08e1">$breve</a>; 
+<a name="l00077"></a><a class="code" href="class_liste_paragraphes.html#af08baa121efc5bddf721ebaabf29c4a4">00077</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#af08baa121efc5bddf721ebaabf29c4a4">$req_breve</a>;
+<a name="l00082"></a><a class="code" href="class_liste_paragraphes.html#a6a59a5582f751b77713b577ead7e399b">00082</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#a6a59a5582f751b77713b577ead7e399b">$actu</a>;
+<a name="l00087"></a><a class="code" href="class_liste_paragraphes.html#aa8545b38b926730b965486a18276386d">00087</a>         <span class="keyword">public</span> <a class="code" href="class_liste_paragraphes.html#aa8545b38b926730b965486a18276386d">$req_actu</a>;
+<a name="l00093"></a><a class="code" href="class_liste_paragraphes.html#ad404a4b38879d4800f9eb52fe0674a51">00093</a>    function <a class="code" href="class_liste_paragraphes.html#ad404a4b38879d4800f9eb52fe0674a51">afficherListeParas</a>() {
+<a name="l00094"></a>00094          <span class="comment">//requete sql</span>
+<a name="l00095"></a>00095          <span class="keywordflow">if</span> ($this-&gt;numpage) {<span class="comment">// Liste des paragraphes li&amp;eacute;s &amp;agrave; la page </span>
+<a name="l00096"></a>00096                 <span class="keywordflow">if</span> (isset($this-&gt;colonne)) $fin_req=<span class="stringliteral">&quot;AND colonne=&#39;$this-&gt;colonne&#39;&quot;</span>      ;
+<a name="l00097"></a>00097                 $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara FROM if_page_para WHERE numpage=&#39;$this-&gt;numpage&#39; $fin_req ORDER BY ordre&quot;</span>);
+<a name="l00098"></a>00098                 <span class="comment">//echo &quot;SELECT numpara FROM if_page_para WHERE numpage=&#39;$this-&gt;numpage&#39; $fin_req ORDER BY ordre&lt;br/&gt;&quot;;</span>
+<a name="l00099"></a>00099                 <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00100"></a>00100                         $unPara=<span class="keyword">new</span> <a class="code" href="class_paragraphe.html" title="G&amp;egrave;re le traitement des paragraphes.">Paragraphe</a>();
+<a name="l00101"></a>00101                         $unPara-&gt;numpara=$row[0];
+<a name="l00102"></a>00102                         $unPara-&gt;numpage=$this-&gt;numpage;
+<a name="l00103"></a>00103                         $unPara-&gt;infosPara();  
+<a name="l00104"></a>00104                         $this-&gt;paras[]=$unPara;
+<a name="l00105"></a>00105                  }      <span class="comment">//fin du while</span>
+<a name="l00106"></a>00106          } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;formation) { <span class="comment">// Liste des formations IFIP</span>
+<a name="l00107"></a>00107                  $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara FROM if_v_form $this-&gt;tri_date&quot;</span>);
+<a name="l00108"></a>00108                  <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00109"></a>00109                         $unPara=<span class="keyword">new</span> <a class="code" href="class_formation.html" title="s&amp;eacute;pcifique IFIP">Formation</a>();
+<a name="l00110"></a>00110                         $unPara-&gt;numpara=$row[0];  
+<a name="l00111"></a>00111                         $unPara-&gt;infosFormation();  
+<a name="l00112"></a>00112                         $this-&gt;paras[]=$unPara;
+<a name="l00113"></a>00113                  }      <span class="comment">//fin du while</span>
+<a name="l00114"></a>00114          } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;doc) {       <span class="comment">// Liste des docs IFIP</span>
+<a name="l00115"></a>00115                  $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara FROM if_v_doc $this-&gt;req_doc&quot;</span>);
+<a name="l00116"></a>00116                  <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00117"></a>00117                         $unPara=<span class="keyword">new</span> <a class="code" href="class_documentation.html" title="Classe Documentation : sp&amp;eacute;cifique IFIP.">Documentation</a>();
+<a name="l00118"></a>00118                         $unPara-&gt;numpara=$row[0];  
+<a name="l00119"></a>00119                         <span class="keywordflow">if</span> ($this-&gt;docvcourte)$unPara-&gt;infosDocVersionCourte(); <span class="comment">//uniquement numpara + ann&amp;eacute;e de stock&amp;eacute;s (pour all&amp;eacute;ger)</span>
+<a name="l00120"></a>00120                         <span class="keywordflow">else</span> $unPara-&gt;infosDoc();  
+<a name="l00121"></a>00121                         $this-&gt;paras[]=$unPara;
+<a name="l00122"></a>00122                         <span class="comment">//mise en commentaire HC sept. 2009 - on refait un tri sur le champ date</span>
+<a name="l00123"></a>00123                         <span class="comment">//usort($this-&gt;paras, &#39;trierDocs&#39;);//tri sur le tableau d&#39;ojets Documentation (sur anneeDoc cr&amp;eacute;&amp;eacute;e dans InfosDoc)</span>
+<a name="l00124"></a>00124                         
+<a name="l00125"></a>00125                  }      <span class="comment">//fin du while     </span>
+<a name="l00126"></a>00126                  <span class="keywordflow">if</span> ($this-&gt;docvcourte) {
+<a name="l00127"></a>00127                         $this-&gt;nbdocs=count($this-&gt;paras); 
+<a name="l00128"></a>00128                         $this-&gt;paras=array_slice($this-&gt;paras, $this-&gt;borneinf, $this-&gt;bornesup); <span class="comment">// troncage du tableau</span>
+<a name="l00129"></a>00129                         <span class="comment">//print_r($this-&gt;paras);</span>
+<a name="l00130"></a>00130                 }
+<a name="l00131"></a>00131          } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;breve) {     <span class="comment">// Liste des br&amp;egrave;ves internationales IFIP</span>
+<a name="l00132"></a>00132                  $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara FROM if_v_breve $this-&gt;req_breve&quot;</span>);
+<a name="l00133"></a>00133                  <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00134"></a>00134                         $unPara=<span class="keyword">new</span> <a class="code" href="class_breve.html" title="Spécifique IFIP.">Breve</a>();
+<a name="l00135"></a>00135                         $unPara-&gt;numpara=$row[0];  
+<a name="l00136"></a>00136                         $unPara-&gt;infosBreve();  
+<a name="l00137"></a>00137                         $this-&gt;paras[]=$unPara;
+<a name="l00138"></a>00138                  }      <span class="comment">//fin du while</span>
+<a name="l00139"></a>00139          } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ($this-&gt;actu) {      <span class="comment">// Liste des br&amp;egrave;ves d&#39;actualit&amp;eacute;s IFIP</span>
+<a name="l00140"></a>00140                  $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara FROM if_v_actu $this-&gt;req_actu&quot;</span>);
+<a name="l00141"></a>00141                  <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00142"></a>00142                         $unPara=<span class="keyword">new</span> <a class="code" href="class_actualite.html" title="Cette classe g&amp;egrave;re les actualit&amp;eacute;s.">Actualite</a>();
+<a name="l00143"></a>00143                         $unPara-&gt;numpara=$row[0];  
+<a name="l00144"></a>00144                         $unPara-&gt;infosActu();  
+<a name="l00145"></a>00145                         $this-&gt;paras[]=$unPara;
+<a name="l00146"></a>00146                  }      <span class="comment">//fin du while</span>
+<a name="l00147"></a>00147          } <span class="keywordflow">else</span> {<span class="comment">// Liste de tous les paragraphes (pour choisir un paragraphe &amp;agrave; associer lors de la cr&amp;eacute;ation ou modification de la page sauf les paragraphes de type Formation et de type Doc</span>
+<a name="l00148"></a>00148                   $result=mysql_query(<span class="stringliteral">&quot;SELECT numpara FROM if_paragraphe WHERE numpara NOT IN (SELECT numpara FROM if_v_form) AND NOT IN (SELECT numpara FROM if_v_doc)&quot;</span>);
+<a name="l00149"></a>00149                  <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00150"></a>00150                         $unPara=<span class="keyword">new</span> <a class="code" href="class_paragraphe.html" title="G&amp;egrave;re le traitement des paragraphes.">Paragraphe</a>();
+<a name="l00151"></a>00151                         $unPara-&gt;numpara=$row[0];  
+<a name="l00152"></a>00152                         $unPara-&gt;numpage=$this-&gt;numpage;
+<a name="l00153"></a>00153                         $unPara-&gt;infosPara();  
+<a name="l00154"></a>00154                         $this-&gt;paras[]=$unPara;
+<a name="l00155"></a>00155                  }      <span class="comment">//fin du while</span>
+<a name="l00156"></a>00156          }
+<a name="l00157"></a>00157          <span class="keywordflow">if</span> ($this-&gt;docvcourte) <span class="keywordflow">return</span> $this-&gt;nbdocs;
+<a name="l00158"></a>00158          <span class="keywordflow">else</span> <span class="keywordflow">return</span> count($this-&gt;paras); 
+<a name="l00159"></a>00159    }
+<a name="l00160"></a>00160    
+<a name="l00161"></a>00161    function getIterator() {
+<a name="l00162"></a>00162           $iterator=<span class="keyword">new</span> <a class="code" href="class_listes_iterator.html">ListesIterator</a>($this-&gt;paras);
+<a name="l00163"></a>00163           <span class="keywordflow">return</span> $iterator;
+<a name="l00164"></a>00164    }
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 }<span class="comment">// fin de classe</span>
+<a name="l00167"></a>00167 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>

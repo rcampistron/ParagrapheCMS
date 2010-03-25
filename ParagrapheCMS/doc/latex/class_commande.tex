@@ -1,0 +1,25 @@
+\hypertarget{class_commande}{
+\section{Commande Class Reference}
+\label{class_commande}\index{Commande@{Commande}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_commande_aa4ac905148cf0fe4ba0accb77c0fc43e}{modifierCommande} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe \hyperlink{class_commande}{Commande} : création, modification d'une commande 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_commande_aa4ac905148cf0fe4ba0accb77c0fc43e}{
+\index{Commande@{Commande}!modifierCommande@{modifierCommande}}
+\index{modifierCommande@{modifierCommande}!Commande@{Commande}}
+\subsubsection[{modifierCommande}]{\setlength{\rightskip}{0pt plus 5cm}Commande.modifierCommande ()}}
+\label{class_commande_aa4ac905148cf0fe4ba0accb77c0fc43e}
+function modifierCommande(\$arguments) \{ \$list=explode(\char`\"{},\char`\"{},\$arguments); for (\$i=0;\$i$<$count(\$list); \$i++) \{ \$nom\_\-champ=\$list\mbox{[}\$i\mbox{]}; \$liste\_\-champs.=\$nom\_\-champ.\char`\"{}='\char`\"{}.\$\{\$this-\/$>$nom\_\-champ\}.\char`\"{}',\char`\"{}; \} if (\$liste\_\-champs) \$liste\_\-champs=substr(\$liste\_\-champs,0,strlen(\$liste\_\-champs)-\/1); if (\$liste\_\-champs) mysql\_\-query(\char`\"{}UPDATE if\_\-bo\_\-com SET \$liste\_\-champs WHERE numcom='\$this-\/$>$numcom'\char`\"{}); \} 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+class/Commande.inc.php\end{DoxyCompactItemize}
