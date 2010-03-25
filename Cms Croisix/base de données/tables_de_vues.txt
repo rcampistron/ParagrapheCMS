@@ -1,7 +1,0 @@
-CREATE VIEW if_v_form AS SELECT if_paragraphe.numpara, titre, contenu, date_deb, date_fin FROM if_paragraphe, if_formations WHERE if_paragraphe.numpara=if_formations.numpara;
-ALTER VIEW if_v_form AS SELECT if_paragraphe.numpara, sur_mesure, titre, contenu, date_deb, date_fin, enligne, validee FROM if_paragraphe, if_formations WHERE if_paragraphe.numpara=if_formations.numpara;
-CREATE VIEW if_v_doc AS SELECT if_paragraphe.numpara, titre, contenu, type_doc, auteur, date, reference, tarif,publiee FROM if_paragraphe, if_docs WHERE if_paragraphe.numpara=if_docs.numpara;
-ALTER VIEW if_v_doc AS SELECT if_paragraphe.numpara, titre, contenu, type_doc, titre_en, contenu_en, auteur, ref_biblio, date, date_libre, reference, keyw, tarif, poids, pwd, acces_res, une, publiee FROM if_paragraphe, if_docs WHERE if_paragraphe.numpara=if_docs.numpara;
-CREATE VIEW if_v_breve AS SELECT if_paragraphe.numpara, titre, contenu, date, numpays, source FROM if_paragraphe, if_breves WHERE if_paragraphe.numpara=if_breves.numpara;
-ALTER VIEW if_v_breve AS SELECT if_paragraphe.numpara, titre,contenu, date, numpays,source FROM if_paragraphe, if_breves WHERE if_paragraphe.numpara=if_breves.numpara;
-CREATE VIEW if_v_actu AS SELECT if_paragraphe.numpara, titre, contenu, date, if_actus.accueil FROM if_paragraphe, if_actus WHERE if_paragraphe.numpara=if_actus.numpara;
