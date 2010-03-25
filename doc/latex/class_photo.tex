@@ -1,0 +1,29 @@
+\hypertarget{class_photo}{
+\section{Photo Class Reference}
+\label{class_photo}\index{Photo@{Photo}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_photo_a2869de9600843c915faada27c4663062}{creerPhoto} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe Image : cration, modification, suppression, redimensionnement d'une image ou photo 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_photo_a2869de9600843c915faada27c4663062}{
+\index{Photo@{Photo}!creerPhoto@{creerPhoto}}
+\index{creerPhoto@{creerPhoto}!Photo@{Photo}}
+\subsubsection[{creerPhoto}]{\setlength{\rightskip}{0pt plus 5cm}Photo.creerPhoto ()}}
+\label{class_photo_a2869de9600843c915faada27c4663062}
+
+
+if (\$ext==\char`\"{}jpg\char`\"{}) \{ //Mise en commentaire sv le 11/07/08 move\_\-uploaded\_\-file(\$tmp\_\-fich, \$chem.\char`\"{}photos/\char`\"{}.\$fichier\_\-photo); \$log=\$fichier\_\-photo; copy(\$chem.\char`\"{}photos/\char`\"{}.\$fichier\_\-photo, \$chem.\char`\"{}photos/o\char`\"{}.\$fichier\_\-photo); redim(\$chem.\char`\"{}photos/\char`\"{},\$log,190); unlink(\$chem.\char`\"{}photos/o\char`\"{}.\$fichier\_\-photo); \}
+
+if (\$action==\char`\"{}mod\char`\"{}) \{// on supprime l'ancien fichier \$fich\_\-photo=SelectSimple(\char`\"{}fichier\_\-photo\char`\"{},\char`\"{}su\_\-produits\char`\"{},\char`\"{}numprod\char`\"{},\$numprod); if (\$fich\_\-photo \&\& file\_\-exists(\$chem.\char`\"{}photos/\char`\"{}.\$fich\_\-photo)) unlink(\$chem.\char`\"{}photos/\char`\"{}.\$fich\_\-photo); \} 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+class/Photo.inc.php\end{DoxyCompactItemize}

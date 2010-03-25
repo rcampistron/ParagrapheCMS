@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CMSCroisix:  Fichier source de class/ListeClients.inc.php</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Généré par Doxygen 1.6.2 -->
+  <div class="navpath"><a class="el" href="dir_a0b1ff84f080d2ce1409d6712f25da0e.html">class</a>
+  </div>
+<div class="contents">
+<h1>ListeClients.inc.php</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php  
+<a name="l00008"></a><a class="code" href="class_liste_clients.html">00008</a> <span class="keyword">class </span><a class="code" href="class_liste_clients.html">ListeClients</a> <span class="keyword">implements</span> IteratorAggregate {
+<a name="l00013"></a><a class="code" href="class_liste_clients.html#a48cc3791af479e4f601481bcdc0b402c">00013</a>    <span class="keyword">public</span> <a class="code" href="class_liste_clients.html#a48cc3791af479e4f601481bcdc0b402c">$clients</a> = array();
+<a name="l00019"></a><a class="code" href="class_liste_clients.html#a1d884b946c4e5ed06035a7156052c501">00019</a>    <span class="keyword">public</span> <a class="code" href="class_liste_clients.html#a1d884b946c4e5ed06035a7156052c501" title="indique si c&amp;#39;est un professionnel">$profes</a>;
+<a name="l00024"></a><a class="code" href="class_liste_clients.html#a14ef9164daa70fcac10574eb570af611">00024</a>    function <a class="code" href="class_liste_clients.html#a14ef9164daa70fcac10574eb570af611">afficherListeClients</a>() {
+<a name="l00025"></a>00025          
+<a name="l00026"></a>00026          <span class="keywordflow">if</span> ($this-&gt;profes) $fin_req=<span class="stringliteral">&quot; profes=&#39;o&#39;&quot;</span>; <span class="keywordflow">else</span> $fin_req=<span class="stringliteral">&quot; profes!=&#39;o&#39;&quot;</span>;
+<a name="l00027"></a>00027          $result=mysql_query(<span class="stringliteral">&quot;SELECT numclient FROM if_bo_client WHERE $fin_req ORDER BY raison, nom &quot;</span>);
+<a name="l00028"></a>00028          <span class="keywordflow">while</span> ($row=mysql_fetch_row($result)) {
+<a name="l00029"></a>00029                 $unClient=<span class="keyword">new</span> <a class="code" href="class_client.html" title="G&amp;egrave;re les diff&amp;eacute;rents clients.">Client</a>();
+<a name="l00030"></a>00030                 $unClient-&gt;numclient=$row[0];
+<a name="l00031"></a>00031                 $unClient-&gt;infosClient();  
+<a name="l00032"></a>00032                 $this-&gt;clients[]=$unClient;
+<a name="l00033"></a>00033          }
+<a name="l00034"></a>00034         
+<a name="l00035"></a>00035          <span class="keywordflow">if</span> (count($this-&gt;clients)&gt;=1) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00036"></a>00036    }
+<a name="l00037"></a>00037    
+<a name="l00038"></a>00038    function getIterator() {
+<a name="l00039"></a>00039           $iterator=<span class="keyword">new</span> <a class="code" href="class_listes_iterator.html">ListesIterator</a>($this-&gt;clients);
+<a name="l00040"></a>00040           <span class="keywordflow">return</span> $iterator;
+<a name="l00041"></a>00041    }
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 }
+<a name="l00044"></a>00044 ?&gt;
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>Généré par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.2 </small></address>
+</body>
+</html>
