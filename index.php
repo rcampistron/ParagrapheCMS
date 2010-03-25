@@ -39,7 +39,7 @@ $chem=$if_site["path"];	  //$chem="/home/web/croisix/ifip.croisix.com/www/";
  */
 include ("fonctions.php");
 include ("ajouter_paragraphe.php");
-include_once("admin/fckeditor/fckeditor.php");
+include_once("assets/fckeditor/fckeditor.php");
 
 /**
  * Ici, l'utilisateur a voulu rentrer des variables GET non valides
@@ -2069,25 +2069,17 @@ if ($cpt_acc>1) $cpt_acc=$cpt_acc-1;
 	<!-- Menu general du site -->
 	var MenuBarTop = new Spry.Widget.MenuBar("MenuBarTop", {imgDown:"", imgRight:""});
 </script>
-<!-- Google Analytics -->
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-1769043-13");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+
+
 </body>
 <?php
-
+$mes =var_dump($_GET);
 if ($mes) {
 echo"<script language=\"javascript1.2\"><!--\n";
 echo"alert('$mes');\n";
 echo"// --></script>";
 }
-echo 'mes variables'.var_dump($_POST);
+
 ?>
 </html>
 <?php
