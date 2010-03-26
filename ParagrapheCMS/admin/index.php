@@ -111,7 +111,7 @@ if ($textLogin && $textPwd) {
 
 		<fieldset>	
 
-			<legend>Bienvenue sur l'outil d'administration du site ifip.asso.fr</legend>
+			<legend>Bienvenue bla sur l'outil d'administration du site ifip.asso.fr</legend>
 			<br /><br />
 			<legend>Merci de vous identifier pour administrer le site</legend>
 			<br />

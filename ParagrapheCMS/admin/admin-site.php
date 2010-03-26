@@ -1,4 +1,4 @@
-<?php /* Date de création: 18/12/2008 */ 
+<?php /* Date de crï¿½ation: 18/12/2008 */ 
 $result=mysql_query("SELECT * FROM if_site");
 $row=mysql_fetch_array($result);
 ?>
@@ -9,16 +9,16 @@ $row=mysql_fetch_array($result);
 	<fieldset>   
 	<ol>
 	    <li>
-	      <label for="name">Url :</label>
-	      <input id="name" type="text" name="textUrl" value="<?=$row["url"]?>"/>
+	      <label for="urlSite">Url :</label>
+	      <input id="urlSite" type="text" name="textUrl" value="<?=$row["url"]?>"/>
 	    </li>  
 		<li>
-	      <label for="name">Chemin sur le serveur :</label>
-	      <input id="name" type="text" name="textPath" value="<?=$row["path"]?>"/>
+	      <label for="sitePath">Chemin sur le serveur :</label>
+	      <input id="sitePath" type="text" name="textPath" value="<?=$row["path"]?>"/>
 	    </li>
 		<li>
-	      <label for="name">Pied de page :</label>
-	      <textarea name="textPied"><?=miseEnFormeTextarea($row["pied_de_page"])?></textarea>
+	      <label for="textePied">Pied de page :</label>
+	      <textarea id="textePied" name="textPied"><?=miseEnFormeTextarea($row["pied_de_page"])?></textarea>
 	    </li>  
 	  </ol>	 
 	<br />	

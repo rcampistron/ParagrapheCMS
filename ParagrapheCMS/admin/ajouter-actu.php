@@ -14,37 +14,37 @@ if ($numpara) {//on est en modification
 			<fieldset>
 			<legend><?php if ($numpara) echo "Modifier la brève d'actualité"; else echo "Ajouter une brève d'actualité";?></legend>
 				    <li>
-				      <label for="name">Titre<em>*</em> :</label>
-				      <input type="text" id="name" name="textTitre" value="<?=$modifActu->titrePara?>"/>
+				      <label for="titreActu">Titre<em>*</em> :</label>
+				      <input type="text" id="titreActu" name="textTitre" value="<?=$modifActu->titrePara?>"/>
 				    </li>
 				    <li>
-				      <label for="name">Contenu :</label>
-				      <textarea name="textCont"><?=miseEnFormeTextarea($modifActu->contenuPara)?></textarea>
+				      <label for="contenuActu">Contenu :</label>
+				      <textarea id="contenuActu" name="textCont"><?=miseEnFormeTextarea($modifActu->contenuPara)?></textarea>
 				    </li>
 					<li>
-				      <label for="name">Date de l'actualité (format jj/mm/aaaa) :</label>
-				      <input type="text" id="name" name="textDate" value="<?php if ($modifActu->datebrut) echo $modifActu->date_actu;?>"/>
+				      <label for="dateActu">Date de l'actualité (format jj/mm/aaaa) :</label>
+				      <input type="text" id="dateActu" name="textDate" value="<?php if ($modifActu->datebrut) echo $modifActu->date_actu;?>"/>
 				    </li>	
 					<li>		
-						<label for="flib">Libell&eacute; du lien :</label>
-				      <input id="lib" name="textLibLien"/> 
+						<label for="libActu">Libell&eacute; du lien :</label>
+				      <input id="libActu" name="textLibLien"/> 
 					</li>
 					<li>   
-					  <label for="ftexte1">Texte du lien :</label>
-				      <textarea name="textTexteLien"></textarea>
+					  <label for="lienTexteActu">Texte du lien :</label>
+				      <textarea id="lienTexteActu" name="textTexteLien"></textarea>
 					</li>
 					<li>     
-					  <label for="furl">Url du lien :</label>
-				      <input id="url" name="textUrlLien"/>	 
+					  <label for="lienUrlActu">Url du lien :</label>
+				      <input id="lienUrlActu" name="textUrlLien"/>	 
 					</li>
 					<li>    
 					<li>     
-					  <label for="ffen">Ouverture du lien dans une nouvelle fenêtre ? :</label>
-					  <input type="radio" id="radio" name="radioFen" value="o" ><span class="radio">oui</span> 	<input type="radio" id="radio" name="radioFen" value="n" checked='checked'/> <span class="radio">non</span>
+					  <label for="nvelleFenetre">Ouverture du lien dans une nouvelle fenêtre ? :</label>
+					  <input type="radio" id="nvelleFenetre" name="radioFen" value="o" ><span class="radio">oui</span> 	<input type="radio" id="radio" name="radioFen" value="n" checked='checked'/> <span class="radio">non</span>
 					</li>
 					<li>
-					  <label for="fleg">L&eacute;gende de la vignette :</label>
-					  <input id="leg" name="textLegPh"/> 
+					  <label for="vignetteLegendeActu">L&eacute;gende de la vignette :</label>
+					  <input id="vignetteLegendeActu" name="textLegPh"/> 
 					  <?php
 						$listphotos=new ListePhotos(); 	   
 						$b=$listphotos->afficherListePhotos();
@@ -98,7 +98,7 @@ if ($numpara) {//on est en modification
 					 
 					 <li>
 					  <label for="fphot">Associer la vignette existante :</label>
-					  <select name="selectPhoto">	
+					  <select id="fphot" name="selectPhoto">	
 						  <option></option>
 						  <?php
 							foreach ($listphotos as $photos) {

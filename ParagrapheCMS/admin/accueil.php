@@ -12,8 +12,8 @@
  <div class="sap-content">
 	<div id="pageadmin">
 
-  <fieldset>
-    <legend>Administration du site Internet ifip.asso.fr</legend>
+  
+    <h2>Administration test du site Internet ifip.asso.fr</h2>
   <br />
   <legend>Bienvenue dans votre syst&egrave;me de gestion de contenus (CMS) </legend>
   <p>Pour des questions de sécurité, votre session restera active pendant 4 heures. Ensuite, il faudra vous reconnecter.</p>
@@ -29,7 +29,7 @@
   <p>Pour cr&eacute;er une nouvelle page et l'associer &agrave; un ou plusieurs &eacute;l&eacute;ments de menus, allez sur le <a href="/?pg_admin=lister-page&id=<?=$id?>&cnx=<?=$cnx?>">tableau de bord des pages</a> , <br />
     accessible via le lien    <a href="/?pg_admin=lister-page&id=<?=$id?>&cnx=<?=$cnx?>">G&eacute;rer les contenus &gt; les pages</a></p>
   <p>&nbsp;</p>
-  </fieldset>
+  
     <!-- fin div pageadmin -->
 	</div>
  </div>
