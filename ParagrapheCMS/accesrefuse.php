@@ -5,5 +5,5 @@
  * @brief message si le mot de passe est invalide
  * @details 
  */
-echo"Accès refusé, mot de passe invalide...";
+echo"AccÃ©s refusÃ©, mot de passe invalide...";
 ?> 
