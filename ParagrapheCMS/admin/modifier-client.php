@@ -13,12 +13,12 @@ $modifClient->infosClient();
 			<legend>Modifier le client</legend>
 		 		 <ol>
 				    <li>
-				      <label for="name">Raison sociale :</label>
-				      <input type="text" id="name" name="textRaison" value="<?=$modifClient->raison?>"/>
+				      <label for="raisonSociale">Raison sociale :</label>
+				      <input type="text" id="raisonSociale" name="textRaison" value="<?=$modifClient->raison?>"/>
 				    </li>
 					<li>
-				      <label for="name">Civilité :</label>
-				      <select name="selectCiv">
+				      <label for="civilite">Civilité :</label>
+				      <select id="civilite" name="selectCiv">
 						<option>-</option>
 						<option value="Mr" <?php if ($modifClient->civilite=="Mr") echo "selected='selected'";?>>Mr</option>
 						<option value="Mme" <?php if ($modifClient->civilite=="Mme") echo "selected='selected'";?>>Mme</option>
@@ -30,33 +30,33 @@ $modifClient->infosClient();
 				      <input type="text" id="name" name="textNom" value="<?=$modifClient->nom?>"/>
 				    </li>
 				    <li>
-				      <label for="name">P&eacute;nom :</label>
+				      <label for="prenom">P&eacute;nom :</label>
 				      <input type="text" id="prenom" name="textPrenom" value="<?=$modifClient->prenom?>"/>
 				    </li>
 					
 					<li>
-				      <label for="name">Fonction :</label>
-				      <input type="text" id="prenom" name="textFonction" value="<?=$modifClient->fonction?>"/>
+				      <label for="fonction">Fonction :</label>
+				      <input type="text" id="fonction" name="textFonction" value="<?=$modifClient->fonction?>"/>
 				    </li>
 					 <li>
-				      <label for="name">Adresse :</label>
-				      <input type="text" id="prenom" name="textAdr1" value="<?=$modifClient->adr1?>"/>
+				      <label for="adresse1">Adresse :</label>
+				      <input type="text" id="adresse1" name="textAdr1" value="<?=$modifClient->adr1?>"/>
 				    </li>
 					<li>
-				      <label for="name"></label>
-				      <input type="text" id="prenom" name="textAdr2" value="<?=$modifClient->adr2?>"/>
+				      <label for="adresse2"></label>
+				      <input type="text" id="adresse2" name="textAdr2" value="<?=$modifClient->adr2?>"/>
 				    </li>
 					 <li>
-				      <label for="name">Code postal :</label>
-				      <input type="text" id="prenom" name="textCp" value="<?=$modifClient->cp?>"/>
+				      <label for="CP">Code postal :</label>
+				      <input type="text" id="CP" name="textCp" value="<?=$modifClient->cp?>"/>
 				    </li>
 					 <li>
-				      <label for="name">Ville :</label>
-				      <input type="text" id="prenom" name="textVille" value="<?=$modifClient->ville?>"/>
+				      <label for="ville">Ville :</label>
+				      <input type="text" id="ville" name="textVille" value="<?=$modifClient->ville?>"/>
 				    </li>
 					 <li>
-				      <label for="name">Pays :</label>
-				      <select name="selectPays" class="public" >	
+				      <label for="pays">Pays :</label>
+				      <select name="selectPays" id="pays" class="public" >	
 						<?php
 						$result = mysql_query("SELECT * FROM if_pays ORDER BY pays");
 						while ($row=mysql_fetch_array($result)) {
@@ -68,32 +68,31 @@ $modifClient->infosClient();
 						</select>
 				    </li>
 					 <li>
-				      <label for="name">Téléphone :</label>
-				      <input type="text" id="prenom" name="textTel" value="<?=$modifClient->tel?>"/>
+				      <label for="telephone">Téléphone :</label>
+				      <input type="text" id="telephone" name="textTel" value="<?=$modifClient->tel?>"/>
 				    </li>
 					 <li>
-				      <label for="name">Fax :</label>
-				      <input type="text" id="prenom" name="textFax" value="<?=$modifClient->fax?>"/>
+				      <label for="fax">Fax :</label>
+				      <input type="text" id="fax" name="textFax" value="<?=$modifClient->fax?>"/>
 				    </li>
 					 <li>
-				      <label for="name">Portable :</label>
-				      <input type="text" id="prenom" name="textGsm" value="<?=$modifClient->gsm?>"/>
+				      <label for="portable">Portable :</label>
+				      <input type="text" id="portable" name="textGsm" value="<?=$modifClient->gsm?>"/>
 				    </li>
 					<li>
-				      <label for="name">Email<em>*</em> :</label>
+				      <label for="email">Email <em>*</em> :</label>
 				      <input type="text" id="email" name="textEmail" value="<?=$modifClient->email?>"/>
 				    </li>	
 					<li>
-				      <label for="name">Mot de passe<em>*</em> :</label>
+				      <label for="pwd">Mot de passe<em>*</em> :</label>
 				      <input type="text" id="pwd" name="textPwd" value="<?=$modifClient->pwd?>"/>
 				    </li> 
 					<li>
-					  <label for="alias">Actif :</label>
-					  <input type="radio" id="radio" name="radioActif" value="o" <?php if ($modifClient->actif=="o" || !$modifClient->actif) echo "checked='checked'";?>/> <span class="radio">oui</span>	<input type="radio" id="radio" name="radioActif" value="n" <?php if ($modifClient->actif=="n") echo "checked='checked'";?>/> <span class="radio">non</span>
+					  <label for="estActif">Actif :</label>
+					  <input type="radio" id="estActif" name="radioActif" value="o" <?php if ($modifClient->actif=="o" || !$modifClient->actif) echo "checked='checked'";?>/> <span class="radio">oui</span>	<input type="radio" id="radio" name="radioActif" value="n" <?php if ($modifClient->actif=="n") echo "checked='checked'";?>/> <span class="radio">non</span>
 					</li> 
 				</ol>
-				 <br />	
-				  <input type="hidden" name="numclient" value="<?=$numclient?>" />
+				 <input type="hidden" name="numclient" value="<?=$numclient?>" />
 				 <input id="button" name="validerClient" type="button" value="Valider" onClick="javascript:valideClient()"/>  
 		 	</fieldset>
    </div>

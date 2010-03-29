@@ -13,6 +13,7 @@ if ($numpara) {//on est en modification
   				  <div class="TabbedPanelsContent"> 
 			<fieldset>
 			<legend><?php if ($numpara) echo "Modifier la formation"; else echo "Ajouter une formation";?></legend>
+			<ol>
 				    <li>
 				      <label for="name">Titre<em>*</em> :</label>
 				      <input type="text" id="name" name="textTitre" value="<?=$modifForm->titrePara?>"/>
@@ -68,7 +69,7 @@ if ($numpara) {//on est en modification
 						if ($b) { 
 					  ?>
 					  <label for="flegFich">Associer la fiche existante :</label>
-					  <select name="selectFich">	
+					  <select id="flegFich" name="selectFich">	
 						  <option></option>
 						  <?php
 							foreach ($listfichiers as $fichiers) {
@@ -82,7 +83,7 @@ if ($numpara) {//on est en modification
 					  }//fin if ($b)
 					  ?>
 					  <label for="ffichier"><?php if ($b) echo "ou ajouter une "; else echo "Ajouter une";?> fiche :</label>
-				      &nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="fileFiche"  />	 
+				      <input id="ffichier" type="file" name="fileFiche"  />	 
 					</li>
 					<?php
 					 $list_categ=new ListeMenus();
@@ -102,7 +103,7 @@ if ($numpara) {//on est en modification
 					?>
 					 <li>
 					      <label for="alias">Associer cette formation &agrave; une ou plusieurs cat&eacute;gories :</label>
-						  <select name="selectCateg[]" size="15" multiple>					   
+						  <select id="alias" name="selectCateg[]" size="15" multiple>					   
 						  <?php
 						  foreach ($list_categ as $menus) {
 						  ?>
@@ -127,7 +128,7 @@ if ($numpara) {//on est en modification
 					?>
 					   <li>
 					      <label for="alias">Associer cette formation &agrave; une ou plusieurs sous-cat&eacute;gories :</label>
-						  <select name="selectSscateg[]" size="15" multiple>
+						  <select id="alias" name="selectSscateg[]" size="15" multiple>
 						  <?php
 						  foreach ($list_sscateg as $menus) {
 						  ?>
@@ -148,9 +149,14 @@ if ($numpara) {//on est en modification
 					<?php
 					}
 					?>
-				 <br />	
+				 
+				 <li>
 				  <input type="hidden" name="numpara" value="<?=$numpara?>" />
+				  </li>
+				  <li>
 				 <input id="button" name="validerForma" type="button" value="Valider" onClick="javascript:valideForma()"/>  
+				 </li>
+				 </ol>
    		</fieldset>
 		</div>
 	</div>  

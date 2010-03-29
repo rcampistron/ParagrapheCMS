@@ -1,5 +1,5 @@
 <?php /* Date de cration: 08/12/2008 */ 
-if ($creer_page) {//on vient de la cration d'une page
+if ($creer_page) {//on vient de la création d'une page
 ?>
 <div class="item" id="coltexteAdmin">
 	<div class="sap-content">
@@ -10,8 +10,9 @@ if ($creer_page) {//on vient de la cration d'une page
 }// fin if ($creer_page)
 ?>
 <fieldset>
-  <ol>
-     <?php
+<legend>Cr&eacute;er un nouveau paragraphe</legend>
+<ol>
+      <?php
 	 /** Association des parag existants : mise en commentaire le 12/01/09
 	 if (!$paragraphe) {
 		 $listparas=new ListeParagraphes();
@@ -21,8 +22,7 @@ if ($creer_page) {//on vient de la cration d'une page
 		?>
 		<!-- Mise en commentaire le 12/01/09 <legend><?php if ($creer_page) {?>Associer un Paragraphe pour la page "<?=$newPage->titrePage?>" <?php } else {?> Associer un paragraphe existant <?php }?></legend>-->
 		<li>
-	    <br />   	
-		  <?php
+	   <?php
 		  //Association des parag existants : mise en commentaire le 12/01/09 foreach ($listparas as $paras) {		
 		  ?>
 		  	 <!-- Association des parag existants : mise en commentaire le 12/01/09
@@ -56,7 +56,9 @@ if ($creer_page) {//on vient de la cration d'une page
 		//}//fin if ($nb_paras) 
 	//}//fin if (!$paragraphe)
 	?> 
-    <legend>Cr&eacute;er un nouveau paragraphe</legend>
+	
+    
+    
 	<?php  
 	unset($paras);
 	include("admin/parag.php");

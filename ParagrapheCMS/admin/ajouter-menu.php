@@ -22,15 +22,15 @@ if ($nummenu) {//on est en modification
   </legend>
   <ol>
     <li>
-      <label for="name">Libell&eacute; du menu<em>*</em> :</label>
-      <input type="text" id="name" name="textLibMenu" value="<?=$modifMenu->nomMenu?>"/>
+      <label for="libelle">Libell&eacute; du menu<em>*</em> :</label>
+      <input type="text" id="libelle" name="textLibMenu" value="<?=$modifMenu->nomMenu?>"/>
     </li>
 	<?php
 	if ($cont!="sscateg") {
 	?>	
 		<li>
-	      <label for="name">Zone :</label>
-	      <select name="selectZoneMenu">
+	      <label for="zone">Zone :</label>
+	      <select id="zone" name="selectZoneMenu">
 		  	  <option value="0" <?php if ($modifMenu->zone=="0") echo "selected='selected'";?> >zone 0</option>
 			  <option value="1" <?php if ($modifMenu->zone=="1") echo "selected='selected'";?> >zone 1</option>
 		  	  <option value="2" <?php if ($modifMenu->zone=="2") echo "selected='selected'";?>>zone 2</option>
@@ -41,7 +41,7 @@ if ($nummenu) {//on est en modification
 	}//fin if ($cont!="sscateg")
 	?>
 	<li>
-      <label for="name">Ordre :</label>
+      <label for="ordre">Ordre :</label>
     	  <select id="ordre" name="selectOrdreMenu">
 			  <?php 
 			  for ($i=1; $i<=10; $i++) {	   
@@ -61,8 +61,8 @@ if ($nummenu) {//on est en modification
 		if ($nb_rub) {
 	?>
 	   <li>
-	      <label for="name">Associer &agrave; la rubrique :</label>
-		   <select name="selectRub">
+	      <label for="assocRub">Associer &agrave; la rubrique :</label>
+		   <select id="assocRub" name="selectRub">
 	   		 <?php
 			 foreach ($listrub as $menus) {	 
 			 ?>
@@ -83,8 +83,8 @@ if ($nummenu) {//on est en modification
 		if ($nb_rub) {
 	?>
 	   <li>
-	      <label for="name">Associer &agrave; la cat&eacute;gorie :</label>
-		   <select name="selectCat">
+	      <label for="assocCat">Associer &agrave; la cat&eacute;gorie :</label>
+		   <select id="assocCat" name="selectCat">
 	   		 <?php
 			 foreach ($listrub as $menus) {	 
 			 ?>
@@ -99,18 +99,17 @@ if ($nummenu) {//on est en modification
 	} //fin  else if ($cont=="sscateg")
 	?> 
 	<li>
-      <label for="name">Afficher :</label>
-      <input type="radio" id="radio" name="radioAffich" value="o" <?php if ($modifMenu->affiche=="o" || !$modifMenu->affiche) echo "checked='checked'";?> /> <span class="radio">oui</span> 	<input type="radio" id="radio" name="radioAffich" value="n" <?php if ($modifMenu->affiche=="n") echo "checked='checked'";?> /> <span class="radio">non</span>
+      <label for="afficher">Afficher :</label>
+      <input type="radio" id="afficher" name="radioAffich" value="o" <?php if ($modifMenu->affiche=="o" || !$modifMenu->affiche) echo "checked='checked'";?> /> <span class="radio">oui</span> 	<input type="radio" id="radio" name="radioAffich" value="n" <?php if ($modifMenu->affiche=="n") echo "checked='checked'";?> /> <span class="radio">non</span>
     </li>	
 	<li>
-      <label for="name">Langue :</label>
-      <select name="selectLg">
+      <label for="lang">Langue :</label>
+      <select id="lang" name="selectLg">
 	  	  <option value="fr" <?php if ($modifMenu->lg=="fr") echo "selected='selected'";?>>fran&ccedil;ais</option>
 		  <option value="en" <?php if ($modifMenu->lg=="en") echo "selected='selected'";?>>anglais</option>
 	  </select>
     </li>	
  </ol> 
-<br />		
  <input type="hidden" name="nummenu" value="<?=$nummenu?>" />
  <input id="button" name="validerMenu" type="button" value="Valider" onClick="javascript:ajouteMenu()"/>  
  </fieldset>

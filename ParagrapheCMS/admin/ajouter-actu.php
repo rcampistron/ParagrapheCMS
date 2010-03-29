@@ -11,8 +11,10 @@ if ($numpara) {//on est en modification
 		<div class="TabbedPanels">
  			 <div class="TabbedPanelsContentGroup">
   				  <div class="TabbedPanelsContent"> 
-			<fieldset>
-			<legend><?php if ($numpara) echo "Modifier la brève d'actualité"; else echo "Ajouter une brève d'actualité";?></legend>
+  				  
+		<fieldset>
+			<legend><?php if ($numpara) echo "Modifier la brève d'actualité"; else echo "Ajouter une brève d'actualité :";?></legend>
+			<ol>
 				    <li>
 				      <label for="titreActu">Titre<em>*</em> :</label>
 				      <input type="text" id="titreActu" name="textTitre" value="<?=$modifActu->titrePara?>"/>
@@ -37,10 +39,13 @@ if ($numpara) {//on est en modification
 					  <label for="lienUrlActu">Url du lien :</label>
 				      <input id="lienUrlActu" name="textUrlLien"/>	 
 					</li>
-					<li>    
+					   
 					<li>     
-					  <label for="nvelleFenetre">Ouverture du lien dans une nouvelle fenêtre ? :</label>
-					  <input type="radio" id="nvelleFenetre" name="radioFen" value="o" ><span class="radio">oui</span> 	<input type="radio" id="radio" name="radioFen" value="n" checked='checked'/> <span class="radio">non</span>
+					  <label>Ouverture du lien dans une nouvelle fenêtre ? :</label>
+					  <input type="radio" id="radio"  name="nvelleFenetre" value="o" >
+					  		<span class="radio">oui</span> 	
+					  <input type="radio" id="radio" name="radioFen" value="n" checked='checked'/> 
+					  		<span class="radio">non</span>
 					</li>
 					<li>
 					  <label for="vignetteLegendeActu">L&eacute;gende de la vignette :</label>
@@ -50,7 +55,7 @@ if ($numpara) {//on est en modification
 						$b=$listphotos->afficherListePhotos();
 						if ($b) { 
 					  ?>
-		    </li>
+		  		  </li>
 					 <?php
 					 //le lien
 						$listliens=new ListeLiens();
@@ -98,7 +103,7 @@ if ($numpara) {//on est en modification
 					 
 					 <li>
 					  <label for="fphot">Associer la vignette existante :</label>
-					  <select id="fphot" name="selectPhoto">	
+					  <select id name="selectPhoto">	
 						  <option></option>
 						  <?php
 							foreach ($listphotos as $photos) {
@@ -119,13 +124,15 @@ if ($numpara) {//on est en modification
 						  <input type="file" name="filePhoto"  />	   
 					  </li>
 					 
-				 <br />	<br />	<br />	
+				
 				 <li>
 					  <label>Associer la brève à l'accueil :</label>
 					  <input type="radio" id="radio" name="radioAccueil" value="o" <?php if ($modifActu->accueil=="o") echo "checked='checked'";?> /> <span class="radio">oui</span>	<input type="radio" id="radio" name="radioAccueil" value="n" <?php if ($modifActu->accueil=="n" || !$numpara) echo "checked='checked'";?>  /> <span class="radio">non</span>
 		    </li>
-				  <input type="hidden" name="numpara" value="<?=$numpara?>" />
-				 <input id="button" name="validerActu" type="button" value="Valider" onClick="javascript:valideActu()"/>  
+				 <input type="hidden" name="numpara" value="<?=$numpara?>" />
+				 <input id="button" name="validerActu" type="button" value="Valider" onClick="javascript:valideActu()"/> 
+				 </li>
+				 </ol> 
    		</fieldset>
 		</div>
 	</div>  

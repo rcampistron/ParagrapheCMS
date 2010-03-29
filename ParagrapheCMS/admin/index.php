@@ -118,14 +118,14 @@ if ($textLogin && $textPwd) {
 
 				<ol>
 
-				    <li><label for="textLogin">Adresse e-mail :</label> <input type="text" name="textLogin"></li>
+				    <li><label for="textLogin">Adresse e-mail :</label> <input type="text" name="textLogin"/></li>
 
- 					<li><label for="textPwd">Mot de passe :</label>  <input type="password" name="textPwd"></li>
+ 					<li><label for="textPwd">Mot de passe :</label>  <input type="password" name="textPwd"/></li>
 
 					
 					
-					<li><label for="oublie"></label> &nbsp;&nbsp;<a href="oublie.php">Mot de passe oubli&eacute; ?</a></li>
-					<li><label for="textPwd"></label> <input id="button" type="submit" value="valider"></li>
+					<li><a href="oublie.php">Mot de passe oubli&eacute; ?</a></li>
+					<li><input id="button" type="submit" value="valider" /></li>
 
 					
 				</ol>

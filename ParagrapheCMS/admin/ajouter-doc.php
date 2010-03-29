@@ -24,8 +24,8 @@ mysql_query("INSERT INTO if_type_doc (type_doc,nom) VALUES (6,'fiche repères te
 				    
 					<ol>
 					<li>
-				      <label for="name">Type de documentation :</label>
-				      <select name="selectType">
+				      <label for="typedoc">Type de documentation :</label>
+				      <select id="typedoc" name="selectType">
 					  	<option>Choisissez un type</option>
 					<?php
 					$TypeAIgnorer=array(
@@ -70,53 +70,53 @@ mysql_query("INSERT INTO if_type_doc (type_doc,nom) VALUES (6,'fiche repères te
 					  </select>
 				    </li>
 					<li>
-				      <label for="name">Nouveau type de documentation :</label>
+				      <label for="textNewType">Nouveau type de documentation :</label>
 				      <input type="text" id="textNewType" name="textNewType" />
 				    </li>
 					<li>
-				      <label for="name">Titre français :</label>
-				      <textarea name="textTitreFr" id="textTitreFr" style="height:50px" ><?=$modifDoc->titrePara?></textarea>
+				      <label for="textTitreFra">Titre français :</label>
+				      <textarea name="textTitreFr" id="textTitreFra" style="height:50px" ><?=$modifDoc->titrePara?></textarea>
 				    </li>
 					<li>
-				      <label for="name">Titre anglais :</label>
-				       <textarea name="textTitreEn"  id="textTitreEn" style="height:50px" ><?=$modifDoc->titre_en?></textarea>
+				      <label for="textTitreEng">Titre anglais :</label>
+				       <textarea name="textTitreEn"  id="textTitreEng" style="height:50px" ><?=$modifDoc->titre_en?></textarea>
 				    </li>
 				    <li>
-				      <label for="name">Résumé français :</label>
-				      <textarea name="textContFr"><?=miseEnFormeTextarea($modifDoc->contenuPara)?></textarea>
+				      <label for="textSumFra">Résumé français :</label>
+				      <textarea id="textSumFra" name="textContFr"><?=miseEnFormeTextarea($modifDoc->contenuPara)?></textarea>
 				    </li>
 					 <li>
-				      <label for="name">Résumé anglais :</label>
-				      <textarea name="textContEn"><?=miseEnFormeTextarea($modifDoc->contenu_en)?></textarea>
+				      <label for="textSumEn">Résumé anglais :</label>
+				      <textarea id="textSumEn" name="textContEn"><?=miseEnFormeTextarea($modifDoc->contenu_en)?></textarea>
 				    </li>
 					<li>
-				      <label for="name">Auteur (Nom P et le séparateur est le &quot;;&quot;) :</label>
-				      <input type="text" id="textAuteur" name="textAuteur" value="<?=$modifDoc->auteur?>"/>
+				      <label for="auteur">Auteur (Nom P et le séparateur est le &quot;;&quot;) :</label>
+				      <input type="text" id="auteur" name="textAuteur" value="<?=$modifDoc->auteur?>"/>
 				    </li>
 					<li>
-				      <label for="name">R&eacute;f&eacute;rence bibliographique :</label>
-				      <input type="text" id="name" name="textRefBib" value="<?=$modifDoc->ref_biblio?>"/>
+				      <label for="refBiblio">R&eacute;f&eacute;rence bibliographique :</label>
+				      <input type="text" id="refBiblio" name="textRefBib" value="<?=$modifDoc->ref_biblio?>"/>
 				    </li>
 					<li>
-				      <label for="name">R&eacute;f&eacute;rence (pour le panier):</label>
-				      <input type="text" id="name" name="textRef" value="<?=$modifDoc->reference?>"/>
+				      <label for="refPanier">R&eacute;f&eacute;rence (pour le panier):</label>
+				      <input type="text" id="refPanier" name="textRef" value="<?=$modifDoc->reference?>"/>
 				    </li>
 					 <li>
-				      <label for="name">Mots clés (le séparateur est le ";") :</label>
-				      <input type="text" id="name" name="textKeyw" value="<?=$modifDoc->keyw?>"/>
+				      <label for="keyWords">Mots clés (le séparateur est le ";") :</label>
+				      <input type="text" id="keyWords" name="textKeyw" value="<?=$modifDoc->keyw?>"/>
 				    </li>
 					<li>
-				      <label for="name">Date (format jj/mm/aaaa) :</label>
-				      <input type="text" id="name" name="textDate" value="<?php if ($modifDoc->date) echo $modifDoc->date;?>"/>
+				      <label for="dateFormatee">Date (format jj/mm/aaaa) :</label>
+				      <input type="text" id="dateFormatee" name="textDate" value="<?php if ($modifDoc->date) echo $modifDoc->date;?>"/>
 				    </li>
 					<li>
-				      <label for="name">Date (format libre) :</label>
-				      <input type="text" id="name" name="textDateLibre" value="<?php if ($modifDoc->date_libre) echo $modifDoc->date_libre;?>"/>
+				      <label for="dateLibre">Date (format libre) :</label>
+				      <input type="text" id="dateLibre" name="textDateLibre" value="<?php if ($modifDoc->date_libre) echo $modifDoc->date_libre;?>"/>
 				    </li>
 					<li>
-				      <label for="name">Tarif (Ne pas indiquer gratuit) :</label>
-				      <input type="text" id="name" name="textTarif" value="<?=$modifDoc->tarif?>"/> 
-				      €				    </li>
+				      <label for="tarif">Tarif (Ne pas indiquer gratuit) :</label>
+				      <input type="text" id="tarif" name="textTarif" value="<?=$modifDoc->tarif?>"/> 
+				      €</li>
 					<!-- en commentaire le 13/03/2009
 					<li>
 				      <label for="name">Mot de passe :</label>
@@ -124,16 +124,16 @@ mysql_query("INSERT INTO if_type_doc (type_doc,nom) VALUES (6,'fiche repères te
 				    </li>
 					-->
 					<li>
-				      <label for="name">Pour les ouvrages de référence, indiquer son poids:</label>
-				      <input type="text" id="name" name="textPoids" value="<?=$modifDoc->poids?>"/> grammes				    </li>
+				      <label for="poids">Pour les ouvrages de référence, indiquer son poids:</label>
+				      <input type="text" id="poids" name="textPoids" value="<?=$modifDoc->poids?>"/> grammes				    </li>
 					<li>
-				      <label for="name">Publi&eacute;e :</label>
+				      <label>Publi&eacute;e :</label>
 				      <input type="radio" id="radio" name="radioPubliee" value="o" <?php if ($modifDoc->publiee=="o" || !$numpara) echo "checked='checked'";?> /> <span class="radio">oui</span>	<input type="radio" id="radio" name="radioPubliee" value="n" <?php if ($modifDoc->publiee=="n" ) echo "checked='checked'";?> /> <span class="radio">non</span>				    </li>
 					<li>
-				      <label for="name">Pour les ouvrages de référence, placer à la une :</label>
+				      <label>Pour les ouvrages de référence, placer à la une :</label>
 				      <input type="radio" id="radio" name="radioUne" value="o" <?php if ($modifDoc->une=="o" ) echo "checked='checked'";?> /> <span class="radio">oui</span>	<input type="radio" id="radio" name="radioUne" value="n" <?php if ($modifDoc->une=="n" || !$numpara) echo "checked='checked'";?> /> <span class="radio">non</span>				    </li>
 					<li>
-				      <label for="name">Accès réservé aux professionnels :</label>
+				      <label>Accès réservé aux professionnels :</label>
 				      <input type="radio" id="radio" name="radioAcces" value="o" <?php if ($modifDoc->acces_res=="o" ) echo "checked='checked'";?> /> <span class="radio">oui</span>	<input type="radio" id="radio" name="radioAcces" value="n" <?php if ($modifDoc->acces_res=="n" || !$numpara) echo "checked='checked'";?> /> <span class="radio">non</span>				    </li>
 					<?php 
 					// la fiche	
@@ -236,7 +236,7 @@ mysql_query("INSERT INTO if_type_doc (type_doc,nom) VALUES (6,'fiche repères te
 					 //en commentaire le 13/03/2009  }//fin if ($b)
 					  ?>
 					  <label for="fphoto"><?php echo "Ajouter une";?> photo :</label>
-				      <input type="file" name="filePhoto"  />	 
+				      <input type="file" name="filePhoto" id="fphoto" />	 
 					</li>
 					<?php
 					 $list_categ=new ListeMenus();
@@ -256,7 +256,7 @@ mysql_query("INSERT INTO if_type_doc (type_doc,nom) VALUES (6,'fiche repères te
 					?>
 					 <li>
 					      <label for="alias">Associer ce document &agrave; une ou plusieurs cat&eacute;gories :</label>
-						  <select name="selectCateg[]" size="15" multiple>					   
+						  <select id="alias" name="selectCateg[]" size="15" multiple>					   
 						  <?php
 						  foreach ($list_categ as $menus) {
 						  ?>
@@ -280,8 +280,8 @@ mysql_query("INSERT INTO if_type_doc (type_doc,nom) VALUES (6,'fiche repères te
 						if ($numpara) $modifDoc->afficherSscateg();
 					?>
 					   <li>
-					      <label for="alias">Associer ce document &agrave; une ou plusieurs sous-cat&eacute;gories :</label>
-						  <select name="selectSscateg[]" size="16" multiple>
+					      <label >Associer ce document &agrave; une ou plusieurs sous-cat&eacute;gories :</label>
+						  <select id="name="selectSscateg[]" size="16" multiple>
 						  <?php
 						  foreach ($list_sscateg as $menus) {
 						  ?>
@@ -303,7 +303,7 @@ mysql_query("INSERT INTO if_type_doc (type_doc,nom) VALUES (6,'fiche repères te
 					}
 					?>
 				 
-				 <br />	
+				 
 				  <li>
 				  <label>&nbsp;</label>
 				  <input id="validerForma" name="validerForma" type="button" class="bouton" value="Valider" onClick="javascript:valideDoc()"/>&nbsp;<input id="boutonannuler" name="boutonannuler" type="button" value="Annuler" class="bouton" onClick="javascript:document.forms[0].annuler.value='1';document.forms[0].submit()"/>

@@ -20,11 +20,9 @@ $row=mysql_fetch_array($result);
 	      <label for="textePied">Pied de page :</label>
 	      <textarea id="textePied" name="textPied"><?=miseEnFormeTextarea($row["pied_de_page"])?></textarea>
 	    </li>  
-	  </ol>	 
-	<br />	
+	  </ol>	
 	<input id="button" name="validerSite" type="button" value="Valider" onClick="javascript:valideSite()"/>	  
   </fieldset>	  
-  
  </div>
 </div>
 </div>

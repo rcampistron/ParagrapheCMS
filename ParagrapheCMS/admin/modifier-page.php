@@ -10,19 +10,19 @@ if ($numpage) {
   <legend>Page</legend>
   <ol>
      <li>
-      <label for="name">langue :</label>
-       <select name="selectLg">
+      <label for="selectLg">langue :</label>
+       <select id="selectLg" name="selectLg">
 	  	  <option value="fr" <?php if ($laPage->lg=="fr") echo "selected='selected'";?>>fran&ccedil;ais</option>
 		  <option value="en" <?php if ($laPage->lg=="en") echo "selected='selected'";?>>anglais</option>
 	  </select>
     </li>
     <li>
-      <label for="name">Nom de la page Google<em>*</em> :</label>
-      <input id="name" name="textNomG" value="<?=$laPage->nomPageGoogle?>"/>
+      <label for="namePage">Nom de la page Google<em>*</em> :</label>
+      <input id="namePage" name="textNomG" value="<?=$laPage->nomPageGoogle?>"/>
     </li>
     <li>
-      <label for="title">Titre de la page<em>*</em> :</label>
-	  <textarea id="title" name="textTitre"/><?=miseEnFormeTextarea($laPage->titrePage)?></textarea>
+      <label for="titlePage">Titre de la page<em>*</em> :</label>
+	  <textarea id="titlePage" name="textTitre"/><?=miseEnFormeTextarea($laPage->titrePage)?></textarea>
     </li>
     <li>
       <label for="desc">Description :</label>
@@ -40,8 +40,8 @@ if ($numpage) {
 	if ($uti->estAdmin()) {
 	?>
 		 <li>
-	      <label for="name">Cette page est sp&eacute;cifique (réservé webmaster expert) :</label>
-	      <input type="text" id="name" name="textFichier" value="<?=$laPage->nomFichier?>"/> .php
+	      <label for="estSpec">Cette page est sp&eacute;cifique (réservé webmaster expert) :</label>
+	      <input type="text" id="estSpec" name="textFichier" value="<?=$laPage->nomFichier?>"/> .php
 	    </li>	
 		
 	<?php

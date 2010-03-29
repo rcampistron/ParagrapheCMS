@@ -1,4 +1,4 @@
-<?php /* Date de création: 18/12/2008 */
+<?php /* Date de crï¿½ation: 18/12/2008 */
 if ($numuti) {//on est en modification
    $modifUti = New Utilisateur();
    $modifUti->numuti=$numuti;
@@ -18,24 +18,24 @@ if ($numuti) {//on est en modification
 				      <input type="text" id="name" name="textNom" value="<?=$modifUti->nom?>"/>
 				    </li>
 				    <li>
-				      <label for="name">P&eacute;nom :</label>
-				      <input type="text" id="name" name="textPrenom" value="<?=$modifUti->prenom?>"/>
+				      <label for="prenom">P&eacute;nom :</label>
+				      <input type="text" id="prenom" name="textPrenom" value="<?=$modifUti->prenom?>"/>
 				    </li>
 					<li>
-				      <label for="name">Identifiant (adresse e-mail)<em>*</em> :</label>
-				      <input type="text" id="name" name="textLogin" value="<?=$modifUti->login?>"/>
+				      <label for="identifiant">Identifiant (adresse e-mail)<em>*</em> :</label>
+				      <input type="text" id="identifiant" name="textLogin" value="<?=$modifUti->login?>"/>
 				    </li>	
 					<li>
-				      <label for="name">Mot de passe<em>*</em> :</label>
-				      <input type="text" id="name" name="textPwd" value="<?=$modifUti->pwd?>"/>
+				      <label for="motDePasse">Mot de passe<em>*</em> :</label>
+				      <input type="text" id="motDePasse" name="textPwd" value="<?=$modifUti->pwd?>"/>
 				    </li> 
 					<li>
-				      <label for="name">Administrateur :</label>
-				      <input type="radio"  id="radio" name="radioAdmin" value="o" <?php if ($modifUti->admin=="o" || !$modifUti->admin) echo "checked='checked'";?> /> <span class="radio">oui</span> 	<input type="radio" id="radio" name="radioAdmin" value="n" <?php if ($modifUti->admin=="n") echo "checked='checked'";?> /> <span class="radio">non</span>
+				      <label for="estAdmin">Administrateur :</label>
+				      <input type="radio"  id="estAdmin" name="radioAdmin" value="o" <?php if ($modifUti->admin=="o" || !$modifUti->admin) echo "checked='checked'";?> /> <span class="radio">oui</span> 	<input type="radio" id="radio" name="radioAdmin" value="n" <?php if ($modifUti->admin=="n") echo "checked='checked'";?> /> <span class="radio">non</span>
 				    </li>	
 					<li>
-				      <label for="name">Actif :</label>
-				      <input type="radio" id="radio" name="radioActif" value="o" <?php if ($modifUti->actif=="o" || !$modifUti->actif) echo "checked='checked'";?> /> <span class="radio">oui</span> 	<input type="radio" id="radio" name="radioActif" value="n" <?php if ($modifUti->actif=="n") echo "checked='checked'";?> /> <span class="radio">non</span>
+				      <label for="estActif">Actif :</label>
+				      <input type="radio" id="estActif" name="radioActif" value="o" <?php if ($modifUti->actif=="o" || !$modifUti->actif) echo "checked='checked'";?> /> <span class="radio">oui</span> 	<input type="radio" id="radio" name="radioActif" value="n" <?php if ($modifUti->actif=="n") echo "checked='checked'";?> /> <span class="radio">non</span>
 				    </li>	
 				</ol>
 				 <br />	

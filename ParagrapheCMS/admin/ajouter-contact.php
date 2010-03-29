@@ -14,15 +14,15 @@ if ($numcont) {//on est en modification
 			<legend><?php if ($numcont) echo "Modifier le contact"; else echo "Ajouter un contact";?></legend>
 		 		 <ol>
 				    <li>
-				      <label for="name">Nom<em>*</em> :</label>
-				      <input type="text" id="name" name="textNom" value="<?=$modifCont->nom?>"/>
+				      <label for="nomContact">Nom<em>*</em> :</label>
+				      <input type="text" id="nomContact" name="textNom" value="<?=$modifCont->nom?>"/>
 				    </li>
 				    <li>
-				      <label for="name">P&eacute;nom :</label>
+				      <label for="prenom">P&eacute;nom :</label>
 				      <input type="text" id="prenom" name="textPrenom" value="<?=$modifCont->prenom?>"/>
 				    </li>
 					<li>
-				      <label for="name">Genre :</label>
+				      <label for="genre">Genre :</label>
 				      <select name="selectGenre" id="genre">
 					  	  <option value="Mme" <?php if ($modifCont->genre=="Mme") echo "selected='selected'";?>>Madame</option>
 						  <option value="Mlle" <?php if ($modifCont->genre=="Mlle") echo "selected='selected'";?>>Mademoiselle</option>
@@ -30,27 +30,27 @@ if ($numcont) {//on est en modification
 					  </select>
 				    </li>
 					<li>
-				      <label for="name">Fonction :</label>
-					  <textarea name="textFonction"><?=miseEnFormeTextarea($modifCont->fonction)?></textarea>
+				      <label for="fonction">Fonction :</label>
+					  <textarea id="fonction" name="textFonction"><?=miseEnFormeTextarea($modifCont->fonction)?></textarea>
 				    </li>
 					<li>
-				      <label for="name">Email :</label>
+				      <label for="email">Email :</label>
 				      <input type="text" id="email" name="textEmail" value="<?=$modifCont->email?>"/>
 				    </li>	
 					<li>
-				      <label for="name">T&eacute;l&eacute;phone :</label>
-				      <input type="text" id="tel" name="textTel" value="<?=$modifCont->tel?>"/>
+				      <label for="telephone">T&eacute;l&eacute;phone :</label>
+				      <input type="text" id="telephone" name="textTel" value="<?=$modifCont->tel?>"/>
 				    </li> 
 					<li>
-				      <label for="name">Portable :</label>
-				      <input type="text" id="port" name="textGsm" value="<?=$modifCont->gsm?>"/>
+				      <label for="portable">Portable :</label>
+				      <input type="text" id="portable" name="textGsm" value="<?=$modifCont->gsm?>"/>
 				    </li>	
 					<li>
-				      <label for="name">Fax :</label>
+				      <label for="fax">Fax :</label>
 				      <input type="text" id="fax" name="textFax" value="<?=$modifCont->fax?>"/>
 				    </li>	
 					<li>
-				      <label for="name">Contact référent :</label>
+				      <label>Contact référent :</label>
       <input type="radio" id="radio" name="radioRefe" value="o" <?php if ($modifCont->referent=="o") echo  "checked='checked'";?>/> <span class="radio">oui</span>	<input type="radio" id="radio" name="radioRefe" value="n"  <?php if ($modifCont->referent=="n" || !$modifCont) echo  "checked='checked'";?>/> <span class="radio">non</span>
 				    </li>	
 					<?php

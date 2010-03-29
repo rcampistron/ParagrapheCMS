@@ -3,32 +3,59 @@
 	<div class="sap-content">
 <div id="pageadmin">
 
-  <h2>Liste des commandes</h2>
-   <br /><br />
-	Critères de recherche
-	<br />
-	<select name="selectEtat">
-		<option value="">Etat de la commande</option>
-		<option value="1">En attente de validation</option>
-		<option value="2">Validée (réglée)</option>
-		<option value="3">Expédiée</option>
-		<option value="4">Archivée</option>
-		<!--<option value="4">Reçue</option>-->
-	</select>
-	<br />
-	<select name="selectReg">
-		<option value="">Mode de réglement</option>
-		<option value="ch">chèque</option>
-		<option value="vi">virement</option>
-		<option value="cb">carte bancaire</option>
-		<option value="dv">demande de devis</option>
-	</select>
-	<br />
-	du <input type="text" class="public" name="textDu"/> au <input type="text" class="public" name="textAu"/> format jj/mm/aaaa
-	<br />
-	<input type="hidden" name="action" />
-	<input id="button" name="validerRech" type="button" value="Rechercher" onClick="javascript:valideRech()"/>  
-	<br /><br />
+ <h2>Liste des commandes</h2>
+<form></form>
+ <fieldset>
+   	<legend>Critères de recherche</legend>
+	<ol>   
+		   <li>
+			   <label for="etat">Etat de la commande</label>
+			   	<select id="etat" name="selectEtat">
+					<option value="1">En attente de validation</option>
+					<option value="2">Validée (réglée)</option>
+					<option value="3">Expédiée</option>
+					<option value="4">Archivée</option>
+					<!--<option value="4">Reçue</option>-->
+				</select>
+		  </li>
+		  <li>
+				<label for="modeReglement">Mode de réglement</label>
+				<select id ="modeReglement" name="selectReg">
+					<option value="ch">chèque</option>
+					<option value="vi">virement</option>
+					<option value="cb">carte bancaire</option>
+					<option value="dv">demande de devis</option>
+				</select>
+		 </li>
+	</ol>
+ </fieldset>
+ <fieldset>
+	<legend>Date de la commande <em>(format jj/mm/aaaa)</em> </legend>
+	<ol>
+		<li>
+			<label for="dateDebut">Du</label>
+			<input id="dateDebut" type="text" class="public" name="textDu"/>
+		</li>
+		<li>
+			<label for="dateFin">Au</label>
+			<input id="dateFin" type="text" class="public" name="textAu"/>
+		</li>
+	
+   </ol>
+   
+   <fieldset>
+   <form>
+  	 <ol>
+		   <li>
+			<input type="hidden" name="action" />
+			</li>
+			<li>
+			<input id="button" name="validerRech" type="button" value="Rechercher" onClick="javascript:valideRech()"/>
+			</li> 
+	 </ol> 
+	 
+	</fieldset>
+</fieldset>
   <h4>Commandes 
   <?php
   if ($selectEtat=="1") echo " en attente de validation"; 

@@ -97,10 +97,12 @@ $voirCom->infosCommande();
 				    </li>
 				</ol>
 				 <br />	
+				
 				  <input type="hidden" name="numcom" value="<?=$numcom?>" />
 				  <input type="hidden" name="action"  value="<?=$action?>" />
 				 <input id="button" name="validerCommande" type="button" value="Modifier" onClick="javascript:valideCommande()"/>  
 		 	     <input id="button" name="retour" type="button" value="Retour (sans mail)" onclick="javascript:document.forms[0].action.value='annuler';document.forms[0].submit()"/>
+		 	    
 					</fieldset>
    </div>
   </div>

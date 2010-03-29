@@ -1,5 +1,7 @@
 <?php /* Date de création: 11/12/2008 */  
 /**
+ * @file parag.php
+ * @date 11/12/2008
  * @todo supprimer accordeon 
  * 
  */
@@ -65,7 +67,7 @@ foreach ($listphot as $photos) {
 	</script>
         <li>
 	      <label for="desc">Position du paragraphe :</label>
-	      <select id="type" name="selectType<?=$paras->numpara?>">
+	      <select id="desc" name="selectType<?=$paras->numpara?>">
 			<option>----------------------------------------------------</option>
 			<option value="0" <?php if ($paras->colonnePara==0) echo "selected='selected'";?>>Contenu central en une colonne</option>
 			<option>----------------------------------------------------</option>
@@ -76,8 +78,8 @@ foreach ($listphot as $photos) {
 		  </select>
 	    </li>
 		<li>
-	      <label for="title">Titre du paragraphe :</label>
-	      <textarea name="textTitrePara<?=$paras->numpara?>"><?=miseEnFormeTextarea($paras->titrePara)?></textarea>
+	      <label for="titlePara">Titre du paragraphe :</label>
+	      <textarea id="" name="textTitrePara<?=$paras->numpara?>"><?=miseEnFormeTextarea($paras->titrePara)?></textarea>
 	    </li>
 		<li>
 	      <label for="title">Mise en forme du titre   :</label>
@@ -93,11 +95,14 @@ foreach ($listphot as $photos) {
 	      <textarea name="textCont<?=$paras->numpara?>"><?=miseEnFormeTextarea($paras->contenuPara)?></textarea>
 	    </li>
 		 <li>
-	      <label for="desc">La contenu du paragraphe est de type : </label>
-		  <input type="radio" id="radio" name="radioListe<?=$paras->numpara?>" value="li" <?php if ($paras->listePara=="li" ) echo "checked='checked'";?> /> <span class="radio">liste</span> 	<input type="radio" id="radio" name="radioListe<?=$paras->numpara?>" value="no" <?php if ($paras->listePara=="no" || !$paras->numpara) echo "checked='checked'";?> /> <span class="radio">normal</span>
+	      <label>La contenu du paragraphe est de type : </label>
+		  <input type="radio" id="radio name="radioListe<?=$paras->numpara?>" value="li" <?php if ($paras->listePara=="li" ) echo "checked='checked'";?> /> 
+		  <span class="radio">liste</span> 
+		  <input type="radio" id="radio" name="radioListe<?=$paras->numpara?>" value="no" <?php if ($paras->listePara=="no" || !$paras->numpara) echo "checked='checked'";?> /> 
+		  <span class="radio">normal</span>
 	    </li>
 		 <li>
-	      <label for="desc">Ordre du paragraphe :</label>
+	      <label for="ordrePara">Ordre du paragraphe :</label>
 	      <select id="ordre" name="selectOrdre<?=$paras->numpara?>">
 		  	<?php 
 			for ($i=1; $i<=10; $i++) {	   

@@ -13,7 +13,8 @@ if ($numpara) {//on est en modification
   				  <div class="TabbedPanelsContent"> 
 			<fieldset>
 			<legend><?php if ($numpara) echo "Modifier la brève internationale"; else echo "Ajouter une brève internationale";?></legend>
-				    <li>
+				    <ol>
+				   <li>
 				      <label for="name">Titre<em>*</em> :</label>
 				      <input type="text" id="name" name="textTitre" value="<?=$modifBreve->titrePara?>"/>
 				    </li>
@@ -45,9 +46,13 @@ if ($numpara) {//on est en modification
 				    </li>	
 					
 					
-				 <br />	
+				 <li> 
 				  <input type="hidden" name="numpara" value="<?=$numpara?>" />
-				 <input id="button" name="validerBreve" type="button" value="Valider" onClick="javascript:valideBreve()"/>  
+				  </li>
+				  <li>
+				 <input id="button" name="validerBreve" type="button" value="Valider" onClick="javascript:valideBreve()"/>
+				 </li>  
+				 </ol>
    		</fieldset>
 		</div>
 	</div>  

@@ -9,8 +9,8 @@
   <legend>Nouvelle Page</legend>
   <ol>
     <li>
-      <label for="name">Langue :</label>
-       <select name="selectLg">
+      <label for="lang">Langue :</label>
+       <select id="lang" name="selectLg">
 	  	  <option value="fr">fran&ccedil;ais</option>
 		  <option value="en">anglais</option>
 	  </select>
